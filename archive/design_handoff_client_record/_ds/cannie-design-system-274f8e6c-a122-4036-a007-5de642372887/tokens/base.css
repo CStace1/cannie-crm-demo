@@ -1,9 +1,0 @@
-/* Minimal global defaults. Consumers link styles.css and get the tokens plus
-   these; nothing here resets or opinionates layout. */
-a{color:var(--text-link);text-decoration-color:color-mix(in srgb,var(--text-link) 40%,transparent);text-underline-offset:2px}
-a:hover{color:var(--text-link-hover);text-decoration-color:currentColor}
-a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{outline:none;box-shadow:var(--focus-ring);border-radius:var(--radius-xs)}
-::selection{background:var(--cannie-berry-wash);color:var(--cannie-ink)}
-[data-theme="dark"] ::selection{background:var(--cannie-berry-soft);color:var(--cannie-ink)}
-.cannie-tabular{font-variant-numeric:tabular-nums}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}}

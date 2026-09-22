@@ -3647,10 +3647,18 @@ Object.assign(__ds_scope, { Card });
 // components/core/Icon.jsx
 try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-/* Lucide, loaded from CDN and drawn at Lucide's own default stroke of 2.
-   Cannie ships no icon set of its own; this is a documented substitution.
-   See readme.md > Iconography. */
-const SRC = "https://unpkg.com/lucide@latest";
+/* Lucide, vendored beside this bundle and drawn at Lucide's own default
+   stroke of 2. Cannie ships no icon set of its own; this is a documented
+   substitution. See readme.md > Iconography.
+   Served locally rather than from a CDN: this demo is published on a public
+   URL, so a third party script tag would run in every visitor's browser and
+   would tell that third party who is looking. The file is lucide 1.47.0,
+   taken from unpkg on 2026-09-22. */
+const SRC = (() => {
+  const own = document.querySelector('script[src*="_ds_bundle.js"]');
+  return own ? new URL("lucide.js", own.src).href : "lucide.js";
+})();
+const SRC_SRI = "";
 let loading = null;
 function ensureLucide() {
   if (typeof window === "undefined") return Promise.resolve(null);
@@ -3661,6 +3669,10 @@ function ensureLucide() {
     if (!tag) {
       tag = document.createElement("script");
       tag.src = SRC;
+      if (SRC_SRI) {
+        tag.integrity = SRC_SRI;
+        tag.crossOrigin = "anonymous";
+      }
       tag.setAttribute("data-cannie-lucide", "");
       document.head.appendChild(tag);
     }

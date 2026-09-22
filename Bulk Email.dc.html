@@ -3,19 +3,48 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="../support.js"></script>
+<script src="./support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
-<link rel="stylesheet" href="../_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/tokens/fonts.css">
-<link rel="stylesheet" href="../_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/styles.css">
-<script src="../_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/_ds_bundle.js"></script>
+<link rel="stylesheet" href="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/styles.css">
+<script src="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/_ds_bundle.js"></script>
 <style>body{margin:0;background:#F3EEE6} a{color:#9E2D53} a:hover{color:#7D2342}
-@media (max-width:1180px){ [data-two]{grid-template-columns:minmax(0,1fr) !important} [data-msg]{position:static !important} }</style>
+@media (max-width:1180px){ [data-two]{grid-template-columns:minmax(0,1fr) !important} [data-msg]{position:static !important} }
+@media (max-width:720px){[data-side]{position:static !important;height:auto !important;width:auto !important;flex:0 0 auto !important;flex-direction:row !important;flex-wrap:wrap;align-items:center;gap:14px !important;padding:12px 16px !important}[data-side] nav{flex-direction:row !important;flex-wrap:wrap}}</style>
 </helmet>
 <div style="min-height:100vh;background:#F3EEE6;color:#2B211B;font-family:'Poppins',sans-serif;font-size:15px;line-height:1.3;display:flex;flex-direction:column">
-<div style="background:#2B211B;color:#F3EEE6;padding:10px 32px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:#E896B3">Future, backlog</span><span style="font-size:14px">Bulk email to contacts and candidates. Not in the first build. Mocked so the shape is agreed; every row here needs Exchange send and a template store.</span><span style="flex:1"></span><a href="../Overview.dc.html" style="color:#F3EEE6;font-size:13px;text-decoration:underline">Back to Overview</a></div>
+<div style="background:#2B211B;color:#F3EEE6;padding:10px 32px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:#E896B3">Future, backlog</span><span style="font-size:14px">Bulk email to contacts and candidates. Not in the first build. Mocked so the shape is agreed; every row here needs Exchange send and a template store.</span><span style="flex:1"></span><a href="Overview.dc.html" style="color:#F3EEE6;font-size:13px;text-decoration:underline">Back to Overview</a></div>
+<div style="display:flex;flex:1;width:100%">
+<aside data-side="1" style="position:sticky;top:0;height:100vh;box-sizing:border-box;overflow-y:auto;align-self:flex-start;width:222px;flex:0 0 222px;background:#2B211B;color:#F3EEE6;padding:24px 14px 20px;display:flex;flex-direction:column;gap:22px">
+<div style="padding:0 8px;display:flex">
+<x-import component-from-global-scope="CannieDesignSystem_274f8e.Lockup" tone="dark" height="24" hint-size="117px,24px"></x-import>
+</div>
+<nav style="display:flex;flex-direction:column;gap:2px">
+<a href="Overview.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><span>Overview</span></a>
+<a href="Pipeline.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><span>Pipeline</span></a>
+<a href="Job Board.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><span>Job board</span></a>
+<span style="border-top:1px solid #4C3D33;margin:12px 0 10px"></span>
+<a href="Calendar.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><span>Calendar</span></a>
+<a href="Activities.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><span>Activities</span></a>
+<a href="Bulk Email.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;background:rgba(232,150,179,.14);color:#E896B3;font-weight:600;font-size:14px;text-decoration:none"><span>Bulk email</span></a>
+<span style="border-top:1px solid #4C3D33;margin:12px 0 10px"></span>
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:#D9CFC0;padding:0 12px 4px">Records</span>
+<a href="Clients.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><span>Clients</span></a>
+<a href="Job Record.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><span>Jobs</span></a>
+<a href="Candidates.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><span>Candidates</span></a>
+<a href="Contacts.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><span>Contacts</span></a><span style="border-top:1px solid #4C3D33;margin:12px 0 10px"></span><a href="Recruiter.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><span>My targets</span></a>
+<span style="border-top:1px solid #4C3D33;margin:12px 0 10px"></span>
+<a href="Timesheets.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><span>Timesheets</span></a>
+<a href="Invoices.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><span>Invoices</span></a>
+
+<span style="border-top:1px solid #4C3D33;margin:12px 0 10px"></span>
+<a href="Standards.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><span>Standards</span></a>
+</nav>
+</aside>
+<main style="flex:1;min-width:0;display:flex;flex-direction:column">
 <div style="padding:26px 32px 64px;display:flex;flex-direction:column;gap:22px;max-width:1240px;box-sizing:border-box;width:100%;margin:0 auto">
 <header style="display:flex;flex-direction:column;gap:6px">
 <span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Send to many</span>
@@ -55,6 +84,8 @@
 </section>
 </div>
 </div>
+</main>
+</div>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script>
@@ -67,7 +98,7 @@ const SETS = {
     ['Lucía Ferreira', 'Sent, 3 days', 'Senior Backend Engineer', 'OK', true], ['Ben Achterberg', 'Sent, 1 day', 'Senior Backend Engineer', 'OK', true], ['Priyanka Rao', 'Sent, 2 days', 'Senior Backend Engineer', 'OK', true], ['Amara Osei', 'Interview Thu', 'Senior Backend Engineer', 'OK', false], ['Tom Halloran', 'Interview', 'Senior Backend Engineer', 'Alerts off', false]],
     templates: ['Where we are', 'Interview prep pack', 'Role closed, thank you', 'Blank'], subject: 'Senior Backend Engineer at Brightwell, where we are', body: 'Hi {first},\n\nQuick one on {job}. Dan is reviewing CVs this week and I expect first-round slots to open Monday. Nothing needed from you yet; I will call the moment there is a date.\n\nIf anything changes on your side, tell me first.\n\n{your name}', filters: ['Sent', 'Interview', 'Screened', 'All live'], attach: ['Job spec', 'Prep pack', 'None']},
   'Candidates by search': {title: 'Go engineers, London, available inside a month', who: 'A saved pool re-run now. Only people with job alerts on are ticked; passive people are unticked by default.', people: [
-    ['Kwame Asante', 'Platform Engineer, Deliveroo. Passive.', 'Database', 'OK', false], ['Amara Osei', 'Backend Engineer, Monzo.', 'Database', 'OK', true], ['Ben Achterberg', 'Backend Engineer, Starling.', 'Database', 'OK', true], ['Marcus Bell', 'Backend Developer, Revolut.', 'Database', 'OK', true], ['James Okoro', 'Engineering Manager, Ocado. Passive.', 'Database', 'Alerts off', false]],
+    ['Kwame Asante', 'Platform Engineer, Swiftcourier. Passive.', 'Database', 'OK', false], ['Amara Osei', 'Backend Engineer, Fenmark.', 'Database', 'OK', true], ['Ben Achterberg', 'Backend Engineer, Larkspur.', 'Database', 'OK', true], ['Marcus Bell', 'Backend Developer, Voltway.', 'Database', 'OK', true], ['James Okoro', 'Engineering Manager, Groveline. Passive.', 'Database', 'Alerts off', false]],
     templates: ['New role, are you open?', 'Market note', 'Check in', 'Blank'], subject: 'A Go role in London you should hear about', body: 'Hi {first},\n\nA payments platform in London is hiring a senior Go engineer, hybrid two days, band to £95,000. It is a small team with a migration to own.\n\nIf that is interesting, reply with a time and I will call. If not, say so and I will not chase.\n\n{your name}', filters: ['Alerts on', 'Passive too', 'Contacted in 30 days', 'Everyone'], attach: ['Job spec', 'None']},
 };
 class Component extends DCLogic {
