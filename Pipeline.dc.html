@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/styles.css">
+<script src="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/_ds_bundle.js"></script>
+<style>body{margin:0;background:#F3EEE6}a{color:#9E2D53}a:hover{color:#7D2342}
+@media (max-width:1100px){[data-board]{grid-template-columns:minmax(0,1fr) !important}}
+@media (max-width:720px){[data-side]{position:static !important;height:auto !important;width:auto !important;flex:0 0 auto !important;flex-direction:row !important;flex-wrap:wrap;align-items:center;gap:14px !important;padding:12px 16px !important}[data-side] nav{flex-direction:row !important;flex-wrap:wrap}}
+</style>
+</helmet>
+<div style="display:flex;width:100%;min-height:100vh;background:#F3EEE6;color:#2B211B;font-family:'Poppins',sans-serif;font-size:15px;line-height:1.3">
+<aside data-side="1" style="position:sticky;top:0;height:100vh;box-sizing:border-box;overflow-y:auto;align-self:flex-start;width:222px;flex:0 0 222px;background:#2B211B;color:#F3EEE6;padding:24px 14px 20px;display:flex;flex-direction:column;gap:22px">
+<div style="padding:0 8px;display:flex">
+<x-import component-from-global-scope="CannieDesignSystem_274f8e.Lockup" tone="dark" height="24" hint-size="117px,24px"></x-import>
+</div>
+<nav style="display:flex;flex-direction:column;gap:2px">
+<a href="Overview.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><rect x="3" y="3" width="7" height="9" rx="1"></rect><rect x="14" y="3" width="7" height="5" rx="1"></rect><rect x="14" y="12" width="7" height="9" rx="1"></rect><rect x="3" y="16" width="7" height="5" rx="1"></rect></svg><span>Overview</span></a>
+<a href="Pipeline.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;background:rgba(232,150,179,.14);color:#E896B3;font-weight:600;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 3v18M15 3v18"></path></svg><span>Pipeline</span></a>
+<a href="Job Board.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 9h18M8 4v5"></path></svg><span>Job board</span></a>
+<span style="border-top:1px solid #4C3D33;margin:12px 0 10px"></span>
+<a href="Calendar.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg><span>Calendar</span></a>
+<a href="Activities.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg><span>Activities</span></a>
+<span style="border-top:1px solid #4C3D33;margin:12px 0 10px"></span>
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:#D9CFC0;padding:0 12px 4px">Records</span>
+<a href="Clients.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2M10 6h4M10 10h4M10 14h4M10 18h4"></path></svg><span>Clients</span></a>
+<a href="Job Record.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><rect x="2" y="7" width="20" height="14" rx="2"></rect><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"></path></svg><span>Jobs</span></a>
+<a href="Candidates.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"></path></svg><span>Candidates</span></a>
+<a href="Contacts.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><circle cx="12" cy="8" r="5"></circle><path d="M20 21a8 8 0 0 0-16 0"></path></svg><span>Contacts</span></a><span style="border-top:1px solid #4C3D33;margin:12px 0 10px"></span><a href="Recruiter.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M3 3v18h18"></path><path d="M7 15l4-6 4 3 4-8"></path></svg><span>My targets</span></a>
+<a href="Timesheets.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6M8 13h8M8 17h5"></path></svg><span>Timesheets</span></a>
+<a href="Invoices.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M4 2v20l3-2 3 2 3-2 3 2 3-2 1 1V2l-1 1-3-2-3 2-3-2-3 2-3-2z"></path><path d="M8 8h8M8 12h8M8 16h5"></path></svg><span>Invoices</span></a>
+
+<span style="border-top:1px solid #4C3D33;margin:12px 0 10px"></span>
+<a href="Standards.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg><span>Standards</span></a>
+</nav>
+<div style="display:flex;flex-direction:column;gap:2px">
+<a href="Overview.dc.html" style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:#D9CFC0;padding:0 12px 6px;text-decoration:none">Your desk</a>
+<sc-for list="{{ jobNav }}" as="jn" hint-placeholder-count="5">
+<button onClick="{{ jn.go }}" style="display:flex;justify-content:space-between;gap:8px;align-items:center;min-height:32px;padding:4px 12px;border:none;border-radius:10px;background:{{ jn.bg }};font-family:inherit;font-size:13px;text-align:left;cursor:pointer;color:{{ jn.ink }};font-weight:{{ jn.weight }}"><span>{{ jn.label }}</span><span style="font-size:12px">{{ jn.count }}</span></button>
+</sc-for>
+</div>
+</aside>
+
+<main style="flex:1;min-width:0;display:flex;flex-direction:column">
+<div style="padding:26px 32px 64px;display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;align-items:flex-end;gap:24px;flex-wrap:wrap">
+<div style="display:flex;flex-direction:column;gap:6px;flex:1 1 360px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Pipeline</span>
+<h1 style="margin:0;font-size:28px;font-weight:700;letter-spacing:-0.0075em">{{ title }}</h1>
+<p style="margin:0;font-size:14px;color:rgba(43,33,27,.70)">{{ summary }}</p>
+</div>
+<div style="display:flex;gap:3px;padding:3px;background:#EFE7DA;border-radius:999px">
+<sc-for list="{{ viewToggle }}" as="vt" hint-placeholder-count="2">
+<button onClick="{{ vt.go }}" style="height:32px;padding:0 16px;border:none;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ vt.bg }};color:{{ vt.ink }};font-weight:{{ vt.weight }}">{{ vt.label }}</button>
+</sc-for>
+</div>
+</div>
+
+<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+<input type="text" value="{{ q }}" onChange="{{ setQ }}" placeholder="Search a candidate, job or client" style="height:38px;flex:1 1 240px;max-width:340px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box">
+<select value="{{ job }}" onChange="{{ setJob }}" style="height:38px;padding:0 10px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;max-width:260px">
+<sc-for list="{{ jobOptions }}" as="jo" hint-placeholder-count="5"><option value="{{ jo.key }}">{{ jo.label }}</option></sc-for>
+</select>
+<div style="display:flex;gap:6px">
+<sc-for list="{{ ownerFilters }}" as="of" hint-placeholder-count="2">
+<button onClick="{{ of.go }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:transparent;border:{{ of.border }};color:{{ of.ink }};font-weight:{{ of.weight }}">{{ of.label }}</button>
+</sc-for>
+</div>
+<span style="flex:1"></span>
+<sc-if value="{{ isBoard }}" hint-placeholder-val="{{ true }}">
+<label style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(43,33,27,.70)">Order cards by
+<select value="{{ sort }}" onChange="{{ setSort }}" style="height:34px;padding:0 8px;border:1px solid #D9CFC0;border-radius:8px;background:#F3EEE6;font-family:inherit;font-size:13px;color:#2B211B">
+<sc-for list="{{ sortOptions }}" as="so" hint-placeholder-count="3"><option value="{{ so }}">{{ so }}</option></sc-for>
+</select></label>
+</sc-if>
+</div>
+
+<div data-board="1" style="display:grid;grid-template-columns:minmax(0,1fr) {{ panelCol }};gap:20px;align-items:start">
+<div style="min-width:0">
+<sc-if value="{{ isBoard }}" hint-placeholder-val="{{ true }}">
+<div style="overflow-x:auto;padding-bottom:8px"><div style="display:grid;grid-template-columns:repeat(6,minmax(140px,1fr));gap:10px;align-items:stretch">
+<sc-for list="{{ cols }}" as="col" hint-placeholder-count="6">
+<div onDragOver="{{ col.over }}" onDragLeave="{{ col.leave }}" onDrop="{{ col.drop }}" style="display:flex;flex-direction:column;gap:8px;min-width:0;padding:8px;border-radius:14px;background:{{ col.bg }};min-height:420px;box-sizing:border-box">
+<div style="display:flex;align-items:baseline;gap:8px;padding:2px 4px 6px;border-bottom:3.4px solid #2B211B"><span style="font-size:14px;font-weight:700">{{ col.label }}</span><span style="font-size:12px;color:rgba(43,33,27,.70)">{{ col.count }}</span><span style="flex:1"></span><span style="font-size:12px;color:rgba(43,33,27,.70)">{{ col.stale }}</span></div>
+<sc-for list="{{ col.cards }}" as="c" hint-placeholder-count="2">
+<button draggable="true" onDragStart="{{ c.drag }}" onClick="{{ c.pick }}" style="display:flex;flex-direction:column;gap:5px;align-items:flex-start;text-align:left;background:#F3EEE6;border:{{ c.border }};border-radius:10px;padding:11px 12px;font-family:inherit;color:#2B211B;cursor:grab;width:100%;box-sizing:border-box" style-hover="background:#FBF8F3">
+<span style="display:flex;width:100%;gap:8px;align-items:center"><span style="width:26px;height:26px;border-radius:999px;background:#EFE7DA;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex:0 0 auto">{{ c.initials }}</span><span style="font-size:14px;font-weight:600;flex:1;min-width:0">{{ c.name }}</span></span>
+<span style="font-size:12px;color:rgba(43,33,27,.70)">{{ c.jobLine }}</span>
+<span style="display:flex;width:100%;gap:8px;justify-content:space-between;font-size:12px"><span style="color:rgba(43,33,27,.70)">{{ c.next }}</span><span style="font-weight:{{ c.daysWeight }};white-space:nowrap">{{ c.days }}</span></span>
+</button>
+</sc-for>
+<sc-if value="{{ col.empty }}" hint-placeholder-val="{{ false }}"><p style="margin:0;padding:6px 4px;font-size:12px;color:rgba(43,33,27,.70)">{{ col.emptyLine }}</p></sc-if>
+</div>
+</sc-for>
+</div></div>
+<p style="margin:6px 0 0;font-size:12px;color:rgba(43,33,27,.70)">Drag a card to another stage, or open it to move it. Bold days mean a week or more in the stage.</p>
+</sc-if>
+
+<sc-if value="{{ isTable }}" hint-placeholder-val="{{ false }}">
+<div style="overflow-x:auto"><div style="min-width:760px;display:flex;flex-direction:column">
+<div style="display:grid;grid-template-columns:minmax(160px,1.3fr) minmax(200px,1.6fr) 110px 110px minmax(160px,1.3fr) 110px;gap:12px;padding:0 4px 8px;border-bottom:3.4px solid #2B211B">
+<sc-for list="{{ heads }}" as="h" hint-placeholder-count="6">
+<button onClick="{{ h.go }}" style="display:flex;align-items:center;gap:4px;background:transparent;border:none;padding:0;font-family:inherit;font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:{{ h.ink }};cursor:pointer;text-align:left">{{ h.label }}<sc-if value="{{ h.on }}" hint-placeholder-val="{{ false }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="transform:{{ h.rot }}"><path d="M6 9l6 6 6-6"></path></svg></sc-if></button>
+</sc-for>
+</div>
+<sc-for list="{{ tableRows }}" as="r" hint-placeholder-count="8">
+<button onClick="{{ r.pick }}" style="display:grid;grid-template-columns:minmax(160px,1.3fr) minmax(200px,1.6fr) 110px 110px minmax(160px,1.3fr) 110px;gap:12px;align-items:center;border:none;border-top:1px solid #D9CFC0;padding:12px 4px;background:{{ r.bg }};font-family:inherit;color:#2B211B;text-align:left;cursor:pointer" style-hover="background:rgba(43,33,27,.05)">
+<span style="font-size:15px;font-weight:600">{{ r.name }}</span>
+<span style="font-size:13px;color:rgba(43,33,27,.70)">{{ r.jobLine }}</span>
+<span style="font-size:14px">{{ r.stage }}</span>
+<span style="font-size:14px;font-weight:{{ r.daysWeight }}">{{ r.days }}</span>
+<span style="font-size:13px;color:rgba(43,33,27,.70)">{{ r.next }}</span>
+<span style="font-size:13px">{{ r.owner }}</span>
+</button>
+</sc-for>
+</div></div>
+</sc-if>
+<sc-if value="{{ noneAtAll }}" hint-placeholder-val="{{ false }}"><p style="margin:14px 0 0;font-size:14px;color:rgba(43,33,27,.70)">Nothing matches. Clear the search or pick another job.</p></sc-if>
+</div>
+
+<sc-if value="{{ hasSel }}" hint-placeholder-val="{{ false }}">
+<aside style="position:fixed;top:0;right:0;bottom:0;width:360px;max-width:100vw;box-sizing:border-box;overflow-y:auto;z-index:20;background:#EFE7DA;border-left:1px solid #D9CFC0;padding:24px;display:flex;flex-direction:column;gap:16px;box-shadow:-12px 0 32px rgba(43,33,27,.16)">
+<div style="display:flex;align-items:flex-start;gap:10px">
+<div style="display:flex;flex-direction:column;gap:4px;flex:1;min-width:0">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">{{ selStage }}</span>
+<h2 style="margin:0;font-size:20px;font-weight:700;letter-spacing:-0.0075em">{{ selName }}</h2>
+<span style="font-size:13px;color:rgba(43,33,27,.70)">{{ selJobLine }}</span>
+</div>
+<button onClick="{{ closeSel }}" title="Close" style="width:32px;height:32px;border:none;border-radius:10px;background:transparent;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;color:#2B211B" style-hover="background:rgba(43,33,27,.05)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"></path></svg></button>
+</div>
+<div style="display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{ selFacts }}" as="f" hint-placeholder-count="4">
+<div style="display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-top:1px solid #D9CFC0;font-size:13px"><span style="color:rgba(43,33,27,.70)">{{ f.label }}</span><span style="font-weight:600;text-align:right">{{ f.value }}</span></div>
+</sc-for>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<span style="font-size:13px;font-weight:600">Move to</span>
+<div style="display:flex;flex-wrap:wrap;gap:6px">
+<sc-for list="{{ moveTargets }}" as="mt" hint-placeholder-count="5">
+<button onClick="{{ mt.go }}" style="height:32px;padding:0 12px;border-radius:10px;border:1px solid rgba(43,33,27,.85);background:{{ mt.bg }};font-family:inherit;font-size:13px;font-weight:600;color:{{ mt.ink }};cursor:pointer">{{ mt.label }}</button>
+</sc-for>
+</div>
+</div>
+<div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center">
+<a href="{{ selCandHref }}" style="font-size:13px;font-weight:600;color:#9E2D53">Open candidate</a>
+<a href="{{ selJobHref }}" style="font-size:13px;font-weight:600;color:#2B211B">Open job</a>
+<span style="flex:1"></span>
+<button onClick="{{ openRemove }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;color:#2B211B;text-decoration:underline;cursor:pointer">Take off pipeline</button>
+</div>
+</aside>
+</sc-if>
+</div>
+</div>
+</main>
+
+<sc-if value="{{ hasMove }}" hint-placeholder-val="{{ false }}">
+<div style="position:fixed;inset:0;background:rgba(43,33,27,.55);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;z-index:30;padding:24px">
+<div style="background:#F3EEE6;border-radius:14px;padding:28px;max-width:520px;width:100%;display:flex;flex-direction:column;gap:18px;box-shadow:0 18px 48px rgba(43,33,27,.28)">
+<div style="display:flex;flex-direction:column;gap:4px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">{{ moveKicker }}</span>
+<h2 style="margin:0;font-size:20px;font-weight:700;letter-spacing:-0.0075em">{{ moveTitle }}</h2>
+<p style="margin:0;font-size:13px;color:rgba(43,33,27,.70)">{{ moveHelp }}</p>
+</div>
+<sc-if value="{{ moveHasExtra }}" hint-placeholder-val="{{ false }}">
+<label style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">{{ moveExtraLabel }}</span>
+<input type="text" value="{{ moveExtra }}" onChange="{{ setMoveExtra }}" placeholder="{{ moveExtraPh }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box"></label>
+</sc-if>
+<label style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">What happened</span>
+<textarea value="{{ moveNote }}" onChange="{{ setMoveNote }}" placeholder="{{ moveNotePh }}" rows="3" style="padding:10px 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;resize:vertical;box-sizing:border-box"></textarea></label>
+<label style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">Next step</span>
+<input type="text" value="{{ moveNext }}" onChange="{{ setMoveNext }}" placeholder="{{ moveNextPh }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box"></label>
+<sc-if value="{{ hasMoveError }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:13px;font-weight:600;color:#9E2D53">{{ moveError }}</p></sc-if>
+<div style="display:flex;gap:12px;align-items:center;justify-content:flex-end">
+<button onClick="{{ cancelMove }}" style="height:40px;padding:0 16px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:transparent;font-family:inherit;font-size:14px;font-weight:600;color:#2B211B;cursor:pointer">Cancel</button>
+<button onClick="{{ confirmMove }}" style="height:40px;padding:0 18px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer" style-hover="background:#7D2342">{{ moveCta }}</button>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ hasRemove }}" hint-placeholder-val="{{ false }}">
+<div style="position:fixed;inset:0;background:rgba(43,33,27,.55);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;z-index:30;padding:24px">
+<div style="background:#F3EEE6;border-radius:14px;padding:28px;max-width:480px;width:100%;display:flex;flex-direction:column;gap:18px;box-shadow:0 18px 48px rgba(43,33,27,.28)">
+<div style="display:flex;flex-direction:column;gap:4px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Take off pipeline</span>
+<h2 style="margin:0;font-size:20px;font-weight:700;letter-spacing:-0.0075em">{{ removeTitle }}</h2>
+<p style="margin:0;font-size:13px;color:rgba(43,33,27,.70)">The application stays on the candidate's record with the reason.</p>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:6px">
+<sc-for list="{{ removeReasons }}" as="rr" hint-placeholder-count="4">
+<button onClick="{{ rr.go }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ rr.bg }};border:1px solid #2B211B;color:{{ rr.ink }};font-weight:600">{{ rr.label }}</button>
+</sc-for>
+</div>
+<div style="display:flex;gap:12px;align-items:center;justify-content:flex-end">
+<button onClick="{{ cancelRemove }}" style="height:40px;padding:0 16px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:transparent;font-family:inherit;font-size:14px;font-weight:600;color:#2B211B;cursor:pointer">Cancel</button>
+<button onClick="{{ confirmRemove }}" style="height:40px;padding:0 18px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer">Take off</button>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ hasToast }}" hint-placeholder-val="{{ false }}">
+<div style="position:fixed;left:246px;bottom:24px;z-index:40;background:#2B211B;color:#F3EEE6;border-radius:10px;padding:12px 16px;display:flex;gap:16px;align-items:center;font-size:14px;box-shadow:0 12px 32px rgba(43,33,27,.28)"><span>{{ toast }}</span><sc-if value="{{ canUndo }}" hint-placeholder-val="{{ false }}"><button onClick="{{ undo }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:14px;font-weight:600;color:#E896B3;text-decoration:underline;cursor:pointer">Undo</button></sc-if></div>
+</sc-if>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const INK = '#2B211B', BERRY = '#9E2D53', MID = 'rgba(43,33,27,.70)', TAUPE = '#D9CFC0', SAND = '#EFE7DA', SOFT = '#E896B3';
+const STAGES = ['Applied', 'Screened', 'Sent', 'Interview', 'Offer', 'Placed'];
+const JOBS = {
+  sbe: {title: 'Senior Backend Engineer', client: 'Brightwell Payments', href: 'Job Record.dc.html'},
+  de: {title: 'Data Engineers, payments platform', client: 'Brightwell Payments', href: 'Job Record.dc.html?type=T%26M'},
+  pl: {title: 'Platform Lead', client: 'Northbeam Data', href: 'Job Record.dc.html'},
+  se: {title: 'Senior Engineer', client: 'Ordell Software', href: 'Job Record.dc.html'},
+};
+const SEED = [
+  {id: 'a1', name: 'Amara Osei', job: 'sbe', stage: 'Interview', days: 2, owner: 'Priya Shah', next: '2nd interview Wed', added: 20},
+  {id: 'a2', name: 'Lucía Ferreira', job: 'sbe', stage: 'Sent', days: 9, owner: 'Priya Shah', next: 'Chase Dan for feedback', added: 18},
+  {id: 'a3', name: 'Tobias Reyes', job: 'sbe', stage: 'Interview', days: 1, owner: 'Priya Shah', next: '1st interview Tue', added: 16},
+  {id: 'a4', name: 'Hannah Blake', job: 'sbe', stage: 'Screened', days: 3, owner: 'Priya Shah', next: 'Send to Dan', added: 12},
+  {id: 'a5', name: 'Priyanka Rao', job: 'sbe', stage: 'Applied', days: 1, owner: 'Priya Shah', next: 'Screening call', added: 2},
+  {id: 'a6', name: 'Rosa Alvarez', job: 'de', stage: 'Offer', days: 4, owner: 'Priya Shah', next: 'Dan to sign off rate', added: 25},
+  {id: 'a7', name: 'Kwame Asante', job: 'de', stage: 'Sent', days: 2, owner: 'Priya Shah', next: 'Await Dan', added: 10},
+  {id: 'a8', name: 'Ines Duarte', job: 'de', stage: 'Screened', days: 8, owner: 'Priya Shah', next: 'Check day rate', added: 14},
+  {id: 'a9', name: 'Oliver Grant', job: 'de', stage: 'Applied', days: 3, owner: 'Priya Shah', next: 'Screening call', added: 3},
+  {id: 'a10', name: 'Esi Boateng', job: 'sbe', stage: 'Placed', days: 12, owner: 'Priya Shah', next: 'Starts 6 Oct', added: 40},
+  {id: 'a11', name: 'Wei Chen', job: 'pl', stage: 'Interview', days: 6, owner: 'Nadia Croft', next: 'Panel Fri', added: 15},
+  {id: 'a12', name: 'Grace Oduya', job: 'pl', stage: 'Sent', days: 11, owner: 'Nadia Croft', next: 'Chase Northbeam', added: 19},
+  {id: 'a13', name: 'Marek Nowak', job: 'pl', stage: 'Applied', days: 2, owner: 'Nadia Croft', next: 'Screening call', added: 2},
+  {id: 'a14', name: 'Tom Whitfield', job: 'se', stage: 'Placed', days: 20, owner: 'Priya Shah', next: 'Rebate ends 3 Oct', added: 45},
+  {id: 'a15', name: 'Sophie Lang', job: 'se', stage: 'Screened', days: 5, owner: 'Sam Iyer', next: 'Send to Ruth', added: 9},
+  {id: 'a16', name: 'Dev Patel', job: 'se', stage: 'Offer', days: 1, owner: 'Sam Iyer', next: 'Verbal accept pending', added: 21},
+];
+const EXTRA = {
+  Interview: {label: 'When', ph: 'Thu 25 Sep, 10am, on site', required: true},
+  Offer: {label: 'Offer', ph: '£92,000 base, 10% bonus', required: true},
+  Placed: {label: 'Start date', ph: '6 Oct 2026', required: true},
+};
+const NOTE_PH = {Screened: 'Screening call done, keen, notice one month', Sent: 'CV sent to the hiring manager with a short note', Interview: 'Dan wants to meet, first stage with the team', Offer: 'Verbal offer made by Dan, candidate thinking it over', Placed: 'Signed, references back', Applied: 'Moved back to review'};
+const REASONS = ['Client rejected', 'Candidate withdrew', 'Took another offer', 'Not right for the role'];
+const initials = n => n.split(' ').map(p => p[0]).join('').slice(0, 2).toUpperCase();
+class Component extends DCLogic {
+  state = (() => { const u = new URLSearchParams(window.location.search); return {apps: SEED, view: u.get('view') === 'table' ? 'table' : 'board', job: u.get('job') || 'all', owner: 'Mine', q: '', sort: 'Longest in stage', tSort: 'days', tDir: -1, sel: null, move: null, remove: null, toast: '', undoApps: null, dragOver: null}; })();
+  say(msg, undoApps) { clearTimeout(this.t); this.setState({toast: msg, undoApps: undoApps || null}); this.t = setTimeout(() => this.setState({toast: '', undoApps: null}), 5000); }
+  componentWillUnmount() { clearTimeout(this.t); }
+  openMove(id, to) { const a = this.state.apps.find(x => x.id === id); if (!a || a.stage === to) return; this.setState({move: {id, to, note: '', next: '', extra: '', error: ''}, dragOver: null}); }
+  renderVals() {
+    const s = this.state; const term = s.q.trim().toLowerCase();
+    const mine = a => s.owner === 'Everyone' || a.owner === 'Priya Shah';
+    const scoped = s.apps.filter(mine);
+    let rows = scoped.filter(a => s.job === 'all' || a.job === s.job);
+    if (term) rows = rows.filter(a => (a.name + ' ' + JOBS[a.job].title + ' ' + JOBS[a.job].client + ' ' + a.next).toLowerCase().includes(term));
+    const order = {'Longest in stage': (a, b) => b.days - a.days, 'Newest first': (a, b) => a.added - b.added, 'Candidate A to Z': (a, b) => a.name.localeCompare(b.name)}[s.sort];
+    const jobLine = a => JOBS[a.job].title + ', ' + JOBS[a.job].client;
+    const daysTxt = a => a.days + (a.days === 1 ? ' day' : ' days');
+    const card = a => ({name: a.name, initials: initials(a.name), jobLine: jobLine(a), next: a.next, days: daysTxt(a), daysWeight: a.days >= 7 ? '700' : '400',
+      border: s.sel === a.id ? '2px solid ' + BERRY : '1px solid ' + TAUPE,
+      pick: () => this.setState({sel: s.sel === a.id ? null : a.id}),
+      drag: e => { this.dragId = a.id; if (e.dataTransfer) { e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/plain', a.id); } }});
+    const cols = STAGES.map(stage => { const inS = rows.filter(a => a.stage === stage).sort(order); const stale = inS.filter(a => a.days >= 7).length;
+      return {label: stage, count: String(inS.length), stale: stale ? stale + ' stuck' : '', cards: inS.map(card), empty: !inS.length, emptyLine: term ? 'No matches here.' : 'No one at ' + stage + '.',
+        bg: s.dragOver === stage ? 'rgba(43,33,27,.10)' : SAND,
+        over: e => { e.preventDefault(); if (s.dragOver !== stage) this.setState({dragOver: stage}); },
+        leave: () => {},
+        drop: e => { e.preventDefault(); const id = this.dragId; this.dragId = null; if (id) this.openMove(id, stage); else this.setState({dragOver: null}); }}; });
+    const tKeys = [['name', 'Candidate'], ['job', 'Job'], ['stage', 'Stage'], ['days', 'In stage'], ['next', 'Next step'], ['owner', 'Owner']];
+    const cmp = {name: (a, b) => a.name.localeCompare(b.name), job: (a, b) => jobLine(a).localeCompare(jobLine(b)), stage: (a, b) => STAGES.indexOf(a.stage) - STAGES.indexOf(b.stage), days: (a, b) => a.days - b.days, next: (a, b) => a.next.localeCompare(b.next), owner: (a, b) => a.owner.localeCompare(b.owner)};
+    const tableRows = [...rows].sort((a, b) => cmp[s.tSort](a, b) * s.tDir).map(a => ({...card(a), stage: a.stage, owner: a.owner.split(' ')[0], bg: s.sel === a.id ? 'rgba(43,33,27,.05)' : 'transparent'}));
+    const sel = s.apps.find(a => a.id === s.sel);
+    const mv = s.move; const mvApp = mv && s.apps.find(a => a.id === mv.id); const ex = mv && EXTRA[mv.to];
+    const rm = s.remove; const rmApp = rm && s.apps.find(a => a.id === rm.id);
+    const jobKeys = Object.keys(JOBS);
+    const countFor = k => scoped.filter(a => k === 'all' || a.job === k).length;
+    const stuck = rows.filter(a => a.days >= 7 && a.stage !== 'Placed').length;
+    return {
+      title: s.job === 'all' ? (s.owner === 'Mine' ? 'Everything on your desk' : 'Everything on the agency') : JOBS[s.job].title,
+      summary: rows.length + ' in play' + (stuck ? ', ' + stuck + ' stuck a week or more.' : '.') ,
+      jobNav: ['all', ...jobKeys].map(k => { const on = s.job === k; return {label: k === 'all' ? 'All jobs' : JOBS[k].title, count: String(countFor(k)), go: () => this.setState({job: k, sel: null}), bg: on ? 'rgba(232,150,179,.14)' : 'transparent', ink: on ? SOFT : '#F3EEE6', weight: on ? '600' : '400'}; }),
+      viewToggle: [['board', 'Board'], ['table', 'Table']].map(([k, l]) => { const on = s.view === k; return {label: l, go: () => this.setState({view: k}), bg: on ? INK : 'transparent', ink: on ? '#F3EEE6' : MID, weight: on ? '600' : '400'}; }),
+      q: s.q, setQ: e => this.setState({q: e.target.value}),
+      job: s.job, setJob: e => this.setState({job: e.target.value, sel: null}),
+      jobOptions: [{key: 'all', label: 'All jobs'}, ...jobKeys.map(k => ({key: k, label: JOBS[k].title + ', ' + JOBS[k].client}))],
+      ownerFilters: ['Mine', 'Everyone'].map(o => ({label: o, go: () => this.setState({owner: o}), border: s.owner === o ? '1px solid ' + INK : '1px solid ' + TAUPE, ink: s.owner === o ? INK : MID, weight: s.owner === o ? '600' : '400'})),
+      sort: s.sort, setSort: e => this.setState({sort: e.target.value}), sortOptions: ['Longest in stage', 'Newest first', 'Candidate A to Z'],
+      isBoard: s.view === 'board', isTable: s.view === 'table', cols, tableRows, noneAtAll: rows.length === 0,
+      heads: tKeys.map(([k, l]) => ({label: l, on: s.tSort === k, rot: s.tDir === 1 ? 'rotate(180deg)' : 'none', ink: s.tSort === k ? INK : MID, go: () => this.setState({tSort: k, tDir: s.tSort === k ? -s.tDir : (k === 'days' ? -1 : 1)})})),
+      panelCol: '0px',
+      hasSel: !!sel, closeSel: () => this.setState({sel: null}),
+      selName: sel ? sel.name : '', selStage: sel ? sel.stage : '', selJobLine: sel ? jobLine(sel) : '',
+      selFacts: sel ? [{label: 'In stage', value: daysTxt(sel)}, {label: 'Next step', value: sel.next}, {label: 'Owner', value: sel.owner}, {label: 'On pipeline', value: sel.added + ' days'}] : [],
+      moveTargets: sel ? STAGES.filter(st => st !== sel.stage).map(st => { const fwd = STAGES.indexOf(st) === STAGES.indexOf(sel.stage) + 1; return {label: st, go: () => this.openMove(sel.id, st), bg: fwd ? INK : 'transparent', ink: fwd ? '#F3EEE6' : INK}; }) : [],
+      selCandHref: 'Candidate Record.dc.html', selJobHref: sel ? JOBS[sel.job].href : '#',
+      openRemove: () => sel && this.setState({remove: {id: sel.id, reason: REASONS[0]}}),
+      hasMove: !!mvApp,
+      moveKicker: mvApp ? mvApp.stage + ' to ' + mv.to : '', moveTitle: mvApp ? mvApp.name + ', ' + JOBS[mvApp.job].title : '',
+      moveHelp: mvApp ? 'Logged on the candidate, the job and ' + JOBS[mvApp.job].client + '.' : '',
+      moveHasExtra: !!ex, moveExtraLabel: ex ? ex.label : '', moveExtraPh: ex ? ex.ph : '', moveExtra: mv ? mv.extra : '',
+      setMoveExtra: e => this.setState({move: {...s.move, extra: e.target.value, error: ''}}),
+      moveNote: mv ? mv.note : '', setMoveNote: e => this.setState({move: {...s.move, note: e.target.value}}), moveNotePh: mv ? (NOTE_PH[mv.to] || '') : '',
+      moveNext: mv ? mv.next : '', setMoveNext: e => this.setState({move: {...s.move, next: e.target.value}}), moveNextPh: 'Chase Dan on Friday',
+      hasMoveError: !!(mv && mv.error), moveError: mv ? mv.error : '',
+      moveCta: mv ? 'Move to ' + mv.to : 'Move',
+      cancelMove: () => this.setState({move: null, dragOver: null}),
+      confirmMove: () => {
+        if (ex && ex.required && !mv.extra.trim()) { this.setState({move: {...mv, error: ex.label + ' is needed for ' + mv.to + '.'}}); return; }
+        const prev = s.apps; const nextStep = mv.next.trim() || (ex ? ex.label + ' ' + mv.extra.trim() : 'Not set');
+        this.setState({apps: s.apps.map(a => a.id === mv.id ? {...a, stage: mv.to, days: 0, next: nextStep} : a), move: null, dragOver: null});
+        this.say(mvApp.name + ' moved to ' + mv.to + '.', prev);
+      },
+      hasRemove: !!rmApp, removeTitle: rmApp ? rmApp.name + ', ' + JOBS[rmApp.job].title : '',
+      removeReasons: REASONS.map(r => { const on = rm && rm.reason === r; return {label: r, go: () => this.setState({remove: {...rm, reason: r}}), bg: on ? INK : 'transparent', ink: on ? '#F3EEE6' : INK}; }),
+      cancelRemove: () => this.setState({remove: null}),
+      confirmRemove: () => { const prev = s.apps; this.setState({apps: s.apps.filter(a => a.id !== rm.id), remove: null, sel: null}); this.say(rmApp.name + ' taken off, ' + rm.reason.toLowerCase() + '.', prev); },
+      hasToast: !!s.toast, toast: s.toast, canUndo: !!s.undoApps,
+      undo: () => { clearTimeout(this.t); this.setState({apps: s.undoApps, toast: 'Undone.', undoApps: null}); this.t = setTimeout(() => this.setState({toast: ''}), 2000); },
+    };
+  }
+}
+
+</script>
+</body>
+</html>

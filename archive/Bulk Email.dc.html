@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="../_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/tokens/fonts.css">
+<link rel="stylesheet" href="../_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/styles.css">
+<script src="../_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/_ds_bundle.js"></script>
+<style>body{margin:0;background:#F3EEE6} a{color:#9E2D53} a:hover{color:#7D2342}
+@media (max-width:1180px){ [data-two]{grid-template-columns:minmax(0,1fr) !important} [data-msg]{position:static !important} }</style>
+</helmet>
+<div style="min-height:100vh;background:#F3EEE6;color:#2B211B;font-family:'Poppins',sans-serif;font-size:15px;line-height:1.3;display:flex;flex-direction:column">
+<div style="background:#2B211B;color:#F3EEE6;padding:10px 32px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:#E896B3">Future, backlog</span><span style="font-size:14px">Bulk email to contacts and candidates. Not in the first build. Mocked so the shape is agreed; every row here needs Exchange send and a template store.</span><span style="flex:1"></span><a href="../Overview.dc.html" style="color:#F3EEE6;font-size:13px;text-decoration:underline">Back to Overview</a></div>
+<div style="padding:26px 32px 64px;display:flex;flex-direction:column;gap:22px;max-width:1240px;box-sizing:border-box;width:100%;margin:0 auto">
+<header style="display:flex;flex-direction:column;gap:6px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Send to many</span>
+<h1 style="margin:0;font-size:30px;font-weight:700;letter-spacing:-0.0075em">{{ title }}</h1>
+<p style="margin:0;font-size:13px;color:rgba(43,33,27,.55)">One email from your mailbox to each person, merged, logged on every record it touches. Replies thread back to the record. Nobody sees anyone else's address.</p>
+</header>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><sc-for list="{{ modes }}" as="m" hint-placeholder-count="3"><button onClick="{{ m.go }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:transparent;border:{{ m.border }};color:{{ m.ink }};font-weight:{{ m.weight }}">{{ m.label }}</button></sc-for></div>
+
+<div data-two="1" style="display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:24px;align-items:start">
+<section style="display:flex;flex-direction:column;gap:14px">
+<div style="background:#EFE7DA;border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:10px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Who</span>
+<p style="margin:0;font-size:14px">{{ whoLine }}</p>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><sc-for list="{{ filters }}" as="f" hint-placeholder-count="4"><button onClick="{{ f.go }}" style="height:30px;padding:0 12px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ f.bg }};border:{{ f.border }};color:{{ f.ink }};font-weight:{{ f.weight }}">{{ f.label }}</button></sc-for></div>
+</div>
+<div style="display:flex;flex-direction:column">
+<div style="display:grid;grid-template-columns:28px minmax(0,1.6fr) minmax(0,1fr) 96px;gap:12px;padding:0 4px 8px;border-bottom:3.4px solid #2B211B;font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)"><span></span><span>Person</span><span>Where</span><span>Consent</span></div>
+<sc-for list="{{ people }}" as="p" hint-placeholder-count="6">
+<label style="display:grid;grid-template-columns:28px minmax(0,1.6fr) minmax(0,1fr) 96px;gap:12px;align-items:center;border-top:1px solid #D9CFC0;padding:10px 4px;cursor:pointer;background:{{ p.bg }}"><input type="checkbox" checked="{{ p.on }}" onChange="{{ p.toggle }}" style="accent-color:#9E2D53"><span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font-size:14px;font-weight:600">{{ p.name }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ p.sub }}</span></span><span style="font-size:13px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ p.where }}</span><span style="font-size:12px;font-weight:600;white-space:nowrap;color:{{ p.consentInk }}">{{ p.consent }}</span></label>
+</sc-for>
+<p style="margin:10px 0 0;font-size:12px;color:rgba(43,33,27,.55)">{{ footLine }}</p>
+</div>
+</section>
+
+<section data-msg="1" style="display:flex;flex-direction:column;gap:14px;position:sticky;top:24px;min-width:0">
+<div style="background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:12px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Message</span>
+<div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:13px;font-weight:600">Template</span><div style="display:flex;gap:7px;flex-wrap:wrap"><sc-for list="{{ templates }}" as="t" hint-placeholder-count="4"><button onClick="{{ t.go }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ t.bg }};border:{{ t.border }};color:{{ t.ink }};font-weight:{{ t.weight }}">{{ t.label }}</button></sc-for></div></div>
+<div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:13px;font-weight:600">Subject</span><input type="text" value="{{ subject }}" onChange="{{ setSubject }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:100%;box-sizing:border-box"></div>
+<div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:13px;font-weight:600">Body</span><textarea value="{{ body }}" onChange="{{ setBody }}" style="min-height:190px;padding:10px 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;resize:vertical;width:100%;box-sizing:border-box"></textarea><span style="font-size:12px;color:rgba(43,33,27,.55)">Merge fields: {first}, {job}, {client}, {your name}. Each person gets their own email; no one is copied.</span></div>
+<div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:13px;font-weight:600">Attach</span><div style="display:flex;gap:7px;flex-wrap:wrap"><sc-for list="{{ attach }}" as="t" hint-placeholder-count="3"><button onClick="{{ t.go }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ t.bg }};border:{{ t.border }};color:{{ t.ink }};font-weight:{{ t.weight }}">{{ t.label }}</button></sc-for></div></div>
+<div style="background:#EFE7DA;border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:4px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Preview, {{ previewName }}</span><span style="font-size:13px;font-weight:600">{{ previewSubject }}</span><span style="font-size:13px;white-space:pre-wrap">{{ previewBody }}</span></div>
+<div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:13px;font-weight:600">Then</span><div style="display:flex;gap:7px;flex-wrap:wrap"><sc-for list="{{ then }}" as="t" hint-placeholder-count="3"><button onClick="{{ t.go }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ t.bg }};border:{{ t.border }};color:{{ t.ink }};font-weight:{{ t.weight }}">{{ t.label }}</button></sc-for></div><span style="font-size:12px;color:rgba(43,33,27,.55)">A follow up action per person who has not replied by then.</span></div>
+<div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"><button onClick="{{ send }}" style="height:40px;padding:0 18px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer">{{ sendLabel }}</button><span style="font-size:12px;color:rgba(43,33,27,.55)">Sent from priya.shah@cannie.example via Exchange. Logged on each record.</span></div>
+<sc-if value="{{ hasFlash }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:14px;font-weight:600;color:#9E2D53">{{ flash }}</p></sc-if>
+</div>
+</section>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const INK = '#2B211B', BERRY = '#9E2D53', MID = 'rgba(43,33,27,.70)', TAUPE = '#D9CFC0', SAND = '#EFE7DA';
+const SETS = {
+  'Contacts at a client': {title: 'Brightwell Payments, hiring managers and approvers', who: 'Every contact on Brightwell with a role on a live job or assignment. Marketing consent is B2B legitimate interest; anyone opted out is unticked and cannot be ticked.', people: [
+    ['Dan Okafor', 'Head of Engineering. Hiring manager on 3, approves 4.', 'Brightwell', 'OK', true], ['Claire Dunn', 'Procurement. Signatory.', 'Brightwell', 'OK', true], ['Priya Lam', 'Engineering Manager. Interviewer.', 'Brightwell', 'OK', true], ['Sanjay Mehta', 'Finance. Billing contact.', 'Brightwell', 'Opted out', false], ['Ruth Vance', 'VP Engineering, Ordell. Also on Brightwell steering.', 'Ordell', 'OK', false]],
+    templates: ['Quarterly update', 'Rate card change', 'Holiday cover', 'Blank'], subject: 'Brightwell, your Cannie update for Q4', body: 'Hi {first},\n\nA short note before the quarter turns. Three things on your side at Brightwell: the payments migration is at milestone 3, the Data Engineers team is one hire from full, and the rate card review with Claire is on 30 Sep.\n\nIf any of that needs a conversation, reply and I will call.\n\n{your name}', filters: ['Hiring managers', 'Approvers', 'Signatories', 'Everyone'], attach: ['Rate card v3', 'Q4 one-pager', 'None']},
+  'Candidates on a job': {title: 'Senior Backend Engineer, Brightwell: everyone at Sent or Interview', who: 'Everyone in the running on this job at the stages ticked. Consent is what they gave on application; anyone with job alerts off is unticked.', people: [
+    ['Lucía Ferreira', 'Sent, 3 days', 'Senior Backend Engineer', 'OK', true], ['Ben Achterberg', 'Sent, 1 day', 'Senior Backend Engineer', 'OK', true], ['Priyanka Rao', 'Sent, 2 days', 'Senior Backend Engineer', 'OK', true], ['Amara Osei', 'Interview Thu', 'Senior Backend Engineer', 'OK', false], ['Tom Halloran', 'Interview', 'Senior Backend Engineer', 'Alerts off', false]],
+    templates: ['Where we are', 'Interview prep pack', 'Role closed, thank you', 'Blank'], subject: 'Senior Backend Engineer at Brightwell, where we are', body: 'Hi {first},\n\nQuick one on {job}. Dan is reviewing CVs this week and I expect first-round slots to open Monday. Nothing needed from you yet; I will call the moment there is a date.\n\nIf anything changes on your side, tell me first.\n\n{your name}', filters: ['Sent', 'Interview', 'Screened', 'All live'], attach: ['Job spec', 'Prep pack', 'None']},
+  'Candidates by search': {title: 'Go engineers, London, available inside a month', who: 'A saved pool re-run now. Only people with job alerts on are ticked; passive people are unticked by default.', people: [
+    ['Kwame Asante', 'Platform Engineer, Deliveroo. Passive.', 'Database', 'OK', false], ['Amara Osei', 'Backend Engineer, Monzo.', 'Database', 'OK', true], ['Ben Achterberg', 'Backend Engineer, Starling.', 'Database', 'OK', true], ['Marcus Bell', 'Backend Developer, Revolut.', 'Database', 'OK', true], ['James Okoro', 'Engineering Manager, Ocado. Passive.', 'Database', 'Alerts off', false]],
+    templates: ['New role, are you open?', 'Market note', 'Check in', 'Blank'], subject: 'A Go role in London you should hear about', body: 'Hi {first},\n\nA payments platform in London is hiring a senior Go engineer, hybrid two days, band to £95,000. It is a small team with a migration to own.\n\nIf that is interesting, reply with a time and I will call. If not, say so and I will not chase.\n\n{your name}', filters: ['Alerts on', 'Passive too', 'Contacted in 30 days', 'Everyone'], attach: ['Job spec', 'None']},
+};
+class Component extends DCLogic {
+  state = {mode: 'Contacts at a client', on: null, template: 0, subject: null, body: null, attach: 'None', then: 'In a week', flash: '', filter: 0};
+  say(m) { this.setState({flash: m}); clearTimeout(this._fl); this._fl = setTimeout(() => this.setState({flash: ''}), 3600); }
+  renderVals() {
+    const s = this.state; const set = SETS[s.mode]; const pill = on => ({bg: on ? INK : 'transparent', border: on ? '1px solid ' + INK : '1px solid ' + TAUPE, ink: on ? '#F3EEE6' : MID, weight: on ? '600' : '400'});
+    const on = s.on || Object.fromEntries(set.people.map(([n, , , , d]) => [n, d]));
+    const chosen = set.people.filter(([n, , , c]) => on[n] && c === 'OK');
+    const subject = s.subject ?? set.subject, body = s.body ?? set.body;
+    const first = chosen[0] || set.people[0]; const merge = t => t.replace(/\{first\}/g, first[0].split(' ')[0]).replace(/\{job\}/g, 'Senior Backend Engineer').replace(/\{client\}/g, 'Brightwell').replace(/\{your name\}/g, 'Priya');
+    return {
+      title: set.title, whoLine: set.who,
+      modes: Object.keys(SETS).map(k => ({label: k, go: () => this.setState({mode: k, on: null, subject: null, body: null, template: 0, filter: 0}), border: s.mode === k ? '1px solid ' + INK : '1px solid ' + TAUPE, ink: s.mode === k ? INK : MID, weight: s.mode === k ? '600' : '400'})),
+      filters: set.filters.map((f, i) => ({label: f, go: () => this.setState({filter: i}), ...pill(s.filter === i)})),
+      people: set.people.map(([name, sub, where, consent, d]) => ({name, sub, where, consent: consent === 'OK' ? 'Consented' : consent, consentInk: consent === 'OK' ? INK : BERRY, on: !!on[name] && consent === 'OK', bg: on[name] && consent === 'OK' ? SAND : 'transparent', toggle: () => { if (consent !== 'OK') { this.say(name + ' has ' + consent.toLowerCase() + '. Cannot be added.'); return; } this.setState({on: {...on, [name]: !on[name]}}); }})),
+      footLine: chosen.length + ' of ' + set.people.length + ' ticked. Anyone opted out or with alerts off stays out.',
+      templates: set.templates.map((t, i) => ({label: t, go: () => this.setState({template: i, subject: null, body: i === set.templates.length - 1 ? '' : null}), ...pill(s.template === i)})),
+      subject, setSubject: e => this.setState({subject: e.target.value}), body, setBody: e => this.setState({body: e.target.value}),
+      attach: set.attach.map(a => ({label: a, go: () => this.setState({attach: a}), ...pill(s.attach === a)})),
+      previewName: first[0], previewSubject: merge(subject), previewBody: merge(body),
+      then: ['No follow up', 'In 3 days', 'In a week', 'In two weeks'].map(t => ({label: t, go: () => this.setState({then: t}), ...pill(s.then === t)})),
+      sendLabel: 'Send ' + chosen.length + (chosen.length === 1 ? ' email' : ' emails'),
+      send: () => { if (!chosen.length) { this.say('Nobody ticked.'); return; } this.say(chosen.length + ' sent from your mailbox, one each. Logged on ' + chosen.length + ' records' + (s.attach !== 'None' ? ', ' + s.attach + ' attached' : '') + '.' + (s.then !== 'No follow up' ? ' Follow up per person ' + s.then.toLowerCase() + ' if no reply.' : '')); },
+      hasFlash: !!s.flash, flash: s.flash,
+    };
+  }
+}
+</script>
+</body>
+</html>

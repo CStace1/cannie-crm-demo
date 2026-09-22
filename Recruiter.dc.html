@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/styles.css">
+<script src="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/_ds_bundle.js"></script>
+<style>body{margin:0;background:#F3EEE6}a{color:#9E2D53}a:hover{color:#7D2342}
+input[type=range]{accent-color:#9E2D53;width:100%}
+@media (max-width:1000px){[data-two]{grid-template-columns:minmax(0,1fr) !important}}
+@media (max-width:720px){[data-side]{position:static !important;height:auto !important;width:auto !important;flex:0 0 auto !important;flex-direction:row !important;flex-wrap:wrap;align-items:center;gap:14px !important;padding:12px 16px !important}[data-side] nav{flex-direction:row !important;flex-wrap:wrap}}
+</style>
+</helmet>
+<div style="display:flex;width:100%;min-height:100vh;background:#F3EEE6;color:#2B211B;font-family:'Poppins',sans-serif;font-size:15px;line-height:1.3">
+<aside data-side="1" style="position:sticky;top:0;height:100vh;box-sizing:border-box;overflow-y:auto;align-self:flex-start;width:222px;flex:0 0 222px;background:#2B211B;color:#F3EEE6;padding:24px 14px 20px;display:flex;flex-direction:column;gap:22px">
+<div style="padding:0 8px;display:flex">
+<x-import component-from-global-scope="CannieDesignSystem_274f8e.Lockup" tone="dark" height="24" hint-size="117px,24px"></x-import>
+</div>
+<nav style="display:flex;flex-direction:column;gap:2px">
+<a href="Overview.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg><span>Overview</span></a>
+<a href="Pipeline.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18"/></svg><span>Pipeline</span></a>
+<a href="Job Board.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg><span>Job board</span></a>
+<span style="border-top:1px solid #4C3D33;margin:12px 0 10px"></span>
+<a href="Calendar.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span>Calendar</span></a>
+<a href="Activities.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Activities</span></a>
+<span style="border-top:1px solid #4C3D33;margin:12px 0 10px"></span>
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:#D9CFC0;padding:0 12px 4px">Records</span>
+<a href="Clients.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2M10 6h4M10 10h4M10 14h4M10 18h4"/></svg><span>Clients</span></a>
+<a href="Job Record.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg><span>Jobs</span></a>
+<a href="Candidates.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg><span>Candidates</span></a>
+<a href="Contacts.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg><span>Contacts</span></a><span style="border-top:1px solid #4C3D33;margin:12px 0 10px"></span><a href="Recruiter.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;background:rgba(232,150,179,.14);color:#E896B3;font-weight:600;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M3 3v18h18"/><path d="M7 15l4-6 4 3 4-8"/></svg><span>My targets</span></a>
+<span style="border-top:1px solid #4C3D33;margin:12px 0 10px"></span>
+<a href="Timesheets.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><span>Timesheets</span></a><a href="Invoices.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><span>Invoices</span></a>
+<span style="border-top:1px solid #4C3D33;margin:12px 0 10px"></span>
+<a href="Standards.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><span>Standards</span></a>
+</nav>
+</aside>
+<main style="flex:1;min-width:0;display:flex;flex-direction:column">
+<div style="padding:26px 32px 64px;display:flex;flex-direction:column;gap:28px;max-width:1180px">
+<div style="display:flex;align-items:flex-end;gap:20px;flex-wrap:wrap">
+<div style="display:flex;flex-direction:column;gap:6px;flex:1 1 360px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">My targets</span>
+<h1 style="margin:0;font-size:28px;font-weight:700;letter-spacing:-0.0075em">Priya Shah, {{ periodLabel }}</h1>
+<p style="margin:0;font-size:14px;color:rgba(43,33,27,.70)">{{ weeksLine }}</p>
+</div>
+<div style="display:flex;gap:3px;padding:3px;background:#EFE7DA;border-radius:999px">
+<sc-for list="{{ periods }}" as="p" hint-placeholder-count="3">
+<button onClick="{{ p.go }}" style="height:32px;padding:0 16px;border:none;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ p.bg }};color:{{ p.ink }};font-weight:{{ p.weight }}">{{ p.label }}</button>
+</sc-for>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
+<sc-for list="{{ kpis }}" as="k" hint-placeholder-count="4">
+<div style="background:#EFE7DA;border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:8px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">{{ k.label }}</span>
+<div style="display:flex;align-items:baseline;gap:8px"><span style="font-size:28px;font-weight:700;letter-spacing:-0.0075em">{{ k.value }}</span><span style="font-size:13px;color:rgba(43,33,27,.70)">of {{ k.target }}</span></div>
+<div style="height:8px;border-radius:999px;background:#D9CFC0;overflow:hidden"><div style="height:100%;width:{{ k.pct }};background:{{ k.barColor }}"></div></div>
+<span style="font-size:12px;color:{{ k.noteInk }}">{{ k.note }}</span>
+</div>
+</sc-for>
+</div>
+
+<section data-two="1" style="display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:20px;align-items:start">
+<div style="background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;flex-direction:column;gap:4px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Forecast, {{ periodWord }} end</span>
+<div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap"><span style="font-size:34px;font-weight:700;letter-spacing:-0.0075em">{{ fcTotal }}</span><span style="font-size:14px;color:rgba(43,33,27,.70)">against {{ fcTarget }}</span></div>
+<span style="font-size:14px;font-weight:600;color:{{ fcGapInk }}">{{ fcGapLine }}</span>
+</div>
+<div style="position:relative">
+<div style="position:relative;height:22px;border-radius:6px;background:#EFE7DA;overflow:hidden;display:flex">
+<div onMouseEnter="{{ hvBilled }}" onMouseLeave="{{ hvOff }}" style="height:100%;width:{{ barBilled }};background:#2B211B;cursor:help"></div>
+<div onMouseEnter="{{ hvPipe }}" onMouseLeave="{{ hvOff }}" style="height:100%;width:{{ barPipe }};background:#D9CFC0;cursor:help"></div>
+<div onMouseEnter="{{ hvExtra }}" onMouseLeave="{{ hvOff }}" style="height:100%;width:{{ barExtra }};background:#9E2D53;cursor:help"></div>
+<div style="position:absolute;top:0;bottom:0;left:{{ barTarget }};width:2px;background:#2B211B;pointer-events:none"></div>
+</div>
+<sc-if value="{{ hasHover }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;top:30px;left:0;z-index:5;max-width:340px;background:#2B211B;color:#F3EEE6;border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;box-shadow:0 12px 32px rgba(43,33,27,.28);pointer-events:none">
+<span style="font-size:13px;font-weight:700">{{ hoverTitle }}</span>
+<span style="font-size:12px;line-height:1.4">{{ hoverBody }}</span>
+</div>
+</sc-if>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px 20px">
+<sc-for list="{{ fcLegend }}" as="lg" hint-placeholder-count="3">
+<span style="display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(43,33,27,.70)"><span style="width:10px;height:10px;border-radius:3px;background:{{ lg.dot }}"></span>{{ lg.label }} <strong style="color:#2B211B">{{ lg.value }}</strong></span>
+</sc-for>
+</div>
+<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+<p style="margin:0;font-size:12px;color:rgba(43,33,27,.70);flex:1 1 240px">Hover the bar for each part. The line is the target.</p>
+<button onClick="{{ toggleWorking }}" style="display:inline-flex;align-items:center;gap:6px;background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg>{{ workingLabel }}</button>
+</div>
+<sc-if value="{{ showWorking }}" hint-placeholder-val="{{ false }}">
+<div style="background:#EFE7DA;border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:10px">
+<span style="font-size:13px;font-weight:600">How the forecast is worked out</span>
+<div style="display:flex;flex-direction:column">
+<div style="display:grid;grid-template-columns:minmax(0,1.4fr) 80px 70px 90px;gap:10px;padding-bottom:6px;border-bottom:3.4px solid #2B211B;font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)"><span>Candidate</span><span>Stage</span><span>Chance</span><span style="text-align:right">Worth</span></div>
+<sc-for list="{{ working }}" as="w" hint-placeholder-count="5">
+<div style="display:grid;grid-template-columns:minmax(0,1.4fr) 80px 70px 90px;gap:10px;padding:7px 0;border-top:1px solid #D9CFC0;font-size:13px"><span style="font-weight:600">{{ w.name }}</span><span>{{ w.stage }}</span><span>{{ w.chance }}</span><span style="text-align:right;font-weight:600">{{ w.worth }}</span></div>
+</sc-for>
+<sc-for list="{{ workingTotals }}" as="wt" hint-placeholder-count="3">
+<div style="display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-top:1px solid #D9CFC0;font-size:13px;font-weight:{{ wt.weight }}"><span>{{ wt.label }}</span><span>{{ wt.value }}</span></div>
+</sc-for>
+</div>
+<p style="margin:0;font-size:12px;color:rgba(43,33,27,.70)">{{ workingNote }}</p>
+</div>
+</sc-if>
+</div>
+
+<div style="background:#EFE7DA;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;align-items:baseline;gap:10px"><h2 style="margin:0;font-size:19px;font-weight:700;letter-spacing:-0.0075em">What if</h2><span style="flex:1"></span><sc-if value="{{ whatIfChanged }}" hint-placeholder-val="{{ false }}"><button onClick="{{ resetWhatIf }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#2B211B;text-decoration:underline;cursor:pointer">Reset</button></sc-if></div>
+<sc-for list="{{ sliders }}" as="sl" hint-placeholder-count="3">
+<label style="display:flex;flex-direction:column;gap:6px">
+<span style="display:flex;justify-content:space-between;gap:10px;font-size:13px"><span style="font-weight:600">{{ sl.label }}</span><span style="font-weight:700">{{ sl.display }}</span></span>
+<input type="range" min="{{ sl.min }}" max="{{ sl.max }}" step="{{ sl.step }}" value="{{ sl.value }}" onChange="{{ sl.set }}">
+<span style="font-size:12px;color:rgba(43,33,27,.70)">{{ sl.note }}</span>
+</label>
+</sc-for>
+<div style="border-top:1px solid #D9CFC0;padding-top:12px;display:flex;flex-direction:column;gap:4px">
+<span style="font-size:13px;font-weight:600">To close the gap</span>
+<span style="font-size:14px">{{ needLine }}</span>
+</div>
+</div>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><h2 style="margin:0;font-size:19px;font-weight:700;letter-spacing:-0.0075em">Pipeline by stage</h2><span style="font-size:13px;color:rgba(43,33,27,.70)">{{ funnelLine }}</span></div>
+<div data-two="1" style="display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:20px;align-items:start">
+<div style="display:flex;flex-direction:column">
+<sc-for list="{{ funnel }}" as="f" hint-placeholder-count="6">
+<div style="display:flex;flex-direction:column">
+<button onClick="{{ f.pick }}" style="display:grid;grid-template-columns:96px minmax(0,1fr) 56px;gap:12px;align-items:center;padding:8px 10px;border:none;border-radius:10px;background:{{ f.rowBg }};font-family:inherit;color:#2B211B;cursor:pointer;text-align:left" style-hover="background:rgba(43,33,27,.05)">
+<span style="font-size:14px;font-weight:{{ f.weight }}">{{ f.label }}</span>
+<span style="display:flex;justify-content:center"><span style="height:30px;width:{{ f.width }};border-radius:6px;background:{{ f.bar }};display:block"></span></span>
+<span style="font-size:15px;font-weight:700;text-align:right">{{ f.count }}</span>
+</button>
+<sc-if value="{{ f.hasRatio }}" hint-placeholder-val="{{ true }}">
+<div style="display:grid;grid-template-columns:96px minmax(0,1fr) 56px;gap:12px;padding:2px 10px">
+<span></span>
+<span style="display:flex;justify-content:center;gap:8px;font-size:12px;color:rgba(43,33,27,.70)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"></path></svg><strong style="color:#2B211B">{{ f.ratio }}</strong> {{ f.vsDesk }}</span>
+<span></span>
+</div>
+</sc-if>
+</div>
+</sc-for>
+<p style="margin:10px 0 0;font-size:12px;color:rgba(43,33,27,.70)">Counts are everyone who reached each stage this {{ periodWord }}. Ratios are stage to stage, against the desk average. Pick a stage to see who is there now and test its rate.</p>
+</div>
+
+<div style="background:#EFE7DA;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;flex-direction:column;gap:4px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">{{ stKicker }}</span>
+<h3 style="margin:0;font-size:19px;font-weight:700;letter-spacing:-0.0075em">{{ stTitle }}</h3>
+<span style="font-size:13px;color:rgba(43,33,27,.70)">{{ stLine }}</span>
+</div>
+<sc-if value="{{ stHasRate }}" hint-placeholder-val="{{ false }}">
+<label style="display:flex;flex-direction:column;gap:6px">
+<span style="display:flex;justify-content:space-between;gap:10px;font-size:13px"><span style="font-weight:600">{{ stRateLabel }}</span><span style="font-weight:700">{{ stRateDisplay }}</span></span>
+<input type="range" min="5" max="100" step="1" value="{{ stRate }}" onChange="{{ setStRate }}">
+<span style="font-size:12px;color:rgba(43,33,27,.70)">{{ stRateNote }}</span>
+</label>
+</sc-if>
+<div style="display:flex;flex-direction:column">
+<span style="font-size:13px;font-weight:600;padding-bottom:4px">Live here now</span>
+<sc-for list="{{ stPeople }}" as="sp" hint-placeholder-count="2">
+<a href="{{ sp.href }}" style="display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-top:1px solid #D9CFC0;text-decoration:none;color:#2B211B"><span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:14px;font-weight:600">{{ sp.name }}</span><span style="font-size:12px;color:rgba(43,33,27,.70)">{{ sp.job }}</span></span><span style="font-size:12px;white-space:nowrap;font-weight:{{ sp.daysWeight }}">{{ sp.days }}</span></a>
+</sc-for>
+<sc-if value="{{ stEmpty }}" hint-placeholder-val="{{ false }}"><p style="margin:0;padding:9px 0;border-top:1px solid #D9CFC0;font-size:13px;color:rgba(43,33,27,.70)">No one live at this stage.</p></sc-if>
+</div>
+<a href="Pipeline.dc.html" style="font-size:13px;font-weight:600;color:#9E2D53">Open the pipeline</a>
+</div>
+</div>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:8px">
+<h2 style="margin:0;font-size:19px;font-weight:700;letter-spacing:-0.0075em">Placements this {{ periodWord }}</h2>
+<div style="background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;padding:6px 22px 12px;display:flex;flex-direction:column">
+<sc-for list="{{ placements }}" as="pl" hint-placeholder-count="3">
+<a href="{{ pl.href }}" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;gap:12px;border-top:1px solid #D9CFC0;padding:11px 0;text-decoration:none;color:#2B211B" style-hover="background:rgba(43,33,27,.03)"><span style="font-size:14px;font-weight:600">{{ pl.who }}</span><span style="font-size:13px;color:rgba(43,33,27,.70)">{{ pl.client }}</span><span style="font-size:14px;font-weight:700">{{ pl.fee }}</span></a>
+</sc-for>
+</div>
+</section>
+</div>
+</main>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const INK = '#2B211B', BERRY = '#9E2D53', MID = 'rgba(43,33,27,.70)', TAUPE = '#D9CFC0', SAND = '#EFE7DA';
+const STAGES = ['Applied', 'Screened', 'Sent', 'Interview', 'Offer', 'Placed'];
+const DESK = [40, 50, 55, 35, 70];
+const DATA = {
+  Month: {calls: 34, callsT: 40, sends: 12, sendsT: 15, interviews: 7, interviewsT: 8, fee: 14400, feeT: 24000, flow: [58, 24, 12, 7, 3, 1], weeksLeft: 1.5,
+    placements: [{who: 'Esi Boateng', client: 'Brightwell Payments', fee: '£19,000', href: 'Candidate Record.dc.html'}]},
+  Quarter: {calls: 108, callsT: 120, sends: 38, sendsT: 45, interviews: 21, interviewsT: 24, fee: 61200, feeT: 72000, flow: [172, 74, 38, 21, 8, 4], weeksLeft: 6,
+    placements: [{who: 'Esi Boateng', client: 'Brightwell Payments', fee: '£19,000', href: 'Candidate Record.dc.html'}, {who: 'Tom Whitfield', client: 'Ordell Software', fee: '£15,600', href: 'Candidate Record.dc.html'}]},
+  Year: {calls: 412, callsT: 480, sends: 146, sendsT: 180, interviews: 88, interviewsT: 96, fee: 218400, feeT: 288000, flow: [640, 268, 146, 88, 30, 14], weeksLeft: 14,
+    placements: [{who: 'Esi Boateng', client: 'Brightwell Payments', fee: '£19,000', href: 'Candidate Record.dc.html'}, {who: 'Tom Whitfield', client: 'Ordell Software', fee: '£15,600', href: 'Candidate Record.dc.html'}, {who: 'Priya Lam', client: 'Kestrel Freight', fee: '£12,800', href: 'Candidate Record.dc.html'}]},
+};
+const LIVE = [
+  {name: 'Priyanka Rao', stage: 'Applied', job: 'Senior Backend Engineer, Brightwell', days: 1},
+  {name: 'Oliver Grant', stage: 'Applied', job: 'Data Engineers, Brightwell', days: 3},
+  {name: 'Hannah Blake', stage: 'Screened', job: 'Senior Backend Engineer, Brightwell', days: 3},
+  {name: 'Ines Duarte', stage: 'Screened', job: 'Data Engineers, Brightwell', days: 8},
+  {name: 'Lucía Ferreira', stage: 'Sent', job: 'Senior Backend Engineer, Brightwell', days: 9},
+  {name: 'Kwame Asante', stage: 'Sent', job: 'Data Engineers, Brightwell', days: 2},
+  {name: 'Amara Osei', stage: 'Interview', job: 'Senior Backend Engineer, Brightwell', days: 2},
+  {name: 'Tobias Reyes', stage: 'Interview', job: 'Senior Backend Engineer, Brightwell', days: 1},
+  {name: 'Rosa Alvarez', stage: 'Offer', job: 'Data Engineers, Brightwell', days: 4},
+];
+const gbp = n => '£' + Math.round(n).toLocaleString('en-GB');
+const DEFAULTS = {extraSends: 0, avgFee: 16000, overrides: {}};
+class Component extends DCLogic {
+  state = {period: 'Quarter', sel: 'Sent', hover: null, working: false, ...DEFAULTS};
+  renderVals() {
+    const s = this.state; const d = DATA[s.period];
+    const actual = STAGES.slice(0, -1).map((st, i) => Math.round(d.flow[i + 1] / d.flow[i] * 100));
+    const rate = i => (s.overrides[i] != null ? s.overrides[i] : actual[i]) / 100;
+    const pPlace = st => { let p = 1; for (let i = STAGES.indexOf(st); i < STAGES.length - 1; i++) p *= rate(i); return p; };
+    const pipeExp = LIVE.reduce((n, a) => n + pPlace(a.stage), 0) * s.avgFee;
+    const extra = s.extraSends * d.weeksLeft * pPlace('Sent') * s.avgFee;
+    const total = d.fee + pipeExp + extra; const gap = d.feeT - total;
+    const scale = Math.max(d.feeT, total) * 1.08; const pc = v => (v / scale * 100).toFixed(1) + '%';
+    const perSend = d.weeksLeft * pPlace('Sent') * s.avgFee;
+    const needSends = gap > 0 && perSend > 0 ? Math.ceil(gap / perSend) : 0;
+    const kpi = (label, v, t, unit) => { const p = v / t; return {label, value: unit ? unit(v) : String(v), target: unit ? unit(t) : String(t), pct: Math.min(100, Math.round(p * 100)) + '%', barColor: p >= 1 ? BERRY : INK, note: p >= 1 ? 'Target hit' : Math.round(p * 100) + '% of target', noteInk: p >= 1 ? BERRY : MID}; };
+    const maxFlow = d.flow[0];
+    const selIdx = STAGES.indexOf(s.sel);
+    const people = LIVE.filter(a => a.stage === s.sel);
+    const overall = (d.flow[5] / d.flow[0] * 100).toFixed(1);
+    const changed = s.extraSends !== DEFAULTS.extraSends || s.avgFee !== DEFAULTS.avgFee || Object.keys(s.overrides).length > 0;
+    const hasRate = selIdx < STAGES.length - 1;
+    const curRate = hasRate ? Math.round(rate(selIdx) * 100) : 0;
+    const pct = p => (p * 100 < 1 ? (p * 100).toFixed(1) : Math.round(p * 100)) + '%';
+    const chain = STAGES.slice(0, -1).map((st, i) => Math.round(rate(i) * 100) + '%').join(' x ');
+    const hovers = {
+      billed: {t: 'Billed, ' + gbp(d.fee), b: 'Invoiced this ' + s.period.toLowerCase() + ' from ' + d.placements.length + ' placement' + (d.placements.length === 1 ? '' : 's') + '. Counted in full.'},
+      pipe: {t: 'Pipeline, ' + gbp(pipeExp), b: LIVE.length + ' live candidates, each worth the average fee of ' + gbp(s.avgFee) + ' times their chance of placing from their stage. Stage rates: ' + chain + '.'},
+      extra: {t: 'What if, ' + gbp(extra), b: s.extraSends + ' extra CVs a week for ' + d.weeksLeft + ' weeks, each placing ' + pct(pPlace('Sent')) + ' of the time at ' + gbp(s.avgFee) + '.'},
+    };
+    const hv = s.hover && hovers[s.hover];
+    const working = LIVE.map(a => ({name: a.name, stage: a.stage, chance: pct(pPlace(a.stage)), worth: gbp(pPlace(a.stage) * s.avgFee), w: pPlace(a.stage)})).sort((x, y) => y.w - x.w);
+    return {
+      hvBilled: () => this.setState({hover: 'billed'}), hvPipe: () => this.setState({hover: 'pipe'}), hvExtra: () => this.setState({hover: 'extra'}), hvOff: () => this.setState({hover: null}),
+      hasHover: !!hv, hoverTitle: hv ? hv.t : '', hoverBody: hv ? hv.b : '',
+      showWorking: s.working, toggleWorking: () => this.setState({working: !s.working}), workingLabel: s.working ? 'Hide the working' : 'Show the working',
+      working,
+      workingTotals: [{label: 'Pipeline', value: gbp(pipeExp), weight: '600'}, {label: 'Billed', value: gbp(d.fee), weight: '600'}, ...(extra > 0 ? [{label: 'What if, extra sends', value: gbp(extra), weight: '600'}] : []), {label: 'Forecast', value: gbp(total), weight: '700'}],
+      workingNote: 'Chance is the stage rates multiplied from where each person is to Placed. Rates come from this ' + s.period.toLowerCase() + ', or your what-if if you have changed one. It does not yet account for timing, so a slow client can push a placement into next ' + s.period.toLowerCase() + '.',
+      periodLabel: s.period.toLowerCase() + ' to date', periodWord: s.period.toLowerCase(),
+      weeksLine: d.weeksLeft + ' weeks left in the ' + s.period.toLowerCase() + '. ' + LIVE.length + ' candidates live on your desk.',
+      periods: ['Month', 'Quarter', 'Year'].map(p => { const on = s.period === p; return {label: p, go: () => this.setState({period: p, overrides: {}}), bg: on ? INK : 'transparent', ink: on ? '#F3EEE6' : MID, weight: on ? '600' : '400'}; }),
+      kpis: [kpi('Calls', d.calls, d.callsT), kpi('CVs sent', d.sends, d.sendsT), kpi('Interviews booked', d.interviews, d.interviewsT), kpi('Fee billed', d.fee, d.feeT, gbp)],
+      fcTotal: gbp(total), fcTarget: gbp(d.feeT),
+      fcGapLine: gap > 0 ? gbp(gap) + ' short at these rates.' : 'On track, ' + gbp(-gap) + ' over target.', fcGapInk: gap > 0 ? BERRY : INK,
+      barBilled: pc(d.fee), barPipe: pc(pipeExp), barExtra: pc(extra), barTarget: pc(d.feeT),
+      fcLegend: [{label: 'Billed', value: gbp(d.fee), dot: INK}, {label: 'Pipeline', value: gbp(pipeExp), dot: TAUPE}, ...(extra > 0 ? [{label: 'What if', value: gbp(extra), dot: BERRY}] : [])],
+      whatIfChanged: changed, resetWhatIf: () => this.setState({...DEFAULTS}),
+      sliders: [
+        {label: 'Extra CVs sent a week', min: 0, max: 10, step: 1, value: s.extraSends, display: s.extraSends ? '+' + s.extraSends : 'None', set: e => this.setState({extraSends: Number(e.target.value)}), note: 'Each send places ' + Math.round(pPlace('Sent') * 100) + ' times in 100 at your current rates.'},
+        {label: 'Average fee', min: 8000, max: 30000, step: 500, value: s.avgFee, display: gbp(s.avgFee), set: e => this.setState({avgFee: Number(e.target.value)}), note: 'Perm fee or contract margin over the term.'},
+      ],
+      needLine: gap <= 0 ? 'Nothing extra needed. Keep the pipeline moving.' : needSends <= 20 ? needSends + ' more CV' + (needSends === 1 ? '' : 's') + ' sent a week, or lift a stage rate below.' : 'Sends alone will not close it. Lift the Interview to Offer rate or bring in more roles.',
+      funnelLine: overall + '% of applicants placed this ' + s.period.toLowerCase() + '.',
+      funnel: STAGES.map((st, i) => { const on = s.sel === st; const r = i < STAGES.length - 1 ? Math.round(rate(i) * 100) : 0; const desk = DESK[i]; const edited = s.overrides[i] != null;
+        return {label: st, count: String(d.flow[i]), width: Math.max(6, Math.round(d.flow[i] / maxFlow * 100)) + '%', bar: on ? BERRY : INK, rowBg: on ? 'rgba(158,45,83,.08)' : 'transparent', weight: on ? '700' : '500',
+          pick: () => this.setState({sel: st}), hasRatio: i < STAGES.length - 1,
+          ratio: r + '%' + (edited ? ' (what if)' : ''), vsDesk: i < STAGES.length - 1 ? (r > desk + 2 ? 'above desk ' + desk + '%' : r < desk - 2 ? 'below desk ' + desk + '%' : 'in line with desk ' + desk + '%') : ''}; }),
+      stKicker: s.sel, stTitle: people.length + ' live now',
+      stLine: hasRate ? 'Chance each one places from here: ' + Math.round(pPlace(s.sel) * 100) + '%.' : 'Placed this period: ' + d.flow[5] + '.',
+      stHasRate: hasRate, stRate: curRate, stRateDisplay: curRate + '%',
+      stRateLabel: hasRate ? s.sel + ' to ' + STAGES[selIdx + 1] : '',
+      stRateNote: hasRate ? 'Actual ' + actual[selIdx] + '%, desk ' + DESK[selIdx] + '%. Drag to test the forecast.' : '',
+      setStRate: e => this.setState({overrides: {...s.overrides, [selIdx]: Number(e.target.value)}}),
+      stPeople: people.map(a => ({name: a.name, job: a.job, days: a.days + (a.days === 1 ? ' day' : ' days'), daysWeight: a.days >= 7 ? '700' : '400', href: 'Candidate Record.dc.html'})),
+      stEmpty: people.length === 0,
+      placements: d.placements,
+    };
+  }
+}
+
+</script>
+</body>
+</html>

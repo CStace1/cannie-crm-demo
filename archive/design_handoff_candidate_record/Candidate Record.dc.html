@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/styles.css">
+<script src="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/_ds_bundle.js"></script>
+<style>
+body{margin:0;background:#F3EEE6}
+a{color:#9E2D53}
+a:hover{color:#7D2342}
+@media (max-width:720px){
+  [data-shell]{flex-direction:column}
+  [data-side]{position:static !important;height:auto !important;width:auto !important;flex:0 0 auto !important;flex-direction:row !important;flex-wrap:wrap;align-items:center;gap:14px !important;padding:12px 16px !important}
+  [data-side] nav{flex-direction:row !important;flex-wrap:wrap}
+  [data-side] [data-context]{border-top:none !important;padding-top:0 !important;flex-direction:row !important;flex-wrap:wrap;align-items:center;gap:12px !important}
+  [data-side] [data-context] > :first-child{display:none}
+  [data-side] [data-user]{margin-top:0 !important;margin-left:auto}
+  [data-page],[data-sticky]{padding-left:20px !important;padding-right:20px !important}
+}
+@media (max-width:1180px){
+  [data-actions]{flex-basis:100% !important}
+  [data-split]{grid-template-columns:minmax(0,1fr) !important}
+  [data-snap]{grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important}
+  [data-snap] > div:last-child{grid-column:1 / -1}
+  [data-split] > div:last-child{display:grid !important;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));align-items:start}
+}
+@media (max-width:760px){
+  [data-snap]{grid-template-columns:minmax(0,1fr) !important}
+  [data-rowhead]{display:none !important}
+  [data-row]{grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;gap:6px 12px !important;padding:10px 4px}
+  [data-row] > :first-child{grid-column:1 / -1}
+}
+</style>
+</helmet>
+<div data-shell="1" style="display:flex;width:100%;min-height:100vh;background:#F3EEE6;color:#2B211B;font-family:'Poppins',sans-serif;font-size:15px;line-height:1.3">
+
+<aside data-side="1" style="position:sticky;top:0;height:100vh;box-sizing:border-box;overflow-y:auto;align-self:flex-start;width:222px;flex:0 0 222px;background:#2B211B;color:#F3EEE6;padding:24px 14px 20px;display:flex;flex-direction:column;gap:28px">
+<div style="padding:0 8px;display:flex">
+<x-import component-from-global-scope="CannieDesignSystem_274f8e.Lockup" tone="dark" height="24" hint-size="117px,24px"></x-import>
+</div>
+<nav style="display:flex;flex-direction:column;gap:2px">
+<a href="Overview.html" style="display:flex;align-items:center;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none">Overview</a>
+<a href="Job Record.dc.html" style="display:flex;align-items:center;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none">Jobs</a>
+<a href="Clients.dc.html" style="display:flex;align-items:center;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none">Clients</a>
+<a href="#" style="display:flex;align-items:center;height:36px;padding:0 12px;border-radius:10px;background:rgba(232,150,179,.14);color:#E896B3;font-size:14px;font-weight:600;text-decoration:none">Candidates</a>
+<a href="#" style="display:flex;align-items:center;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none">Timesheets</a>
+<a href="#" style="display:flex;align-items:center;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none">Invoices</a>
+<a href="#" style="display:flex;align-items:center;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none">Search</a>
+</nav>
+<div data-context="1" style="border-top:1px solid #4C3D33;padding-top:20px;display:flex;flex-direction:column;gap:9px;flex-shrink:0">
+<a href="Job Record.dc.html" style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:#D9CFC0;padding:0 12px;text-decoration:none">Senior Backend Engineer, in the running</a>
+<sc-for list="{{ siblings }}" as="sj" hint-placeholder-count="5">
+<a href="{{ sj.href }}" style="display:flex;justify-content:space-between;gap:8px;padding:0 12px;font-size:14px;text-decoration:none;color:{{ sj.ink }};font-weight:{{ sj.weight }}"><span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ sj.title }}</span><span style="opacity:.65;font-size:12px">{{ sj.count }}</span></a>
+</sc-for>
+</div>
+<div data-user="1" style="margin-top:auto;display:flex;align-items:center;gap:10px;padding:0 8px">
+<span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:999px;background:#D9CFC0;color:#2B211B;font-size:11px;font-weight:600">PS</span>
+<span style="display:flex;flex-direction:column"><span style="font-size:13px;font-weight:500">Priya Shah</span><span style="font-size:11px;color:rgba(243,238,230,.70)">Engineering desk</span></span>
+</div>
+</aside>
+
+<main style="flex:1;min-width:0;display:flex;flex-direction:column">
+<header data-page="1" style="padding:26px 32px 0;display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap">
+<div style="display:flex;flex-direction:column;gap:6px;min-width:0;flex:1 1 380px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Candidate</span>
+<h1 style="margin:0;font-size:30px;font-weight:700;letter-spacing:-0.0075em">{{ fullName }}</h1>
+<p style="margin:0;font-size:15px;font-weight:600">{{ headerLine }}</p>
+
+<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13px;color:rgba(43,33,27,.55)">
+<span>{{ snapLine }}</span>
+<span style="display:inline-flex;align-items:center;height:22px;padding:0 9px;border:1px solid rgba(43,33,27,.85);border-radius:6px;font-size:11px;font-weight:600;color:rgba(43,33,27,.85)">{{ statusChip }}</span>
+<sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}"><a href="Client Record.dc.html" style="display:inline-flex;align-items:center;height:22px;padding:0 9px;background:#EFE7DA;border-radius:6px;font-size:11px;font-weight:600;color:#2B211B;text-decoration:none">Also a contact, Monzo</a></sc-if>
+</div>
+</div>
+<div data-actions="1" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;flex:0 0 auto">
+<input type="text" value="{{ recSearch }}" onChange="{{ setRecSearch }}" placeholder="Search this candidate" style="height:40px;padding:0 14px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;width:220px;max-width:100%;box-sizing:border-box">
+<button onClick="{{ secondaryGo }}" style="white-space:nowrap;height:40px;padding:0 16px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:transparent;color:#2B211B;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer">{{ secondaryLabel }}</button>
+<button onClick="{{ primaryGo }}" style="white-space:nowrap;height:40px;padding:0 18px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer">{{ primaryLabel }}</button>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:5px">
+<div style="display:flex;gap:6px;flex-wrap:wrap;align-items:baseline;font-size:14px;color:{{ needsInk }}">
+<span style="font-weight:700">{{ needsLabel }}</span>
+<sc-for list="{{ needsItems }}" as="r" hint-placeholder-count="2">
+<button onClick="{{ r.go }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:14px;font-weight:600;color:{{ needsInk }};text-decoration:underline;cursor:pointer">{{ r.label }}</button><span>{{ r.sep }}</span>
+</sc-for>
+<span style="color:rgba(43,33,27,.55);margin-left:8px;display:flex;gap:10px">
+<sc-for list="{{ needsToggles }}" as="t" hint-placeholder-count="2">
+<button onClick="{{ t.go }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;color:rgba(43,33,27,.70);cursor:pointer;font-weight:{{ t.weight }};text-decoration:{{ t.deco }}">{{ t.label }}</button>
+</sc-for>
+</span>
+</div>
+<sc-if value="{{ needsExpanded }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;gap:6px;flex-wrap:wrap;align-items:baseline;font-size:14px;color:#2B211B">
+<sc-for list="{{ needsOpenItems }}" as="r" hint-placeholder-count="2">
+<button onClick="{{ r.go }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:14px;font-weight:600;color:#2B211B;text-decoration:underline;cursor:pointer">{{ r.label }}</button><span>{{ r.sep }}</span>
+</sc-for>
+</div>
+</sc-if>
+</div>
+
+<div style="background:#EFE7DA;border-radius:14px;padding:18px 22px;display:flex;flex-direction:column;gap:14px">
+<div data-snap="1" style="display:grid;grid-template-columns:minmax(200px,1fr) minmax(240px,1.15fr) minmax(260px,1.35fr);gap:14px 32px;align-items:start">
+<div style="display:flex;flex-direction:column;gap:9px">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Reach her</span><button onClick="{{ editContact }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:12px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">Edit</button></div>
+<div style="display:flex;gap:6px;flex-wrap:wrap">
+<sc-for list="{{ snapRoutes }}" as="r" hint-placeholder-count="3">
+<a href="{{ r.href }}" title="{{ r.value }}" style="height:32px;padding:0 12px;display:inline-flex;align-items:center;border:1px solid rgba(43,33,27,.85);border-radius:10px;font-size:13px;font-weight:600;color:#2B211B;text-decoration:none;background:#F3EEE6">{{ r.label }}</a>
+</sc-for>
+</div>
+<span style="font-size:13px;color:#2B211B">{{ snapPrefers }}</span>
+<span style="font-size:13px;color:rgba(43,33,27,.70)">Owner {{ snapOwner }}. {{ snapHome }}</span>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 16px">
+<sc-for list="{{ snapFacts }}" as="f" hint-placeholder-count="4">
+<div style="display:flex;flex-direction:column;gap:3px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">{{ f.label }}</span><span style="font-size:15px;font-weight:700;color:{{ f.ink }}">{{ f.value }}</span></div>
+</sc-for>
+</div>
+<div style="display:flex;flex-direction:column;gap:7px;min-width:0">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Recent</span><a href="#" onClick="{{ goActivity }}" style="font-size:12px;font-weight:600">All activity</a></div>
+<sc-for list="{{ snapRecent }}" as="rc" hint-placeholder-count="3">
+<button onClick="{{ rc.go }}" style="display:grid;grid-template-columns:52px minmax(0,1fr);gap:10px;align-items:baseline;background:transparent;border:none;padding:0;font-family:inherit;text-align:left;cursor:pointer;color:inherit;min-width:0"><span style="font-size:12px;color:rgba(43,33,27,.55);white-space:nowrap">{{ rc.when }}</span><span style="font-size:13px;color:{{ rc.ink }};font-weight:{{ rc.weight }};overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-decoration:underline;text-decoration-color:#D9CFC0;text-underline-offset:3px">{{ rc.what }}</span></button>
+</sc-for>
+</div>
+</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;border-top:1px solid #D9CFC0;padding-top:12px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70);margin-right:4px">Skills</span>
+<sc-for list="{{ headerTags }}" as="tg" hint-placeholder-count="5">
+<span style="height:26px;padding:0 10px;display:inline-flex;align-items:center;border-radius:999px;border:1px solid {{ tg.border }};font-size:12px;font-weight:{{ tg.weight }};color:{{ tg.ink }};background:#F3EEE6">{{ tg.name }}</span>
+</sc-for>
+<span style="width:1px;height:18px;background:#D9CFC0;margin:0 4px"></span>
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70);margin-right:4px">Tags</span>
+<sc-for list="{{ tagChips }}" as="tc" hint-placeholder-count="3">
+<span style="height:26px;padding:0 10px;display:inline-flex;align-items:center;border-radius:6px;background:#2B211B;color:#F3EEE6;font-size:12px;font-weight:600">{{ tc.name }}</span>
+</sc-for>
+<button onClick="{{ editTags }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:12px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">Edit</button>
+<span style="flex:1"></span>
+<button onClick="{{ viewCv }}" style="height:32px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:transparent;font-family:inherit;font-size:13px;font-weight:600;color:#2B211B;cursor:pointer">View CV, {{ cvLabel }}</button>
+</div>
+</div>
+
+<sc-if value="{{ hasBand }}" hint-placeholder-val="{{ false }}">
+<div style="background:#2B211B;color:#F3EEE6;border-radius:14px;padding:18px 22px;display:flex;flex-wrap:wrap;gap:16px 40px;align-items:flex-start">
+<div style="display:flex;flex-direction:column;gap:4px;flex:1 1 260px;min-width:0"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:#D9CFC0">{{ bandKicker }}</span><span style="font-size:17px;font-weight:700;letter-spacing:-0.0075em">{{ bandTitle }}</span><span style="font-size:13px;color:rgba(243,238,230,.75)">{{ bandLine }}</span></div>
+<sc-for list="{{ bandFacts }}" as="bf" hint-placeholder-count="3">
+<div style="display:flex;flex-direction:column;gap:3px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:#D9CFC0">{{ bf.label }}</span><span style="font-size:15px;font-weight:700;color:{{ bf.ink }}">{{ bf.value }}</span></div>
+</sc-for>
+<button onClick="{{ bandGo }}" style="align-self:center;height:36px;padding:0 14px;border:1px solid #E896B3;border-radius:10px;background:transparent;color:#E896B3;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap">{{ bandAction }}</button>
+</div>
+</sc-if>
+
+</header>
+
+<div data-sticky="1" style="position:sticky;top:0;z-index:5;background:#F3EEE6;display:flex;gap:20px;align-items:flex-end;border-bottom:1px solid #D9CFC0;padding:18px 32px 0;overflow-x:auto;white-space:nowrap">
+<sc-if value="{{ scrolled }}" hint-placeholder-val="{{ false }}">
+<span style="font-size:16px;font-weight:700;letter-spacing:-0.0075em;padding:0 20px 14px 0;border-right:1px solid #D9CFC0;margin-right:10px;white-space:nowrap">Amara Osei</span>
+</sc-if>
+<sc-for list="{{ tabs }}" as="tab" hint-placeholder-count="7">
+<button onClick="{{ tab.go }}" style="border:none;background:transparent;font-family:inherit;font-size:14px;cursor:pointer;padding:0 0 14px;border-bottom:3.4px solid {{ tab.line }};color:{{ tab.ink }};font-weight:{{ tab.weight }}">{{ tab.label }}</button>
+</sc-for>
+</div>
+
+<div data-page="1" style="padding:24px 32px 64px;display:flex;flex-direction:column;gap:24px">
+<sc-if value="{{ hasFlash }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:14px;font-weight:600;color:#9E2D53">{{ flash }}</p></sc-if>
+
+<sc-if value="{{ isSearch }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:14px;max-width:820px">
+<div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><h2 style="margin:0;font-size:19px;font-weight:700;letter-spacing:-0.0075em">{{ searchTitle }}</h2><div style="flex:1"></div><button onClick="{{ clearSearch }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#2B211B;text-decoration:underline;cursor:pointer">Clear</button></div>
+<sc-for list="{{ searchHits }}" as="h" hint-placeholder-count="3">
+<button onClick="{{ h.go }}" style="display:flex;justify-content:space-between;gap:12px;align-items:center;border:none;border-top:1px solid #D9CFC0;padding:10px 4px;background:transparent;font-family:inherit;color:inherit;cursor:pointer;text-align:left" style-hover="background:rgba(43,33,27,.05)"><span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font-size:14px;font-weight:600">{{ h.title }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ h.sub }}</span></span><span style="font-size:12px;color:rgba(43,33,27,.55);white-space:nowrap">{{ h.where }}</span></button>
+</sc-for>
+<sc-if value="{{ searchEmpty }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:14px;color:rgba(43,33,27,.55)">Nothing on this candidate matches. Try a job, a client, a skill or a document.</p></sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ isApplications }}" hint-placeholder-val="{{ true }}">
+<div data-split="1" style="display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start">
+<div style="display:flex;flex-direction:column;gap:22px;min-width:0">
+<section style="display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><h2 style="margin:0;font-size:19px;font-weight:700;letter-spacing:-0.0075em">In the running</h2><span style="font-size:13px;color:rgba(43,33,27,.55)">{{ liveLine }}</span></div>
+<div data-rowhead="1" style="display:grid;grid-template-columns:minmax(220px,1.5fr) 110px 70px minmax(200px,1.4fr);gap:12px;padding:0 4px 8px;border-bottom:3.4px solid #2B211B;font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)"><span>Job</span><span>Stage</span><span>Days</span><span>Next step</span></div>
+<sc-for list="{{ liveApps }}" as="a" hint-placeholder-count="2">
+<button data-row="1" onClick="{{ a.open }}" style="display:grid;grid-template-columns:minmax(220px,1.5fr) 110px 70px minmax(200px,1.4fr);gap:12px;align-items:center;border:none;border-top:1px solid #D9CFC0;padding:12px 4px;background:{{ a.bg }};font-family:inherit;color:inherit;cursor:pointer;text-align:left;width:100%" style-hover="background:rgba(43,33,27,.05)">
+<span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font-size:15px;font-weight:600">{{ a.job }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ a.client }}, {{ a.owner }}</span><span style="font-size:12px;color:rgba(43,33,27,.70);text-wrap:pretty">{{ a.fit }}</span></span>
+<span style="font-size:14px;font-weight:600">{{ a.stage }}</span>
+<span style="font-size:14px">{{ a.days }}</span>
+<span style="font-size:14px;color:{{ a.nextInk }};font-weight:{{ a.nextWeight }}">{{ a.next }}</span>
+</button>
+</sc-for>
+<sc-if value="{{ hotWarning }}" hint-placeholder-val="{{ true }}"><p style="margin:6px 0 0;font-size:13px;font-weight:600;color:#9E2D53">Late stage on two jobs. Decide with yourself which offer runs first; two offers to one person is how you lose both.</p></sc-if>
+</section>
+<section style="display:flex;flex-direction:column;gap:10px">
+<button onClick="{{ toggleClosed }}" style="display:flex;align-items:baseline;gap:10px;background:transparent;border:none;padding:0;font-family:inherit;color:inherit;cursor:pointer;text-align:left"><h2 style="margin:0;font-size:19px;font-weight:700;letter-spacing:-0.0075em">Closed</h2><span style="font-size:13px;color:rgba(43,33,27,.55)">{{ closedLine }}</span><span style="font-size:13px;font-weight:600;color:#9E2D53;text-decoration:underline">{{ closedToggle }}</span></button>
+<sc-if value="{{ closedOpen }}" hint-placeholder-val="{{ false }}">
+<sc-for list="{{ closedApps }}" as="a" hint-placeholder-count="2">
+<button onClick="{{ a.open }}" style="display:grid;grid-template-columns:minmax(220px,1.5fr) minmax(0,2fr);gap:12px;align-items:start;border:none;border-top:1px solid #D9CFC0;padding:12px 4px;background:transparent;font-family:inherit;color:inherit;cursor:pointer;text-align:left;width:100%" style-hover="background:rgba(43,33,27,.05)"><span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:600">{{ a.job }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ a.client }}, {{ a.when }}</span></span><span style="font-size:14px"><strong>{{ a.outcome }}</strong> {{ a.note }}</span></button>
+</sc-for>
+</sc-if>
+</section>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<section style="background:#EFE7DA;border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:10px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Next actions</span>
+<sc-for list="{{ actions }}" as="ac" hint-placeholder-count="3">
+<div style="display:flex;justify-content:space-between;gap:12px;align-items:center;border-top:1px solid #D9CFC0;padding:10px 0">
+<button onClick="{{ ac.open }}" style="display:flex;flex-direction:column;gap:2px;min-width:0;align-items:flex-start;text-align:left;background:transparent;border:none;padding:0;font-family:inherit;color:inherit;cursor:pointer"><span style="font-size:14px;font-weight:500"><span style="color:rgba(43,33,27,.55)">{{ ac.typeLabel }}</span>{{ ac.what }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ ac.who }}</span><sc-if value="{{ ac.hasNote }}" hint-placeholder-val="{{ false }}"><span style="font-size:12px;color:rgba(43,33,27,.70);text-wrap:pretty">{{ ac.note }}</span></sc-if><sc-if value="{{ ac.hasCal }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;gap:5px;font-size:11px;color:{{ ac.calInk }};font-weight:{{ ac.calWeight }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>{{ ac.cal }}</span></sc-if></button>
+<span style="display:flex;flex-direction:column;align-items:flex-end;gap:3px;white-space:nowrap"><span style="font-size:12px;font-weight:600">{{ ac.when }}</span><button onClick="{{ ac.done }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:12px;color:rgba(43,33,27,.70);text-decoration:underline;cursor:pointer">Done</button></span>
+</div>
+</sc-for>
+<sc-if value="{{ noActions }}" hint-placeholder-val="{{ false }}"><p style="margin:0;padding-top:8px;font-size:13px;color:rgba(43,33,27,.55)">Nothing queued. Done actions are on Activity.</p></sc-if>
+<button onClick="{{ addAction }}" style="align-self:flex-start;background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">Add an action</button>
+</section>
+<section style="background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:8px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">What she wants</span>
+<p style="margin:0;font-size:14px">{{ wantsLine }}</p>
+<a href="#" onClick="{{ goPay }}" style="font-size:13px;font-weight:600">Full history</a>
+</section>
+<section style="background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:8px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Paper</span>
+<sc-for list="{{ paperRows }}" as="p" hint-placeholder-count="3">
+<div style="display:flex;justify-content:space-between;gap:10px;font-size:14px"><span>{{ p.k }}</span><span style="font-weight:600;color:{{ p.ink }};text-align:right">{{ p.v }}</span></div>
+</sc-for>
+</section>
+<sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
+<section style="background:#EFE7DA;border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:8px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">One person, two roles</span>
+<p style="margin:0;font-size:14px">Also a <a href="Client Record.dc.html">contact at Monzo</a>: Backend Engineer, influences hiring on the payments team. Has referred two candidates. Not a decision maker.</p>
+<p style="margin:0;font-size:12px;color:rgba(43,33,27,.55)">Candidate and contact share one activity stream and one consent record. What you log here shows on Monzo's People tab, and the other way. Sending her CV to Monzo is blocked; the system knows she works there.</p>
+<button onClick="{{ editRoles }}" style="align-self:flex-start;background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">Change the contact role</button>
+</section>
+</sc-if>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isProfile }}" hint-placeholder-val="{{ false }}">
+<div data-split="1" style="display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start">
+<div style="display:flex;flex-direction:column;gap:26px;min-width:0">
+<section style="display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><h2 style="margin:0;font-size:19px;font-weight:700;letter-spacing:-0.0075em">CV</h2><span style="font-size:13px;color:rgba(43,33,27,.55)">{{ cvMeta }}</span><div style="flex:1"></div><button onClick="{{ toggleCv }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">{{ cvToggle }}</button><button onClick="{{ downloadCv }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#2B211B;text-decoration:underline;cursor:pointer">Download PDF</button></div>
+<sc-if value="{{ cvOpen }}" hint-placeholder-val="{{ true }}">
+<div style="background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;padding:28px 32px;display:flex;flex-direction:column;gap:18px;max-width:720px;font-size:14px;line-height:1.45">
+<div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:20px;font-weight:700;letter-spacing:-0.0075em">Amara Osei</span><span style="color:rgba(43,33,27,.70)">Backend Engineer, London. amara.osei@example.com, 07700 900 121, linkedin.com/in/amaraosei</span></div>
+<p style="margin:0;text-wrap:pretty">Senior backend engineer with four years in card payments at a UK challenger bank. Go, Kafka, Postgres, Kubernetes. Contributor to two production migrations.</p>
+<div style="display:flex;flex-direction:column;gap:12px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Experience</span>
+<div style="display:grid;grid-template-columns:140px minmax(0,1fr);gap:12px"><span style="color:rgba(43,33,27,.55)">Sep 2022 to now</span><span><strong>Backend Engineer, Monzo.</strong> Card payments platform. Owned the authorisation service; led the Kafka consumer rewrite; on call rota.</span></div>
+<div style="display:grid;grid-template-columns:140px minmax(0,1fr);gap:12px"><span style="color:rgba(43,33,27,.55)">Jul 2020 to Aug 2022</span><span><strong>Software Engineer, Curve.</strong> Card issuing. Go and Python. Built the dispute intake flow.</span></div>
+<div style="display:grid;grid-template-columns:140px minmax(0,1fr);gap:12px"><span style="color:rgba(43,33,27,.55)">Jan to Mar 2020</span><span><strong>Backend Developer, contract, Kestrel Freight.</strong> Integration work, outside IR35.</span></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Education</span>
+<span>BSc Computer Science, 2:1, University of Bristol, 2019. CKA, Kubernetes administrator, 2023.</span>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Skills</span>
+<span>Go, Kafka, Postgres, Kubernetes, Python, gRPC, Terraform</span>
+</div>
+<span style="font-size:12px;color:rgba(43,33,27,.55)">{{ cvPageNote }} Rendered from the stored PDF; what the client receives is the file, not this view. Send the shortlist profile, not this, until the client has agreed to see her.</span>
+</div>
+</sc-if>
+</section>
+<section style="display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><h2 style="margin:0;font-size:19px;font-weight:700;letter-spacing:-0.0075em">Your summary</h2><div style="flex:1"></div><button onClick="{{ editSummary }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">Edit</button></div>
+<p style="margin:0;font-size:15px;max-width:720px;text-wrap:pretty">{{ summary }}</p>
+<p style="margin:0;font-size:12px;color:rgba(43,33,27,.55)">This is the line that goes to a hiring manager above the CV. Written by you, not parsed. In the database since Jan 2020, first placed by Cannie.</p>
+</section>
+<section style="display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><h2 style="margin:0;font-size:19px;font-weight:700;letter-spacing:-0.0075em">Skills</h2><span style="font-size:13px;color:rgba(43,33,27,.55)">Parsed from the CV, confirmed on screen. Tap a skill to change its level or years, or to retire it.</span><div style="flex:1"></div><button onClick="{{ addSkill }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">Add a skill</button></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<sc-for list="{{ skills }}" as="sk" hint-placeholder-count="6">
+<button onClick="{{ sk.edit }}" style="display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 13px;border-radius:999px;border:1px solid {{ sk.border }};background:{{ sk.bg }};font-size:13px;color:#2B211B;font-family:inherit;cursor:pointer" style-hover="background:rgba(43,33,27,.05)"><span style="font-weight:600">{{ sk.name }}</span><span style="color:rgba(43,33,27,.55);font-size:12px">{{ sk.meta }}</span></button>
+</sc-for>
+</div>
+</section>
+<section style="display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><h2 style="margin:0;font-size:19px;font-weight:700;letter-spacing:-0.0075em">Work history</h2><span style="font-size:13px;color:rgba(43,33,27,.55)">The open row is her current job and drives the header. Tap a row to edit.</span><div style="flex:1"></div><button onClick="{{ addRole }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">Add a role</button></div>
+<sc-for list="{{ history }}" as="w" hint-placeholder-count="3">
+<button onClick="{{ w.edit }}" style="display:grid;grid-template-columns:170px minmax(0,1fr);gap:16px;border:none;border-top:1px solid #D9CFC0;padding:12px 4px;align-items:start;background:transparent;font-family:inherit;color:inherit;cursor:pointer;text-align:left;width:100%" style-hover="background:rgba(43,33,27,.05)"><span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:13px;color:rgba(43,33,27,.55)">{{ w.when }}</span><span style="font-size:12px;font-weight:600;color:{{ w.curInk }}">{{ w.tenure }}</span></span><span style="display:flex;flex-direction:column;gap:3px"><span style="font-size:15px;font-weight:600">{{ w.role }}, {{ w.employer }}</span><span style="font-size:14px">{{ w.note }}</span></span></button>
+</sc-for>
+</section>
+<section style="display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><h2 style="margin:0;font-size:19px;font-weight:700;letter-spacing:-0.0075em">Qualifications</h2><div style="flex:1"></div><button onClick="{{ addQual }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">Add a qualification</button></div>
+<sc-for list="{{ quals }}" as="q" hint-placeholder-count="2">
+<button onClick="{{ q.edit }}" style="display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;border:none;border-top:1px solid #D9CFC0;padding:12px 4px;background:transparent;font-family:inherit;color:inherit;cursor:pointer;text-align:left;width:100%" style-hover="background:rgba(43,33,27,.05)"><span style="font-size:13px;color:rgba(43,33,27,.55)">{{ q.when }}</span><span style="font-size:14px"><strong>{{ q.name }}</strong>, {{ q.where }}<sc-if value="{{ q.expires }}" hint-placeholder-val="{{ false }}"><span style="color:rgba(43,33,27,.55)">. Expires {{ q.expires }}</span></sc-if></span></button>
+</sc-for>
+</section>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<section style="background:#EFE7DA;border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">CV</span><button onClick="{{ newCv }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">Upload a new version</button></div>
+<sc-for list="{{ cvs }}" as="cv" hint-placeholder-count="2">
+<div style="display:flex;flex-direction:column;gap:4px;border-top:1px solid #D9CFC0;padding:8px 0"><div style="display:flex;justify-content:space-between;gap:10px;font-size:14px"><span style="font-weight:{{ cv.weight }}">{{ cv.name }}</span><span style="font-size:12px;color:rgba(43,33,27,.55);white-space:nowrap">{{ cv.when }}</span></div><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ cv.note }}</span><div style="display:flex;gap:12px"><button onClick="{{ cv.view }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:12px;font-weight:600;color:{{ cv.viewInk }};text-decoration:underline;cursor:pointer">{{ cv.viewLabel }}</button><button onClick="{{ cv.download }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:12px;font-weight:600;color:#2B211B;text-decoration:underline;cursor:pointer">Download</button></div></div>
+</sc-for>
+<p style="margin:0;font-size:12px;color:rgba(43,33,27,.55)">Every version kept. The one sent to each job is recorded on that application.</p>
+</section>
+<sc-if value="{{ hasParsed }}" hint-placeholder-val="{{ false }}">
+<section style="background:#F3EEE6;border:1px solid #9E2D53;border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:10px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Parsed, to confirm</span>
+<sc-for list="{{ parsed }}" as="p" hint-placeholder-count="3">
+<div style="display:flex;justify-content:space-between;gap:10px;align-items:center;border-top:1px solid #D9CFC0;padding:8px 0;font-size:14px"><span style="color:{{ p.ink }}"><strong>{{ p.k }}</strong>, {{ p.v }}</span><button onClick="{{ p.toggle }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:12px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">{{ p.mark }}</button></div>
+</sc-for>
+<button onClick="{{ applyParsed }}" style="align-self:flex-start;height:36px;padding:0 14px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer">Apply the ticked changes</button>
+<p style="margin:0;font-size:12px;color:rgba(43,33,27,.55)">Nothing parsed overwrites what you confirmed on a call until you apply it.</p>
+</section>
+</sc-if>
+<section style="background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:8px">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Shortlist profile</span><button onClick="{{ editShortlist }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:12px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">Edit</button></div>
+<p style="margin:0;font-size:14px">{{ shortlistText }}</p>
+<p style="margin:0;font-size:12px;color:rgba(43,33,27,.55)">No name, no employer. This is what goes on a shortlist before the client agrees to see the CV.</p>
+<div style="display:flex;justify-content:space-between;gap:10px;border-top:1px solid #D9CFC0;padding-top:10px;font-size:14px;align-items:baseline"><a href="{{ linkedinHref }}" style="font-weight:600">Her LinkedIn</a><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ linkedinNote }}</span></div>
+</section>
+<section style="background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:8px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Possible duplicate</span>
+<p style="margin:0;font-size:14px">A. Osei, added Mar 2024 by Nadia Croft, same mobile, different email. Two applications, both closed. Flagged when the CV was parsed on 1 Sep; the same check runs on create.</p>
+<div style="display:flex;gap:12px"><button onClick="{{ merge }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">Merge, keep both histories</button><button onClick="{{ notDupe }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#2B211B;text-decoration:underline;cursor:pointer">Not the same person</button></div>
+</section>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isPay }}" hint-placeholder-val="{{ false }}">
+<div data-split="1" style="display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start">
+<div style="display:flex;flex-direction:column;gap:26px;min-width:0">
+<section style="background:#EFE7DA;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><h2 style="margin:0;font-size:19px;font-weight:700;letter-spacing:-0.0075em">Now</h2><div style="flex:1"></div><button onClick="{{ editAvail }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">Edit</button></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px 20px">
+<sc-for list="{{ availFacts }}" as="af" hint-placeholder-count="6">
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">{{ af.label }}</span><span style="font-size:15px;font-weight:600">{{ af.value }}</span></div>
+</sc-for>
+</div>
+<p style="margin:0;font-size:12px;color:rgba(43,33,27,.55)">{{ availNote }}</p>
+</section>
+<section style="display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><h2 style="margin:0;font-size:19px;font-weight:700;letter-spacing:-0.0075em">Asked and agreed</h2><span style="font-size:13px;color:rgba(43,33,27,.55)">Every figure she has given or accepted, newest first. Nothing typed twice: screens, offers and placements write here.</span></div>
+<div data-rowhead="1" style="display:grid;grid-template-columns:110px minmax(200px,1.4fr) 140px minmax(0,1fr);gap:12px;padding:0 4px 8px;border-bottom:3.4px solid #2B211B;font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)"><span>When</span><span>Where</span><span>Figure</span><span>Which</span></div>
+<sc-for list="{{ payRows }}" as="p" hint-placeholder-count="4">
+<div data-row="1" style="display:grid;grid-template-columns:110px minmax(200px,1.4fr) 140px minmax(0,1fr);gap:12px;align-items:center;border-top:1px solid #D9CFC0;padding:11px 4px;font-size:14px"><span style="font-size:13px;color:rgba(43,33,27,.55)">{{ p.when }}</span><span>{{ p.where }}</span><span style="font-weight:600">{{ p.figure }}</span><span style="color:rgba(43,33,27,.70)">{{ p.which }}</span></div>
+</sc-for>
+</section>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<section style="background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:8px">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Your read</span><button onClick="{{ editAvail }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:12px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">Edit</button></div>
+<p style="margin:0;font-size:14px">{{ readText }}</p>
+</section>
+<section style="background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:8px">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Would consider</span><button onClick="{{ editAvail }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:12px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">Edit</button></div>
+<p style="margin:0;font-size:14px">{{ considerText }}</p>
+</section>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isCompliance }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:26px;max-width:980px">
+<section style="display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><h2 style="margin:0;font-size:19px;font-weight:700;letter-spacing:-0.0075em">Documents</h2><span style="font-size:13px;color:rgba(43,33,27,.55)">Expiry feeds Needs you here, on the job and on the client. Nothing deletes; a new document supersedes.</span><div style="flex:1"></div><button onClick="{{ addDoc }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">Add a document</button></div>
+<div data-rowhead="1" style="display:grid;grid-template-columns:minmax(200px,1.4fr) 150px 130px minmax(180px,1.2fr) 90px;gap:12px;padding:0 4px 8px;border-bottom:3.4px solid #2B211B;font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)"><span>Document</span><span>State</span><span>Expires</span><span>Checked</span><span></span></div>
+<sc-for list="{{ docs }}" as="d" hint-placeholder-count="5">
+<div data-row="1" style="display:grid;grid-template-columns:minmax(200px,1.4fr) 150px 130px minmax(180px,1.2fr) 90px;gap:12px;align-items:center;border-top:1px solid #D9CFC0;padding:11px 4px;font-size:14px"><span style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:600">{{ d.name }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ d.sub }}</span></span><span style="font-weight:600;color:{{ d.stateInk }}">{{ d.state }}</span><span style="color:{{ d.expInk }};font-weight:{{ d.expWeight }}">{{ d.expires }}</span><span style="font-size:13px;color:rgba(43,33,27,.70)">{{ d.checked }}</span><button onClick="{{ d.act }}" style="justify-self:end;background:transparent;border:none;padding:0;font-family:inherit;font-size:12px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">{{ d.action }}</button></div>
+</sc-for>
+</section>
+<section style="display:flex;flex-direction:column;gap:10px">
+<h2 style="margin:0;font-size:19px;font-weight:700;letter-spacing:-0.0075em">IR35 determinations</h2>
+<div style="display:grid;grid-template-columns:minmax(200px,1.4fr) 150px minmax(0,1.6fr);gap:12px;align-items:center;border-top:1px solid #D9CFC0;padding:11px 4px;font-size:14px"><span style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:600">Backend Developer, Kestrel Freight</span><span style="font-size:12px;color:rgba(43,33,27,.55)">Jan to Mar 2020, Ltd company</span></span><span style="font-weight:600">Outside</span><span style="color:rgba(43,33,27,.70)">Client SDS on file, 3 Jan 2020. Determination is per placement; a new contract needs a new one.</span></div>
+</section>
+<section style="display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><h2 style="margin:0;font-size:19px;font-weight:700;letter-spacing:-0.0075em">References</h2><div style="flex:1"></div><button onClick="{{ addRef }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">Add a reference</button></div>
+<sc-for list="{{ refs }}" as="r" hint-placeholder-count="2">
+<button onClick="{{ r.edit }}" style="display:grid;grid-template-columns:minmax(200px,1.4fr) 150px minmax(0,1.6fr);gap:12px;align-items:center;border:none;border-top:1px solid #D9CFC0;padding:11px 4px;font-size:14px;background:transparent;font-family:inherit;color:inherit;cursor:pointer;text-align:left;width:100%" style-hover="background:rgba(43,33,27,.05)"><span style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:600">{{ r.who }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ r.rel }}</span></span><span style="font-weight:600;color:{{ r.ink }}">{{ r.state }}</span><span style="color:rgba(43,33,27,.70)">{{ r.note }}</span></button>
+</sc-for>
+<p style="margin:0;font-size:12px;color:rgba(43,33,27,.55)">References are taken at offer, not before. Ask Amara before contacting anyone at Monzo.</p>
+</section>
+</div>
+</sc-if>
+
+<sc-if value="{{ isPlacements }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:26px;max-width:980px">
+<section style="display:flex;flex-direction:column;gap:10px">
+<sc-if value="{{ hasBand }}" hint-placeholder-val="{{ false }}">
+<div style="background:#EFE7DA;border-radius:14px;padding:20px 22px;display:flex;flex-direction:column;gap:12px;margin-bottom:8px">
+<div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><h2 style="margin:0;font-size:19px;font-weight:700;letter-spacing:-0.0075em">{{ bandTitle }}</h2><span style="font-size:13px;color:rgba(43,33,27,.55)">{{ bandLine }}</span></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px 20px">
+<sc-for list="{{ assignmentFacts }}" as="af" hint-placeholder-count="6">
+<div style="display:flex;flex-direction:column;gap:3px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">{{ af.label }}</span><span style="font-size:15px;font-weight:600;color:{{ af.ink }}">{{ af.value }}</span></div>
+</sc-for>
+</div>
+<div style="display:flex;gap:14px;flex-wrap:wrap"><a href="Job Record.dc.html?type=T%26M" style="font-size:13px;font-weight:600">Open the job</a><a href="Client Record.dc.html" style="font-size:13px;font-weight:600;color:#2B211B">Client record</a></div>
+</div>
+</sc-if>
+<div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><h2 style="margin:0;font-size:19px;font-weight:700;letter-spacing:-0.0075em">Placements</h2><span style="font-size:13px;color:rgba(43,33,27,.55)">Every placement through this agency, with what it earned.</span></div>
+<div data-rowhead="1" style="display:grid;grid-template-columns:minmax(220px,1.5fr) 170px 130px minmax(180px,1.2fr);gap:12px;padding:0 4px 8px;border-bottom:3.4px solid #2B211B;font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)"><span>Role</span><span>Dates</span><span>Agreed</span><span>Outcome</span></div>
+<sc-for list="{{ placements }}" as="p" hint-placeholder-count="1">
+<div data-row="1" style="display:grid;grid-template-columns:minmax(220px,1.5fr) 170px 130px minmax(180px,1.2fr);gap:12px;align-items:center;border-top:1px solid #D9CFC0;padding:12px 4px;font-size:14px"><span style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:600">{{ p.role }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ p.client }}, {{ p.type }}</span></span><span>{{ p.dates }}</span><span style="font-weight:600">{{ p.agreed }}</span><span style="color:rgba(43,33,27,.70)">{{ p.outcome }}</span></div>
+</sc-for>
+</section>
+<section style="display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><h2 style="margin:0;font-size:19px;font-weight:700;letter-spacing:-0.0075em">Timesheets</h2><span style="font-size:13px;color:rgba(43,33,27,.55)">{{ tsLine }}</span></div>
+<sc-for list="{{ timesheets }}" as="ts" hint-placeholder-count="3">
+<div style="display:grid;grid-template-columns:170px 130px minmax(0,1fr);gap:12px;border-top:1px solid #D9CFC0;padding:10px 4px;font-size:14px"><span>{{ ts.period }}</span><span style="font-weight:600">{{ ts.hours }}</span><span style="color:{{ ts.ink }};font-weight:{{ ts.weight }}">{{ ts.state }}</span></div>
+</sc-for>
+<a href="#" style="font-size:13px;font-weight:600">All 12</a>
+</section>
+</div>
+</sc-if>
+
+<sc-if value="{{ isConsent }}" hint-placeholder-val="{{ false }}">
+<div data-split="1" style="display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start">
+<div style="display:flex;flex-direction:column;gap:26px;min-width:0">
+<section style="background:#EFE7DA;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><h2 style="margin:0;font-size:19px;font-weight:700;letter-spacing:-0.0075em">Lawful basis and consent</h2><div style="flex:1"></div><button onClick="{{ editConsent }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">Edit</button></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px 20px">
+<sc-for list="{{ consentFacts }}" as="cf" hint-placeholder-count="6">
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">{{ cf.label }}</span><span style="font-size:15px;font-weight:600;color:{{ cf.ink }}">{{ cf.value }}</span></div>
+</sc-for>
+</div>
+</section>
+<section style="display:flex;flex-direction:column;gap:10px">
+<h2 style="margin:0;font-size:19px;font-weight:700;letter-spacing:-0.0075em">Requests</h2>
+<sc-for list="{{ requests }}" as="rq" hint-placeholder-count="1">
+<div style="display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;border-top:1px solid #D9CFC0;padding:12px 4px"><span style="font-size:13px;color:rgba(43,33,27,.55)">{{ rq.when }}</span><span style="font-size:14px"><strong>{{ rq.kind }}</strong> {{ rq.note }}</span></div>
+</sc-for>
+<div style="display:flex;gap:14px"><button onClick="{{ sar }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">Record a subject access request</button><button onClick="{{ erasure }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#2B211B;text-decoration:underline;cursor:pointer">Record an erasure request</button></div>
+</section>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<section style="background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:8px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">How this works</span>
+<p style="margin:0;font-size:14px">Nothing deletes. Erasure is a state: the record is anonymised on the retention date and the placement history stays for the accounts, without the person in it.</p>
+<p style="margin:0;font-size:14px">Retention defaults to three years from the consent date. A placement extends it to six years from the placement end for the accounts. Any hand change is logged with who and why.</p>
+</section>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isActivity }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:16px;max-width:980px">
+<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+<sc-for list="{{ actFilters }}" as="af" hint-placeholder-count="5">
+<button onClick="{{ af.go }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:transparent;border:{{ af.border }};color:{{ af.ink }};font-weight:{{ af.weight }}">{{ af.label }}</button>
+</sc-for>
+<span style="font-size:12px;color:rgba(43,33,27,.55);margin-left:6px">Email and calendar via Exchange; SMS via a separate provider.</span>
+</div>
+<sc-for list="{{ activity }}" as="a" hint-placeholder-count="5">
+<button onClick="{{ a.open }}" style="display:grid;grid-template-columns:100px 90px minmax(0,1fr);gap:16px;border:none;border-top:1px solid #D9CFC0;padding:12px 4px;align-items:start;background:transparent;font-family:inherit;color:inherit;cursor:pointer;text-align:left;width:100%" style-hover="background:rgba(43,33,27,.05)"><span style="font-size:13px;color:rgba(43,33,27,.55)">{{ a.when }}</span><span style="font-size:12px;font-weight:600;color:rgba(43,33,27,.70)">{{ a.kind }}</span><span style="display:flex;flex-direction:column;gap:3px"><span style="font-size:14px">{{ a.what }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ a.who }}, {{ a.where }}</span><sc-if value="{{ a.hasDetail }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:rgba(43,33,27,.70)">{{ a.detail }}</span></sc-if></span></button>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{ isMatches }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:14px;max-width:980px">
+<div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><h2 style="margin:0;font-size:19px;font-weight:700;letter-spacing:-0.0075em">Put forward</h2><span style="font-size:13px;color:rgba(43,33,27,.55)">Jobs on the desk that fit her skills, ask, location and what she would consider. Jobs she is already on are left out; search any other job below.</span></div>
+<input type="text" placeholder="Or find any live job on the desk" style="height:40px;padding:0 14px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;max-width:420px;box-sizing:border-box">
+<sc-for list="{{ matches }}" as="m" hint-placeholder-count="3">
+<div style="display:grid;grid-template-columns:minmax(220px,1.5fr) minmax(0,2fr) 170px;gap:12px;align-items:center;border-top:1px solid #D9CFC0;padding:12px 4px;font-size:14px"><span style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:600">{{ m.job }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ m.client }}, {{ m.owner }}</span></span><span style="color:rgba(43,33,27,.70)">{{ m.why }}</span><button onClick="{{ m.add }}" style="justify-self:end;height:32px;padding:0 13px;border-radius:10px;border:1px solid rgba(43,33,27,.85);background:transparent;font-family:inherit;font-size:13px;font-weight:600;color:#2B211B;cursor:pointer;white-space:nowrap">{{ m.action }}</button></div>
+</sc-for>
+</div>
+</sc-if>
+
+</div>
+
+<sc-if value="{{ dOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:fixed;inset:0;background:rgba(43,33,27,.55);backdrop-filter:blur(3px);display:flex;justify-content:flex-end;z-index:20">
+<div onClick="{{ dClose }}" style="flex:1"></div>
+<div style="width:min(580px,100%);background:#F3EEE6;height:100%;overflow-y:auto;overflow-x:hidden;box-sizing:border-box;padding:28px 30px 44px;display:flex;flex-direction:column;gap:20px;box-shadow:-8px 0 24px rgba(43,33,27,.18)">
+<div style="display:flex;align-items:flex-start;gap:16px">
+<div style="display:flex;flex-direction:column;gap:6px;min-width:0">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">{{ dKicker }}</span>
+<h2 style="margin:0;font-size:24px;font-weight:700;letter-spacing:-0.0075em">{{ dTitle }}</h2>
+<span style="font-size:13px;color:rgba(43,33,27,.55)">{{ dMeta }}</span>
+</div>
+<div style="flex:1"></div>
+<button onClick="{{ dClose }}" style="height:32px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:transparent;font-family:inherit;font-size:13px;color:#2B211B;cursor:pointer">Close</button>
+</div>
+<sc-if value="{{ dHasFacts }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-wrap:wrap;gap:16px 32px;background:#EFE7DA;border-radius:14px;padding:18px">
+<sc-for list="{{ dFacts }}" as="f" hint-placeholder-count="3">
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">{{ f.label }}</span><span style="font-size:15px;font-weight:700">{{ f.value }}</span></div>
+</sc-for>
+</div>
+</sc-if>
+<sc-for list="{{ dBody }}" as="p" hint-placeholder-count="1">
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">{{ p.label }}</span><p style="margin:0;font-size:14px;white-space:pre-wrap">{{ p.text }}</p></div>
+</sc-for>
+<sc-for list="{{ dRows }}" as="r" hint-placeholder-count="2">
+<div style="display:flex;justify-content:space-between;gap:12px;border-top:1px solid #D9CFC0;padding:9px 0"><span style="font-size:14px;font-weight:{{ r.weight }}">{{ r.what }}</span><span style="font-size:12px;color:rgba(43,33,27,.55);white-space:nowrap">{{ r.when }}</span></div>
+</sc-for>
+<sc-for list="{{ dFields }}" as="d" hint-placeholder-count="2">
+<div style="display:flex;flex-direction:column;gap:5px">
+<span style="font-size:13px;font-weight:600">{{ d.label }}</span>
+<sc-if value="{{ d.isText }}" hint-placeholder-val="{{ true }}"><input type="text" value="{{ d.value }}" onChange="{{ d.set }}" placeholder="{{ d.placeholder }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:100%;box-sizing:border-box"></sc-if>
+<sc-if value="{{ d.isArea }}" hint-placeholder-val="{{ false }}"><textarea value="{{ d.value }}" onChange="{{ d.set }}" placeholder="{{ d.placeholder }}" style="min-height:90px;padding:10px 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;resize:vertical;width:100%;box-sizing:border-box"></textarea></sc-if>
+<sc-if value="{{ d.isDatetime }}" hint-placeholder-val="{{ false }}"><input type="datetime-local" step="900" value="{{ d.value }}" onChange="{{ d.set }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:100%;box-sizing:border-box"></sc-if>
+<sc-if value="{{ d.isDate }}" hint-placeholder-val="{{ false }}"><input type="date" value="{{ d.value }}" onChange="{{ d.set }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:100%;box-sizing:border-box"></sc-if>
+<sc-if value="{{ d.isSelect }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:7px;flex-wrap:wrap">
+<sc-for list="{{ d.options }}" as="o" hint-placeholder-count="3">
+<button onClick="{{ o.pick }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ o.bg }};border:{{ o.border }};color:{{ o.ink }};font-weight:{{ o.weight }}">{{ o.label }}</button>
+</sc-for>
+</div></sc-if>
+<sc-if value="{{ d.hasNote }}" hint-placeholder-val="{{ false }}"><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ d.note }}</span></sc-if>
+</div>
+</sc-for>
+<sc-if value="{{ dHasError }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:13px;font-weight:600;color:#9E2D53">{{ dError }}</p></sc-if>
+<div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+<sc-if value="{{ dHasPrimary }}" hint-placeholder-val="{{ true }}"><button onClick="{{ dPrimary }}" style="height:40px;padding:0 18px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer">{{ dPrimaryLabel }}</button></sc-if>
+<sc-for list="{{ dLinks }}" as="l" hint-placeholder-count="1">
+<button onClick="{{ l.go }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#2B211B;text-decoration:underline;cursor:pointer">{{ l.label }}</button>
+</sc-for>
+<span style="font-size:12px;color:rgba(43,33,27,.55)">{{ dFoot }}</span>
+</div>
+</div>
+</div>
+</sc-if>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;personState&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;Candidate&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;options&quot;: [&quot;Candidate&quot;, &quot;Placed, not started&quot;, &quot;Contractor on site&quot;], &quot;section&quot;: &quot;State&quot;}, &quot;alsoContact&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;State&quot;}}">
+const INK = '#2B211B', BERRY = '#9E2D53', MUTED = 'rgba(43,33,27,.55)', MID = 'rgba(43,33,27,.70)', TAUPE = '#D9CFC0', SAND = '#EFE7DA';
+const TABS = ['Applications', 'Profile', 'Availability and pay', 'Compliance', 'Placements', 'Consent', 'Activity', 'Matches'];
+const gbp = n => '£' + Math.round(n).toLocaleString('en-GB');
+
+const APPS = [
+  {id: 'bw', job: 'Senior Backend Engineer', client: 'Brightwell Payments', owner: 'you', type: 'Perm', stage: 'Interview', days: 2, fit: 'Go, Kafka, Postgres match. Has not led a migration. Wants £92,000, band to £95,000. 22 min to site.', next: '2nd interview Thu 18 Sep, 10:00, on site with Dan and Priya Lam', stalled: false, href: 'Job Record.dc.html', cv: 'Amara Osei CV Sep 2026', sent: '5 Sep'},
+  {id: 'or', job: 'Senior Engineer', client: 'Ordell Software', owner: 'you', type: 'Perm', stage: 'Offer', days: 4, fit: 'Go and Postgres match; no Kafka in brief. Offer £90,000 is under her ask. Manchester, she would relocate.', next: 'Offer out: £90,000, start 2 Nov. She is holding for Brightwell.', stalled: true, href: 'Job Record.dc.html', cv: 'Amara Osei CV Sep 2026', sent: '8 Sep'},
+];
+const CLOSED = [
+  {job: 'Platform Engineer', client: 'Northbeam Data', owner: 'Nadia Croft', when: 'Mar 2024', outcome: 'Withdrew at Sent.', note: 'Took a promotion at Monzo instead. Nadia Croft\'s job.', fit: 'Go and Kubernetes match; less payments than the brief wanted. Wants was under band.', cv: 'Amara Osei CV Feb 2024', steps: [{what: 'Withdrew at Sent. Promotion at Monzo, staying.', when: '14 Mar 2024', by: 'Nadia Croft'}, {what: 'Sent to Ruth Vance with summary.', when: '8 Mar 2024', by: 'Nadia Croft'}, {what: 'Screened, phone 30 min. Wants £72,000, notice 1 month.', when: '5 Mar 2024', by: 'Nadia Croft'}, {what: 'Added. Source: LinkedIn.', when: '4 Mar 2024', by: 'Nadia Croft'}], notes: ['Nadia: keep warm, she liked Northbeam\'s stack. Re-approach in a year.', 'Ruth Vance had not seen the CV before she withdrew.']},
+  {job: 'Backend Engineer', client: 'Halden Energy', owner: 'you', when: 'Feb 2024', outcome: 'Client rejected at Interview.', note: 'Wanted more Java. Feedback was strong on communication.', fit: 'Go and Postgres strong. Brief was Java-led; sent as a stretch with Marcus Lyle\'s agreement.', cv: 'Amara Osei CV Feb 2024', steps: [{what: 'Out: client rejected at Interview. Java depth.', when: '27 Feb 2024', by: 'Priya Shah'}, {what: '1st interview with Marcus Lyle, video. Feedback: strong communicator, not enough Java.', when: '22 Feb 2024', by: 'Priya Shah'}, {what: 'Sent to Marcus Lyle, flagged as a stretch on Java.', when: '15 Feb 2024', by: 'Priya Shah'}, {what: 'Screened, phone 30 min. Wants £72,000, current £65,000.', when: '12 Feb 2024', by: 'Priya Shah'}, {what: 'Applied, Jobserve.', when: '9 Feb 2024', by: 'Priya Shah'}], notes: ['Marcus said he would see her again for a Go role. Halden\'s brief has since moved to Go; she is a match now.']},
+];
+const BASE_ACTIVITY = [
+  {when: 'Today', kind: 'Interview', what: '2nd interview confirmed by both, Thu 18 Sep, 10:00.', who: 'Priya Shah', where: 'Senior Backend Engineer, Brightwell', detail: ''},
+  {when: '15 Sep', kind: 'Stage', what: 'Offer made: £90,000 a year, start 2 Nov. Awaiting answer.', who: 'Priya Shah', where: 'Senior Engineer, Ordell', detail: 'References and right to work. Verbal from Ruth Vance, paper to follow.'},
+  {when: '14 Sep', kind: 'Call', what: 'Told her about the Ordell offer. She wants to see Brightwell through first.', who: 'Priya Shah', where: 'Candidate', detail: 'Holding to Fri 19 Sep. Ordell know.'},
+  {when: '11 Sep', kind: 'Interview', what: '1st interview feedback: progressing to next round.', who: 'Priya Shah', where: 'Senior Backend Engineer, Brightwell', detail: 'Dan: strong, wants a second look at design thinking.'},
+  {when: '5 Sep', kind: 'Email', what: 'CV and summary sent to Dan Okafor.', who: 'Priya Shah', where: 'Senior Backend Engineer, Brightwell', detail: ''},
+  {when: '3 Sep', kind: 'Call', what: 'Screened, 40 min. Wants £92,000, one month notice, hybrid two days.', who: 'Priya Shah', where: 'Senior Backend Engineer, Brightwell', detail: 'Right to work: British. Motive: smaller team, a migration to own.'},
+  {when: '1 Sep', kind: 'Pipeline', what: 'Added at Screened. Source: Own database.', who: 'Priya Shah', where: 'Senior Backend Engineer, Brightwell', detail: ''},
+  {when: '1 Sep', kind: 'SMS', what: 'Text: "Hi Amara, Priya from Cannie. Do you have ten minutes this week?" Replied within the hour.', who: 'Priya Shah', where: 'Candidate', detail: ''},
+  {when: 'Mar 2024', kind: 'Stage', what: 'Withdrew at Sent, Platform Engineer, Northbeam.', who: 'Nadia Croft', where: 'Platform Engineer, Northbeam', detail: ''},
+  {when: 'Jul 2020', kind: 'Stage', what: 'Placed, Software Engineer, Curve. £48,000, fee £7,200.', who: 'Sam Iyer', where: 'Software Engineer, Curve', detail: ''},
+  {when: 'Jan 2020', kind: 'Stage', what: 'Placed, Backend Developer, Kestrel Freight. £350 a day, 12 weeks.', who: 'Sam Iyer', where: 'Backend Developer, Kestrel', detail: 'Outside IR35, SDS on file.'},
+];
+const DOCS = [
+  {id: 'pp', name: 'British passport', sub: 'Right to work, list A. Copy on file.', state: 'Valid', expires: '2031-04-12', checked: 'Priya Shah, 3 Sep 2026, seen on video', action: 'Recheck'},
+  {id: 'addr', name: 'Proof of address', sub: 'Bank statement, Aug 2026', state: 'Valid', expires: '2026-11-30', checked: 'Priya Shah, 3 Sep 2026', action: 'Renew'},
+  {id: 'deg', name: 'BSc Computer Science, Bristol', sub: 'Certificate, 2019', state: 'Seen', expires: '', checked: 'Priya Shah, 3 Sep 2026', action: 'View'},
+  {id: 'dbs', name: 'DBS', sub: 'Not required for perm engineering', state: 'Not needed', expires: '', checked: '', action: 'Request'},
+];
+const REFS = [
+  {who: 'Line manager, Monzo', rel: 'Current employer', state: 'Not yet asked', ink: MUTED, note: 'Ask at offer acceptance only.'},
+  {who: 'Sam Doyle, Tech Lead', rel: 'Previous employer, Curve', state: 'Named', ink: INK, note: 'Amara has confirmed he will speak. Contact on file.'},
+];
+const MATCHES = [
+  {id: 'nb', job: 'Payments Engineer', client: 'Northbeam Data', owner: 'Nadia Croft', why: 'Go, Kafka, payments. £88,000 to £96,000, hybrid Leeds. Below her London ask but she said she would relocate for the right team.', added: false},
+  {id: 'hd', job: 'Senior Software Engineer', client: 'Halden Energy', owner: 'you', why: 'Go and Postgres, energy trading. £95,000 to £105,000. Rejected her in Feb 2024 for Java; brief has since moved to Go.', added: false},
+];
+
+class Component extends DCLogic {
+  state = {tab: null, closedOpen: false, needsOpen: null, scrolled: false, flash: '', recSearch: '', drawer: null, dDraft: null, dError: ''};
+  componentDidMount() { this._onScroll = () => { const sc = window.scrollY > 140; if (sc !== this.state.scrolled) this.setState({scrolled: sc}); }; window.addEventListener('scroll', this._onScroll); }
+  componentWillUnmount() { window.removeEventListener('scroll', this._onScroll); }
+  say(msg) { this.setState({flash: msg}); clearTimeout(this._fl); this._fl = setTimeout(() => this.setState({flash: ''}), 3200); }
+  log(kind, what, where, detail) { this.setState({activity: [{when: 'Today', kind, what, who: 'Priya Shah', where: where || 'Candidate', detail: detail || ''}, ...this.activity()]}); }
+  activity() { return this.state.activity || BASE_ACTIVITY; }
+  apps() { return this.state.apps || APPS; }
+  actions() { return this.state.actions || [{what: 'Send prep pack for Thu, on-site format', who: 'Priya Shah', date: '2026-09-19', time: '', when: 'Today', note: 'Dan will go deep on design thinking. Include the interviewer profiles and the 4 Wellington Place arrival note.'}, {what: 'Call: Brightwell outcome vs Ordell offer', who: 'Priya Shah', date: '2026-09-19', time: '18:30', when: 'Today, 18:30', note: 'She asked for Friday. Ordell know they are second choice; do not let it drift past Monday.'}, {what: 'Renew proof of address', who: 'Priya Shah', date: '2026-11-14', time: '', when: '14 Nov', note: 'Bank statement expires 30 Nov. Ask for October\'s statement.'}]; }
+  docs() { return this.state.docs || DOCS; }
+  matches() { return this.state.matches || MATCHES; }
+  skills() { return this.state.skills || [['Go', '4 yrs, strong', true], ['Kafka', '4 yrs, strong', true], ['Postgres', '5 yrs, strong', true], ['Card payments', '4 yrs, domain', true], ['Kubernetes', '2 yrs, working', false], ['Python', '3 yrs, working', false], ['Migrations', 'None led', false]]; }
+  history() { return this.state.history || [{id: 'w1', role: 'Backend Engineer', employer: 'Monzo', from: '2022-09', to: '', note: 'Card payments platform. Go, Kafka, Postgres. Two migrations as a contributor.'}, {id: 'w2', role: 'Software Engineer', employer: 'Curve', from: '2020-07', to: '2022-08', note: 'Card issuing. Go and Python. Reference named here.'}, {id: 'w3', role: 'Backend Developer, contract', employer: 'Kestrel Freight', from: '2020-01', to: '2020-03', note: 'Placed by you. Integration work, outside IR35. First job after graduating.'}]; }
+  fmtMonth(ym) { if (!ym) return 'now'; const [y, m] = ym.split('-'); return ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][Number(m) - 1] + ' ' + y; }
+  tenure(ym) { if (!ym) return ''; const [y, m] = ym.split('-').map(Number); const months = (2026 - y) * 12 + (9 - m); const yrs = Math.floor(months / 12), mo = months % 12; return (yrs ? yrs + ' yr' + (yrs > 1 ? 's' : '') : '') + (yrs && mo ? ' ' : '') + (mo ? mo + ' mo' : '') || 'under a month'; }
+  defaultSummary() { return 'Senior backend engineer at Monzo, four years on card payments in Go and Kafka. Has not led a migration but has been in two. Wants a smaller team and something to own; will move for that, not for money. Sharp, direct, well prepared.'; }
+  shortlist() { return this.state.shortlist || 'Senior backend engineer, Go and Kafka, four years in card payments at a UK challenger bank. London, hybrid.'; }
+  quals() { return this.state.quals || [{when: '2019', name: 'BSc Computer Science, 2:1', where: 'University of Bristol', expires: ''}, {when: '2023', name: 'CKA, Kubernetes administrator', where: 'CNCF', expires: '2026-12'}]; }
+  refs() { return this.state.refs || REFS; }
+  tags() { return this.state.tags || ['Open to relocation, Manchester', 'Perm only', 'Referrer', 'Do not call at work']; }
+  contact() { return this.state.contact || {first: 'Amara', last: 'Osei', known: '', pronouns: 'She, her', title: 'Backend Engineer', employer: 'Monzo', mobile: '07700 900 121', email: 'amara.osei@example.com', linkedin: 'linkedin.com/in/amaraosei', prefers: 'Text first', hours: 'Calls after 18:00', owner: 'Priya Shah', address1: '14 Arlington Road', town: 'London', postcode: 'N1 8QE'}; }
+  avail() { return this.state.avail || {notice: '1 month', from: '2026-11-02', engagement: 'Perm only', current: '84000', wants: '92000', pattern: 'Hybrid, 2 days', location: 'London, would relocate to Manchester', postcode: 'N1 8QE', travel: 'Up to 1 hour', travelBy: 'Public transport', motive: 'A smaller team and a migration to own', elsewhere: 'Nothing else live outside these two', consider: 'Perm only. Not contract, asked twice. Fintech or payments. Not fully remote. Would relocate to Manchester for the right team.', read: 'Ask has moved from £84,000 to £92,000 in a year, in step with the market for Go and payments. She has never accepted below ask. Offer at ask or do not offer.'}; }
+  consent() { return this.state.consent || {basis: 'Legitimate interest, then consent', when: '2026-09-01', source: 'Confirmed by SMS reply, 1 Sep 2026', marketing: 'Job alerts yes, newsletters no', retention: '2029-09-01', review: '2027-09-01'}; }
+  fmtDate(iso) { if (!iso) return ''; const d = new Date(iso + 'T00:00:00'); if (isNaN(d)) return iso; return d.toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: d.getFullYear() === 2026 ? undefined : 'numeric'}); }
+  daysTo(iso) { return Math.round((new Date(iso + 'T00:00:00') - new Date('2026-09-19T00:00:00')) / 86400000); }
+  pill(on) { return {bg: on ? INK : 'transparent', border: on ? '1px solid ' + INK : '1px solid ' + TAUPE, ink: on ? '#F3EEE6' : INK, weight: on ? '600' : '400'}; }
+  openDrawer(d) { this.setState({drawer: d, dDraft: d.draft || {}, dError: ''}); }
+  field(defs, draft, setDraft) {
+    const QUICK = {'Today': '2026-09-19', 'Tomorrow': '2026-09-20', 'Monday': '2026-09-21', 'In a week': '2026-09-26', 'In two weeks': '2026-10-03', 'In a month': '2026-10-19'};
+    return defs.map(f => ({label: f.label, value: draft[f.key] ?? '', placeholder: f.placeholder || '', note: f.note || '', hasNote: !!f.note,
+      isText: !f.kind || f.kind === 'text', isArea: f.kind === 'area', isDate: f.kind === 'date', isDatetime: f.kind === 'datetime', isSelect: f.kind === 'select',
+      set: e => setDraft({...draft, [f.key]: e.target.value, ...(f.key === 'date' ? {quick: ''} : {})}),
+      options: (f.options || []).map(o => ({label: (f.labels && f.labels[o]) || o, pick: () => setDraft({...draft, [f.key]: o, ...(f.key === 'quick' && QUICK[o] ? {date: QUICK[o]} : {}), ...(f.key === 'nextQuick' ? {next: o === 'Other' ? (draft.next || '2026-09-29T10:30') : (({"Tomorrow":"2026-09-22T10:30","Next week":"2026-09-28T10:30","Next month":"2026-10-21T10:30"})[o] || draft.next || ''), nextType: draft.nextType || draft.type || 'Call'} : {})}), ...this.pill(draft[f.key] === o)}))}));
+  }
+  drawerVals() {
+    const s = this.state, d = s.drawer;
+    if (!d) return {dOpen: false};
+    const dr = s.dDraft || {};
+    const setD = nd => this.setState({dDraft: nd});
+    const close = () => this.setState({drawer: null, dDraft: null, dError: ''});
+    const v = {dOpen: true, dClose: close, dKicker: '', dTitle: '', dMeta: '', dFacts: [], dHasFacts: false, dBody: [], dRows: [], dFields: [], dLinks: [], dHasPrimary: false, dPrimaryLabel: '', dPrimary: () => {}, dFoot: '', dError: s.dError, dHasError: !!s.dError};
+    const F = defs => this.field(defs, dr, setD);
+    const need = (k, msg) => { if (!(dr[k] || '').toString().trim()) { this.setState({dError: msg}); return false; } return true; };
+    if (d.kind === 'app') {
+      const a = d.a;
+      Object.assign(v, {dKicker: 'Application', dTitle: a.job, dMeta: a.client + ', ' + a.type + ', owned by ' + a.owner + '. Sent ' + a.sent + ' with ' + a.cv + '.',
+        dFacts: [{label: 'Stage', value: a.stage}, {label: 'Days at stage', value: String(a.days)}, {label: 'Next', value: a.next.split('.')[0]}], dHasFacts: true,
+        dRows: (a.id === 'bw' ? [{what: '2nd interview confirmed', when: 'Today'}, {what: '1st interview, progressing', when: '11 Sep'}, {what: 'Sent to Dan Okafor', when: '5 Sep'}, {what: 'Screened, 40 min', when: '3 Sep'}, {what: 'Added source: own database', when: '1 Sep'}] : [{what: 'Offer made, £90,000', when: '15 Sep'}, {what: 'Final interview with Ruth Vance', when: '12 Sep'}, {what: 'Sent to Ruth Vance', when: '8 Sep'}, {what: 'Added, headhunted', when: '6 Sep'}]).map((r, i) => ({...r, weight: i === 0 ? '600' : '400'})),
+        dFields: F([{label: 'Fit against the brief', key: 'fit', kind: 'area', note: 'Written on screen, read by the hiring manager. Shows on the row.'}, {label: 'Move to', key: 'to', kind: 'select', options: a.stage === 'Interview' ? ['Stay at Interview', 'Offer', 'Out of the running'] : a.stage === 'Offer' ? ['Stay at Offer', 'Accepted, place', 'Declined, out of the running'] : ['Stay', 'Next stage', 'Out of the running']}, ...(dr.to && !dr.to.startsWith('Stay') ? [{label: 'Note on the move', key: 'note', kind: 'area', placeholder: 'What happened and why. Required; this is what the job record reads.'}] : [])]),
+        dHasPrimary: true, dPrimaryLabel: dr.to && !dr.to.startsWith('Stay') ? 'Move and log' : (dr.fit || '') !== (a.fit || '') ? 'Save the fit' : 'Open the job', dPrimary: () => { if ((dr.fit || '') !== (a.fit || '') && (!dr.to || dr.to.startsWith('Stay'))) { this.setState({apps: this.apps().map(x => x.id === a.id ? {...x, fit: dr.fit.trim()} : x)}); this.log('Edit', 'Fit updated on ' + a.job + '.', a.job + ', ' + a.client.split(' ')[0], dr.fit.trim()); close(); this.say('Fit saved.'); return; } if (!dr.to || dr.to.startsWith('Stay')) { window.location.href = a.href; return; } if (!need('note', 'Nothing moves without a note.')) return; const out = /out of the running/i.test(dr.to); const ns = out ? 'Out' : dr.to.startsWith('Accepted') ? 'Placed' : dr.to === 'Next stage' ? 'Interview' : dr.to; this.setState({apps: this.apps().map(x => x.id === a.id ? {...x, stage: ns, days: 0, stalled: false, next: out ? 'Out. ' + dr.note.trim() : ns === 'Placed' ? 'Placed. Placement created on the job.' : ns + ': ' + dr.note.trim()} : x)}); this.log('Stage', a.job + ': moved to ' + ns + '.', a.job + ', ' + a.client.split(' ')[0], dr.note.trim()); close(); this.say('Moved to ' + ns + '. The job record shows the same.'); },
+        dLinks: [{label: 'Book an interview on the job', go: () => { window.location.href = a.href; }}, {label: 'Log a note', go: () => this.openDrawer({kind: 'log', where: a.job + ', ' + a.client.split(' ')[0], draft: {kind: 'Note', note: '', follow: 'None'}})}],
+        dFoot: 'Stage moves write to the job record; interviews and offers are booked there because they need the client\'s diary and terms.'});
+    } else if (d.kind === 'log') {
+      Object.assign(v, {dKicker: 'Log', dTitle: d.where || 'Amara Osei', dMeta: 'One entry on Activity, here and on the job or client it belongs to.',
+        dFields: F([{label: 'Kind', key: 'kind', kind: 'select', options: ['Note', 'Call', 'Email', 'SMS', 'Meeting']}, ...(dr.kind === 'Email' || dr.kind === 'SMS' ? [{label: 'Template', key: 'tpl', kind: 'select', options: dr.kind === 'Email' ? ['None', 'Interview confirmation', 'Prep pack', 'Offer letter cover', 'Check in'] : ['None', 'Interview reminder', 'Call me when free', 'Good luck today'], note: 'Fills the message with her name, the job and the interview details. Sent from your mailbox and logged here.'}] : []), {label: dr.kind === 'Email' || dr.kind === 'SMS' ? 'Message' : 'What happened', key: 'note', kind: 'area', placeholder: dr.kind === 'Email' || dr.kind === 'SMS' ? 'Hi Amara, confirming Thursday 10:00 at 4 Wellington Place. Ask for Dan.' : 'What she said, what you agreed.'}, {label: 'Follow up', key: 'follow', kind: 'select', options: ['None', 'Tomorrow', 'This week', 'Next week']}]),
+        dHasPrimary: true, dPrimaryLabel: dr.kind === 'Email' || dr.kind === 'SMS' ? 'Send and log' : 'Save', dPrimary: () => { if (!need('note', dr.kind === 'Email' || dr.kind === 'SMS' ? 'Write the message.' : 'Say what happened.')) return; this.log(dr.kind, (dr.kind === 'Email' || dr.kind === 'SMS' ? 'Sent' + (dr.tpl && dr.tpl !== 'None' ? ', ' + dr.tpl.toLowerCase() : '') + ': ' : '') + dr.note.trim(), d.where); if (dr.follow !== 'None') this.setState({actions: [{what: 'Follow up with Amara', who: 'Priya Shah', date: ({'Tomorrow': '2026-09-20', 'This week': '2026-09-26', 'Next week': '2026-10-03'})[dr.follow] || '2026-09-26', when: dr.follow, note: dr.note.trim()}, ...this.actions()]}); close(); this.say('Logged.' + (dr.follow !== 'None' ? ' Follow up added.' : '')); }});
+    } else if (d.kind === 'action') {
+      const editing = d.idx != null;
+      const fmtWhen = dt => { if (!dt) return ''; const [date, time] = dt.split('T'); const dd = this.daysTo(date); const day = dd === 0 ? 'Today' : dd === 1 ? 'Tomorrow' : dd < 0 ? 'Overdue, ' + this.fmtDate(date) : this.fmtDate(date); return day + (time ? ', ' + time : ''); };
+      const WITH = ["Amara Osei","Dan Okafor","Ruth Vance","Priya Lam"]; const PEOPLE = ['Priya Shah', 'Nadia Croft', 'Sam Iyer']; const ROUTES = {'Dan Okafor': {tel: 'Direct 0113 496 0000 · Mobile 07700 900 300', mail: 'dan.okafor@brightwell.example'}, 'Claire Dunn': {tel: 'Direct 0113 496 0001', mail: 'claire.dunn@brightwell.example'}, 'Ruth Vance': {tel: 'Mobile 07700 900 410', mail: 'ruth.vance@ordell.example'}, 'Priya Lam': {tel: 'Direct 0113 496 0012', mail: 'priya.lam@brightwell.example'}, 'Amara Osei': {tel: 'Mobile 07700 900 121', mail: 'amara.osei@example.com'}, 'Lucía Ferreira': {tel: 'Mobile 07700 900 344', mail: 'lucia.f@example.com'}, 'Rosa Alvarez': {tel: 'Mobile 07700 900 212', mail: 'rosa.alvarez@example.com'}}; const TEAM = ["Priya Shah","Nadia Croft","Sam Iyer","Leo Marsh","Hannah Boyd","Tunde Alabi","Grace Kim"]; const oq = (dr.ownerQ || '').trim().toLowerCase(); const ownerHits = oq.length < 2 ? [] : TEAM.filter(x => x.toLowerCase().includes(oq) && !PEOPLE.includes(x));
+      const more = dr.more != null ? !!dr.more : (!!(dr.note || '').trim() || (dr.owner && dr.owner !== 'Priya Shah'));
+      Object.assign(v, {dKicker: 'Next action', dTitle: editing ? 'Change the action' : 'Add an action', dMeta: 'Type, what, with whom, when. Note and reassign under More.',
+        dFields: F([
+          {label: 'Type', key: 'type', kind: 'select', options: ['Call', 'Email', 'Meeting', 'Chase', 'Task']},
+          {label: 'What', key: 'what', kind: 'text', placeholder: dr.type === 'Call' ? 'Call Dan about Tom\'s feedback' : dr.type === 'Email' ? 'Send Dan the two profiles' : dr.type === 'Meeting' ? 'Rate card review with Claire' : dr.type === 'Chase' ? 'Chase Dan on milestone 3' : 'Update the brief after the call'},
+          {label: 'With', key: 'with', kind: 'select', options: [...WITH, 'Other'], note: (() => { if (!dr.with || dr.with === 'Other') return 'One person per action; add another action for someone else.'; const p = ROUTES[dr.with]; if (!p) return 'No routes on file. Add them on their record.'; return dr.type === 'Call' ? p.tel : dr.type === 'Email' ? p.mail : p.tel + ' · ' + p.mail; })()},
+          ...(dr.with === 'Other' ? [{label: 'Name', key: 'withQ', kind: 'text', placeholder: 'Surname or company'}] : []),
+          {label: 'About', key: 'about', kind: 'select', options: [...["This candidate","Senior Backend Engineer, Brightwell","Senior Engineer, Ordell","Right to work","Consent"], 'Other']},
+          ...(dr.about === 'Other' ? [{label: 'Say what', key: 'aboutOther', kind: 'text', placeholder: 'Rate card review, reference, expenses'}] : []),
+          {label: 'When', key: 'due', kind: 'datetime', note: 'Defaults to now. A time puts it in your Outlook calendar.'},
+          {label: 'Priority', key: 'priority', kind: 'select', options: ['Normal', 'High'], note: dr.priority === 'High' ? 'Shows in berry and sits first on your desk.' : ''},
+          ...((dr.type === 'Call' || dr.type === 'Meeting') && dr.with && dr.with !== 'Other' ? [{label: 'Outlook', key: 'invite', kind: 'select', options: ['Event on my calendar only', 'Invite ' + dr.with.split(' ')[0] + (dr.type === 'Meeting' ? ', with a Teams link' : '')], note: 'Created in Outlook when you save. Moving it there moves it here.'}] : []),
+          ...(more ? [
+            {label: 'Who does it', key: 'owner', kind: 'select', options: [...PEOPLE, 'Other'], labels: {'Priya Shah': 'You'}},
+            ...(dr.owner === 'Other' ? [{label: 'Find a colleague', key: 'ownerQ', kind: 'text', placeholder: 'Type a name', note: ownerHits.length ? 'Pick below.' : ((dr.ownerQ || '').trim().length >= 2 ? 'Nobody by that name on the team.' : 'Anyone at the agency.')}, ...(ownerHits.length ? [{label: 'Pick', key: 'ownerPick', kind: 'select', options: ownerHits}] : []), ...((dr.ownerQ || '').trim().length >= 2 && !ownerHits.length ? [{label: 'Add', key: 'ownerAdd', kind: 'select', options: ['Add ' + (dr.ownerQ || '').trim() + ' to the team']}] : [])] : []),
+            {label: 'Note', key: 'note', kind: 'area', placeholder: 'What to say when it comes round.'},
+            ...(editing ? [{label: 'Then', key: 'nextQuick', kind: 'select', options: [...(dr.nextQuick === 'Set' ? ['Set'] : ['None']), 'Tomorrow', 'Next week', 'Next month'], labels: {'Set': 'Keep date'}, note: 'Fills the date below; change it if needed.'}, ...(dr.nextQuick && dr.nextQuick !== 'None' ? [{label: 'Then, on', key: 'next', kind: 'datetime'}, {label: 'Then, type', key: 'nextType', kind: 'select', options: ['Call', 'Email', 'Meeting', 'Chase', 'Task'], note: 'Marking done creates it, same note.'}] : [])] : [])] : [])]),
+        dHasPrimary: true, dPrimaryLabel: editing ? 'Save' : 'Add', dPrimary: () => { if (!need('what', 'Say what, not why.')) return; const due = dr.due || '2026-09-21T10:30'; const [date, time] = due.split('T'); const withName = dr.with === 'Other' ? (dr.withQ || '').trim() : (dr.with || ''); const owner = dr.owner === 'Other' ? (dr.ownerPick || (dr.ownerAdd ? (dr.ownerQ || '').trim() : '') || 'Priya Shah') : (dr.owner || 'Priya Shah');
+          const about = dr.about === 'Other' ? (dr.aboutOther || '').trim() : (dr.about || ''); const row = {type: dr.type || 'Task', priority: dr.priority || 'Normal', what: dr.what.trim(), with: withName, about, who: [withName, about].filter(Boolean).join(', ') + (owner !== 'Priya Shah' ? (withName ? '. ' : '') + owner.split(' ')[0] + ' does it' : ''), owner, date, time: time || '', due, when: fmtWhen(due), note: (dr.note || '').trim(), next: dr.nextQuick && dr.nextQuick !== 'None' ? (dr.next || '') : '', nextType: dr.nextType || '', createdOn: dr.createdOn || 'Today, 10:30'};
+          const list = this.actions(); this.setState({actions: (editing ? list.map((x, k) => k === d.idx ? row : x) : [row, ...list]).sort((x, y) => (x.due || x.date || '9999') > (y.due || y.date || '9999') ? 1 : -1)}); close(); this.say((editing ? 'Changed. ' : 'Added. ') + row.when + '.'); },
+        dLinks: [more ? {label: 'Less', go: () => setD({...dr, more: false})} : {label: 'More: who does it, note', go: () => setD({...dr, more: true})}, ...(editing ? [{label: 'Mark done', go: () => { const cur = this.actions()[d.idx]; const rest = this.actions().filter((x, k) => k !== d.idx); const fu = dr.next ? [{...cur, due: dr.next, date: dr.next.split('T')[0], time: dr.next.split('T')[1] || '', when: fmtWhen(dr.next), what: 'Follow up: ' + cur.what, type: dr.nextType || cur.type || 'Task', next: '', nextQuick: '', createdOn: 'Today, 10:30'}] : []; this.setState({actions: [...fu, ...rest].sort((x, y) => (x.due || x.date || '9999') > (y.due || y.date || '9999') ? 1 : -1)}); this.log('Action', 'Done: ' + cur.what + '.', 'Candidate', (cur.note || '') + (fu.length ? ' Then ' + fu[0].when + '.' : '')); close(); this.say('Done.' + (fu.length ? ' Next: ' + fu[0].when + '.' : '')); }}, {label: 'Drop it', go: () => { this.setState({actions: this.actions().filter((x, k) => k !== d.idx)}); this.log('Action', 'Dropped: ' + dr.what + '.', 'Candidate', dr.note || ''); close(); this.say('Dropped.'); }}] : [])],
+        dFoot: editing && dr.createdOn ? 'Captured ' + dr.createdOn + '.' : ''});
+    } else if (d.kind === 'summary') {
+      Object.assign(v, {dKicker: 'Your summary', dTitle: 'Amara Osei', dMeta: 'Three lines a hiring manager reads above the CV.',
+        dFields: F([{label: 'Summary', key: 'text', kind: 'area'}]), dHasPrimary: true, dPrimaryLabel: 'Save', dPrimary: () => { if (!need('text', 'Write something.')) return; this.setState({summary: dr.text.trim()}); this.log('Edit', 'Summary updated.'); close(); this.say('Summary saved.'); }});
+    } else if (d.kind === 'qual') {
+      const editing = d.idx != null;
+      Object.assign(v, {dKicker: editing ? 'Edit a qualification' : 'Add a qualification', dTitle: editing ? dr.name : 'Amara Osei', dMeta: 'Expiring ones surface in Needs you.',
+        dFields: F([{label: 'Qualification', key: 'name', kind: 'text'}, {label: 'Awarded by', key: 'where', kind: 'text'}, {label: 'Year', key: 'when', kind: 'text', placeholder: '2023'}, {label: 'Expires', key: 'expires', kind: 'text', placeholder: '2026-12, or empty'}]),
+        dHasPrimary: true, dPrimaryLabel: 'Save', dPrimary: () => { if (!need('name', 'Name it.')) return; const row = {when: dr.when || '', name: dr.name.trim(), where: (dr.where || '').trim(), expires: dr.expires || ''}; this.setState({quals: editing ? this.quals().map((q, i) => i === d.idx ? row : q) : [...this.quals(), row]}); this.log('Edit', 'Qualification ' + (editing ? 'updated' : 'added') + ': ' + row.name + '.'); close(); this.say('Saved.'); }});
+    } else if (d.kind === 'ref') {
+      const editing = d.idx != null;
+      Object.assign(v, {dKicker: editing ? 'Edit a reference' : 'Add a reference', dTitle: editing ? dr.who : 'Amara Osei', dMeta: 'Ask her before contacting anyone at her current employer.',
+        dFields: F([{label: 'Who', key: 'who', kind: 'text', placeholder: 'Name and title'}, {label: 'Relationship', key: 'rel', kind: 'text', placeholder: 'Previous employer, Curve'}, {label: 'State', key: 'state', kind: 'select', options: ['Not yet asked', 'Named', 'Requested', 'Received', 'Declined']}, {label: 'Note', key: 'note', kind: 'text'}]),
+        dHasPrimary: true, dPrimaryLabel: 'Save', dPrimary: () => { if (!need('who', 'Who.')) return; const row = {who: dr.who.trim(), rel: (dr.rel || '').trim(), state: dr.state || 'Named', ink: dr.state === 'Not yet asked' ? MUTED : INK, note: (dr.note || '').trim()}; this.setState({refs: editing ? this.refs().map((r, i) => i === d.idx ? row : r) : [...this.refs(), row]}); this.log('Edit', 'Reference ' + (editing ? 'updated' : 'added') + ': ' + row.who + ', ' + row.state.toLowerCase() + '.'); close(); this.say('Saved.'); }});
+    } else if (d.kind === 'shortlist') {
+      Object.assign(v, {dKicker: 'Shortlist profile', dTitle: 'Amara Osei', dMeta: 'Anonymous. No name, employer, or anything that identifies her. This goes to a client before they agree to see the CV.',
+        dFields: F([{label: 'Profile', key: 'text', kind: 'area'}]), dHasPrimary: true, dPrimaryLabel: 'Save', dPrimary: () => { if (!need('text', 'Write it.')) return; if (/amara|osei|monzo/i.test(dr.text)) { this.setState({dError: 'That names her or her employer. Take it out.'}); return; } this.setState({shortlist: dr.text.trim()}); this.log('Edit', 'Shortlist profile updated.'); close(); this.say('Saved.'); }});
+    } else if (d.kind === 'skill') {
+      const editing = d.idx != null;
+      Object.assign(v, {dKicker: editing ? 'Edit a skill' : 'Add a skill', dTitle: editing ? dr.name : 'Amara Osei', dMeta: editing ? 'Change level or years, or retire it. Retired skills stay in the history and stop matching.' : 'Pick from the list so it matches jobs; free text only if it is genuinely new.',
+        dFields: F([...(editing ? [] : [{label: 'Skill', key: 'name', kind: 'select', options: ['Rust', 'AWS', 'Terraform', 'gRPC', 'Redis', 'Something else']}, ...(dr.name === 'Something else' ? [{label: 'Name it', key: 'other', kind: 'text'}] : [])]), {label: 'Level', key: 'level', kind: 'select', options: ['Strong', 'Working', 'Learning']}, {label: 'Years', key: 'years', kind: 'select', options: ['Under 1', '1', '2', '3', '4', '5 or more']}, {label: 'Confirmed how', key: 'how', kind: 'select', options: ['On screen', 'From the CV', 'Client feedback']}]),
+        dHasPrimary: true, dPrimaryLabel: editing ? 'Save' : 'Add', dPrimary: () => { const nm = editing ? dr.name : dr.name === 'Something else' ? (dr.other || '').trim() : dr.name; if (!nm) { this.setState({dError: 'Pick or name a skill.'}); return; } const row = [nm, (dr.years || '?') + ' yrs, ' + (dr.level || 'working').toLowerCase(), dr.level === 'Strong']; this.setState({skills: editing ? this.skills().map((x, i) => i === d.idx ? row : x) : [...this.skills(), row]}); this.log('Edit', 'Skill ' + (editing ? 'changed' : 'added') + ': ' + nm + ', ' + (dr.level || '').toLowerCase() + ', ' + (dr.years || '') + ' yrs, ' + (dr.how || '').toLowerCase() + '.'); close(); this.say(nm + (editing ? ' updated.' : ' added.')); },
+        dLinks: editing ? [{label: 'Retire this skill', go: () => { this.setState({skills: this.skills().filter((x, i) => i !== d.idx)}); this.log('Edit', 'Skill retired: ' + dr.name + '.'); close(); this.say(dr.name + ' retired. Still in the log.'); }}] : []});
+    } else if (d.kind === 'cv') {
+      Object.assign(v, {dKicker: 'New CV version', dTitle: 'Amara Osei', dMeta: 'Parses into skills and history for you to confirm. The old version stays.',
+        dFields: F([{label: 'File', key: 'file', kind: 'text', placeholder: 'Amara Osei CV Oct 2026.pdf'}, {label: 'Where from', key: 'from', kind: 'select', options: ['She sent it', 'LinkedIn export', 'Job board application', 'You edited it']}, {label: 'What changed', key: 'note', kind: 'text', placeholder: 'Added the Kafka migration project'}]),
+        dHasPrimary: true, dPrimaryLabel: 'Upload and parse', dPrimary: () => { if (!need('file', 'Name the file.')) return; this.setState({cvs: [{name: dr.file.trim(), when: 'Today', note: (dr.from || '') + '. ' + (dr.note || 'Parsed.')}, ...(this.state.cvs || this.baseCvs())], parsed: [{k: 'Skill', v: 'Rust, 1 yr', on: true}, {k: 'Skill', v: 'Terraform, 2 yrs', on: true}, {k: 'Role', v: 'Senior Backend Engineer, Monzo, Sep 2026', on: true}, {k: 'Phone', v: '07700 900 121, unchanged', on: false}]}); this.log('Document', 'CV version added: ' + dr.file.trim() + '. Parsed, 4 changes to confirm.'); close(); this.say('Uploaded. Confirm the parsed changes on Profile.'); }});
+    } else if (d.kind === 'avail') {
+      const a = this.avail();
+      Object.assign(v, {dKicker: 'Availability and pay', dTitle: 'Amara Osei', dMeta: 'Changing wants or current writes a row to Asked and agreed.',
+        dFields: F([{label: 'Notice', key: 'notice', kind: 'select', options: ['Immediate', '1 week', '1 month', '2 months', '3 months']}, {label: 'Available from', key: 'from', kind: 'date', note: 'Derived from notice unless she has a date.'}, {label: 'Engagement', key: 'engagement', kind: 'select', options: ['Perm only', 'Contract only', 'Either', 'Perm, would consider contract']}, {label: 'Current salary', key: 'current', kind: 'text', placeholder: '84000'}, {label: 'Wants', key: 'wants', kind: 'text', placeholder: '92000'}, {label: 'Pattern', key: 'pattern', kind: 'select', options: ['On site', 'Hybrid, 1 day', 'Hybrid, 2 days', 'Hybrid, 3 days', 'Remote']}, {label: 'Location', key: 'location', kind: 'text'}, {label: 'Why she would move', key: 'motive', kind: 'text'}, {label: 'Elsewhere', key: 'elsewhere', kind: 'text', placeholder: 'Other processes, offers in hand'}, {label: 'Would consider', key: 'consider', kind: 'area', note: 'Types of work, sectors, patterns, places. Your words from the call.'}, {label: 'Your read', key: 'read', kind: 'area', note: 'What you think, for you and the desk. Never sent.'}, {label: 'Will travel', key: 'travel', kind: 'select', options: ['Up to 30 min', 'Up to 45 min', 'Up to 1 hour', 'Up to 90 min', 'Will relocate']}, {label: 'Travel by', key: 'travelBy', kind: 'select', options: ['Public transport', 'Car', 'Either']}]),
+        dHasPrimary: true, dPrimaryLabel: 'Save', dPrimary: () => { const n = {...a, ...dr}; const rows = []; if (String(n.wants) !== String(a.wants)) rows.push({when: 'Today', where: 'Told you, updated on the record', figure: gbp(Number(n.wants)) + ' a year', which: 'Wants'}); if (String(n.current) !== String(a.current)) rows.push({when: 'Today', where: 'Told you, updated on the record', figure: gbp(Number(n.current)) + ' a year', which: 'Current'}); this.setState({avail: n, payRows: [...rows, ...(this.state.payRows || this.basePay())]}); this.log('Edit', 'Availability and pay updated.' + (rows.length ? ' ' + rows.map(r => r.which + ' ' + r.figure).join(', ') + '.' : '')); close(); this.say('Saved.'); }});
+    } else if (d.kind === 'doc') {
+      Object.assign(v, {dKicker: 'Add a document', dTitle: 'Amara Osei', dMeta: 'Kind drives what expires and who is told. A new document of the same kind supersedes; the old one stays.',
+        dFields: F([{label: 'Kind', key: 'kind', kind: 'select', options: ['Right to work', 'Proof of address', 'Qualification', 'DBS', 'Professional certification', 'Other']}, {label: 'Name', key: 'name', kind: 'text', placeholder: 'AWS Solutions Architect'}, {label: 'Expires', key: 'expires', kind: 'date', note: 'Leave empty if it does not.'}, {label: 'Checked how', key: 'how', kind: 'select', options: ['Original seen in person', 'Seen on video, copy held', 'Copy only', 'Not yet checked']}]),
+        dHasPrimary: true, dPrimaryLabel: 'Add', dPrimary: () => { if (!need('name', 'Name the document.')) return; this.setState({docs: [{id: 'd' + Date.now(), name: dr.name.trim(), sub: dr.kind || 'Other', state: dr.how === 'Not yet checked' ? 'Unchecked' : 'Valid', expires: dr.expires || '', checked: dr.how === 'Not yet checked' ? '' : 'Priya Shah, today, ' + (dr.how || '').toLowerCase(), action: 'View'}, ...this.docs()]}); this.log('Document', (dr.kind || 'Document') + ' added: ' + dr.name.trim() + '.'); close(); this.say('Added.' + (dr.expires ? ' Expiry will surface in Needs you.' : '')); }});
+    } else if (d.kind === 'recheck') {
+      const doc = d.doc;
+      Object.assign(v, {dKicker: doc.action, dTitle: doc.name, dMeta: doc.sub, dFacts: [{label: 'State', value: doc.state}, {label: 'Expires', value: doc.expires ? this.fmtDate(doc.expires) : 'Does not'}, {label: 'Last checked', value: doc.checked || 'Never'}], dHasFacts: true,
+        dFields: F([{label: 'Checked how', key: 'how', kind: 'select', options: ['Original seen in person', 'Seen on video, copy held', 'Copy only']}, {label: 'New expiry', key: 'expires', kind: 'date', note: 'Only if a new document.'}]),
+        dHasPrimary: true, dPrimaryLabel: 'Record the check', dPrimary: () => { if (!dr.how) { this.setState({dError: 'Say how you checked it.'}); return; } this.setState({docs: this.docs().map(x => x.id === doc.id ? {...x, state: 'Valid', expires: dr.expires || x.expires, checked: 'Priya Shah, today, ' + dr.how.toLowerCase()} : x)}); this.log('Document', doc.name + ' rechecked, ' + dr.how.toLowerCase() + '.'); close(); this.say('Check recorded.'); }});
+    } else if (d.kind === 'consent') {
+      Object.assign(v, {dKicker: 'Lawful basis and consent', dTitle: 'Amara Osei', dMeta: 'Every change is logged with who and when. This is what answers a regulator.',
+        dFields: F([{label: 'Lawful basis', key: 'basis', kind: 'select', options: ['Consent', 'Legitimate interest', 'Legitimate interest, then consent', 'Contract']}, {label: 'Consent given on', key: 'when', kind: 'date'}, {label: 'How', key: 'source', kind: 'text', placeholder: 'Reply to SMS, application form, verbal on call'}, {label: 'Marketing', key: 'marketing', kind: 'select', options: ['Job alerts yes, newsletters no', 'Both yes', 'Neither', 'Job alerts only, this desk']}, {label: 'Retention to', key: 'retention', kind: 'date', note: 'Defaults to the consent date plus three years. Change only if your policy differs; the change is logged.'}]),
+        dHasPrimary: true, dPrimaryLabel: 'Save', dPrimary: () => { const prev = this.consent(); const plus3 = w => w ? w.replace(/^(\d{4})/, (m, y) => String(Number(y) + 3)) : ''; const next = {...prev, ...dr}; if (dr.when && dr.when !== prev.when && (!dr.retention || dr.retention === prev.retention)) next.retention = plus3(dr.when); this.setState({consent: next}); this.log('Consent', 'Consent record updated: ' + (dr.basis || '') + '. Retention to ' + this.fmtDate(next.retention) + (next.retention === plus3(next.when) ? ' (default, consent plus three years).' : ' (set by hand).')); close(); this.say('Saved and logged.'); }});
+    } else if (d.kind === 'closed') {
+      const a = d.a;
+      Object.assign(v, {dKicker: 'Closed application, ' + a.when, dTitle: a.job, dMeta: a.client + (a.owner ? ', ' + a.owner + '\'s job' : '') + '. ' + a.outcome + ' ' + (a.note || ''),
+        dFacts: [{label: 'Outcome', value: a.outcome.replace(/\.$/, '')}, {label: 'CV sent', value: a.cv || 'Not recorded'}, {label: 'Steps', value: String((a.steps || []).length)}], dHasFacts: true,
+        dBody: [...(a.fit ? [{label: 'Fit against the brief, as written then', text: a.fit}] : []), ...((a.notes || []).length ? [{label: 'Notes', text: a.notes.join('\n')}] : [])],
+        dRows: (a.steps || []).map((st, i) => ({what: st.what + ' ' + st.by + '.', when: st.when, weight: i === 0 ? '600' : '400'})),
+        dFields: F([{label: 'Add a note', key: 'note', kind: 'area', placeholder: 'Anything you learn later that bears on this one. Appends, never overwrites.'}]),
+        dHasPrimary: true, dPrimaryLabel: 'Append', dPrimary: () => { if (!need('note', 'Write something or close.')) return; a.notes = [...(a.notes || []), 'Added today: ' + dr.note.trim()]; this.log('Note', 'Note on closed application, ' + a.job + ', ' + a.client + '.', a.job + ', ' + a.client.split(' ')[0], dr.note.trim()); close(); this.say('Appended.'); },
+        dLinks: [{label: 'Open the job', go: () => { window.location.href = 'Job Record.dc.html'; }}, {label: 'Put forward again', go: () => { close(); go('Matches')(); }}],
+        dFoot: 'Closed applications are read only apart from notes. Every step is what was logged at the time.'});
+    } else if (d.kind === 'entry') {
+      const a = d.a;
+      Object.assign(v, {dKicker: a.kind + ', ' + a.when, dTitle: a.what, dMeta: a.who + '. ' + a.where + '.', dBody: a.detail ? [{label: 'Detail', text: a.detail}] : [],
+        dFields: F([{label: 'Add to this entry', key: 'more', kind: 'area', placeholder: 'A correction or something you forgot. Appends, never overwrites.'}]),
+        dHasPrimary: true, dPrimaryLabel: 'Append', dPrimary: () => { if (!need('more', 'Write something or close.')) return; this.setState({activity: this.activity().map(x => x === a ? {...x, detail: (x.detail ? x.detail + ' ' : '') + 'Added ' + 'today: ' + dr.more.trim()} : x)}); close(); this.say('Appended.'); },
+        dLinks: [{label: 'Go to where it happened', go: () => { close(); (/Brightwell|Ordell|Northbeam|Halden|Curve|Kestrel/.test(a.where) && a.kind !== 'Call' && a.kind !== 'SMS' && a.kind !== 'Email' ? go('Applications') : go('Activity'))(); }}],
+        dFoot: 'Entries are never edited or deleted; you append.'});
+    } else if (d.kind === 'tags') {
+      Object.assign(v, {dKicker: 'Tags', dTitle: 'Amara Osei', dMeta: 'Things about the person that are not skills: how to handle her, what she is open to, what she is to you. Searchable across the desk.',
+        dFields: F([{label: 'Common tags', key: 'pick', kind: 'select', options: ['Open to relocation', 'Contract only', 'Perm only', 'Referrer', 'Do not call at work', 'Counter offer risk', 'Top talent', 'Passive, check quarterly'], note: 'How to handle her and what she is to you.'}, {label: 'Skill tags', key: 'skillPick', kind: 'select', options: ['Go', 'Kafka', 'Postgres', 'Kubernetes', 'Python', 'Rust', 'AWS', 'Terraform', 'gRPC', 'Payments', 'Migrations'], note: 'Adds to Skills at working level; set years and level from the chip.'}, {label: 'Her tags, one per line', key: 'list', kind: 'area', note: 'Anything not in the lists.'}]),
+        dHasPrimary: true, dPrimaryLabel: 'Save', dPrimary: () => { let list = (dr.list || '').split('\n').map(x => x.trim()).filter(Boolean); if (dr.pick && !list.includes(dr.pick)) list.push(dr.pick); const sk = this.skills(); const addSkill = dr.skillPick && !sk.some(x => x[0] === dr.skillPick); this.setState({tags: list, ...(addSkill ? {skills: [...sk, [dr.skillPick, '? yrs, working', false]]} : {})}); this.log('Edit', 'Tags: ' + list.join(', ') + '.' + (addSkill ? ' Skill added: ' + dr.skillPick + '.' : '')); close(); this.say('Tags saved.' + (addSkill ? ' ' + dr.skillPick + ' added to skills; set its years.' : '')); }});
+    } else if (d.kind === 'role') {
+      const editing = !!d.id;
+      Object.assign(v, {dKicker: editing ? 'Edit a role' : 'Add a role', dTitle: editing ? dr.role + ', ' + dr.employer : 'Work history', dMeta: 'One current role at a time. Marking a role current closes the previous one on the same month.',
+        dFields: F([{label: 'Role', key: 'role', kind: 'text', placeholder: 'Senior Backend Engineer'}, {label: 'Employer', key: 'employer', kind: 'text', note: 'Her CV will not go to this client while the role is current.'}, {label: 'Status', key: 'current', kind: 'select', options: ['Current', 'Left']}, {label: 'From', key: 'from', kind: 'text', placeholder: '2022-09', note: 'Year and month.'}, ...(dr.current === 'Left' ? [{label: 'To', key: 'to', kind: 'text', placeholder: '2024-06'}] : []), {label: 'What she did', key: 'note', kind: 'area'}]),
+        dHasPrimary: true, dPrimaryLabel: 'Save', dPrimary: () => { if (!need('role', 'Role.') || !need('employer', 'Employer.')) return; if (!/^\d{4}-\d{2}$/.test(dr.from || '')) { this.setState({dError: 'From as year-month, like 2022-09.'}); return; } if (dr.current === 'Left' && !/^\d{4}-\d{2}$/.test(dr.to || '')) { this.setState({dError: 'To as year-month.'}); return; }
+          const row = {id: d.id || 'w' + Date.now(), role: dr.role.trim(), employer: dr.employer.trim(), from: dr.from, to: dr.current === 'Current' ? '' : dr.to, note: (dr.note || '').trim()};
+          let list = editing ? this.history().map(w => w.id === d.id ? row : w) : [row, ...this.history()];
+          if (!row.to) list = list.map(w => w.id !== row.id && !w.to ? {...w, to: row.from} : w);
+          list.sort((x, y) => (y.to || '9999') > (x.to || '9999') ? 1 : -1);
+          this.setState({history: list}); this.log('Edit', (editing ? 'Role updated: ' : 'Role added: ') + row.role + ', ' + row.employer + (row.to ? '' : ', current') + '.'); close(); this.say('Saved.' + (row.to ? '' : ' Header now shows ' + row.role + ' at ' + row.employer + '.')); }});
+    } else if (d.kind === 'contact') {
+      Object.assign(v, {dKicker: 'Name and contact details', dTitle: (dr.first || '') + ' ' + (dr.last || ''), dMeta: 'What the header and snapshot show. Current role and employer come from work history. Address is used for distance to site and never shown to a client.',
+        dFields: F([{label: 'First name', key: 'first', kind: 'text'}, {label: 'Last name', key: 'last', kind: 'text'}, {label: 'Known as', key: 'known', kind: 'text', placeholder: 'Only if different'}, {label: 'Pronouns', key: 'pronouns', kind: 'select', options: ['She, her', 'He, him', 'They, them', 'Not stated']}, {label: 'Mobile', key: 'mobile', kind: 'text'}, {label: 'Email', key: 'email', kind: 'text'}, {label: 'LinkedIn', key: 'linkedin', kind: 'text', placeholder: 'linkedin.com/in/…'}, {label: 'Prefers', key: 'prefers', kind: 'select', options: ['Text first', 'Call first', 'Email first', 'WhatsApp first']}, {label: 'When to call', key: 'hours', kind: 'select', options: ['Any time', 'Lunchtime only', 'Calls after 18:00', 'Not during work hours']}, {label: 'Owner', key: 'owner', kind: 'select', options: ['Priya Shah', 'Nadia Croft', 'Sam Iyer'], note: 'Changing owner logs a handover and moves her on the desk.'}, {label: 'Source', key: 'source', kind: 'select', options: ['Headhunted', 'Referral', 'Own database', 'LinkedIn', 'Applied, own website', 'Applied, Jobserve', 'Applied, Indeed', 'Applied, LinkedIn advert', 'Applied by email'], note: 'How they first came to you. Same list as Add a candidate on a job.'}, {label: 'Address line', key: 'address1', kind: 'text'}, {label: 'Town', key: 'town', kind: 'text'}, {label: 'Postcode', key: 'postcode', kind: 'text', note: 'Distance to site is measured from here.'}]),
+        dHasPrimary: true, dPrimaryLabel: 'Save', dPrimary: () => { if (!need('first', 'A first name.') || !need('last', 'And a last name.')) return; if (!need('mobile', 'A mobile is the one route you always need.')) return; if (!/\S+@\S+\.\S+/.test(dr.email || '')) { this.setState({dError: 'That email does not look right.'}); return; } if (!/^[A-Z]{1,2}\d[A-Z\d]? ?\d[A-Z]{2}$/i.test(dr.postcode || '')) { this.setState({dError: 'Enter a full UK postcode.'}); return; } const prev = this.contact(); this.setState({contact: {...prev, ...dr}}); this.log('Edit', 'Name and contact details updated.' + (dr.first + dr.last !== prev.first + prev.last ? ' Name ' + prev.first + ' ' + prev.last + ' to ' + dr.first + ' ' + dr.last + '.' : '') + (dr.owner !== prev.owner ? ' Owner ' + prev.owner + ' to ' + dr.owner + '.' : '') + (dr.postcode !== prev.postcode ? ' Address changed; distances recalculated.' : '')); close(); this.say('Saved.'); }});
+    } else if (d.kind === 'cvview') {
+      const cv = (s.cvs || this.baseCvs())[0];
+      Object.assign(v, {dKicker: 'CV, latest version', dTitle: cv.name, dMeta: cv.note + ' Two pages. Older versions on Profile.',
+        dBody: [{label: 'Page 1', text: 'AMARA OSEI\nBackend Engineer, London\n\nSenior backend engineer with four years in card payments at a UK challenger bank. Go, Kafka, Postgres, Kubernetes. Contributor to two production migrations.\n\nMONZO, Backend Engineer, Sep 2022 to now\nCard payments platform. Owned the authorisation service; led the Kafka consumer rewrite; on call rota.\n\nCURVE, Software Engineer, Jul 2020 to Aug 2022\nCard issuing. Go and Python. Built the dispute intake flow.'}, {label: 'Page 2', text: 'KESTREL FREIGHT, Backend Developer (contract), Jan to Mar 2020\nIntegration work, outside IR35.\n\nEDUCATION\nBSc Computer Science, 2:1, University of Bristol, 2019\nCKA, Kubernetes administrator, 2023\n\nSKILLS\nGo, Kafka, Postgres, Kubernetes, Python, gRPC, Terraform'}],
+        dHasPrimary: true, dPrimaryLabel: 'Send to a hiring manager', dPrimary: () => { close(); this.openDrawer({kind: 'log', where: 'Candidate', draft: {kind: 'Email', tpl: 'None', note: 'CV attached, ' + cv.name + '.', follow: 'None'}}); },
+        dLinks: [{label: 'Download the PDF', go: () => this.say('Downloads ' + cv.name + '.pdf.')}, {label: 'Upload a new version', go: () => this.openDrawer({kind: 'cv', draft: {from: 'She sent it'}})}],
+        dFoot: 'Sent copies are recorded on the application they went to.'});
+    } else if (d.kind === 'roles') {
+      Object.assign(v, {dKicker: 'Contact role', dTitle: 'Amara Osei at Monzo', dMeta: 'One person. The candidate record and the contact row on Monzo share activity and consent.',
+        dFields: F([{label: 'Role at the client', key: 'role', kind: 'select', options: ['Influencer', 'Hiring manager', 'Decision maker', 'Referrer only', 'No longer a contact']}, {label: 'Client', key: 'client', kind: 'select', options: ['Monzo', 'Somewhere else']}, {label: 'Note', key: 'note', kind: 'text', placeholder: 'Refers from the payments team. Do not send her own CV there.'}]),
+        dHasPrimary: true, dPrimaryLabel: 'Save', dPrimary: () => { this.log('Edit', 'Contact role at ' + dr.client + ': ' + (dr.role || '').toLowerCase() + '.', 'Monzo, People', dr.note); close(); this.say('Saved. Shows on Monzo\'s People tab.'); },
+        dFoot: 'A candidate who is also a decision maker at a client is a conflict to name, not hide: it is written on both records.'});
+    } else if (d.kind === 'request') {
+      const sar = d.which === 'sar';
+      Object.assign(v, {dKicker: sar ? 'Subject access request' : 'Erasure request', dTitle: 'Amara Osei', dMeta: sar ? 'One calendar month to respond. The export is everything on this record.' : 'Erasure is a state, not a delete. Placement history stays for the accounts without her in it.',
+        dFields: F([{label: 'Received on', key: 'when', kind: 'date'}, {label: 'How', key: 'how', kind: 'select', options: ['Email', 'Letter', 'Verbal, confirmed by email', 'Portal']}, {label: 'Note', key: 'note', kind: 'text'}]),
+        dHasPrimary: true, dPrimaryLabel: sar ? 'Record and start the clock' : 'Record and schedule', dPrimary: () => { if (!dr.when) { this.setState({dError: 'When did it arrive?'}); return; } this.setState({requests: [{when: this.fmtDate(dr.when), kind: sar ? 'Subject access request.' : 'Erasure request.', note: (dr.how || '') + '. ' + (sar ? 'Due ' + this.fmtDate(dr.when.replace(/^(\d{4})-(\d{2})/, (m, y, mo) => y + '-' + String(Number(mo) + 1).padStart(2, '0'))) + '.' : 'Anonymises on the retention date unless a placement is live.') + ' ' + (dr.note || '')}, ...(this.state.requests || [])], actions: [{what: sar ? 'Compile and send SAR export' : 'Confirm erasure schedule to Amara', who: 'Priya Shah', date: '2026-09-26', when: '26 Sep', note: sar ? 'One calendar month from receipt.' : ''}, ...this.actions()]}); this.log('Consent', (sar ? 'Subject access request' : 'Erasure request') + ' received, ' + (dr.how || '').toLowerCase() + '.'); close(); this.say('Recorded. Action added.'); }});
+    }
+    return v;
+  }
+  baseCvs() { return [{name: 'Amara Osei CV Sep 2026', when: '1 Sep', note: 'From LinkedIn export, parsed. Sent to Brightwell and Ordell.'}, {name: 'Amara Osei CV Feb 2024', when: 'Feb 2024', note: 'She sent it. Sent to Northbeam and Halden.'}]; }
+  basePay() { return [{when: '15 Sep', where: 'Senior Engineer, Ordell', figure: '£90,000 a year', which: 'Offered'}, {when: '3 Sep', where: 'Senior Backend Engineer, Brightwell, screen', figure: '£92,000 a year', which: 'Wants'}, {when: '3 Sep', where: 'Senior Backend Engineer, Brightwell, screen', figure: '£84,000 a year', which: 'Current'}, {when: 'Feb 2024', where: 'Backend Engineer, Halden, screen', figure: '£72,000 a year', which: 'Wants'}, {when: 'Feb 2024', where: 'Backend Engineer, Halden, screen', figure: '£65,000 a year', which: 'Current'}, {when: 'Jun 2020', where: 'Software Engineer, Curve, placed', figure: '£48,000 a year', which: 'Agreed'}, {when: 'Jan 2020', where: 'Backend Developer, Kestrel Freight, placed', figure: '£350 a day', which: 'Agreed'}]; }
+  renderVals() {
+    const s = this.state;
+    const ps = this.props.personState ?? 'Candidate'; const onSite = ps === 'Contractor on site'; const placedWait = ps === 'Placed, not started';
+    const isContact = this.props.alsoContact ?? true; const ct = this.contact(); const hist = this.history(); const cur = hist.find(w => !w.to) || hist[0];
+    const tab = s.tab || (ps === 'Candidate' ? 'Applications' : 'Placements');
+    const go = (tab, extra) => () => { this.setState({tab, recSearch: '', ...(extra || {})}); window.scrollTo(0, 0); };
+    const apps = ps === 'Candidate' ? this.apps().filter(a => a.stage !== 'Out' && a.stage !== 'Placed') : []; const docs = this.docs(); const avail = this.avail(); const consent = this.consent();
+    const hot = apps.filter(a => ['Interview', 'Offer'].includes(a.stage)).length >= 2;
+    const expiring = docs.filter(x => x.expires && this.daysTo(x.expires) <= 90 && this.daysTo(x.expires) >= 0);
+    const today = [], week = [], soon = [];
+    if (hot) today.push({label: 'Late stage on two jobs, Brightwell and Ordell', go: go('Applications')});
+    apps.filter(a => a.stalled).forEach(a => today.push({label: a.job + ', ' + a.client.split(' ')[0] + ': answer due Fri', go: go('Applications')}));
+    week.push({label: 'Prep pack for Thu on-site not yet sent', go: go('Applications')});
+    expiring.forEach(x => (this.daysTo(x.expires) <= 30 ? week : soon).push({label: x.name + ' expires ' + this.fmtDate(x.expires), go: go('Compliance')}));
+    if (this.daysTo(avail.from) < 60) soon.push({label: 'Available from ' + this.fmtDate(avail.from), go: go('Availability and pay')});
+    soon.push({label: 'Consent review ' + this.fmtDate(consent.review), go: go('Consent')});
+    soon.push({label: 'CKA certification expires Dec 2026, not required by any live brief', go: go('Profile')});
+    if (placedWait) { today.length = 0; week.length = 0; week.push({label: 'Confirm start with Amara and Dan, week of 27 Oct', go: go('Placements')}); soon.push({label: 'Rebate window runs to 26 Jan', go: go('Placements')}); soon.push({label: 'Invoice raises on start, 3 Nov', go: go('Placements')}); }
+    if (onSite) { today.length = 0; week.length = 0; today.push({label: 'Timesheet w/c 8 Sep unapproved, chase Dan', go: go('Placements')}); week.push({label: 'Extension to raise: assignment ends 31 Mar, 8 weeks of notice in the terms', go: go('Placements')}); soon.push({label: 'SDS review at extension', go: go('Compliance')}); }
+    const horizons = [{key: 'today', label: 'Needs you today', short: 'today', items: today, ink: BERRY}, {key: 'week', label: 'Needs you this week', short: 'this week', items: week, ink: INK}, {key: 'soon', label: 'Coming up', short: 'coming up', items: soon, ink: INK}];
+    const leadIdx = horizons.findIndex(h => h.items.length); const lead = horizons[leadIdx] || horizons[2];
+    const others = horizons.filter((h, i) => i !== leadIdx && h.items.length);
+    const openH = others.find(h => h.key === s.needsOpen);
+    const sep = list => list.map((it, i) => ({...it, sep: i < list.length - 1 ? '·' : ''}));
+    const tabOn = t => tab === t && !s.recSearch;
+    const tabOrder = ps === 'Candidate' ? TABS : ['Placements', 'Compliance', 'Availability and pay', 'Profile', 'Applications', 'Consent', 'Activity', 'Matches'];
+    const tabLabel = t => t === 'Placements' && onSite ? 'Assignment' : t === 'Placements' && placedWait ? 'Placement' : t;
+    const stateFacts = placedWait ? [{label: 'Placed', value: 'Senior Backend Engineer, Brightwell', ink: INK}, {label: 'Starts', value: '3 Nov', ink: INK}, {label: 'Agreed', value: '£92,000 a year', ink: INK}, {label: 'Right to work', value: 'Valid, British', ink: INK}, {label: 'Consent', value: 'Contract, to Sep 2028', ink: INK}]
+      : [{label: 'On site', value: 'Brightwell, since 6 Oct', ink: INK}, {label: 'Ends', value: '31 Mar 2027', ink: INK}, {label: 'Rate', value: '£580 a day, £700 charge', ink: INK}, {label: 'Timesheets', value: '1 unapproved', ink: BERRY}, {label: 'IR35', value: 'Outside, SDS on file', ink: INK}];
+    const rtwDoc = docs.find(x => x.sub.startsWith('Right to work'));
+    const q = (s.recSearch || '').trim().toLowerCase();
+    const hits = q.length < 2 ? [] : [
+      ...apps.map(a => ({title: a.job, sub: a.client + ', ' + a.stage, where: 'Applications', go: go('Applications')})),
+      ...docs.map(x => ({title: x.name, sub: x.state + (x.expires ? ', expires ' + this.fmtDate(x.expires) : ''), where: 'Compliance', go: go('Compliance')})),
+      ...this.skills().map(([n, m]) => ({title: n, sub: m, where: 'Profile', go: go('Profile')})),
+      ...this.activity().map(a => ({title: a.what, sub: a.when + ', ' + a.where, where: 'Activity', go: go('Activity')})),
+    ].filter(h => (h.title + ' ' + h.sub).toLowerCase().includes(q)).slice(0, 12);
+    const actFilter = s.actFilter || 'All';
+    const kinds = ['All', 'Call', 'Email', 'SMS', 'Interview', 'Stage', 'Action', 'Document', 'Consent'];
+    return {
+      statusChip: onSite ? 'Contractor on site' : placedWait ? 'Placed, starts 3 Nov' : hot ? 'Active, two live' : 'Active',
+      headerLine: onSite ? 'Data Engineer, Brightwell Payments, on assignment through you. London, N1.' : placedWait ? 'Backend Engineer, Monzo, until 30 Oct. Then Senior Backend Engineer, Brightwell Payments. London, N1.' : cur.role + ', ' + cur.employer + ', ' + this.tenure(cur.from) + ' (since ' + this.fmtMonth(cur.from) + '). ' + ct.town + ', ' + ct.postcode.split(' ')[0] + '.',
+      snapRoutes: [{label: 'Mobile', value: ct.mobile, href: 'tel:' + ct.mobile.replace(/\s/g, '')}, {label: 'Email', value: ct.email, href: 'mailto:' + ct.email}, {label: 'LinkedIn', value: ct.linkedin, href: 'https://www.' + ct.linkedin}],
+      fullName: ct.first + ' ' + ct.last + (ct.known ? ' (' + ct.known + ')' : ''),
+      linkedinHref: 'https://www.' + ct.linkedin, linkedinNote: 'Checked 1 Sep, matches the CV.',
+      tagChips: this.tags().map(name => ({name})), editTags: () => this.openDrawer({kind: 'tags', draft: {list: this.tags().join('\n')}}),
+      snapOwner: ct.owner, snapPrefers: ct.prefers + ', ' + ct.hours.toLowerCase() + '.',
+      snapHome: ct.postcode + ', 22 min to Brightwell London.',
+      editContact: () => this.openDrawer({kind: 'contact', draft: {...ct}}),
+      snapFacts: onSite ? [{label: 'Rate', value: '£580 a day', ink: INK}, {label: 'On site to', value: '31 Mar 2027', ink: INK}, {label: 'Engagement', value: 'Ltd, outside IR35', ink: INK}, {label: 'Right to work', value: 'British, to 2031', ink: INK}] : placedWait ? [{label: 'Agreed', value: '£92,000 a year', ink: INK}, {label: 'Starts', value: '3 Nov, Brightwell', ink: INK}, {label: 'Notice given', value: '30 Sep', ink: INK}, {label: 'Right to work', value: 'British, to 2031', ink: INK}] : [{label: 'Wants', value: gbp(Number(avail.wants)) + ', currently ' + gbp(Number(avail.current)), ink: INK}, {label: 'Available', value: ({'Immediate': 'Now', '1 week': '26 Sep', '1 month': '19 Oct', '2 months': '19 Nov', '3 months': '19 Dec'}[avail.notice] || '') + ' at the earliest, ' + avail.notice.toLowerCase() + ' notice', ink: INK}, {label: 'Pattern', value: avail.pattern + ', ' + avail.location.split(',')[0], ink: INK}, {label: 'Right to work', value: rtwDoc ? rtwDoc.name.replace(' passport', '') + ' passport, to ' + this.fmtDate(rtwDoc.expires).replace(/^\d+ \w+ /, '') : 'Unchecked', ink: rtwDoc ? INK : BERRY}],
+      snapLine: (s.summary || this.defaultSummary()).split('. ').slice(0, 2).join('. ') + '.',
+      goProfile: e => { e.preventDefault(); go('Profile')(); }, goActivity: e => { e.preventDefault(); go('Activity')(); },
+      snapRecent: (() => { const act = this.activity(); const lastContact = act.find(a => ['Call', 'SMS', 'Email', 'Meeting'].includes(a.kind)); const lastStage = act.find(a => a.kind === 'Stage' || a.kind === 'Interview'); const placed = act.find(a => /^Placed/.test(a.what));
+        const openEntry = a => () => this.openDrawer({kind: 'entry', a});
+        const nextUp = onSite ? 'Timesheet w/c 15 Sep due Fri' : placedWait ? 'Starts Mon 3 Nov, Brightwell' : apps.find(a => /interview/i.test(a.next)) ? apps.find(a => /interview/i.test(a.next)).next.split(',').slice(0, 2).join(',') + ', Brightwell' : 'Nothing booked';
+        const rows = [{when: 'Next', what: nextUp, go: go('Applications'), ink: INK, weight: '600'},
+          lastStage && lastStage !== lastContact && {when: lastStage.when, what: lastStage.what.replace(/\.$/, '') + ', ' + lastStage.where.split(',')[0], go: openEntry(lastStage), ink: INK, weight: '600'},
+          lastContact && {when: lastContact.when, what: 'Last contact, ' + lastContact.kind.toLowerCase() + ': ' + lastContact.what.replace(/\.$/, ''), go: openEntry(lastContact), ink: INK, weight: '400'},
+          placed && {when: placed.when, what: 'Last placed: ' + placed.what.replace(/^Placed, /, '').split('.')[0], go: openEntry(placed), ink: INK, weight: '400'}].filter(Boolean);
+        return rows.slice(0, 3); })(),
+      headerTags: this.skills().slice(0, 6).map(([name, meta, strong]) => ({name, border: strong ? INK : TAUPE, weight: strong ? '600' : '400', ink: strong ? INK : MID})),
+      cvLabel: (s.cvs || this.baseCvs())[0].when, viewCv: () => { this.setState({tab: 'Profile', recSearch: '', cvOpen: true, cvIdx: 0}); window.scrollTo(0, 0); },
+      isContact, editRoles: () => this.openDrawer({kind: 'roles', draft: {role: 'Influencer', client: 'Monzo', note: ''}}),
+      hasBand: ps !== 'Candidate', bandKicker: onSite ? 'On assignment' : 'Placed, not yet started',
+      bandTitle: onSite ? 'Data Engineer, Brightwell Payments' : 'Senior Backend Engineer, Brightwell Payments',
+      bandLine: onSite ? 'T&M, outside IR35, Ltd company. Started 6 Oct 2026, ends 31 Mar 2027. Dan Okafor approves time.' : 'Perm. Offer accepted 26 Sep, starts Mon 3 Nov. Fee £14,720 at 16%, invoiced on start. Rebate window to 26 Jan.',
+      bandFacts: onSite ? [{label: 'Ends', value: '31 Mar 2027', ink: '#F3EEE6'}, {label: 'Margin', value: '£120 a day', ink: '#F3EEE6'}, {label: 'Timesheets', value: '1 unapproved', ink: '#E896B3'}] : [{label: 'Starts', value: '3 Nov', ink: '#F3EEE6'}, {label: 'Fee', value: '£14,720', ink: '#F3EEE6'}, {label: 'Rebate to', value: '26 Jan', ink: '#F3EEE6'}],
+      bandAction: onSite ? 'Raise an extension' : 'Confirm the start', bandGo: onSite ? () => { window.location.href = 'Job Record.dc.html?type=T%26M'; } : () => this.openDrawer({kind: 'log', where: 'Senior Backend Engineer, Brightwell', draft: {kind: 'Call', note: 'Confirmed start Mon 3 Nov, 09:00, 4 Wellington Place. Dan confirmed too.', follow: 'None'}}),
+      assignmentFacts: onSite ? [{label: 'Rate', value: '£580 a day', ink: INK}, {label: 'Charge', value: '£700 a day', ink: INK}, {label: 'Engagement', value: 'Ltd, outside IR35', ink: INK}, {label: 'Approver', value: 'Dan Okafor', ink: INK}, {label: 'Timesheets', value: 'Weekly, 1 unapproved', ink: BERRY}, {label: 'Extension', value: 'Raise by 3 Feb', ink: INK}] : [{label: 'Start', value: 'Mon 3 Nov, 09:00', ink: INK}, {label: 'Agreed', value: '£92,000 a year', ink: INK}, {label: 'Fee', value: '£14,720 at 16%', ink: INK}, {label: 'Invoice', value: 'On start date', ink: INK}, {label: 'Rebate', value: '100% to 4 wks, sliding to 12', ink: INK}, {label: 'Notice given', value: 'Yes, 30 Sep', ink: INK}],
+      recSearch: s.recSearch, setRecSearch: e => this.setState({recSearch: e.target.value}), isSearch: q.length >= 2, searchTitle: hits.length + ' result' + (hits.length === 1 ? '' : 's') + ' for "' + s.recSearch.trim() + '"', searchHits: hits, searchEmpty: hits.length === 0, clearSearch: () => this.setState({recSearch: ''}),
+      secondaryLabel: 'Log a call', secondaryGo: () => this.openDrawer({kind: 'log', draft: {kind: 'Call', note: '', follow: 'None'}}),
+      primaryLabel: tab === 'Compliance' ? 'Add a document' : tab === 'Profile' ? 'Upload a new CV' : onSite ? 'Raise an extension' : placedWait ? 'Confirm the start' : tab === 'Matches' ? 'Log a call' : 'Put forward',
+      primaryGo: tab === 'Compliance' ? () => this.openDrawer({kind: 'doc', draft: {kind: 'Right to work', how: 'Seen on video, copy held'}}) : tab === 'Profile' ? () => this.openDrawer({kind: 'cv', draft: {from: 'She sent it'}}) : onSite ? () => { window.location.href = 'Job Record.dc.html?type=T%26M'; } : placedWait ? () => this.openDrawer({kind: 'log', where: 'Senior Backend Engineer, Brightwell', draft: {kind: 'Call', note: 'Confirmed start Mon 3 Nov, 09:00, 4 Wellington Place. Dan confirmed too.', follow: 'None'}}) : tab === 'Matches' ? () => this.openDrawer({kind: 'log', draft: {kind: 'Call', note: '', follow: 'None'}}) : go('Matches'),
+      facts: ps !== 'Candidate' ? stateFacts : [{label: 'In the running', value: apps.length + ' jobs', ink: INK}, {label: 'Wants', value: gbp(Number(avail.wants)) + ', perm', ink: INK}, {label: 'Available', value: avail.notice + ' notice', ink: INK}, {label: 'Right to work', value: rtwDoc ? rtwDoc.state + ', ' + rtwDoc.name.replace(/ passport$/, '') : 'Unchecked', ink: rtwDoc ? INK : BERRY}, {label: 'Consent', value: consent.basis.split(',')[0] + ', to ' + this.fmtDate(consent.retention), ink: INK}],
+      needsLabel: lead.label + ':', needsInk: lead.ink, needsItems: sep(lead.items),
+      needsToggles: others.map(h => ({label: h.items.length + ' ' + h.short, go: () => this.setState({needsOpen: s.needsOpen === h.key ? null : h.key}), weight: s.needsOpen === h.key ? '600' : '400', deco: s.needsOpen === h.key ? 'underline' : 'none'})),
+      needsExpanded: !!openH, needsOpenItems: openH ? sep(openH.items) : [],
+      scrolled: s.scrolled, hasFlash: !!s.flash, flash: s.flash,
+      tabs: tabOrder.map(t => ({label: tabLabel(t), go: go(t), line: tabOn(t) ? BERRY : 'transparent', ink: tabOn(t) ? INK : MID, weight: tabOn(t) ? '600' : '400'})),
+      siblings: [{title: 'Amara Osei', count: 'Interview', href: '#', ink: '#E896B3', weight: '600'}, {title: 'Tom Halloran', count: 'Interview', href: 'Job Record.dc.html', ink: '#F3EEE6', weight: '400'}, {title: 'Lucía Ferreira', count: 'Sent', href: 'Job Record.dc.html', ink: '#F3EEE6', weight: '400'}, {title: 'Ben Achterberg', count: 'Sent', href: 'Job Record.dc.html', ink: '#F3EEE6', weight: '400'}, {title: 'Priyanka Rao', count: 'Sent', href: 'Job Record.dc.html', ink: '#F3EEE6', weight: '400'}, {title: 'All 14', count: '', href: 'Job Record.dc.html', ink: '#D9CFC0', weight: '400'}],
+      isApplications: tabOn('Applications'), isProfile: tabOn('Profile'), isPay: tabOn('Availability and pay'), isCompliance: tabOn('Compliance'), isPlacements: tabOn('Placements'), isConsent: tabOn('Consent'), isActivity: tabOn('Activity'), isMatches: tabOn('Matches'),
+      liveLine: ps === 'Candidate' ? apps.length + ' jobs, both perm, both yours.' : 'Nothing live. She is ' + (onSite ? 'on assignment' : 'placed') + '; new applications would need her to say she is looking.', hotWarning: hot,
+      liveApps: apps.map(a => ({...a, bg: 'transparent', nextInk: a.stalled ? BERRY : INK, nextWeight: a.stalled ? '600' : '400', open: () => this.openDrawer({kind: 'app', a, draft: {fit: a.fit || '', to: ''}})})),
+      closedLine: (ps === 'Candidate' ? CLOSED.length : CLOSED.length + 2) + ' applications', closedToggle: s.closedOpen ? 'Hide' : 'Show', toggleClosed: () => this.setState({closedOpen: !s.closedOpen}), closedOpen: s.closedOpen, closedApps: (ps === 'Candidate' ? CLOSED : [{job: onSite ? 'Data Engineers, payments platform' : 'Senior Backend Engineer', client: 'Brightwell Payments', when: 'Sep 2026', outcome: 'Placed.', note: onSite ? 'Started 6 Oct.' : 'Starts 3 Nov.'}, {job: 'Senior Engineer', client: 'Ordell Software', when: 'Sep 2026', outcome: 'Declined the offer.', note: 'Took Brightwell. Ruth Vance told same day.'}, ...CLOSED]).map(a => ({...a, open: () => this.openDrawer({kind: 'closed', a, draft: {note: ''}})})),
+      actions: this.actions().map((ac, i) => ({...ac, who: ac.who || 'Priya Shah', hasNote: !!ac.note, hasCal: !!(ac.time || (ac.due && String(ac.due).includes('T'))) && !this.state.syncOff, cal: ac.calState === 'Removed' ? 'Removed from your calendar; still due' : ac.calState === 'Moved' ? 'Moved in Outlook to ' + ac.when : 'In your Outlook calendar', calInk: ac.calState === 'Removed' ? '#9E2D53' : 'rgba(43,33,27,.55)', calWeight: ac.calState === 'Removed' ? '600' : '400', typeLabel: ac.type ? ac.type + ' · ' : '', whenInk: ac.priority === 'High' ? BERRY : INK, open: () => this.openDrawer({kind: 'action', idx: i, draft: {...ac, owner: ac.owner || 'Priya Shah', with: ac.with || '', due: ac.due || ((ac.date || '2026-09-21') + (ac.time ? 'T' + ac.time : '')), next: ac.next || '', nextQuick: ac.next ? 'Set' : 'None', nextType: ac.nextType || ac.type || 'Call'}}), done: () => { this.setState({actions: this.actions().filter((x, j) => j !== i)}); this.log('Action', 'Done: ' + ac.what + '.'); this.say('Done. Logged on Activity.'); }})),
+      noActions: this.actions().length === 0, addAction: () => this.openDrawer({kind: 'action', draft: {type: 'Call', what: '', with: '', due: '2026-09-21T10:30', priority: 'Normal', nextQuick: 'None', owner: 'Priya Shah', note: ''}}), goPay: e => { e.preventDefault(); go('Availability and pay')(); },
+      paperRows: [{k: 'Right to work', v: rtwDoc ? 'Valid to ' + this.fmtDate(rtwDoc.expires) : 'Unchecked', ink: INK}, {k: 'Proof of address', v: (docs.find(x => x.sub.startsWith('Proof')) || {}).expires ? 'Renew by ' + this.fmtDate(docs.find(x => x.sub.startsWith('Proof')).expires) : 'None', ink: BERRY}, {k: 'References', v: 'One named, one at offer', ink: INK}],
+      summary: s.summary || this.defaultSummary(),
+      editSummary: () => this.openDrawer({kind: 'summary', draft: {text: s.summary || this.defaultSummary()}}),
+      shortlistText: this.shortlist(), editShortlist: () => this.openDrawer({kind: 'shortlist', draft: {text: this.shortlist()}}),
+      skills: this.skills().map(([name, meta, strong], i) => ({name, meta, border: strong ? INK : TAUPE, bg: strong ? SAND : 'transparent', edit: () => this.openDrawer({kind: 'skill', idx: i, draft: {name, level: strong ? 'Strong' : /learning/i.test(meta) ? 'Learning' : 'Working', years: (meta.match(/^([\d]+|Under 1|5 or more)/) || ['2'])[0], how: 'On screen'}})})), addSkill: () => this.openDrawer({kind: 'skill', draft: {level: 'Working', years: '2', how: 'On screen'}}),
+      history: hist.map(w => ({...w, when: this.fmtMonth(w.from) + ' to ' + this.fmtMonth(w.to), tenure: w.to ? this.tenure(w.from).replace(/.*/, m => { const [fy, fm] = w.from.split('-').map(Number), [ty, tm] = w.to.split('-').map(Number); const n = (ty - fy) * 12 + (tm - fm) + 1; const y = Math.floor(n / 12), mo = n % 12; return (y ? y + ' yr' + (y > 1 ? 's' : '') : '') + (y && mo ? ' ' : '') + (mo ? mo + ' mo' : ''); }) : 'Current, ' + this.tenure(w.from), curInk: w.to ? MUTED : BERRY, edit: () => this.openDrawer({kind: 'role', id: w.id, draft: {...w, current: w.to ? 'Left' : 'Current'}})})),
+      addRole: () => this.openDrawer({kind: 'role', draft: {role: '', employer: '', from: '', to: '', note: '', current: 'Left'}}),
+      quals: this.quals().map((q, i) => ({...q, edit: () => this.openDrawer({kind: 'qual', idx: i, draft: {...q}})})), addQual: () => this.openDrawer({kind: 'qual', draft: {when: '', name: '', where: '', expires: ''}}),
+      hasParsed: !!(s.parsed && s.parsed.length), parsed: (s.parsed || []).map((p, i) => ({...p, ink: p.on ? INK : MUTED, toggle: () => this.setState({parsed: s.parsed.map((x, j) => j === i ? {...x, on: !x.on} : x)}), mark: p.on ? 'Skip' : 'Apply'})),
+      applyParsed: () => { const on = (s.parsed || []).filter(p => p.on); const sk = on.filter(p => p.k === 'Skill').map(p => [p.v.split(', ')[0], p.v.split(', ')[1] + ', working', false]); this.setState({skills: [...this.skills(), ...sk], parsed: null}); this.log('Edit', 'Parsed CV changes applied: ' + on.map(p => p.v).join('; ') + '.'); this.say(on.length + ' changes applied to the profile.'); },
+      cvMeta: (s.cvs || this.baseCvs())[s.cvIdx || 0].name + '. ' + (s.cvs || this.baseCvs())[s.cvIdx || 0].note, cvPageNote: (s.cvIdx || 0) > 0 ? 'Older version, page 1 of 2.' : 'Page 1 of 2.', cvOpen: s.cvOpen !== false, cvToggle: s.cvOpen !== false ? 'Hide' : 'Show', toggleCv: () => this.setState({cvOpen: s.cvOpen === false}), downloadCv: () => this.say('Downloads ' + (s.cvs || this.baseCvs())[s.cvIdx || 0].name + '.pdf.'),
+      cvs: (s.cvs || this.baseCvs()).map((c, i) => { const viewing = (s.cvIdx || 0) === i && s.cvOpen !== false; return {...c, weight: i === 0 ? '600' : '400', viewLabel: viewing ? 'Viewing' : 'View', viewInk: viewing ? MUTED : BERRY, view: () => { this.setState({cvIdx: i, cvOpen: true}); window.scrollTo(0, 0); }, download: () => this.say('Downloads ' + c.name + '.pdf.')}; }), newCv: () => this.openDrawer({kind: 'cv', draft: {from: 'She sent it'}}),
+      merge: () => { this.log('Edit', 'Merged with duplicate record A. Osei (Mar 2024). Both histories kept.'); this.say('Merged. Two closed applications now show on Applications.'); }, notDupe: () => { this.log('Edit', 'Duplicate check dismissed: A. Osei is a different person.'); this.say('Noted. Will not ask again.'); },
+      availFacts: [{label: 'Notice', value: avail.notice}, {label: 'Available from', value: this.fmtDate(avail.from)}, {label: 'Engagement', value: avail.engagement}, {label: 'Current', value: gbp(Number(avail.current)) + ' a year'}, {label: 'Wants', value: gbp(Number(avail.wants)) + ' a year'}, {label: 'Pattern', value: avail.pattern}, {label: 'Location', value: avail.location}, {label: 'Home', value: ct.postcode + ', ' + (avail.travel || '').toLowerCase() + ' by ' + (avail.travelBy || '').toLowerCase() + '. Edit the address on the snapshot.'}, {label: 'To Brightwell London', value: '22 min door to door'}, {label: 'To Brightwell Leeds', value: '2 h 10, over her limit'}],
+      availNote: 'Distance is measured from her home postcode to the job\'s site for on-site and hybrid jobs. Her address is never shown to a client.',
+      editAvail: () => this.openDrawer({kind: 'avail', draft: {...avail}}),
+      wantsLine: gbp(Number(avail.wants)) + ', ' + avail.pattern.toLowerCase() + ', ' + (avail.motive || '').charAt(0).toLowerCase() + (avail.motive || '').slice(1) + '. Notice ' + avail.notice.toLowerCase() + '. ' + (avail.elsewhere || '') + '.',
+      considerText: avail.consider || 'Not asked yet.', readText: avail.read || 'No read written yet.', payRows: s.payRows || this.basePay(),
+      docs: docs.map(x => { const dt = x.expires ? this.daysTo(x.expires) : null; return {...x, stateInk: x.state === 'Valid' || x.state === 'Seen' ? INK : x.state === 'Not needed' ? MUTED : BERRY, expires: x.expires ? this.fmtDate(x.expires) : (x.state === 'Not needed' ? '' : 'Does not'), expInk: dt !== null && dt <= 90 ? BERRY : INK, expWeight: dt !== null && dt <= 90 ? '600' : '400', act: () => x.action === 'View' ? this.say('Opens the stored copy.') : x.action === 'Request' ? this.openDrawer({kind: 'doc', draft: {kind: 'DBS', name: 'DBS, basic', how: 'Not yet checked'}}) : this.openDrawer({kind: 'recheck', doc: x, draft: {}})}; }),
+      addDoc: () => this.openDrawer({kind: 'doc', draft: {kind: 'Right to work', how: 'Seen on video, copy held'}}), refs: this.refs().map((r, i) => ({...r, edit: () => this.openDrawer({kind: 'ref', idx: i, draft: {...r}})})), addRef: () => this.openDrawer({kind: 'ref', draft: {who: '', rel: '', state: 'Named', note: ''}}),
+      placements: [...(onSite ? [{role: 'Data Engineer', client: 'Brightwell Payments', type: 'T&M, outside IR35', dates: '6 Oct 2026 to 31 Mar 2027', agreed: '£580 a day', outcome: 'Live. Charge £700, margin £120 a day. 24 weeks, 1 timesheet unapproved.'}] : placedWait ? [{role: 'Senior Backend Engineer', client: 'Brightwell Payments', type: 'perm', dates: 'Starts 3 Nov 2026', agreed: '£92,000 a year', outcome: 'Fee £14,720 at 16%, invoiced on start. Rebate window to 26 Jan.'}] : []), {role: 'Software Engineer', client: 'Curve', type: 'perm', dates: 'Started 6 Jul 2020', agreed: '£48,000 a year', outcome: 'Fee £7,200 at 15%. Rebate window cleared Oct 2020. Left Aug 2022 for Monzo, not through you.'}, {role: 'Backend Developer', client: 'Kestrel Freight', type: 'T&M, outside IR35', dates: '6 Jan to 27 Mar 2020', agreed: '£350 a day', outcome: 'Charge £430, margin £80 a day. 12 weeks, all approved. Ended on date, no extension.'}],
+      tsLine: onSite ? 'One outstanding. Brightwell, weekly, Dan approves.' : 'Nothing outstanding. Kestrel Freight, 2020, last three of twelve.',
+      timesheets: (onSite ? [{period: 'w/c 8 Sep 2026', hours: '5 days', state: 'Submitted, unapproved 6 days. Chase Dan.', ink: BERRY, weight: '600'}, {period: 'w/c 1 Sep 2026', hours: '5 days', state: 'Approved, invoiced', ink: MID, weight: '400'}, {period: 'w/c 25 Aug 2026', hours: '4 days, 1 holiday', state: 'Approved, paid', ink: MID, weight: '400'}] : [{period: 'w/c 23 Mar 2020', hours: '5 days', state: 'Approved, paid', ink: MID, weight: '400'}, {period: 'w/c 16 Mar 2020', hours: '5 days', state: 'Approved, paid', ink: MID, weight: '400'}, {period: 'w/c 9 Mar 2020', hours: '4 days, 1 sick', state: 'Approved, paid', ink: MID, weight: '400'}]),
+      consentFacts: [{label: 'Lawful basis', value: consent.basis, ink: INK}, {label: 'Consent given', value: this.fmtDate(consent.when), ink: INK}, {label: 'How', value: consent.source, ink: INK}, {label: 'Marketing', value: consent.marketing, ink: INK}, {label: 'Retention to', value: this.fmtDate(consent.retention), ink: INK}, {label: 'Review', value: this.fmtDate(consent.review), ink: INK}],
+      editConsent: () => this.openDrawer({kind: 'consent', draft: {...consent}}),
+      requests: s.requests || [{when: 'None', kind: 'No requests.', note: 'Subject access and erasure requests are recorded here with the date received and the response due.'}],
+      sar: () => this.openDrawer({kind: 'request', which: 'sar', draft: {how: 'Email'}}), erasure: () => this.openDrawer({kind: 'request', which: 'erasure', draft: {how: 'Email'}}),
+      actFilters: kinds.map(label => ({label, go: () => this.setState({actFilter: label}), border: actFilter === label ? '1px solid ' + INK : '1px solid ' + TAUPE, ink: actFilter === label ? INK : MID, weight: actFilter === label ? '600' : '400'})),
+      activity: this.activity().filter(a => actFilter === 'All' || a.kind === actFilter).map(a => ({...a, hasDetail: !!a.detail, open: () => this.openDrawer({kind: 'entry', a})})),
+      matches: this.matches().map(m => ({...m, action: m.added ? 'Put forward at Screened' : 'Put forward', add: () => { if (m.added) return; this.setState({matches: this.matches().map(x => x.id === m.id ? {...x, added: true} : x)}); this.log('Pipeline', 'Added at Screened to ' + m.job + ', ' + m.client + '.', m.job + ', ' + m.client.split(' ')[0]); this.say('Added. She is now on three jobs; the flag will show on all of them.'); }})),
+      ...this.drawerVals(),
+    };
+  }
+}
+</script>
+</body>
+</html>

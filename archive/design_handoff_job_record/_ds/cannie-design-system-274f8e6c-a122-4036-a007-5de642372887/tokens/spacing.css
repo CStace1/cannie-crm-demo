@@ -1,0 +1,30 @@
+/* Spacing runs deliberately generous. DESIGN-cannie.md: "sections breathe
+   considerably more than a typical SaaS deck; vertical padding between blocks
+   tends to run larger than instinct suggests." When in doubt, take the next
+   step up, not the next step down. */
+:root{
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:12px;
+  --space-4:16px;
+  --space-5:24px;
+  --space-6:32px;
+  --space-7:40px;
+  --space-8:56px;
+  --space-9:72px;
+  --space-10:96px;
+  --space-11:128px;
+
+  /* Named rhythm */
+  --gutter-inline:var(--space-5);
+  --gutter-block:var(--space-6);
+  --section-gap:var(--space-8);
+  --section-gap-loose:var(--space-10);
+  --page-margin:var(--space-8);
+  --card-padding:var(--space-5);
+  --control-height:40px;
+  --control-height-sm:32px;
+  --control-height-lg:48px;
+  --control-padding-x:var(--space-4);
+  --measure:64ch;
+}

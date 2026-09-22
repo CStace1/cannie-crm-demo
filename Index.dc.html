@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/styles.css">
+<script src="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/_ds_bundle.js"></script>
+<style>body{margin:0;background:#F3EEE6} a{color:#9E2D53} a:hover{color:#7D2342}</style>
+</helmet>
+<article style="max-width:880px;margin:0 auto;padding:64px 40px 96px;font-family:'Poppins',sans-serif;color:#2B211B;font-size:15px;line-height:1.5;display:flex;flex-direction:column;gap:40px">
+<header style="display:flex;flex-direction:column;gap:10px">
+<div style="display:flex"><x-import component-from-global-scope="CannieDesignSystem_274f8e.Lockup" tone="light" height="28" hint-size="136px,28px"></x-import></div>
+<h1 style="margin:16px 0 0;font-size:34px;font-weight:700;letter-spacing:-0.0075em">Recruitment CRM demo</h1>
+<p style="margin:0;font-size:16px;max-width:640px;color:rgba(43,33,27,.70)">One desk for a recruiter: what needs them today, every record they touch, and the pipeline that pays. Signed in as Priya Shah. Everything is sample data.</p>
+</header>
+<a href="Overview.dc.html" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 24px;background:#2B211B;border-radius:14px;text-decoration:none;color:#F3EEE6"><span style="display:flex;flex-direction:column;gap:4px"><span style="font-size:18px;font-weight:700">Start at the Overview</span><span style="font-size:13px;color:#D9CFC0">The desk on a Monday morning. Everything else is one click from the sidebar.</span></span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E896B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<sc-for list="{{ groups }}" as="g" hint-placeholder-count="4">
+<section style="display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">{{ g.label }}</span><span style="font-size:13px;color:rgba(43,33,27,.70)">{{ g.line }}</span></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px">
+<sc-for list="{{ g.items }}" as="i" hint-placeholder-count="4">
+<a href="{{ i.href }}" style="display:flex;flex-direction:column;gap:4px;padding:14px 16px;background:#EFE7DA;border-radius:14px;text-decoration:none;color:#2B211B" style-hover="background:#E9DFCF"><span style="font-size:15px;font-weight:600">{{ i.label }}</span><span style="font-size:12px;color:rgba(43,33,27,.70)">{{ i.note }}</span></a>
+</sc-for>
+</div>
+</section>
+</sc-for>
+<section style="display:flex;flex-direction:column;gap:10px;border-top:1px solid #D9CFC0;padding-top:28px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">A five minute walk-through</span>
+<ol style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:14px">
+<sc-for list="{{ tour }}" as="t" hint-placeholder-count="6"><li>{{ t }}</li></sc-for>
+</ol>
+</section>
+</article>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {groups: [
+      {label: 'The desk', line: 'Where a recruiter spends the day.', items: [
+        {label: 'Overview', href: 'Overview.dc.html', note: 'Needs you today, pinned records, recent'},
+        {label: 'Pipeline', href: 'Pipeline.dc.html', note: 'Board or table, drag to move, undo'},
+        {label: 'Job board', href: 'Job Board.dc.html', note: 'Every live job, match a candidate'},
+        {label: 'Calendar', href: 'Calendar.dc.html', note: 'Week view, tasks, colour by kind'},
+        {label: 'Activities', href: 'Activities.dc.html', note: 'Everything logged, filter by person or date'},
+        {label: 'My targets', href: 'Recruiter.dc.html', note: 'Forecast, what-if, funnel'},
+      ]},
+      {label: 'Records', line: 'Lists with one filter bar; each row opens a summary, then the full record.', items: [
+        {label: 'Clients', href: 'Clients.dc.html', note: 'Prospects as a board or table'},
+        {label: 'Client record', href: 'Client Record.dc.html', note: 'Brightwell Payments'},
+        {label: 'Jobs', href: 'Job Record.dc.html', note: 'Perm. Add ?type=T%26M or ?type=SOW'},
+        {label: 'Candidates', href: 'Candidates.dc.html', note: 'The database, pools, duplicate merge'},
+        {label: 'Candidate record', href: 'Candidate Record.dc.html', note: 'Amara Osei'},
+        {label: 'Contacts', href: 'Contacts.dc.html', note: 'Hiring managers and who is quiet'},
+        {label: 'Contact record', href: 'Contact Record.dc.html', note: 'Dan Okafor'},
+        {label: 'New client', href: 'New Client.dc.html', note: 'Creates a prospect'},
+      ]},
+      {label: 'Money', line: 'Contract admin, kept simple.', items: [
+        {label: 'Timesheets', href: 'Timesheets.dc.html', note: 'Approve, chase, see the days'},
+        {label: 'Invoices', href: 'Invoices.dc.html', note: 'Send, chase, mark paid'},
+      ]},
+      {label: 'Reference', line: 'For the build team.', items: [
+        {label: 'Standards', href: 'Standards.dc.html', note: 'What each thing is and the rules it keeps'},
+        {label: 'Mobile light', href: 'Mobile.dc.html', note: 'Six phone screens'},
+        {label: 'Benchmark', href: 'Benchmark.dc.html', note: 'Against Bullhorn, Vincere, JobAdder'},
+        {label: 'Delivery plan', href: 'docs/Delivery Plan.dc.html', note: 'The chunks, in order'},
+        {label: 'Backlog', href: 'docs/Backlog.dc.html', note: 'What is not built yet'},
+      ]},
+    ], tour: [
+      'Overview: read Needs you today. Click Priyanka Rao, unowned.',
+      'Candidates: the duplicate banner. Review merge, keep the website version, merge.',
+      'Pipeline: drag Lucía Ferreira from Sent to Interview. Fill the time, save, then undo.',
+      'Job board: type Amara in Match a candidate. Jobs re-sort by fit.',
+      'Client record, Brightwell: Commercials tab, then the Statement of work milestones.',
+      'My targets: drag the Interview to Offer rate. The forecast moves. Show the working.',
+    ]};
+  }
+}
+
+</script>
+</body>
+</html>

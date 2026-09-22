@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div style="display:flex;flex-direction:column;gap:12px;font-family:'Poppins',sans-serif;color:#2B211B">
+<sc-if value="{{ hasViews }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;gap:24px;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;border-bottom:1px solid #D9CFC0;scrollbar-width:none">
+<sc-for list="{{ viewTabs }}" as="vt" hint-placeholder-count="4">
+<button onClick="{{ vt.go }}" style="display:flex;align-items:baseline;gap:6px;background:transparent;border:none;padding:0 0 8px;border-bottom:3.4px solid {{ vt.line }};font-family:inherit;font-size:14px;cursor:pointer;white-space:nowrap;flex:0 0 auto;color:{{ vt.ink }};font-weight:{{ vt.weight }}"><span>{{ vt.label }}</span><span style="font-size:12px;color:rgba(43,33,27,.70)">{{ vt.count }}</span></button>
+</sc-for>
+</div>
+</sc-if>
+<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;position:relative">
+<div style="position:relative;flex:1 1 220px;max-width:320px;min-width:180px">
+<input type="text" value="{{ q }}" onChange="{{ setQ }}" placeholder="{{ placeholder }}" style="height:36px;width:100%;padding:0 12px 0 34px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;left:11px;top:10px;color:rgba(43,33,27,.70)"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+</div>
+<sc-for list="{{ pills }}" as="p" hint-placeholder-count="4">
+<div style="position:relative">
+<button onClick="{{ p.toggle }}" style="height:36px;padding:0 12px;display:inline-flex;align-items:center;gap:6px;border-radius:10px;border:1px solid {{ p.border }};background:{{ p.bg }};font-family:inherit;font-size:13px;color:#2B211B;font-weight:{{ p.weight }};cursor:pointer;white-space:nowrap"><span>{{ p.text }}</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button>
+<sc-if value="{{ p.open }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:0;top:42px;z-index:9;width:260px;background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;box-shadow:0 12px 32px rgba(43,33,27,.18);display:flex;flex-direction:column;overflow:hidden">
+<sc-if value="{{ p.searchable }}" hint-placeholder-val="{{ false }}">
+<div style="padding:10px 10px 6px"><input type="text" value="{{ optQ }}" onChange="{{ setOptQ }}" placeholder="{{ p.findPh }}" style="height:32px;width:100%;padding:0 10px;border:1px solid #D9CFC0;border-radius:8px;background:#F3EEE6;font-family:inherit;font-size:13px;color:#2B211B;box-sizing:border-box"></div>
+</sc-if>
+<div style="display:flex;flex-direction:column;max-height:260px;overflow-y:auto;overflow-x:hidden;padding:4px 0">
+<sc-for list="{{ p.opts }}" as="o" hint-placeholder-count="5">
+<button onClick="{{ o.go }}" style="display:flex;align-items:center;gap:10px;padding:8px 14px;background:transparent;border:none;font-family:inherit;font-size:13px;color:#2B211B;text-align:left;cursor:pointer;width:100%" style-hover="background:rgba(43,33,27,.05)">
+<span style="width:16px;height:16px;flex:0 0 auto;border-radius:{{ o.radius }};border:1.5px solid {{ o.boxBorder }};background:{{ o.boxBg }};display:flex;align-items:center;justify-content:center"><sc-if value="{{ o.on }}" hint-placeholder-val="{{ false }}"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#F3EEE6" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></sc-if></span>
+<span style="flex:1;min-width:0;font-weight:{{ o.weight }}">{{ o.label }}</span><span style="font-size:12px;color:rgba(43,33,27,.70)">{{ o.count }}</span>
+</button>
+</sc-for>
+<sc-if value="{{ p.noOpts }}" hint-placeholder-val="{{ false }}"><span style="padding:8px 14px;font-size:12px;color:rgba(43,33,27,.70)">Nothing matches.</span></sc-if>
+<sc-if value="{{ p.canCreate }}" hint-placeholder-val="{{ false }}"><button onClick="{{ p.create }}" style="display:flex;align-items:center;gap:10px;padding:8px 14px;background:transparent;border:none;border-top:1px solid #D9CFC0;font-family:inherit;font-size:13px;font-weight:600;color:#9E2D53;text-align:left;cursor:pointer;width:100%"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg><span>{{ p.createLabel }}</span></button></sc-if>
+</div>
+<div style="display:flex;justify-content:space-between;gap:10px;padding:8px 14px;border-top:1px solid #D9CFC0">
+<button onClick="{{ p.clear }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;color:#2B211B;text-decoration:underline;cursor:pointer">Clear</button>
+<button onClick="{{ closeAll }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#9E2D53;cursor:pointer">Done</button>
+</div>
+</div>
+</sc-if>
+</div>
+</sc-for>
+<sc-if value="{{ hasMore }}" hint-placeholder-val="{{ false }}">
+<button onClick="{{ toggleMore }}" style="height:36px;padding:0 10px;display:inline-flex;align-items:center;gap:6px;border:none;border-radius:10px;background:transparent;font-family:inherit;font-size:13px;font-weight:600;color:#2B211B;cursor:pointer;white-space:nowrap" style-hover="background:rgba(43,33,27,.05)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M7 12h10M10 18h4"></path></svg>{{ moreLabel }}</button>
+</sc-if>
+<sc-if value="{{ hasActive }}" hint-placeholder-val="{{ false }}">
+<button onClick="{{ clearAll }}" style="background:transparent;border:none;padding:0 4px;font-family:inherit;font-size:13px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">Clear all</button>
+</sc-if>
+<span style="flex:1"></span>
+<sc-if value="{{ hasSaved }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative">
+<button onClick="{{ toggleSaved }}" style="height:36px;padding:0 12px;display:inline-flex;align-items:center;gap:6px;border-radius:10px;border:1px solid #D9CFC0;background:transparent;font-family:inherit;font-size:13px;color:#2B211B;cursor:pointer;white-space:nowrap"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg><span>{{ savedLabel }}</span></button>
+<sc-if value="{{ savedOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;right:0;top:42px;z-index:9;width:280px;background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;box-shadow:0 12px 32px rgba(43,33,27,.18);display:flex;flex-direction:column;padding:6px 0">
+<span style="font-size:12px;color:rgba(43,33,27,.70);padding:8px 14px 6px">{{ savedHelp }}</span>
+<sc-for list="{{ savedItems }}" as="si" hint-placeholder-count="3">
+<div style="display:flex;align-items:center;gap:8px;padding:0 8px 0 0" style-hover="background:rgba(43,33,27,.05)"><button onClick="{{ si.go }}" style="flex:1;display:flex;flex-direction:column;gap:1px;padding:8px 14px;background:transparent;border:none;font-family:inherit;text-align:left;cursor:pointer;color:#2B211B"><span style="font-size:14px;font-weight:600">{{ si.label }}</span><span style="font-size:12px;color:rgba(43,33,27,.70)">{{ si.sub }}</span></button><sc-if value="{{ si.canDelete }}" hint-placeholder-val="{{ false }}"><button onClick="{{ si.del }}" title="Remove" style="width:28px;height:28px;border:none;border-radius:8px;background:transparent;cursor:pointer;color:#2B211B;display:inline-flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button></sc-if></div>
+</sc-for>
+<div style="border-top:1px solid #D9CFC0;margin-top:4px;padding:10px 14px 6px;display:flex;flex-direction:column;gap:8px">
+<sc-if value="{{ canSave }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;gap:6px"><input type="text" value="{{ saveName }}" onChange="{{ setSaveName }}" placeholder="Name this search" style="flex:1;min-width:0;height:32px;padding:0 10px;border:1px solid #D9CFC0;border-radius:8px;background:#F3EEE6;font-family:inherit;font-size:13px;color:#2B211B;box-sizing:border-box"><button onClick="{{ doSave }}" style="height:32px;padding:0 12px;border:none;border-radius:8px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer">Save</button></div>
+</sc-if>
+<sc-if value="{{ cannotSave }}" hint-placeholder-val="{{ true }}"><span style="font-size:12px;color:rgba(43,33,27,.70)">Set a search or filter to save it.</span></sc-if>
+</div>
+</div>
+</sc-if>
+</div>
+</sc-if>
+<div style="position:relative">
+<button onClick="{{ toggleSort }}" style="height:36px;padding:0 12px;display:inline-flex;align-items:center;gap:6px;border-radius:10px;border:1px solid #D9CFC0;background:transparent;font-family:inherit;font-size:13px;color:#2B211B;cursor:pointer;white-space:nowrap"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h13M3 12h9M3 18h5M17 10v10M14 17l3 3 3-3"></path></svg><span>{{ sortText }}</span></button>
+<sc-if value="{{ sortOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;right:0;top:42px;z-index:9;width:220px;background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;box-shadow:0 12px 32px rgba(43,33,27,.18);display:flex;flex-direction:column;padding:6px 0">
+<sc-for list="{{ sortItems }}" as="so" hint-placeholder-count="4">
+<button onClick="{{ so.go }}" style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 14px;background:transparent;border:none;font-family:inherit;font-size:13px;color:#2B211B;text-align:left;cursor:pointer;font-weight:{{ so.weight }}" style-hover="background:rgba(43,33,27,.05)"><span>{{ so.label }}</span><sc-if value="{{ so.on }}" hint-placeholder-val="{{ false }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9E2D53" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></sc-if></button>
+</sc-for>
+</div>
+</sc-if>
+</div>
+<sc-if value="{{ anyOpen }}" hint-placeholder-val="{{ false }}"><div onClick="{{ closeAll }}" style="position:fixed;inset:0;z-index:8"></div></sc-if>
+</div>
+<sc-if value="{{ hasResult }}" hint-placeholder-val="{{ true }}"><span style="font-size:12px;color:rgba(43,33,27,.70)">{{ resultLine }}</span></sc-if>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1000, &quot;height&quot;: 360}, &quot;q&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;string&quot;}, &quot;placeholder&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Search&quot;, &quot;tsType&quot;: &quot;string&quot;}, &quot;filters&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;Array&lt;{key:string,label:string,multi?:boolean,creatable?:boolean,options:{value:string,label:string,count?:number}[],value:any}&gt;&quot;}, &quot;onFilter&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;(key:string, value:any)=&gt;void&quot;}, &quot;onCreate&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;(key:string, text:string)=&gt;void&quot;}, &quot;onQ&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;(q:string)=&gt;void&quot;}, &quot;onClear&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;()=&gt;void&quot;}, &quot;sort&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;string&quot;}, &quot;sortOptions&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;{value:string,label:string}[]&quot;}, &quot;onSort&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;(v:string)=&gt;void&quot;}, &quot;views&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;{value:string,label:string,count?:number}[]&quot;}, &quot;view&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;string&quot;}, &quot;onView&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;(v:string)=&gt;void&quot;}, &quot;saved&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;{label:string,sub?:string,go:()=&gt;void,del?:()=&gt;void}[]&quot;}, &quot;savedLabel&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;&quot;, &quot;tsType&quot;: &quot;string&quot;}, &quot;savedHelp&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;&quot;, &quot;tsType&quot;: &quot;string&quot;}, &quot;onSave&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;(name:string)=&gt;void&quot;}, &quot;resultLine&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;&quot;, &quot;tsType&quot;: &quot;string&quot;}}">
+class Component extends DCLogic {
+  state = {open: null, optQ: '', saveName: '', more: false};
+  renderVals() {
+    const p = this.props, s = this.state;
+    const filters = p.filters || [];
+    const close = () => this.setState({open: null, optQ: ''});
+    const isOn = (f, v) => f.multi ? (f.value || []).includes(v) : f.value === v;
+    const activeCount = filters.filter(f => f.multi ? (f.value || []).length : f.value != null && f.value !== '').length;
+    const labelOf = (f, v) => { const o = (f.options || []).find(x => x.value === v); return o ? o.label : v; };
+    const primary = this.props.primaryCount ?? 4;
+    const isActive = f => f.multi ? (f.value || []).length > 0 : f.value != null && f.value !== '';
+    const visible = filters.filter((f, i) => i < primary || s.more || isActive(f));
+    const hidden = filters.length - visible.length;
+    const pills = visible.map(f => {
+      const vals = f.multi ? (f.value || []) : (f.value != null && f.value !== '' ? [f.value] : []);
+      const on = vals.length > 0; const open = s.open === f.key;
+      const term = open ? s.optQ.trim().toLowerCase() : '';
+      const opts = (f.options || []).filter(o => !term || String(o.label).toLowerCase().includes(term));
+      const shown = f.multi ? [...opts.filter(o => isOn(f, o.value)), ...opts.filter(o => !isOn(f, o.value))] : opts;
+      return {
+        text: on ? f.label + ': ' + labelOf(f, vals[0]) + (vals.length > 1 ? ' +' + (vals.length - 1) : '') : f.label,
+        border: on ? '#2B211B' : '#D9CFC0', bg: on ? '#EFE7DA' : 'transparent', weight: on ? '600' : '400', open,
+        toggle: () => this.setState({open: open ? null : f.key, optQ: ''}),
+        searchable: (f.options || []).length > 7, findPh: 'Find ' + f.label.toLowerCase(),
+        opts: shown.slice(0, 60).map(o => { const sel = isOn(f, o.value); return {label: o.label, count: o.count != null ? String(o.count) : '', on: sel, weight: sel ? '600' : '400',
+          radius: f.multi ? '4px' : '999px', boxBorder: sel ? '#2B211B' : '#D9CFC0', boxBg: sel ? '#2B211B' : 'transparent',
+          go: () => { if (f.multi) { const cur = f.value || []; p.onFilter && p.onFilter(f.key, sel ? cur.filter(x => x !== o.value) : [...cur, o.value]); } else { p.onFilter && p.onFilter(f.key, sel ? null : o.value); close(); } }}; }),
+        noOpts: shown.length === 0,
+        searchable: (f.options || []).length > 7 || !!f.creatable,
+        canCreate: !!f.creatable && open && !!s.optQ.trim() && !(f.options || []).some(o => String(o.label).toLowerCase() === s.optQ.trim().toLowerCase()),
+        createLabel: 'Add "' + s.optQ.trim() + '" as a ' + (f.noun || f.label.toLowerCase()),
+        create: () => { const t = s.optQ.trim(); if (!t) return; if (p.onCreate) p.onCreate(f.key, t); else { const cur = f.value || []; p.onFilter && p.onFilter(f.key, f.multi ? [...cur, t] : t); } this.setState({optQ: ''}); if (!f.multi) close(); },
+        clear: () => { p.onFilter && p.onFilter(f.key, f.multi ? [] : null); close(); },
+      };
+    });
+    const sortOptions = p.sortOptions || [];
+    const cur = sortOptions.find(o => o.value === p.sort) || sortOptions[0] || {label: 'Sort'};
+    const saved = p.saved || [];
+    const hasActive = activeCount > 0 || !!(p.q || '').trim();
+    return {
+      hasMore: filters.length > primary, moreLabel: s.more ? 'Fewer filters' : 'More filters' + (hidden ? ' ' + hidden : ''), toggleMore: () => this.setState({more: !s.more, open: null}),
+      hasViews: !!(p.views && p.views.length),
+      viewTabs: (p.views || []).map(v => { const on = v.value === p.view; return {label: v.label, count: v.count != null ? String(v.count) : '', go: () => p.onView && p.onView(v.value), line: on ? '#9E2D53' : 'transparent', ink: on ? '#2B211B' : 'rgba(43,33,27,.70)', weight: on ? '600' : '400'}; }),
+      q: p.q || '', setQ: e => p.onQ && p.onQ(e.target.value), placeholder: p.placeholder || 'Search',
+      pills, optQ: s.optQ, setOptQ: e => this.setState({optQ: e.target.value}),
+      hasActive, clearAll: () => { p.onClear && p.onClear(); close(); },
+      closeAll: close, anyOpen: !!s.open,
+      sortText: 'Sort: ' + cur.label, sortOpen: s.open === '__sort', toggleSort: () => this.setState({open: s.open === '__sort' ? null : '__sort'}),
+      sortItems: sortOptions.map(o => ({label: o.label, on: o.value === p.sort, weight: o.value === p.sort ? '600' : '400', go: () => { p.onSort && p.onSort(o.value); close(); }})),
+      hasSaved: !!p.savedLabel, savedLabel: (p.savedLabel || 'Saved') + (saved.length ? ' ' + saved.length : ''), savedHelp: p.savedHelp || 'Saved searches re-run when opened.',
+      savedOpen: s.open === '__saved', toggleSaved: () => this.setState({open: s.open === '__saved' ? null : '__saved'}),
+      savedItems: saved.map(x => ({label: x.label, sub: x.sub || '', canDelete: !!x.del, del: () => x.del && x.del(), go: () => { x.go && x.go(); close(); }})),
+      canSave: hasActive && !!p.onSave, cannotSave: !(hasActive && !!p.onSave), saveName: s.saveName, setSaveName: e => this.setState({saveName: e.target.value}),
+      doSave: () => { const n = s.saveName.trim(); if (!n) return; p.onSave(n); this.setState({saveName: '', open: null}); },
+      hasResult: !!p.resultLine, resultLine: p.resultLine || '',
+    };
+  }
+}
+
+</script>
+</body>
+</html>

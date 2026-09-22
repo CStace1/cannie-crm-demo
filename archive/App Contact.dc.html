@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="../_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/tokens/fonts.css">
+<link rel="stylesheet" href="../_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/styles.css">
+<script src="../_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/_ds_bundle.js"></script>
+<style>
+body{margin:0;background:#F3EEE6}
+a{color:#9E2D53}
+a:hover{color:#7D2342}
+@media (max-width:720px){
+  [data-shell]{flex-direction:column}
+  [data-side]{position:static !important;height:auto !important;width:auto !important;flex:0 0 auto !important;flex-direction:row !important;flex-wrap:wrap;align-items:center;gap:14px !important;padding:12px 16px !important}
+  [data-side] nav{flex-direction:row !important;flex-wrap:wrap}
+  [data-side] [data-context]{border-top:none !important;padding-top:0 !important;flex-direction:row !important;flex-wrap:wrap;align-items:center;gap:12px !important}
+  [data-side] [data-context] > :first-child{display:none}
+  [data-side] [data-user]{margin-top:0 !important;margin-left:auto}
+  [data-page],[data-sticky]{padding-left:20px !important;padding-right:20px !important}
+}
+@media (max-width:1180px){
+  [data-actions]{flex-basis:100% !important}
+  [data-split]{grid-template-columns:minmax(0,1fr) !important}
+  [data-split] > div:last-child{display:grid !important;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));align-items:start}
+  [data-snap]{grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important}
+  [data-snap] > div:last-child{grid-column:1 / -1}
+}
+@media (max-width:1180px){
+  [data-rowhead]{display:none !important}
+  [data-row]{grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;gap:6px 12px !important;padding:10px 4px}
+  [data-row] > :first-child{grid-column:1 / -1}
+  [data-row] > button{justify-self:start !important}
+}
+@media (max-width:760px){
+  [data-snap]{grid-template-columns:minmax(0,1fr) !important}
+}
+</style>
+</helmet>
+<div data-shell="1" style="display:flex;width:100%;min-height:100vh;background:#F3EEE6;color:#2B211B;font-family:'Poppins',sans-serif;font-size:15px;line-height:1.3">
+
+<aside data-side="1" style="position:sticky;top:0;height:100vh;box-sizing:border-box;overflow-y:auto;align-self:flex-start;width:222px;flex:0 0 222px;background:#2B211B;color:#F3EEE6;padding:24px 14px 20px;display:flex;flex-direction:column;gap:22px">
+<div style="padding:0 8px;display:flex">
+<x-import component-from-global-scope="CannieDesignSystem_274f8e.Lockup" tone="dark" height="24" hint-size="117px,24px"></x-import>
+</div>
+<nav style="display:flex;flex-direction:column;gap:2px">
+<a href="Cannie.dc.html?page=overview" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg><span>Overview</span></a>
+<a href="Pipeline.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18"/></svg><span>Pipeline</span></a>
+<a href="Cannie.dc.html?page=board" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg><span>Job board</span></a>
+<span style="border-top:1px solid #4C3D33;margin:12px 0 10px"></span>
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:#D9CFC0;padding:0 12px 4px">Pinned</span>
+<sc-for list="{{ pinnedItems }}" as="pn" hint-placeholder-count="2">
+<div style="display:flex;align-items:center;gap:6px;height:32px;padding:0 12px;border-radius:10px" style-hover="background:rgba(243,238,230,.08)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;color:#D9CFC0"><path d="M12 17v5M9 3h6l-1 7 3 3H7l3-3z"/></svg><a href="{{ pn.href }}" style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px;color:#F3EEE6;text-decoration:none">{{ pn.title }}</a><button onClick="{{ pn.unpin }}" title="Unpin" style="background:transparent;border:none;padding:0 2px;font-family:inherit;font-size:14px;line-height:1;color:#D9CFC0;cursor:pointer;opacity:.7">×</button></div>
+</sc-for>
+<sc-if value="{{ noPins }}" hint-placeholder-val="{{ false }}"><span style="padding:2px 12px 6px;font-size:12px;color:rgba(243,238,230,.60)">Pin a job, client or person from its page.</span></sc-if>
+<span style="border-top:1px solid #4C3D33;margin:12px 0 10px"></span>
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:#D9CFC0;padding:0 12px 4px">Records</span>
+<a href="Cannie.dc.html?page=clients" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2M10 6h4M10 10h4M10 14h4M10 18h4"/></svg><span>Clients</span></a>
+<a href="Pipeline.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg><span>Jobs</span></a>
+<a href="Cannie.dc.html?page=candidates" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg><span>Candidates</span></a>
+<a href="Cannie.dc.html?page=contact" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;background:rgba(232,150,179,.14);color:#E896B3;font-weight:600;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg><span>Contacts</span></a>
+<span style="border-top:1px solid #4C3D33;margin:12px 0 10px"></span>
+<a href="Cannie.dc.html?page=standards" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><span>Standards</span></a>
+</nav>
+<div data-context="1" style="border-top:1px solid #4C3D33;padding-top:20px;display:flex;flex-direction:column;gap:9px;flex-shrink:0">
+<a href="Cannie.dc.html?page=client" style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:#D9CFC0;padding:0 12px;text-decoration:none">Brightwell Payments, people</a>
+<sc-for list="{{ siblings }}" as="sj" hint-placeholder-count="5">
+<a href="{{ sj.href }}" style="display:flex;justify-content:space-between;gap:8px;padding:0 12px;font-size:14px;text-decoration:none;color:{{ sj.ink }};font-weight:{{ sj.weight }}"><span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ sj.title }}</span><span style="opacity:.65;font-size:12px">{{ sj.count }}</span></a>
+</sc-for>
+</div>
+</aside>
+
+<main style="flex:1;min-width:0;display:flex;flex-direction:column">
+<div data-topbar="1" style="position:sticky;top:0;z-index:6;display:flex;align-items:center;gap:14px;padding:10px 32px;background:#F3EEE6;border-bottom:1px solid #D9CFC0">
+<button onClick="{{ goBack }}" title="Back" style="height:38px;width:38px;flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;border:1px solid #D9CFC0;border-radius:10px;background:transparent;color:#2B211B;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+<div style="position:relative;flex:1 1 240px;min-width:0;max-width:640px">
+<input type="text" value="{{ gq }}" onChange="{{ setGq }}" onKeyDown="{{ gqKey }}" placeholder="Search everything: a name, a client, a skill, a job. Press / to focus." style="height:38px;width:100%;padding:0 12px 0 38px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;left:12px;top:10px;color:rgba(43,33,27,.55)"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+<sc-if value="{{ gqOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:0;right:0;top:44px;background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;padding:8px 0;box-shadow:0 12px 32px rgba(43,33,27,.18);display:flex;flex-direction:column;max-height:70vh;overflow:auto">
+<sc-for list="{{ gqGroups }}" as="g" hint-placeholder-count="3">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70);padding:8px 16px 4px">{{ g.label }}</span>
+<sc-for list="{{ g.hits }}" as="h" hint-placeholder-count="3">
+<a href="{{ h.href }}" style="display:flex;justify-content:space-between;gap:12px;padding:8px 16px;text-decoration:none;color:#2B211B" style-hover="background:rgba(43,33,27,.05)"><span style="display:flex;flex-direction:column;gap:1px;min-width:0"><span style="font-size:14px;font-weight:600">{{ h.title }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ h.sub }}</span></span><span style="font-size:12px;color:rgba(43,33,27,.55);white-space:nowrap">{{ h.right }}</span></a>
+</sc-for>
+</sc-for>
+<sc-if value="{{ gqEmpty }}" hint-placeholder-val="{{ false }}"><span style="padding:10px 16px;font-size:14px;color:rgba(43,33,27,.55)">Nothing matches. Try a surname, a client, or a skill.</span></sc-if>
+<span style="padding:8px 16px 4px;font-size:12px;color:rgba(43,33,27,.55);border-top:1px solid #D9CFC0;margin-top:4px">Enter opens the first result. Reads candidates, clients, contacts, jobs and documents.</span>
+</div>
+</sc-if>
+</div>
+<span style="flex:1 0 8px"></span>
+<div style="position:relative;flex:0 0 auto">
+<button onClick="{{ toggleCreate }}" title="Create" style="flex:0 0 auto;height:38px;padding:0 14px;display:inline-flex;align-items:center;gap:8px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg><span>New</span></button>
+<sc-if value="{{ createOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;right:0;top:44px;width:260px;background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;padding:8px 0;box-shadow:0 12px 32px rgba(43,33,27,.18);display:flex;flex-direction:column;z-index:7">
+<sc-for list="{{ createItems }}" as="c" hint-placeholder-count="5">
+<a href="{{ c.href }}" style="display:flex;flex-direction:column;gap:1px;padding:9px 16px;text-decoration:none;color:#2B211B" style-hover="background:rgba(43,33,27,.05)"><span style="font-size:14px;font-weight:600">{{ c.label }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ c.sub }}</span></a>
+</sc-for>
+</div>
+</sc-if>
+</div>
+<div data-syncchip="1" style="position:relative;flex:0 0 auto">
+<button onClick="{{ toggleSync }}" title="Outlook sync" style="height:38px;padding:0 12px;display:inline-flex;align-items:center;gap:7px;border:1px solid {{ syncBorder }};border-radius:10px;background:{{ syncBg }};color:#2B211B;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer"><span style="width:8px;height:8px;border-radius:999px;background:{{ syncDot }}"></span><span>{{ syncLabel }}</span></button>
+<sc-if value="{{ syncOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;right:0;top:44px;width:320px;background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;padding:14px 16px;box-shadow:0 12px 32px rgba(43,33,27,.18);display:flex;flex-direction:column;gap:10px;z-index:7">
+<div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Outlook, priya.shah@cannie.example</span><span style="font-size:14px;font-weight:600">{{ syncHead }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ syncSub }}</span></div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;border-top:1px solid #D9CFC0;padding-top:10px">
+<sc-for list="{{ syncFacts }}" as="f" hint-placeholder-count="3"><span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">{{ f.label }}</span><span style="font-size:15px;font-weight:700;color:{{ f.ink }}">{{ f.value }}</span></span></sc-for>
+</div>
+<sc-for list="{{ syncRows }}" as="r" hint-placeholder-count="3"><div style="display:flex;justify-content:space-between;gap:10px;font-size:13px;border-top:1px solid #D9CFC0;padding:7px 0"><span style="min-width:0">{{ r.what }}</span><span style="font-size:12px;color:rgba(43,33,27,.55);white-space:nowrap">{{ r.when }}</span></div></sc-for>
+<div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding-top:4px"><button onClick="{{ syncToggleState }}" style="height:32px;padding:0 12px;border-radius:10px;border:1px solid rgba(43,33,27,.85);background:transparent;font-family:inherit;font-size:13px;font-weight:600;color:#2B211B;cursor:pointer">{{ syncAction }}</button><span style="font-size:12px;color:rgba(43,33,27,.55)">Calendar, mail and contacts. Cannie is the record; Outlook is where you see it.</span></div>
+</div>
+</sc-if>
+</div>
+<button onClick="{{ togglePin }}" title="{{ pinTitle }}" style="flex:0 0 auto;height:38px;padding:0 12px;display:inline-flex;align-items:center;gap:6px;border:1px solid {{ pinBorder }};border-radius:10px;background:{{ pinBg }};color:{{ pinInk }};font-family:inherit;font-size:13px;font-weight:600;cursor:pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="{{ pinFill }}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17v5M9 3h6l-1 7 3 3H7l3-3z"/></svg><span>{{ pinLabel }}</span></button>
+<button onClick="{{ toggleRecent }}" title="Recent" style="flex:0 0 auto;height:38px;width:38px;display:inline-flex;align-items:center;justify-content:center;border:1px solid #D9CFC0;border-radius:10px;background:transparent;color:#2B211B;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></button>
+<sc-if value="{{ recentOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;right:88px;top:52px;width:300px;background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;padding:8px 0;box-shadow:0 12px 32px rgba(43,33,27,.18);display:flex;flex-direction:column;z-index:7">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70);padding:8px 16px 4px">Recent</span>
+<sc-for list="{{ recentItems }}" as="r" hint-placeholder-count="5">
+<a href="{{ r.href }}" style="display:flex;justify-content:space-between;gap:12px;padding:8px 16px;text-decoration:none;color:#2B211B" style-hover="background:rgba(43,33,27,.05)"><span style="display:flex;flex-direction:column;gap:1px"><span style="font-size:14px;font-weight:600">{{ r.title }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ r.sub }}</span></span><span style="font-size:12px;color:rgba(43,33,27,.55);white-space:nowrap">{{ r.when }}</span></a>
+</sc-for>
+</div>
+</sc-if>
+<span style="flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:999px;background:#2B211B;color:#F3EEE6;font-size:11px;font-weight:600">PS</span>
+</div>
+
+<header data-page="1" style="padding:26px 32px 0;display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap">
+<div style="display:flex;flex-direction:column;gap:6px;min-width:0;flex:1 1 380px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Contact</span>
+<h1 style="margin:0;font-size:30px;font-weight:700;letter-spacing:-0.0075em">{{ fullName }}</h1>
+<p style="margin:0;font-size:15px;font-weight:600">{{ headerLine }}</p>
+<span style="font-size:13px;color:rgba(43,33,27,.55)">{{ readLine }}</span>
+<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;color:rgba(43,33,27,.55)">
+<sc-for list="{{ roleChips }}" as="rc" hint-placeholder-count="2">
+<a href="{{ rc.href }}" style="display:inline-flex;align-items:center;height:22px;padding:0 9px;border:1px solid rgba(43,33,27,.85);border-radius:6px;font-size:11px;font-weight:600;color:rgba(43,33,27,.85);text-decoration:none">{{ rc.label }}</a>
+</sc-for>
+<sc-if value="{{ isCandidate }}" hint-placeholder-val="{{ false }}"><a href="Cannie.dc.html?page=candidate" style="display:inline-flex;align-items:center;height:22px;padding:0 9px;background:#EFE7DA;border-radius:6px;font-size:11px;font-weight:600;color:#2B211B;text-decoration:none">Also a candidate</a></sc-if>
+</div>
+</div>
+<div data-actions="1" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;flex:0 0 auto">
+<input type="text" value="{{ recSearch }}" onChange="{{ setRecSearch }}" placeholder="Search this contact" style="height:40px;padding:0 14px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;width:220px;max-width:100%;box-sizing:border-box">
+<button onClick="{{ secondaryGo }}" style="white-space:nowrap;height:40px;padding:0 16px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:transparent;color:#2B211B;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer">Take a new job</button>
+<button onClick="{{ primaryGo }}" style="white-space:nowrap;height:40px;padding:0 18px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer">{{ primaryLabel }}</button>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:5px">
+<div style="display:flex;gap:6px;flex-wrap:wrap;align-items:baseline;font-size:14px;color:{{ needsInk }}">
+<span style="font-weight:700">{{ needsLabel }}</span>
+<sc-for list="{{ needsItems }}" as="r" hint-placeholder-count="2">
+<button onClick="{{ r.go }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:14px;font-weight:600;color:{{ needsInk }};text-decoration:underline;cursor:pointer">{{ r.label }}</button><span>{{ r.sep }}</span>
+</sc-for>
+<span style="color:rgba(43,33,27,.55);margin-left:8px;display:flex;gap:10px">
+<sc-for list="{{ needsToggles }}" as="t" hint-placeholder-count="2">
+<button onClick="{{ t.go }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;color:rgba(43,33,27,.70);cursor:pointer;font-weight:{{ t.weight }};text-decoration:{{ t.deco }}">{{ t.label }}</button>
+</sc-for>
+</span>
+</div>
+<sc-if value="{{ needsExpanded }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;gap:6px;flex-wrap:wrap;align-items:baseline;font-size:14px;color:#2B211B">
+<sc-for list="{{ needsOpenItems }}" as="r" hint-placeholder-count="2">
+<button onClick="{{ r.go }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:14px;font-weight:600;color:#2B211B;text-decoration:underline;cursor:pointer">{{ r.label }}</button><span>{{ r.sep }}</span>
+</sc-for>
+</div>
+</sc-if>
+</div>
+
+<div style="background:#EFE7DA;border-radius:14px;padding:18px 22px;display:flex;flex-direction:column;gap:14px">
+<div data-snap="1" style="display:grid;grid-template-columns:minmax(200px,1fr) minmax(240px,1.15fr) minmax(260px,1.35fr);gap:14px 32px;align-items:start">
+<div style="display:flex;flex-direction:column;gap:9px">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Reach him</span><button onClick="{{ editContact }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:12px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">Edit</button></div>
+<div style="display:flex;gap:6px;flex-wrap:wrap">
+<sc-for list="{{ snapRoutes }}" as="r" hint-placeholder-count="3">
+<a href="{{ r.href }}" title="{{ r.value }}" style="height:32px;padding:0 12px;display:inline-flex;align-items:center;border:1px solid rgba(43,33,27,.85);border-radius:10px;font-size:13px;font-weight:600;color:#2B211B;text-decoration:none;background:#F3EEE6">{{ r.label }}</a>
+</sc-for>
+</div>
+<span style="font-size:13px;color:#2B211B">{{ snapPrefers }}</span>
+<span style="font-size:13px;color:rgba(43,33,27,.70)">{{ snapAssist }}</span>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 16px">
+<sc-for list="{{ snapFacts }}" as="f" hint-placeholder-count="4">
+<div style="display:flex;flex-direction:column;gap:3px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">{{ f.label }}</span><span style="font-size:15px;font-weight:700;color:{{ f.ink }}">{{ f.value }}</span></div>
+</sc-for>
+</div>
+<div style="display:flex;flex-direction:column;gap:7px;min-width:0">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Recent</span><a href="Cannie.dc.html?page=standards" onClick="{{ goActivity }}" style="font-size:12px;font-weight:600">All activity</a></div>
+<sc-for list="{{ snapRecent }}" as="rc" hint-placeholder-count="3">
+<button onClick="{{ rc.go }}" style="display:grid;grid-template-columns:52px minmax(0,1fr);gap:10px;align-items:baseline;background:transparent;border:none;padding:0;font-family:inherit;text-align:left;cursor:pointer;color:inherit;min-width:0"><span style="font-size:12px;color:rgba(43,33,27,.55);white-space:nowrap">{{ rc.when }}</span><span style="font-size:13px;color:{{ rc.ink }};font-weight:{{ rc.weight }};overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-decoration:underline;text-decoration-color:#D9CFC0;text-underline-offset:3px">{{ rc.what }}</span></button>
+</sc-for>
+</div>
+</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;border-top:1px solid #D9CFC0;padding-top:12px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70);margin-right:4px">How he works</span>
+<sc-for list="{{ tagChips }}" as="tc" hint-placeholder-count="3">
+<span style="height:26px;padding:0 10px;display:inline-flex;align-items:center;border-radius:6px;background:#2B211B;color:#F3EEE6;font-size:12px;font-weight:600">{{ tc.name }}</span>
+</sc-for>
+<button onClick="{{ editTags }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:12px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">Edit</button>
+<span style="flex:1"></span>
+<span style="font-size:13px;color:rgba(43,33,27,.70)">{{ patternLine }}</span>
+</div>
+</div>
+</header>
+
+<sc-if value="{{ actionsStrip }}" hint-placeholder-val="{{ false }}">
+<div data-page="1" style="padding:14px 32px 0;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Next actions</span>
+<sc-for list="{{ actions }}" as="ac" hint-placeholder-count="3"><button onClick="{{ ac.open }}" style="height:32px;padding:0 12px;display:inline-flex;align-items:center;gap:8px;border-radius:999px;border:1px solid #D9CFC0;background:#F3EEE6;font-family:inherit;font-size:13px;color:#2B211B;cursor:pointer"><span>{{ ac.what }}</span><span style="font-size:12px;font-weight:600;color:rgba(43,33,27,.70)">{{ ac.when }}</span></button></sc-for>
+<button onClick="{{ addAction }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">Add</button>
+</div>
+</sc-if>
+<div data-sticky="1" style="position:sticky;top:59px;z-index:5;background:#F3EEE6;display:flex;gap:20px;align-items:flex-end;border-bottom:1px solid #D9CFC0;padding:18px 32px 0;overflow-x:auto;white-space:nowrap">
+<sc-if value="{{ scrolled }}" hint-placeholder-val="{{ false }}">
+<span style="font-size:16px;font-weight:700;letter-spacing:-0.0075em;padding:0 20px 14px 0;border-right:1px solid #D9CFC0;margin-right:10px;white-space:nowrap">{{ fullName }}</span>
+</sc-if>
+<sc-for list="{{ tabs }}" as="tab" hint-placeholder-count="6">
+<button onClick="{{ tab.go }}" style="border:none;background:transparent;font-family:inherit;font-size:14px;cursor:pointer;padding:0 0 14px;border-bottom:3.4px solid {{ tab.line }};color:{{ tab.ink }};font-weight:{{ tab.weight }}">{{ tab.label }}</button>
+</sc-for>
+</div>
+
+<div data-page="1" style="padding:24px 32px 64px;display:flex;flex-direction:column;gap:24px">
+<sc-if value="{{ hasFlash }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:14px;font-weight:600;color:#9E2D53">{{ flash }}</p></sc-if>
+
+<sc-if value="{{ isSearch }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:14px;max-width:820px">
+<div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><h2 style="margin:0;font-size:19px;font-weight:700;letter-spacing:-0.0075em">{{ searchTitle }}</h2><div style="flex:1"></div><button onClick="{{ clearSearch }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#2B211B;text-decoration:underline;cursor:pointer">Clear</button></div>
+<sc-for list="{{ searchHits }}" as="h" hint-placeholder-count="3">
+<button onClick="{{ h.go }}" style="display:flex;justify-content:space-between;gap:12px;align-items:center;border:none;border-top:1px solid #D9CFC0;padding:10px 4px;background:transparent;font-family:inherit;color:inherit;cursor:pointer;text-align:left" style-hover="background:rgba(43,33,27,.05)"><span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font-size:14px;font-weight:600">{{ h.title }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ h.sub }}</span></span><span style="font-size:12px;color:rgba(43,33,27,.55);white-space:nowrap">{{ h.where }}</span></button>
+</sc-for>
+<sc-if value="{{ searchEmpty }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:14px;color:rgba(43,33,27,.55)">Nothing on this contact matches.</p></sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ isJobs }}" hint-placeholder-val="{{ true }}">
+<div data-split="1" style="display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start">
+<div style="display:flex;flex-direction:column;gap:22px;min-width:0">
+<section style="display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><h2 style="margin:0;font-size:19px;font-weight:700;letter-spacing:-0.0075em">His jobs to fill</h2><span style="font-size:13px;color:rgba(43,33,27,.55)">{{ jobsLine }}</span></div>
+<div data-rowhead="1" style="display:grid;grid-template-columns:minmax(180px,1.4fr) 80px 110px minmax(180px,1.4fr);gap:12px;padding:0 4px 8px;border-bottom:3.4px solid #2B211B;font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)"><span>Job</span><span>Type</span><span>Pipeline</span><span>Waiting on him</span></div>
+<sc-for list="{{ jobs }}" as="j" hint-placeholder-count="3">
+<a data-row="1" href="{{ j.href }}" style="display:grid;grid-template-columns:minmax(180px,1.4fr) 80px 110px minmax(180px,1.4fr);gap:12px;align-items:center;border-top:1px solid #D9CFC0;padding:12px 4px;color:#2B211B;text-decoration:none" style-hover="background:rgba(43,33,27,.05)">
+<span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font-size:15px;font-weight:600">{{ j.title }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ j.sub }}</span></span>
+<span style="font-size:14px">{{ j.type }}</span>
+<span style="font-size:14px">{{ j.pipeline }}</span>
+<span style="font-size:14px;color:{{ j.waitInk }};font-weight:{{ j.waitWeight }}">{{ j.waiting }}</span>
+</a>
+</sc-for>
+</section>
+<section style="display:flex;flex-direction:column;gap:10px">
+<button onClick="{{ toggleFilled }}" style="display:flex;align-items:baseline;gap:10px;background:transparent;border:none;padding:0;font-family:inherit;color:inherit;cursor:pointer;text-align:left"><h2 style="margin:0;font-size:19px;font-weight:700;letter-spacing:-0.0075em">Filled and live</h2><span style="font-size:13px;color:rgba(43,33,27,.55)">{{ filledLine }}</span><span style="font-size:13px;font-weight:600;color:#9E2D53;text-decoration:underline">{{ filledToggle }}</span></button>
+<sc-if value="{{ filledOpen }}" hint-placeholder-val="{{ false }}">
+<sc-for list="{{ filled }}" as="f" hint-placeholder-count="3">
+<a href="{{ f.href }}" style="display:grid;grid-template-columns:minmax(220px,1.5fr) minmax(0,2fr);gap:12px;align-items:start;border-top:1px solid #D9CFC0;padding:12px 4px;color:#2B211B;text-decoration:none"><span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:600">{{ f.title }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ f.person }}</span></span><span style="font-size:14px">{{ f.line }}</span></a>
+</sc-for>
+</sc-if>
+</section>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<sc-if value="{{ actionsSide }}" hint-placeholder-val="{{ true }}">
+<section style="background:#EFE7DA;border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:10px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Next actions</span>
+<sc-for list="{{ actions }}" as="ac" hint-placeholder-count="3">
+<div style="display:flex;justify-content:space-between;gap:12px;align-items:center;border-top:1px solid #D9CFC0;padding:10px 0">
+<button onClick="{{ ac.open }}" style="display:flex;flex-direction:column;gap:2px;min-width:0;align-items:flex-start;text-align:left;background:transparent;border:none;padding:0;font-family:inherit;color:inherit;cursor:pointer"><span style="font-size:14px;font-weight:500"><span style="color:rgba(43,33,27,.55)">{{ ac.typeLabel }}</span>{{ ac.what }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ ac.who }}</span><sc-if value="{{ ac.hasNote }}" hint-placeholder-val="{{ false }}"><span style="font-size:12px;color:rgba(43,33,27,.70);text-wrap:pretty">{{ ac.note }}</span></sc-if><sc-if value="{{ ac.hasCal }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;gap:5px;font-size:11px;color:{{ ac.calInk }};font-weight:{{ ac.calWeight }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>{{ ac.cal }}</span></sc-if></button>
+<span style="display:flex;flex-direction:column;align-items:flex-end;gap:3px;white-space:nowrap"><span style="font-size:12px;font-weight:600">{{ ac.when }}</span><button onClick="{{ ac.done }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:12px;color:rgba(43,33,27,.70);text-decoration:underline;cursor:pointer">Done</button></span>
+</div>
+</sc-for>
+<sc-if value="{{ noActions }}" hint-placeholder-val="{{ false }}"><p style="margin:0;padding-top:8px;font-size:13px;color:rgba(43,33,27,.55)">Nothing queued. Done actions are on Activity.</p></sc-if>
+<button onClick="{{ addAction }}" style="align-self:flex-start;background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">Add an action</button>
+</section>
+</sc-if>
+<section style="background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:8px">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Working with him</span><button onClick="{{ editNotes }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:12px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">Edit</button></div>
+<p style="margin:0;font-size:14px;text-wrap:pretty">{{ workingNotes }}</p>
+</section>
+<section style="background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:8px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Who decides</span>
+<p style="margin:0;font-size:14px">{{ decidesLine }}</p>
+<a href="Cannie.dc.html?page=client" style="font-size:13px;font-weight:600">All Brightwell people</a>
+</section>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isApprovals }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:14px;max-width:980px">
+<div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><h2 style="margin:0;font-size:19px;font-weight:700;letter-spacing:-0.0075em">Waiting on him</h2><span style="font-size:13px;color:rgba(43,33,27,.55)">{{ approvalsLine }}</span></div>
+<div style="overflow-x:auto;display:flex;flex-direction:column">
+<div data-rowhead="1" style="display:grid;grid-template-columns:minmax(200px,1.5fr) 120px 80px minmax(150px,1fr) 90px;gap:12px;padding:0 4px 8px;border-bottom:3.4px solid #2B211B;font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)"><span>Item</span><span>Kind</span><span>Waiting</span><span>Where</span><span></span></div>
+<sc-for list="{{ approvals }}" as="ap" hint-placeholder-count="3">
+<div data-row="1" style="display:grid;grid-template-columns:minmax(200px,1.5fr) 120px 80px minmax(150px,1fr) 90px;gap:12px;align-items:center;border-top:1px solid #D9CFC0;padding:12px 4px;font-size:14px"><span style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:600">{{ ap.item }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ ap.sub }}</span></span><span>{{ ap.kind }}</span><span style="font-weight:600;color:{{ ap.ink }}">{{ ap.age }}</span><a href="{{ ap.href }}" style="color:#2B211B;font-size:13px">{{ ap.where }}</a><button onClick="{{ ap.chase }}" style="justify-self:end;height:32px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:transparent;font-family:inherit;font-size:13px;font-weight:600;color:#2B211B;cursor:pointer">{{ ap.action }}</button></div>
+</sc-for>
+</div>
+<p style="margin:0;font-size:12px;color:rgba(43,33,27,.55)">Approvals are read from the timesheets, milestones and offers that name him as approver. Nothing is stored here.</p>
+</div>
+</sc-if>
+
+<sc-if value="{{ isPattern }}" hint-placeholder-val="{{ false }}">
+<div data-split="1" style="display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start">
+<div style="display:flex;flex-direction:column;gap:26px;min-width:0">
+<section style="background:#EFE7DA;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><h2 style="margin:0;font-size:19px;font-weight:700;letter-spacing:-0.0075em">His pattern</h2><span style="font-size:13px;color:rgba(43,33,27,.55)">Measured over the last twelve months, from what was logged. Nothing here is typed.</span></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px 20px">
+<sc-for list="{{ patternFacts }}" as="pf" hint-placeholder-count="6">
+<div style="display:flex;flex-direction:column;gap:3px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">{{ pf.label }}</span><span style="font-size:15px;font-weight:600;color:{{ pf.ink }}">{{ pf.value }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ pf.note }}</span></div>
+</sc-for>
+</div>
+</section>
+<section style="display:flex;flex-direction:column;gap:10px">
+<h2 style="margin:0;font-size:19px;font-weight:700;letter-spacing:-0.0075em">What that means</h2>
+<sc-for list="{{ patternReads }}" as="pr" hint-placeholder-count="3">
+<div style="display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;border-top:1px solid #D9CFC0;padding:12px 4px"><span style="font-size:13px;font-weight:600">{{ pr.k }}</span><span style="font-size:14px;text-wrap:pretty">{{ pr.v }}</span></div>
+</sc-for>
+<p style="margin:0;font-size:12px;color:rgba(43,33,27,.55)">Derived. Too few events in a period and the row says so rather than guessing.</p>
+</section>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<section style="background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:8px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">For the account review</span>
+<p style="margin:0;font-size:14px">{{ reviewLine }}</p>
+<button onClick="{{ copyReview }}" style="align-self:flex-start;background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">Log as a note</button>
+</section>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isDetails }}" hint-placeholder-val="{{ false }}">
+<div data-split="1" style="display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start">
+<div style="display:flex;flex-direction:column;gap:26px;min-width:0">
+<sc-for list="{{ detailGroups }}" as="g" hint-placeholder-count="2">
+<section style="background:#EFE7DA;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><h2 style="margin:0;font-size:19px;font-weight:700;letter-spacing:-0.0075em">{{ g.title }}</h2><div style="flex:1"></div><button onClick="{{ g.edit }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">Edit</button></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px 20px">
+<sc-for list="{{ g.fields }}" as="d" hint-placeholder-count="4">
+<div style="display:flex;flex-direction:column;gap:3px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">{{ d.label }}</span><span style="font-size:15px;font-weight:600;color:{{ d.ink }}">{{ d.value }}</span></div>
+</sc-for>
+</div>
+</section>
+</sc-for>
+<section style="display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><h2 style="margin:0;font-size:19px;font-weight:700;letter-spacing:-0.0075em">Where he has been</h2><span style="font-size:13px;color:rgba(43,33,27,.55)">The relationship follows the person. A move keeps the history on both clients.</span><div style="flex:1"></div><button onClick="{{ recordMove }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">Record a move</button></div>
+<sc-for list="{{ moves }}" as="m" hint-placeholder-count="2">
+<div style="display:grid;grid-template-columns:170px minmax(0,1fr);gap:16px;border-top:1px solid #D9CFC0;padding:12px 4px"><span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:13px;color:rgba(43,33,27,.55)">{{ m.when }}</span><span style="font-size:12px;font-weight:600;color:{{ m.ink }}">{{ m.state }}</span></span><span style="display:flex;flex-direction:column;gap:3px"><span style="font-size:15px;font-weight:600">{{ m.role }}</span><span style="font-size:14px">{{ m.note }}</span></span></div>
+</sc-for>
+</section>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<section style="background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:8px">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Consent</span><button onClick="{{ editConsent }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:12px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">Edit</button></div>
+<sc-for list="{{ consentRows }}" as="c" hint-placeholder-count="3">
+<div style="display:flex;justify-content:space-between;gap:10px;font-size:14px"><span>{{ c.k }}</span><span style="font-weight:600;text-align:right">{{ c.v }}</span></div>
+</sc-for>
+<p style="margin:0;font-size:12px;color:rgba(43,33,27,.55)">Business contact, legitimate interest. Marketing needs his say so; the rest does not.</p>
+</section>
+<section style="background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:8px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Signed by him</span>
+<sc-for list="{{ signed }}" as="sd" hint-placeholder-count="2">
+<div style="display:flex;justify-content:space-between;gap:10px;font-size:14px"><a href="Cannie.dc.html?page=client" style="color:#2B211B;font-weight:600">{{ sd.name }}</a><span style="font-size:12px;color:rgba(43,33,27,.55);white-space:nowrap">{{ sd.when }}</span></div>
+</sc-for>
+<p style="margin:0;font-size:12px;color:rgba(43,33,27,.55)">From Brightwell's documents, filtered to this signatory.</p>
+</section>
+<sc-if value="{{ isCandidate }}" hint-placeholder-val="{{ false }}">
+<section style="background:#EFE7DA;border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:8px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">One person, two roles</span>
+<p style="margin:0;font-size:14px">Also a <a href="Cannie.dc.html?page=candidate">candidate</a> on the desk, passive. Putting him forward to Brightwell is blocked while he works here.</p>
+</section>
+</sc-if>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isActivity }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:16px;max-width:980px">
+<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+<sc-for list="{{ actFilters }}" as="af" hint-placeholder-count="5">
+<button onClick="{{ af.go }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:transparent;border:{{ af.border }};color:{{ af.ink }};font-weight:{{ af.weight }}">{{ af.label }}</button>
+</sc-for>
+<span style="font-size:12px;color:rgba(43,33,27,.55);margin-left:6px">Shared with Brightwell and his jobs. Email sync seeded, not connected.</span>
+</div>
+<sc-for list="{{ activity }}" as="a" hint-placeholder-count="5">
+<button onClick="{{ a.open }}" style="display:grid;grid-template-columns:100px 90px minmax(0,1fr);gap:16px;border:none;border-top:1px solid #D9CFC0;padding:12px 4px;align-items:start;background:transparent;font-family:inherit;color:inherit;cursor:pointer;text-align:left;width:100%" style-hover="background:rgba(43,33,27,.05)"><span style="font-size:13px;color:rgba(43,33,27,.55)">{{ a.when }}</span><span style="font-size:12px;font-weight:600;color:rgba(43,33,27,.70)">{{ a.kind }}</span><span style="display:flex;flex-direction:column;gap:3px"><span style="font-size:14px">{{ a.what }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ a.who }}, {{ a.where }}</span><sc-if value="{{ a.hasDetail }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:rgba(43,33,27,.70)">{{ a.detail }}</span></sc-if></span></button>
+</sc-for>
+</div>
+</sc-if>
+
+</div>
+
+<sc-if value="{{ dOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:fixed;inset:0;background:rgba(43,33,27,.55);backdrop-filter:blur(3px);display:flex;justify-content:flex-end;z-index:20">
+<div onClick="{{ dClose }}" style="flex:1"></div>
+<div style="width:min(580px,100%);background:#F3EEE6;height:100%;overflow-y:auto;overflow-x:hidden;box-sizing:border-box;padding:28px 30px 44px;display:flex;flex-direction:column;gap:20px;box-shadow:-8px 0 24px rgba(43,33,27,.18)">
+<div style="display:flex;align-items:flex-start;gap:16px">
+<div style="display:flex;flex-direction:column;gap:6px;min-width:0">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">{{ dKicker }}</span>
+<h2 style="margin:0;font-size:24px;font-weight:700;letter-spacing:-0.0075em">{{ dTitle }}</h2>
+<span style="font-size:13px;color:rgba(43,33,27,.55)">{{ dMeta }}</span>
+</div>
+<div style="flex:1"></div>
+<button onClick="{{ dClose }}" style="height:32px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:transparent;font-family:inherit;font-size:13px;color:#2B211B;cursor:pointer">Close</button>
+</div>
+<sc-if value="{{ dHasFacts }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-wrap:wrap;gap:16px 32px;background:#EFE7DA;border-radius:14px;padding:18px">
+<sc-for list="{{ dFacts }}" as="f" hint-placeholder-count="3">
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">{{ f.label }}</span><span style="font-size:15px;font-weight:700">{{ f.value }}</span></div>
+</sc-for>
+</div>
+</sc-if>
+<sc-for list="{{ dBody }}" as="p" hint-placeholder-count="1">
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">{{ p.label }}</span><p style="margin:0;font-size:14px;white-space:pre-wrap">{{ p.text }}</p></div>
+</sc-for>
+<sc-for list="{{ dFields }}" as="d" hint-placeholder-count="2">
+<div style="display:flex;flex-direction:column;gap:5px">
+<span style="font-size:13px;font-weight:600">{{ d.label }}</span>
+<sc-if value="{{ d.isText }}" hint-placeholder-val="{{ true }}"><input type="text" value="{{ d.value }}" onChange="{{ d.set }}" placeholder="{{ d.placeholder }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:100%;box-sizing:border-box"></sc-if>
+<sc-if value="{{ d.isArea }}" hint-placeholder-val="{{ false }}"><textarea value="{{ d.value }}" onChange="{{ d.set }}" placeholder="{{ d.placeholder }}" style="min-height:90px;padding:10px 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;resize:vertical;width:100%;box-sizing:border-box"></textarea></sc-if>
+<sc-if value="{{ d.isDatetime }}" hint-placeholder-val="{{ false }}"><input type="datetime-local" step="900" value="{{ d.value }}" onChange="{{ d.set }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:100%;box-sizing:border-box"></sc-if>
+<sc-if value="{{ d.isDate }}" hint-placeholder-val="{{ false }}"><input type="date" value="{{ d.value }}" onChange="{{ d.set }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:100%;box-sizing:border-box"></sc-if>
+<sc-if value="{{ d.isSelect }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:7px;flex-wrap:wrap">
+<sc-for list="{{ d.options }}" as="o" hint-placeholder-count="3">
+<button onClick="{{ o.pick }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ o.bg }};border:{{ o.border }};color:{{ o.ink }};font-weight:{{ o.weight }}">{{ o.label }}</button>
+</sc-for>
+</div></sc-if>
+<sc-if value="{{ d.hasNote }}" hint-placeholder-val="{{ false }}"><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ d.note }}</span></sc-if>
+</div>
+</sc-for>
+<sc-if value="{{ dHasError }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:13px;font-weight:600;color:#9E2D53">{{ dError }}</p></sc-if>
+<div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+<sc-if value="{{ dHasPrimary }}" hint-placeholder-val="{{ true }}"><button onClick="{{ dPrimary }}" style="height:40px;padding:0 18px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer">{{ dPrimaryLabel }}</button></sc-if>
+<sc-for list="{{ dLinks }}" as="l" hint-placeholder-count="1">
+<button onClick="{{ l.go }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#2B211B;text-decoration:underline;cursor:pointer">{{ l.label }}</button>
+</sc-for>
+<span style="font-size:12px;color:rgba(43,33,27,.55)">{{ dFoot }}</span>
+</div>
+</div>
+</div>
+</sc-if>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;alsoCandidate&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;State&quot;}, &quot;actionsPlacement&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;Side column&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;options&quot;: [&quot;Side column&quot;, &quot;Strip under header&quot;], &quot;section&quot;: &quot;A/B&quot;}}">
+const INK = '#2B211B', BERRY = '#9E2D53', MUTED = 'rgba(43,33,27,.55)', MID = 'rgba(43,33,27,.70)', TAUPE = '#D9CFC0', SAND = '#EFE7DA';
+const TABS = ['Jobs', 'Approvals', 'Pattern', 'Details', 'Activity'];
+const QUICK = {'Today': '2026-09-19', 'Tomorrow': '2026-09-20', 'Monday': '2026-09-21', 'In a week': '2026-09-26', 'In two weeks': '2026-10-03', 'In a month': '2026-10-19'};
+const JOBS = [
+  {title: 'Senior Backend Engineer', sub: 'Perm, open 24 days, you', type: 'Perm', pipeline: '3 sent, 2 interview', waiting: 'Feedback on Lucía Ferreira, 3 days', wait: true, href: 'Cannie.dc.html?page=job'},
+  {title: 'Data Engineers, payments platform', sub: 'T&M, 1 of 3 filled, you', type: 'T&M', pipeline: '2 sent, 1 offer', waiting: 'Sign off on Rosa Alvarez offer, 2 days', wait: true, href: 'Cannie.dc.html?page=job&type=T%26M'},
+  {title: 'Payments migration, phase 2', sub: 'SOW, month 4 of 13, Nadia Croft', type: 'SOW', pipeline: '4 on site', waiting: 'Milestone 3 approval, 5 days', wait: true, href: 'Cannie.dc.html?page=job&type=SOW'},
+  {title: 'Security Engineer', sub: 'Perm, open 9 days, you', type: 'Perm', pipeline: '4 screened', waiting: 'Nothing yet', wait: false, href: 'Cannie.dc.html?page=job'},
+];
+const FILLED = [
+  {title: 'Platform Engineer', person: 'Tom Whitfield, started 6 Jul', line: 'Perm, £78,000. Rebate window to 3 Oct.', href: 'Cannie.dc.html?page=client'},
+  {title: 'Data Engineer', person: 'Femi Adebayo, since 6 Oct', line: 'T&M, £580 a day, ends 31 Mar 2027. Right to work expires in 9 days.', href: 'Cannie.dc.html?page=client'},
+  {title: 'Payments migration, phase 2', person: 'Four contractors', line: 'SOW, £240,000, milestone 3 of 6 awaiting him.', href: 'Cannie.dc.html?page=job&type=SOW'},
+];
+const APPROVALS = [
+  {id: 'm3', item: 'Milestone 3, data migration dry run', sub: 'Payments migration, phase 2. £40,000', kind: 'Milestone', days: 5, where: 'SOW, Milestones', href: 'Cannie.dc.html?page=job&type=SOW'},
+  {id: 'ts', item: 'Timesheet w/c 8 Sep, Femi Adebayo', sub: '5 days, £2,900', kind: 'Timesheet', days: 6, where: 'Client, Billing', href: 'Cannie.dc.html?page=client'},
+  {id: 'of', item: 'Offer, Rosa Alvarez', sub: 'Data Engineers. £580 a day, starts 6 Oct', kind: 'Offer sign off', days: 2, where: 'Job, Pipeline', href: 'Cannie.dc.html?page=job&type=T%26M'},
+  {id: 'fb', item: 'Feedback on Lucía Ferreira', sub: 'Senior Backend Engineer. CV sent 15 Sep', kind: 'Feedback', days: 3, where: 'Job, Pipeline', href: 'Cannie.dc.html?page=job'},
+];
+const BASE_ACTIVITY = [
+  {when: 'Today', kind: 'Email', what: 'Chased milestone 3 approval. No reply yet.', who: 'Nadia Croft', where: 'Payments migration, phase 2', detail: ''},
+  {when: 'Wed', kind: 'Call', what: 'Missed him. Left a message about Lucía and the Rosa offer.', who: 'Priya Shah', where: 'Brightwell Payments', detail: 'Assistant Kemi said he is in Leeds Thu and Fri.'},
+  {when: 'Mon', kind: 'Meeting', what: 'Weekly pipeline call, 20 min. Wants two more at Interview for the Backend role by Friday.', who: 'Priya Shah', where: 'Senior Backend Engineer', detail: 'He will do second rounds on site with Priya Lam. Prefers mornings.'},
+  {when: '11 Sep', kind: 'Interview', what: 'Gave feedback on Amara Osei, 1st round: strong, wants a second look at design thinking.', who: 'Dan Okafor', where: 'Senior Backend Engineer', detail: ''},
+  {when: '5 Sep', kind: 'Email', what: 'Received CV and summary for Amara Osei. Replied within the hour.', who: 'Dan Okafor', where: 'Senior Backend Engineer', detail: ''},
+  {when: '2 Sep', kind: 'Meeting', what: 'Took the brief for Security Engineer. 45 min, Teams.', who: 'Priya Shah', where: 'Security Engineer', detail: 'Wants CVs, not profiles. Will not sponsor.'},
+  {when: '28 Aug', kind: 'Approval', what: 'Approved milestone 2 after 9 days and two chases.', who: 'Dan Okafor', where: 'Payments migration, phase 2', detail: ''},
+  {when: '14 Aug', kind: 'Approval', what: 'Approved timesheets w/c 4 Aug, 3 of them, same day.', who: 'Dan Okafor', where: 'Brightwell Payments', detail: ''},
+  {when: 'Mar 2026', kind: 'Edit', what: 'Moved from Northbeam Data (Engineering Manager) to Brightwell Payments (Head of Engineering).', who: 'Priya Shah', where: 'Brightwell Payments', detail: 'Northbeam history kept. Ruth Vance is now the Northbeam contact.'},
+];
+
+class Component extends DCLogic {
+
+  syncVals() {
+    const s = this.state; const off = !!s.syncOff;
+    const rows = [{what: 'Event created: Call Amara, 18:30', when: '10:31'}, {what: 'Moved in Outlook: Rate card call, now 14:30', when: '09:12'}, {what: '3 emails attached: Dan Okafor, Ruth Vance, Amara Osei', when: '09:02'}, {what: 'Interview invite accepted: Priya Lam, Thu 10:00', when: 'Yesterday'}];
+    return {syncOpen: !!s.syncOpen, toggleSync: () => this.setState({syncOpen: !s.syncOpen, createOpen: false, recentOpen: false, gq: ''}),
+      syncLabel: off ? 'Outlook off' : 'Outlook', syncDot: off ? '#9E2D53' : '#2B211B', syncBorder: off ? '#9E2D53' : '#D9CFC0', syncBg: off ? '#EFE7DA' : 'transparent',
+      syncHead: off ? 'Disconnected' : 'Connected, synced 2 minutes ago', syncSub: off ? 'Actions and interviews still save; nothing reaches your calendar until you reconnect.' : 'Timed actions become events. Moves and declines in Outlook come back here. Mail from people on your records attaches itself.',
+      syncFacts: [{label: 'Events today', value: off ? '0' : '6', ink: '#2B211B'}, {label: 'Mail attached', value: off ? '0' : '14', ink: '#2B211B'}, {label: 'Not on a record', value: off ? '0' : '3', ink: off ? '#2B211B' : '#9E2D53'}],
+      syncRows: off ? [{what: 'Consent revoked in Microsoft 365 admin', when: 'Today 08:40'}] : rows,
+      syncAction: off ? 'Reconnect' : 'Disconnect', syncToggleState: () => { this.setState({syncOff: !off}); if (this.say) this.say(off ? 'Outlook reconnected. Catching up on the last hour.' : 'Outlook disconnected. Nothing sent or read until you reconnect.'); }};
+  }
+  topbarVals() {
+    const s = this.state; const q = (s.gq || '').trim().toLowerCase();
+    const INDEX = [
+      {g: 'Candidates', title: 'Amara Osei', sub: 'Backend Engineer, Monzo. Go, Kafka, payments.', right: 'Interview, Offer', href: 'Cannie.dc.html?page=candidate', k: 'amara osei monzo go kafka payments candidate'},
+      {g: 'Candidates', title: 'Lucía Ferreira', sub: 'Staff Engineer, Wise.', right: 'Sent', href: 'Cannie.dc.html?page=candidate', k: 'lucia lucía ferreira wise go kubernetes'},
+      {g: 'Candidates', title: 'Rosa Alvarez', sub: 'Data Engineer, contractor.', right: 'Offer', href: 'Cannie.dc.html?page=candidate', k: 'rosa alvarez data spark python contractor'},
+      {g: 'Candidates', title: 'Femi Adebayo', sub: 'On site, Brightwell. Right to work expires in 9 days.', right: 'Contractor', href: 'Cannie.dc.html?page=candidate', k: 'femi adebayo brightwell contractor right to work'},
+      {g: 'Candidates', title: 'Priyanka Rao', sub: 'Applied yesterday, unowned.', right: 'New', href: 'Cannie.dc.html?page=candidates', k: 'priyanka rao applied unowned gocardless'},
+      {g: 'Clients', title: 'Brightwell Payments', sub: 'Fintech, Leeds and London. 6 to fill, 9 on site.', right: '5 need you', href: 'Cannie.dc.html?page=client', k: 'brightwell payments fintech leeds london client'},
+      {g: 'Clients', title: 'Ordell Software', sub: 'SaaS, Manchester. Ruth quiet 9 days.', right: 'Quiet', href: 'Cannie.dc.html?page=client', k: 'ordell software saas manchester client'},
+      {g: 'Clients', title: 'Northbeam Data', sub: 'Analytics, Leeds. Invoice overdue.', right: 'Overdue', href: 'Cannie.dc.html?page=client', k: 'northbeam data analytics leeds client invoice'},
+      {g: 'Contacts', title: 'Dan Okafor', sub: 'Head of Engineering, Brightwell. 4 items waiting.', right: 'Contact', href: 'Cannie.dc.html?page=contact', k: 'dan okafor brightwell head of engineering hiring manager'},
+      {g: 'Contacts', title: 'Ruth Vance', sub: 'VP Engineering, Ordell.', right: 'Contact', href: 'Cannie.dc.html?page=contact', k: 'ruth vance ordell vp engineering'},
+      {g: 'Contacts', title: 'Claire Dunn', sub: 'Procurement, Brightwell. Rate card review 30 Sep.', right: 'Contact', href: 'Cannie.dc.html?page=contact', k: 'claire dunn brightwell procurement rate card'},
+      {g: 'Jobs', title: 'Senior Backend Engineer', sub: 'Brightwell, perm, £85,000 to £95,000. 3 sent, 2 at interview.', right: '24 days', href: 'Cannie.dc.html?page=job', k: 'senior backend engineer brightwell perm go kafka postgres payments job'},
+      {g: 'Jobs', title: 'Data Engineers, payments platform', sub: 'Brightwell, T&M, £550 to £600 a day.', right: '31 days', href: 'Cannie.dc.html?page=job&type=T%26M', k: 'data engineers payments platform brightwell t&m contract spark python job'},
+      {g: 'Jobs', title: 'Payments migration, phase 2', sub: 'Brightwell, SOW, milestone 3 awaiting.', right: 'Delivering', href: 'Cannie.dc.html?page=job&type=SOW', k: 'payments migration phase 2 brightwell sow statement of work milestone'},
+      {g: 'Jobs', title: 'Platform Lead', sub: 'Northbeam, perm, Nadia\'s job.', right: '18 days', href: 'Cannie.dc.html?page=job', k: 'platform lead northbeam perm kubernetes leadership job'},
+      {g: 'Documents', title: 'Brightwell terms of business', sub: 'Signed 3 Mar 2026, 16%, rebate to 12 weeks.', right: 'Contracts', href: 'Cannie.dc.html?page=client', k: 'brightwell terms of business msa contract rebate fee'},
+      {g: 'Documents', title: 'Amara Osei CV Sep 2026', sub: 'Current version, sent to Brightwell and Ordell.', right: 'CV', href: 'Cannie.dc.html?page=candidate', k: 'amara osei cv resume'},
+    ];
+    const words = q.split(/\s+/).filter(Boolean);
+    const hits = q.length < 2 ? [] : INDEX.filter(x => words.every(w => (x.title + ' ' + x.sub + ' ' + x.k).toLowerCase().includes(w)));
+    const order = ['Candidates', 'Clients', 'Contacts', 'Jobs', 'Documents'];
+    const groups = order.map(g => ({label: g, hits: hits.filter(h => h.g === g).slice(0, 4)})).filter(g => g.hits.length);
+    return {
+      goBack: () => { if (window.history.length > 1) window.history.back(); else window.location.href = 'Cannie.dc.html?page=overview'; },
+      ...this.syncVals(),
+      gq: s.gq || '', setGq: e => this.setState({gq: e.target.value, createOpen: false, recentOpen: false}), gqOpen: q.length >= 2, gqGroups: groups, gqEmpty: hits.length === 0,
+      gqKey: e => { if (e.key === 'Enter' && hits[0]) window.location.href = hits[0].href; if (e.key === 'Escape') this.setState({gq: ''}); },
+      createOpen: !!s.createOpen, toggleCreate: () => this.setState({createOpen: !s.createOpen, recentOpen: false, gq: ''}),
+      createItems: [{label: 'Candidate', sub: 'Name, a route, how they came to you. CV can follow.', href: 'Cannie.dc.html?page=candidates'}, {label: 'Job', sub: 'Pick the client first; the brief follows.', href: 'Cannie.dc.html?page=clients'}, {label: 'Client', sub: 'Name and one route. Lands on the empty record.', href: 'Cannie.dc.html?page=client&new=1'}, {label: 'Contact', sub: 'At a client you already have.', href: 'Cannie.dc.html?page=clients'}, {label: 'Note or call', sub: 'Against anyone. Same drawer as every record.', href: '#'}],
+      recentOpen: !!s.recentOpen, toggleRecent: () => this.setState({recentOpen: !s.recentOpen, createOpen: false, gq: ''}),
+      recentItems: [{title: 'Amara Osei', sub: 'Candidate', when: '10 min', href: 'Cannie.dc.html?page=candidate'}, {title: 'Senior Backend Engineer', sub: 'Job, Brightwell', when: '25 min', href: 'Cannie.dc.html?page=job'}, {title: 'Brightwell Payments', sub: 'Client', when: '1 hr', href: 'Cannie.dc.html?page=client'}, {title: 'Dan Okafor', sub: 'Contact, Brightwell', when: 'Yesterday', href: 'Cannie.dc.html?page=contact'}, {title: 'Payments migration, phase 2', sub: 'SOW, Brightwell', when: 'Yesterday', href: 'Cannie.dc.html?page=job&type=SOW'}],
+      ...(() => { const KEY = 'cannie.pins'; const read = () => { try { return JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { return null; } }; const here = {title: 'Dan Okafor', sub: 'Contact, Brightwell', href: window.location.pathname.split('/').pop() + window.location.search}; const pins = read() || [{title: 'Brightwell Payments', sub: 'Client', href: 'Cannie.dc.html?page=client'}, {title: 'Job board', sub: 'All live jobs', href: 'Cannie.dc.html?page=board'}]; const write = p => { localStorage.setItem(KEY, JSON.stringify(p)); this.forceUpdate(); }; const isPinned = pins.some(p => p.title === here.title); const full = pins.length >= 6 && !isPinned;
+        return {pinLabel: isPinned ? 'Pinned' : 'Pin', pinTitle: isPinned ? 'Unpin this page' : full ? 'Six pinned already. Unpin one first.' : 'Pin this page', pinBg: isPinned ? '#EFE7DA' : 'transparent', pinBorder: isPinned ? '#2B211B' : '#D9CFC0', pinInk: '#2B211B', pinFill: isPinned ? '#2B211B' : 'none',
+          togglePin: () => { if (isPinned) { write(pins.filter(p => p.title !== here.title)); if (this.say) this.say('Unpinned ' + here.title + '.'); } else if (full) { if (this.say) this.say('Six pinned already. Unpin one first.'); } else { write([here, ...pins]); if (this.say) this.say('Pinned ' + here.title + '. It sits in the sidebar on every page.'); } },
+          pinCount: String(pins.length), noPins: pins.length === 0, pinnedItems: pins.map(p => ({...p, unpin: () => write(pins.filter(x => x.title !== p.title))}))}; })(),
+      pinnedItemsUnused: [{title: 'Brightwell Payments', sub: 'Client', href: 'Cannie.dc.html?page=client'}, {title: 'Job board', sub: 'All live jobs', href: 'Cannie.dc.html?page=board'}],
+    };
+  }
+  state = {tab: 'Jobs', filledOpen: false, needsOpen: null, scrolled: false, flash: '', recSearch: '', drawer: null, dDraft: null, dError: ''};
+  componentDidMount() { this._onScroll = () => { const sc = window.scrollY > 140; if (sc !== this.state.scrolled) this.setState({scrolled: sc}); }; window.addEventListener('scroll', this._onScroll); }
+  componentWillUnmount() { window.removeEventListener('scroll', this._onScroll); }
+  say(msg) { this.setState({flash: msg}); clearTimeout(this._fl); this._fl = setTimeout(() => this.setState({flash: ''}), 3200); }
+  log(kind, what, where, detail) { this.setState({activity: [{when: 'Today', kind, what, who: 'Priya Shah', where: where || 'Brightwell Payments', detail: detail || ''}, ...this.activity()]}); }
+  activity() { return this.state.activity || BASE_ACTIVITY; }
+  approvals() { return this.state.approvals || APPROVALS; }
+  contact() { return this.state.contact || {first: 'Dan', last: 'Okafor', known: '', title: 'Head of Engineering', department: 'Engineering', email: 'dan.okafor@brightwell.example', direct: '0113 496 0000', mobile: '07700 900 555', linkedin: 'linkedin.com/in/danokafor', assistant: 'Kemi Adeyemi, kemi.a@brightwell.example', prefers: 'Email first', hours: 'Mornings, not Fridays', owner: 'Priya Shah', reportsTo: 'Claire Dunn, COO', team: 'Payments platform, 34 engineers', site: 'Head office, 4 Wellington Place, Leeds', decides: 'Decides on hires to £100,000; Claire Dunn above that and on any rate card change.'}; }
+  actions() { return this.state.actions || [{what: 'Chase Dan on milestone 3, copy Claire if nothing by Friday', who: 'Priya Shah', date: '2026-09-19', when: 'Today', note: 'Second chase. He approved milestone 2 after two.'}, {what: 'Call Dan Thu morning, he is in Leeds', who: 'Priya Shah', date: '2026-09-24', when: '24 Sep, 09:00', time: '09:00', note: 'Lucía feedback and Rosa sign off in one call.'}, {what: 'Quarterly catch up, in person', who: 'Priya Shah', date: '2026-10-14', when: '14 Oct', note: 'Brief for Q4 hiring. Book lunch.'}]; }
+  tags() { return this.state.tags || ['Email first', 'Slow on approvals', 'Fast on CVs', 'Wants CVs, not profiles', 'No sponsorship']; }
+  consent() { return this.state.consent || {basis: 'Legitimate interest, business contact', marketing: 'Market updates yes, events no', source: 'Business card, 14 Mar 2026', review: '2027-03-14'}; }
+  fmtDate(iso) { if (!iso) return ''; const d = new Date(iso + 'T00:00:00'); if (isNaN(d)) return iso; return d.toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: d.getFullYear() === 2026 ? undefined : 'numeric'}); }
+  daysTo(iso) { return Math.round((new Date(iso + 'T00:00:00') - new Date('2026-09-19T00:00:00')) / 86400000); }
+  pill(on) { return {bg: on ? INK : 'transparent', border: on ? '1px solid ' + INK : '1px solid ' + TAUPE, ink: on ? '#F3EEE6' : INK, weight: on ? '600' : '400'}; }
+  openDrawer(d) { this.setState({drawer: d, dDraft: d.draft || {}, dError: ''}); }
+  field(defs, draft, setDraft) {
+    return defs.map(f => ({label: f.label, value: draft[f.key] ?? '', placeholder: f.placeholder || '', note: f.note || '', hasNote: !!f.note,
+      isText: !f.kind || f.kind === 'text', isArea: f.kind === 'area', isDate: f.kind === 'date', isDatetime: f.kind === 'datetime', isSelect: f.kind === 'select',
+      set: e => setDraft({...draft, [f.key]: e.target.value, ...(f.key === 'date' ? {quick: ''} : {})}),
+      options: (f.options || []).map(o => ({label: (f.labels && f.labels[o]) || o, pick: () => setDraft({...draft, [f.key]: o, ...(f.key === 'quick' && QUICK[o] ? {date: QUICK[o]} : {}), ...(f.key === 'nextQuick' ? {next: o === 'Other' ? (draft.next || '2026-09-29T10:30') : (({"Tomorrow":"2026-09-22T10:30","Next week":"2026-09-28T10:30","Next month":"2026-10-21T10:30"})[o] || draft.next || ''), nextType: draft.nextType || draft.type || 'Call'} : {})}), ...this.pill(draft[f.key] === o)}))}));
+  }
+  drawerVals() {
+    const s = this.state, d = s.drawer;
+    if (!d) return {dOpen: false};
+    const dr = s.dDraft || {}; const ct = this.contact();
+    const setD = nd => this.setState({dDraft: nd});
+    const close = () => this.setState({drawer: null, dDraft: null, dError: ''});
+    const v = {dOpen: true, dClose: close, dKicker: '', dTitle: '', dMeta: '', dFacts: [], dHasFacts: false, dBody: [], dFields: [], dLinks: [], dHasPrimary: false, dPrimaryLabel: '', dPrimary: () => {}, dFoot: '', dError: s.dError, dHasError: !!s.dError};
+    const F = defs => this.field(defs, dr, setD);
+    const need = (k, msg) => { if (!(dr[k] || '').toString().trim()) { this.setState({dError: msg}); return false; } return true; };
+    const name = ct.first + ' ' + ct.last;
+    if (d.kind === 'log') {
+      const isMsg = dr.kind === 'Email' || dr.kind === 'SMS';
+      Object.assign(v, {dKicker: 'Log', dTitle: d.where || name, dMeta: 'One entry, here, on Brightwell and on the job it belongs to.',
+        dFields: F([{label: 'Kind', key: 'kind', kind: 'select', options: ['Call', 'Email', 'Meeting', 'Teams meeting', 'Note']}, {label: 'About', key: 'about', kind: 'select', options: ['The account', ...JOBS.map(j => j.title)]}, ...(isMsg ? [{label: 'Template', key: 'tpl', kind: 'select', options: ['None', 'Chase feedback', 'Chase approval', 'Shortlist cover', 'Interview slots request'], note: 'Fills the message with the candidate, job and what is waiting. Sent from your mailbox and logged.'}] : []), {label: isMsg ? 'Message' : 'What happened', key: 'note', kind: 'area', placeholder: isMsg ? 'Dan, milestone 3 has been with you five days. Can you approve by Friday or tell me what is missing?' : 'What he said, what you agreed.'}, {label: 'Follow up', key: 'follow', kind: 'select', options: ['None', 'Tomorrow', 'This week', 'Next week']}]),
+        dHasPrimary: true, dPrimaryLabel: isMsg ? 'Send and log' : 'Save', dPrimary: () => { if (!need('note', isMsg ? 'Write the message.' : 'Say what happened.')) return; this.log(dr.kind, (isMsg ? 'Sent' + (dr.tpl && dr.tpl !== 'None' ? ', ' + dr.tpl.toLowerCase() : '') + ': ' : '') + dr.note.trim(), dr.about === 'The account' ? 'Brightwell Payments' : dr.about); if (dr.follow !== 'None') this.setState({actions: [{what: 'Follow up with Dan', who: 'Priya Shah', date: ({'Tomorrow': '2026-09-20', 'This week': '2026-09-26', 'Next week': '2026-10-03'})[dr.follow], when: dr.follow, note: dr.note.trim()}, ...this.actions()]}); close(); this.say('Logged.' + (dr.follow !== 'None' ? ' Follow up added.' : '')); }});
+    } else if (d.kind === 'action') {
+      const editing = d.idx != null;
+      const fmtWhen = dt => { if (!dt) return ''; const [date, time] = dt.split('T'); const dd = this.daysTo(date); const day = dd === 0 ? 'Today' : dd === 1 ? 'Tomorrow' : dd < 0 ? 'Overdue, ' + this.fmtDate(date) : this.fmtDate(date); return day + (time ? ', ' + time : ''); };
+      const WITH = ["Dan Okafor","Claire Dunn","Priya Lam","Ruth Vance"]; const PEOPLE = ['Priya Shah', 'Nadia Croft', 'Sam Iyer']; const ROUTES = {'Dan Okafor': {tel: 'Direct 0113 496 0000 · Mobile 07700 900 300', mail: 'dan.okafor@brightwell.example'}, 'Claire Dunn': {tel: 'Direct 0113 496 0001', mail: 'claire.dunn@brightwell.example'}, 'Ruth Vance': {tel: 'Mobile 07700 900 410', mail: 'ruth.vance@ordell.example'}, 'Priya Lam': {tel: 'Direct 0113 496 0012', mail: 'priya.lam@brightwell.example'}, 'Amara Osei': {tel: 'Mobile 07700 900 121', mail: 'amara.osei@example.com'}, 'Lucía Ferreira': {tel: 'Mobile 07700 900 344', mail: 'lucia.f@example.com'}, 'Rosa Alvarez': {tel: 'Mobile 07700 900 212', mail: 'rosa.alvarez@example.com'}}; const TEAM = ["Priya Shah","Nadia Croft","Sam Iyer","Leo Marsh","Hannah Boyd","Tunde Alabi","Grace Kim"]; const oq = (dr.ownerQ || '').trim().toLowerCase(); const ownerHits = oq.length < 2 ? [] : TEAM.filter(x => x.toLowerCase().includes(oq) && !PEOPLE.includes(x));
+      const more = dr.more != null ? !!dr.more : (!!(dr.note || '').trim() || (dr.owner && dr.owner !== 'Priya Shah'));
+      Object.assign(v, {dKicker: 'Next action', dTitle: editing ? 'Change the action' : 'Add an action', dMeta: 'Type, what, with whom, when. Note and reassign under More.',
+        dFields: F([
+          {label: 'Type', key: 'type', kind: 'select', options: ['Call', 'Email', 'Meeting', 'Chase', 'Task']},
+          {label: 'What', key: 'what', kind: 'text', placeholder: dr.type === 'Call' ? 'Call Dan about Tom\'s feedback' : dr.type === 'Email' ? 'Send Dan the two profiles' : dr.type === 'Meeting' ? 'Rate card review with Claire' : dr.type === 'Chase' ? 'Chase Dan on milestone 3' : 'Update the brief after the call'},
+          {label: 'With', key: 'with', kind: 'select', options: [...WITH, 'Other'], note: (() => { if (!dr.with || dr.with === 'Other') return 'One person per action; add another action for someone else.'; const p = ROUTES[dr.with]; if (!p) return 'No routes on file. Add them on their record.'; return dr.type === 'Call' ? p.tel : dr.type === 'Email' ? p.mail : p.tel + ' · ' + p.mail; })()},
+          ...(dr.with === 'Other' ? [{label: 'Name', key: 'withQ', kind: 'text', placeholder: 'Surname or company'}] : []),
+          {label: 'When', key: 'due', kind: 'datetime', note: 'Defaults to now. A time puts it in your Outlook calendar.'},
+          {label: 'Priority', key: 'priority', kind: 'select', options: ['Normal', 'High'], note: dr.priority === 'High' ? 'Shows in berry and sits first on your desk.' : ''},
+          ...((dr.type === 'Call' || dr.type === 'Meeting') && dr.with && dr.with !== 'Other' ? [{label: 'Outlook', key: 'invite', kind: 'select', options: ['Event on my calendar only', 'Invite ' + dr.with.split(' ')[0] + (dr.type === 'Meeting' ? ', with a Teams link' : '')], note: 'Created in Outlook when you save. Moving it there moves it here.'}] : []),
+          ...(more ? [
+            {label: 'Who does it', key: 'owner', kind: 'select', options: [...PEOPLE, 'Other'], labels: {'Priya Shah': 'You'}},
+            ...(dr.owner === 'Other' ? [{label: 'Find a colleague', key: 'ownerQ', kind: 'text', placeholder: 'Type a name', note: ownerHits.length ? 'Pick below.' : ((dr.ownerQ || '').trim().length >= 2 ? 'Nobody by that name on the team.' : 'Anyone at the agency.')}, ...(ownerHits.length ? [{label: 'Pick', key: 'ownerPick', kind: 'select', options: ownerHits}] : []), ...((dr.ownerQ || '').trim().length >= 2 && !ownerHits.length ? [{label: 'Add', key: 'ownerAdd', kind: 'select', options: ['Add ' + (dr.ownerQ || '').trim() + ' to the team']}] : [])] : []),
+            {label: 'Note', key: 'note', kind: 'area', placeholder: 'What to say when it comes round.'},
+            ...(editing ? [{label: 'Then', key: 'nextQuick', kind: 'select', options: [...(dr.nextQuick === 'Set' ? ['Set'] : ['None']), 'Tomorrow', 'Next week', 'Next month'], labels: {'Set': 'Keep date'}, note: 'Fills the date below; change it if needed.'}, ...(dr.nextQuick && dr.nextQuick !== 'None' ? [{label: 'Then, on', key: 'next', kind: 'datetime'}, {label: 'Then, type', key: 'nextType', kind: 'select', options: ['Call', 'Email', 'Meeting', 'Chase', 'Task'], note: 'Marking done creates it, same note.'}] : [])] : [])] : [])]),
+        dHasPrimary: true, dPrimaryLabel: editing ? 'Save' : 'Add', dPrimary: () => { if (!need('what', 'Say what, not why.')) return; const due = dr.due || '2026-09-21T10:30'; const [date, time] = due.split('T'); const withName = dr.with === 'Other' ? (dr.withQ || '').trim() : (dr.with || ''); const owner = dr.owner === 'Other' ? (dr.ownerPick || (dr.ownerAdd ? (dr.ownerQ || '').trim() : '') || 'Priya Shah') : (dr.owner || 'Priya Shah');
+          const row = {type: dr.type || 'Task', priority: dr.priority || 'Normal', what: dr.what.trim(), with: withName, who: [withName].filter(Boolean).join('') + (owner !== 'Priya Shah' ? (withName ? '. ' : '') + owner.split(' ')[0] + ' does it' : ''), owner, date, time: time || '', due, when: fmtWhen(due), note: (dr.note || '').trim(), next: dr.nextQuick && dr.nextQuick !== 'None' ? (dr.next || '') : '', nextType: dr.nextType || '', createdOn: dr.createdOn || 'Today, 10:30'};
+          const list = this.actions(); this.setState({actions: (editing ? list.map((x, k) => k === d.idx ? row : x) : [row, ...list]).sort((x, y) => (x.due || x.date || '9999') > (y.due || y.date || '9999') ? 1 : -1)}); close(); this.say((editing ? 'Changed. ' : 'Added. ') + row.when + '.'); },
+        dLinks: [more ? {label: 'Less', go: () => setD({...dr, more: false})} : {label: 'More: who does it, note', go: () => setD({...dr, more: true})}, ...(editing ? [{label: 'Mark done', go: () => { const cur = this.actions()[d.idx]; const rest = this.actions().filter((x, k) => k !== d.idx); const fu = dr.next ? [{...cur, due: dr.next, date: dr.next.split('T')[0], time: dr.next.split('T')[1] || '', when: fmtWhen(dr.next), what: 'Follow up: ' + cur.what, type: dr.nextType || cur.type || 'Task', next: '', nextQuick: '', createdOn: 'Today, 10:30'}] : []; this.setState({actions: [...fu, ...rest].sort((x, y) => (x.due || x.date || '9999') > (y.due || y.date || '9999') ? 1 : -1)}); this.log('Action', 'Done: ' + cur.what + '.', 'Contact', (cur.note || '') + (fu.length ? ' Then ' + fu[0].when + '.' : '')); close(); this.say('Done.' + (fu.length ? ' Next: ' + fu[0].when + '.' : '')); }}, {label: 'Drop it', go: () => { this.setState({actions: this.actions().filter((x, k) => k !== d.idx)}); this.log('Action', 'Dropped: ' + dr.what + '.', 'Contact', dr.note || ''); close(); this.say('Dropped.'); }}] : [])],
+        dFoot: editing && dr.createdOn ? 'Captured ' + dr.createdOn + '.' : ''});
+    } else if (d.kind === 'contact') {
+      Object.assign(v, {dKicker: 'Name and contact details', dTitle: (dr.first || '') + ' ' + (dr.last || ''), dMeta: 'What the header and snapshot show.',
+        dFields: F([{label: 'First name', key: 'first', kind: 'text'}, {label: 'Last name', key: 'last', kind: 'text'}, {label: 'Known as', key: 'known', kind: 'text', placeholder: 'Only if different'}, {label: 'Job title', key: 'title', kind: 'text'}, {label: 'Department', key: 'department', kind: 'text'}, {label: 'Email', key: 'email', kind: 'text'}, {label: 'Direct line', key: 'direct', kind: 'text'}, {label: 'Mobile', key: 'mobile', kind: 'text'}, {label: 'LinkedIn', key: 'linkedin', kind: 'text'}, {label: 'Assistant', key: 'assistant', kind: 'text', placeholder: 'Name, email'}, {label: 'Prefers', key: 'prefers', kind: 'select', options: ['Email first', 'Call first', 'Teams first', 'Through assistant']}, {label: 'Best time', key: 'hours', kind: 'text', placeholder: 'Mornings, not Fridays'}, {label: 'Owner', key: 'owner', kind: 'select', options: ['Priya Shah', 'Nadia Croft', 'Sam Iyer'], note: 'The account owner on Brightwell is separate. This is who runs the relationship with him.'}]),
+        dHasPrimary: true, dPrimaryLabel: 'Save', dPrimary: () => { if (!need('first', 'A first name.') || !need('last', 'And a last name.')) return; if (!/\S+@\S+\.\S+/.test(dr.email || '')) { this.setState({dError: 'That email does not look right.'}); return; } const prev = this.contact(); this.setState({contact: {...prev, ...dr}}); this.log('Edit', 'Contact details updated.' + (dr.owner !== prev.owner ? ' Owner ' + prev.owner + ' to ' + dr.owner + '.' : '')); close(); this.say('Saved.'); }});
+    } else if (d.kind === 'org') {
+      Object.assign(v, {dKicker: 'Role at Brightwell', dTitle: name, dMeta: 'Who he reports to, what he runs, where he sits, what he can sign off.',
+        dFields: F([{label: 'Reports to', key: 'reportsTo', kind: 'text'}, {label: 'Team', key: 'team', kind: 'text'}, {label: 'Site', key: 'site', kind: 'select', options: ['Head office, 4 Wellington Place, Leeds', 'London, 20 Farringdon Road', 'Manchester, 1 St Peter\'s Square', 'Remote']}, {label: 'Decides', key: 'decides', kind: 'area', note: 'Plain words. What he can approve alone, and who is above him for the rest.'}]),
+        dHasPrimary: true, dPrimaryLabel: 'Save', dPrimary: () => { this.setState({contact: {...this.contact(), ...dr}}); this.log('Edit', 'Role at Brightwell updated.'); close(); this.say('Saved.'); }});
+    } else if (d.kind === 'notes') {
+      Object.assign(v, {dKicker: 'Working with him', dTitle: name, dMeta: 'Your words. What a colleague covering your desk needs to know before they call him.',
+        dFields: F([{label: 'Notes', key: 'text', kind: 'area'}]), dHasPrimary: true, dPrimaryLabel: 'Save', dPrimary: () => { if (!need('text', 'Write something.')) return; this.setState({workingNotes: dr.text.trim()}); this.log('Edit', 'Working notes updated.'); close(); this.say('Saved.'); }});
+    } else if (d.kind === 'tags') {
+      Object.assign(v, {dKicker: 'How he works', dTitle: name, dMeta: 'Short tags a colleague reads before the first call. Searchable across the desk.',
+        dFields: F([{label: 'Common', key: 'pick', kind: 'select', options: ['Email first', 'Call first', 'Slow on approvals', 'Fast on CVs', 'Wants CVs, not profiles', 'Wants profiles first', 'No sponsorship', 'Decision maker', 'Needs a nudge', 'Formal']}, {label: 'His tags, one per line', key: 'list', kind: 'area'}]),
+        dHasPrimary: true, dPrimaryLabel: 'Save', dPrimary: () => { let list = (dr.list || '').split('\n').map(x => x.trim()).filter(Boolean); if (dr.pick && !list.includes(dr.pick)) list.push(dr.pick); this.setState({tags: list}); this.log('Edit', 'Tags: ' + list.join(', ') + '.'); close(); this.say('Saved.'); }});
+    } else if (d.kind === 'consent') {
+      Object.assign(v, {dKicker: 'Consent', dTitle: name, dMeta: 'A business contact. Legitimate interest covers the working relationship; marketing needs his preference.',
+        dFields: F([{label: 'Lawful basis', key: 'basis', kind: 'select', options: ['Legitimate interest, business contact', 'Consent']}, {label: 'Marketing', key: 'marketing', kind: 'select', options: ['Market updates yes, events no', 'Both yes', 'Neither', 'Opted out']}, {label: 'How you got his details', key: 'source', kind: 'text'}, {label: 'Review on', key: 'review', kind: 'date'}]),
+        dHasPrimary: true, dPrimaryLabel: 'Save', dPrimary: () => { this.setState({consent: {...this.consent(), ...dr}}); this.log('Consent', 'Consent record updated: ' + (dr.marketing || '') + '.'); close(); this.say('Saved and logged.'); }});
+    } else if (d.kind === 'move') {
+      Object.assign(v, {dKicker: 'Record a move', dTitle: name, dMeta: 'He stays one person. Brightwell keeps his history here; the new client gets him from today.',
+        dFields: F([{label: 'Moved to', key: 'client', kind: 'text', placeholder: 'Client name, or a prospect'}, {label: 'New title', key: 'title', kind: 'text'}, {label: 'From', key: 'when', kind: 'date'}, {label: 'Brightwell contact now', key: 'successor', kind: 'select', options: ['Priya Lam', 'Claire Dunn', 'Not yet known']}, {label: 'Note', key: 'note', kind: 'text', placeholder: 'How you heard, what he said.'}]),
+        dHasPrimary: true, dPrimaryLabel: 'Record the move', dPrimary: () => { if (!need('client', 'Where has he gone?')) return; this.setState({moves: [{when: this.fmtDate(dr.when || '2026-09-19') + ' to now', state: 'Current', ink: BERRY, role: (dr.title || 'Title to confirm') + ', ' + dr.client.trim(), note: (dr.note || '') + ' Brightwell jobs now name ' + (dr.successor || 'no one yet') + ' as hiring manager; his history stays on both.'}, ...this.moves().map((m, i) => i === 0 ? {...m, when: m.when.replace('to now', 'to ' + this.fmtDate(dr.when || '2026-09-19')), state: 'Left', ink: MUTED} : m)]}); this.log('Edit', 'Moved to ' + dr.client.trim() + '. Brightwell hiring manager now ' + (dr.successor || 'not yet known') + '.'); this.setState({actions: [{what: 'Take Dan for coffee at ' + dr.client.trim(), who: 'Priya Shah', date: '2026-10-03', when: '3 Oct', note: 'New business. He knows how we work.'}, ...this.actions()]}); close(); this.say('Recorded. Action added: new business at ' + dr.client.trim() + '.'); }});
+    } else if (d.kind === 'chase') {
+      const ap = d.ap;
+      Object.assign(v, {dKicker: 'Chase', dTitle: ap.item, dMeta: ap.sub + '. Waiting ' + ap.days + ' days.',
+        dFields: F([{label: 'How', key: 'how', kind: 'select', options: ['Email', 'Teams message', 'Call', 'Through Kemi']}, {label: 'Copy', key: 'cc', kind: 'select', options: ['No one', 'Claire Dunn', 'Nadia Croft']}, {label: 'Message', key: 'note', kind: 'area', placeholder: 'Dan, ' + ap.item.toLowerCase() + ' has been with you ' + ap.days + ' days. Can you approve by Friday or tell me what is missing?'}]),
+        dHasPrimary: true, dPrimaryLabel: 'Send and log', dPrimary: () => { if (!need('note', 'Write the chase.')) return; this.setState({approvals: this.approvals().map(x => x.id === ap.id ? {...x, chased: true} : x)}); this.log(dr.how === 'Call' ? 'Call' : 'Email', 'Chased: ' + ap.item + '.' + (dr.cc && dr.cc !== 'No one' ? ' Copied ' + dr.cc + '.' : ''), ap.sub.split('.')[0], dr.note.trim()); close(); this.say('Chased. Logged on the ' + ap.where.split(',')[0].toLowerCase() + ' too.'); },
+        dLinks: [{label: 'Open where it is', go: () => { window.location.href = ap.href; }}]});
+    } else if (d.kind === 'entry') {
+      const a = d.a;
+      Object.assign(v, {dKicker: a.kind + ', ' + a.when, dTitle: a.what, dMeta: a.who + '. ' + a.where + '.', dBody: a.detail ? [{label: 'Detail', text: a.detail}] : [],
+        dFields: F([{label: 'Add to this entry', key: 'more', kind: 'area', placeholder: 'Appends, never overwrites.'}]),
+        dHasPrimary: true, dPrimaryLabel: 'Append', dPrimary: () => { if (!need('more', 'Write something or close.')) return; this.setState({activity: this.activity().map(x => x === a ? {...x, detail: (x.detail ? x.detail + ' ' : '') + 'Added today: ' + dr.more.trim()} : x)}); close(); this.say('Appended.'); },
+        dFoot: 'Entries are never edited or deleted; you append.'});
+    }
+    return v;
+  }
+  moves() { return this.state.moves || [{when: 'Mar 2026 to now', state: 'Current', ink: BERRY, role: 'Head of Engineering, Brightwell Payments', note: 'Took the payments platform. Brought Priya Lam with him. Hiring manager on four jobs since.'}, {when: 'Jan 2023 to Feb 2026', state: 'Left', ink: MUTED, role: 'Engineering Manager, Northbeam Data', note: 'Your contact there for three years. Two perm placements and one SOW. Ruth Vance took over the relationship.'}]; }
+  renderVals() {
+    const s = this.state; const ct = this.contact(); const name = ct.first + ' ' + ct.last + (ct.known ? ' (' + ct.known + ')' : '');
+    const isCandidate = this.props.alsoCandidate ?? false;
+    const go = (tab, extra) => () => { this.setState({tab, recSearch: '', ...(extra || {})}); window.scrollTo(0, 0); };
+    const aps = this.approvals();
+    const today = [], week = [], soon = [];
+    aps.filter(a => a.days >= 3 && !a.chased).forEach(a => today.push({label: a.item + ', ' + a.days + ' days', go: go('Approvals')}));
+    aps.filter(a => a.days < 3 && !a.chased).forEach(a => week.push({label: a.item + ', ' + a.days + ' days', go: go('Approvals')}));
+    week.push({label: 'Femi Adebayo right to work expires in 9 days, his contractor', go: () => { window.location.href = 'Cannie.dc.html?page=client'; }});
+    soon.push({label: 'Quarterly catch up due, last was 2 Jun', go: go('Jobs')});
+    soon.push({label: 'Consent review ' + this.fmtDate(this.consent().review), go: go('Details')});
+    const horizons = [{key: 'today', label: 'Needs you today', short: 'today', items: today, ink: BERRY}, {key: 'week', label: 'Needs you this week', short: 'this week', items: week, ink: INK}, {key: 'soon', label: 'Coming up', short: 'coming up', items: soon, ink: INK}];
+    const leadIdx = horizons.findIndex(h => h.items.length); const lead = horizons[leadIdx] || horizons[2];
+    const others = horizons.filter((h, i) => i !== leadIdx && h.items.length); const openH = others.find(h => h.key === s.needsOpen);
+    const sep = list => list.map((it, i) => ({...it, sep: i < list.length - 1 ? '·' : ''}));
+    const tabOn = t => s.tab === t && !s.recSearch;
+    const q = (s.recSearch || '').trim().toLowerCase();
+    const hits = q.length < 2 ? [] : [...JOBS.map(j => ({title: j.title, sub: j.waiting, where: 'Jobs', go: go('Jobs')})), ...aps.map(a => ({title: a.item, sub: a.sub, where: 'Approvals', go: go('Approvals')})), ...this.activity().map(a => ({title: a.what, sub: a.when + ', ' + a.where, where: 'Activity', go: go('Activity')}))].filter(h => (h.title + ' ' + h.sub).toLowerCase().includes(q)).slice(0, 12);
+    const actFilter = s.actFilter || 'All'; const kinds = ['All', 'Call', 'Email', 'Meeting', 'Interview', 'Approval', 'Action', 'Edit'];
+    const act = this.activity(); const lastContact = act.find(a => ['Call', 'Email', 'Meeting', 'Teams meeting'].includes(a.kind) && a.who === 'Priya Shah');
+    const waitingN = aps.filter(a => !a.chased).length;
+    return {...this.topbarVals(),
+      actionsSide: (this.props.actionsPlacement ?? 'Side column') === 'Side column', actionsStrip: (this.props.actionsPlacement ?? 'Side column') === 'Strip under header',
+      fullName: name, headerLine: ct.title + ', Brightwell Payments. ' + ct.team.split(',')[0] + '. Reports to ' + ct.reportsTo.split(',')[0] + '.',
+      readLine: 'Your contact since Jan 2023, at two clients. Owner ' + ct.owner + '.',
+      roleChips: [{label: 'Hiring manager on 4', href: '#'}, {label: 'Approves 3 assignments, 1 SOW', href: '#'}, {label: 'Decides to £100k', href: '#'}],
+      isCandidate,
+      recSearch: s.recSearch, setRecSearch: e => this.setState({recSearch: e.target.value}), isSearch: q.length >= 2, searchTitle: hits.length + ' result' + (hits.length === 1 ? '' : 's') + ' for "' + s.recSearch.trim() + '"', searchHits: hits, searchEmpty: hits.length === 0, clearSearch: () => this.setState({recSearch: ''}),
+      secondaryGo: () => { window.location.href = 'Cannie.dc.html?page=client'; }, primaryLabel: s.tab === 'Approvals' ? 'Chase everything waiting' : 'Log a call',
+      primaryGo: s.tab === 'Approvals' ? () => this.openDrawer({kind: 'log', draft: {kind: 'Email', about: 'The account', tpl: 'Chase approval', note: 'Dan, four things are waiting on you: milestone 3 (5 days), Femi\'s timesheet (6 days), Rosa\'s offer (2 days), feedback on Lucía (3 days). Fifteen minutes Thursday morning would clear all four.', follow: 'This week'}}) : () => this.openDrawer({kind: 'log', draft: {kind: 'Call', about: 'The account', note: '', follow: 'None'}}),
+      needsLabel: lead.label + ':', needsInk: lead.ink, needsItems: sep(lead.items),
+      needsToggles: others.map(h => ({label: h.items.length + ' ' + h.short, go: () => this.setState({needsOpen: s.needsOpen === h.key ? null : h.key}), weight: s.needsOpen === h.key ? '600' : '400', deco: s.needsOpen === h.key ? 'underline' : 'none'})),
+      needsExpanded: !!openH, needsOpenItems: openH ? sep(openH.items) : [],
+      snapRoutes: [{label: 'Email', value: ct.email, href: 'mailto:' + ct.email}, {label: 'Direct', value: ct.direct, href: 'tel:' + ct.direct.replace(/\s/g, '')}, {label: 'Mobile', value: ct.mobile, href: 'tel:' + ct.mobile.replace(/\s/g, '')}, {label: 'LinkedIn', value: ct.linkedin, href: 'https://www.' + ct.linkedin}],
+      snapPrefers: ct.prefers + '. ' + ct.hours + '.', snapAssist: 'Assistant ' + ct.assistant.split(',')[0] + '. ' + ct.site.split(',')[0] + '.',
+      editContact: () => this.openDrawer({kind: 'contact', draft: {...ct}}),
+      snapFacts: [{label: 'Jobs to fill', value: JOBS.length + ', ' + JOBS.filter(j => j.wait).length + ' waiting on him', ink: INK}, {label: 'Waiting on him', value: waitingN + ' items, oldest 6 days', ink: waitingN ? BERRY : INK}, {label: 'Days to feedback', value: '2.5 median, 9 worst', ink: INK}, {label: 'Last contact', value: lastContact ? lastContact.when + ', ' + lastContact.kind.toLowerCase() : 'None logged', ink: INK}],
+      snapRecent: [{when: 'Next', what: 'Thu 09:00 call, he is in Leeds', go: go('Jobs'), ink: INK, weight: '600'}, ...act.slice(0, 2).map(a => ({when: a.when, what: a.kind + ': ' + a.what.replace(/\.$/, ''), go: () => this.openDrawer({kind: 'entry', a}), ink: INK, weight: '400'}))],
+      goActivity: e => { e.preventDefault(); go('Activity')(); },
+      tagChips: this.tags().map(name => ({name})), editTags: () => this.openDrawer({kind: 'tags', draft: {list: this.tags().join('\n')}}),
+      patternLine: 'Approves time same day, milestones after a chase. Replies to CVs within the hour, feedback in 2 to 3 days.',
+      scrolled: s.scrolled, hasFlash: !!s.flash, flash: s.flash,
+      tabs: TABS.map(t => ({label: t, go: go(t), line: tabOn(t) ? BERRY : 'transparent', ink: tabOn(t) ? INK : MID, weight: tabOn(t) ? '600' : '400'})),
+      siblings: [{title: 'Dan Okafor', count: 'Head of Eng', href: '#', ink: '#E896B3', weight: '600'}, {title: 'Claire Dunn', count: 'COO', href: 'Cannie.dc.html?page=client', ink: '#F3EEE6', weight: '400'}, {title: 'Priya Lam', count: 'Eng Manager', href: 'Cannie.dc.html?page=client', ink: '#F3EEE6', weight: '400'}, {title: 'Kemi Adeyemi', count: 'EA', href: 'Cannie.dc.html?page=client', ink: '#F3EEE6', weight: '400'}, {title: 'All 7', count: '', href: 'Cannie.dc.html?page=client', ink: '#D9CFC0', weight: '400'}],
+      isJobs: tabOn('Jobs'), isApprovals: tabOn('Approvals'), isPattern: tabOn('Pattern'), isDetails: tabOn('Details'), isActivity: tabOn('Activity'),
+      jobsLine: JOBS.length + ' open where he is hiring manager. Three of them are waiting on him.',
+      jobs: JOBS.map(j => ({...j, waitInk: j.wait ? BERRY : MUTED, waitWeight: j.wait ? '600' : '400'})),
+      filledLine: FILLED.length + ' placements he owns', filledToggle: s.filledOpen ? 'Hide' : 'Show', toggleFilled: () => this.setState({filledOpen: !s.filledOpen}), filledOpen: s.filledOpen, filled: FILLED,
+      actions: this.actions().map((ac, i) => ({...ac, hasNote: !!ac.note, hasCal: !!(ac.time || (ac.due && String(ac.due).includes('T'))) && !this.state.syncOff, cal: ac.calState === 'Removed' ? 'Removed from your calendar; still due' : ac.calState === 'Moved' ? 'Moved in Outlook to ' + ac.when : 'In your Outlook calendar', calInk: ac.calState === 'Removed' ? '#9E2D53' : 'rgba(43,33,27,.55)', calWeight: ac.calState === 'Removed' ? '600' : '400', open: () => this.openDrawer({kind: 'action', idx: i, draft: {...ac, time: ac.time || 'Any time', quick: '', follow: ac.follow || 'Nothing'}}), done: () => { this.setState({actions: this.actions().filter((x, j) => j !== i)}); this.log('Action', 'Done: ' + ac.what + '.', 'Brightwell Payments', ac.note); this.say('Done. Logged on Activity.'); }})),
+      noActions: this.actions().length === 0, addAction: () => this.openDrawer({kind: 'action', draft: {type: 'Call', what: '', with: '', due: '2026-09-21T10:30', priority: 'Normal', nextQuick: 'None', owner: 'Priya Shah', note: ''}}),
+      workingNotes: s.workingNotes || 'Straight talker, hates being sold to. Send the CV with three lines, never a profile. He reads email at 7am; a chase at 7:15 gets answered. Approvals drift unless Claire is copied. Likes to interview in person, mornings, Leeds.',
+      editNotes: () => this.openDrawer({kind: 'notes', draft: {text: s.workingNotes || 'Straight talker, hates being sold to. Send the CV with three lines, never a profile. He reads email at 7am; a chase at 7:15 gets answered. Approvals drift unless Claire is copied. Likes to interview in person, mornings, Leeds.'}}),
+      decidesLine: ct.decides,
+      approvalsLine: waitingN + ' waiting, ' + aps.filter(a => a.chased).length + ' chased today.',
+      approvals: aps.map(a => ({...a, age: a.days + ' days', ink: a.days >= 5 ? BERRY : INK, action: a.chased ? 'Chased' : 'Chase', chase: () => a.chased ? this.say('Chased today. Give him until Friday.') : this.openDrawer({kind: 'chase', ap: a, draft: {how: 'Email', cc: a.days >= 5 ? 'Claire Dunn' : 'No one', note: ''}})})),
+      patternFacts: [{label: 'Feedback on CVs', value: '2.5 days median', ink: INK, note: '11 candidates, 12 months. Worst 9 days, Lucía now.'}, {label: 'Timesheet approval', value: 'Same day', ink: INK, note: '38 of 41 inside a day.'}, {label: 'Milestone approval', value: '8 days median', ink: BERRY, note: 'Every one needed a chase. Two needed Claire.'}, {label: 'Interview to decision', value: '4 days', ink: INK, note: 'Fast once he has met them.'}, {label: 'Offers accepted', value: '3 of 4', ink: INK, note: 'One lost on salary, Mar 2026.'}, {label: 'Meetings kept', value: '9 of 10', ink: INK, note: 'Cancels Fridays.'}],
+      patternReads: [{k: 'Chasing', v: 'Chase milestones on day 3, not day 5, and copy Claire on the second chase. Do not chase timesheets; he does them.'}, {k: 'Sending', v: 'Send in the morning with three lines. He replies within the hour to a CV and within three days with feedback; if it goes past three, he has doubts he is not saying.'}, {k: 'Closing', v: 'He decides within a week of meeting someone. Book the second interview before the first one ends.'}, {k: 'Money', v: 'Lost one on salary. Get the band agreed before the shortlist, not at offer.'}],
+      reviewLine: 'Dan turns CVs in a day and feedback in three; approvals need a chase and Claire. Agree a five-day milestone SLA and a standing Thursday slot.',
+      copyReview: () => { this.log('Note', 'Account review read on Dan: CVs in a day, feedback in three, approvals need a chase and Claire. Propose a five-day milestone SLA and a standing Thursday slot.', 'Brightwell Payments'); this.say('Logged as a note on him and on Brightwell.'); },
+      detailGroups: [
+        {title: 'Role at Brightwell', edit: () => this.openDrawer({kind: 'org', draft: {reportsTo: ct.reportsTo, team: ct.team, site: ct.site, decides: ct.decides}}), fields: [{label: 'Title', value: ct.title, ink: INK}, {label: 'Department', value: ct.department, ink: INK}, {label: 'Reports to', value: ct.reportsTo, ink: INK}, {label: 'Team', value: ct.team, ink: INK}, {label: 'Site', value: ct.site, ink: INK}, {label: 'Decides', value: ct.decides, ink: INK}]},
+        {title: 'Roles, from the work', edit: () => this.say('Derived from jobs, assignments and statements that name him. Change them there.'), fields: [{label: 'Hiring manager', value: '4 open jobs, 3 filled', ink: INK}, {label: 'Approver', value: '3 assignments, 1 statement of work', ink: INK}, {label: 'Billing contact', value: 'No, Claire Dunn', ink: MUTED}, {label: 'Signatory', value: 'SOW 4, order form Jul 2026', ink: INK}]},
+      ],
+      moves: this.moves(), recordMove: () => this.openDrawer({kind: 'move', draft: {client: '', title: '', when: '2026-09-19', successor: 'Not yet known', note: ''}}),
+      consentRows: [{k: 'Basis', v: this.consent().basis.split(',')[0]}, {k: 'Marketing', v: this.consent().marketing}, {k: 'Source', v: this.consent().source}, {k: 'Review', v: this.fmtDate(this.consent().review)}], editConsent: () => this.openDrawer({kind: 'consent', draft: {...this.consent()}}),
+      signed: [{name: 'Statement of work 4, phase 2', when: '2 Jun 2026'}, {name: 'Order form, Data Engineers', when: '14 Jul 2026'}],
+      actFilters: kinds.map(label => ({label, go: () => this.setState({actFilter: label}), border: actFilter === label ? '1px solid ' + INK : '1px solid ' + TAUPE, ink: actFilter === label ? INK : MID, weight: actFilter === label ? '600' : '400'})),
+      activity: act.filter(a => actFilter === 'All' || a.kind === actFilter || (actFilter === 'Meeting' && a.kind === 'Teams meeting')).map(a => ({...a, hasDetail: !!a.detail, open: () => this.openDrawer({kind: 'entry', a})})),
+      ...this.drawerVals(),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/styles.css">
+<script src="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/_ds_bundle.js"></script>
+<style>
+body{margin:0;background:#F3EEE6}
+a{color:#9E2D53}
+a:hover{color:#7D2342}
+</style>
+</helmet>
+<article style="max-width:980px;margin:0 auto;padding:56px 40px 96px;font-family:'Poppins',sans-serif;color:#2B211B;font-size:15px;line-height:1.5;display:flex;flex-direction:column;gap:40px">
+
+<header style="display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;gap:14px"><span style="display:inline-block;width:40px;height:3.4px;background:#9E2D53"></span><span style="font-size:11px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Benchmark, job record</span></div>
+<h1 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.0075em;line-height:1.15">The job record against the same ten systems, plus SourceWhale</h1>
+<p style="margin:0;font-size:17px;max-width:740px">Twelve things a UK recruitment agency expects a job record to hold, taken from what the incumbents already do. Ten systems scored, SourceWhale added at the recruiters' request, plus what the prototype gives a job today from the client record's job panel, before a job record exists.</p>
+<p style="margin:0;font-size:13px;color:rgba(43,33,27,.55)">16 September 2026. Nothing tested hands-on. Bullhorn, Vincere and Firefish read from their own help centres; the rest from product pages and 2026 comparison guides. Confidence is stated per row.</p>
+</header>
+
+<section style="display:flex;flex-direction:column;gap:14px">
+<h2 style="margin:0;font-size:22px;font-weight:700;letter-spacing:-0.0075em">The twelve expectations</h2>
+<p style="margin:0">Each is a question the prototype's job record can be asked. The order follows the life of a job: brief, money, find people, progress them, place, and what sits underneath.</p>
+<ol style="margin:0;padding-left:22px;display:flex;flex-direction:column;gap:6px">
+<li><strong>Brief and status.</strong> Title, client and contact, location, headcount, owner, open and close dates, start date, open or closed with a reason.</li>
+<li><strong>Commercials by job type.</strong> Perm shows salary and fee; contract and temp show pay, charge and end date. The field set changes with the type rather than showing everything to everyone.</li>
+<li><strong>Pipeline by stage.</strong> Candidates on this job grouped by stage with a count per stage, moved forward from the job itself.</li>
+<li><strong>Descriptions, internal and public.</strong> The original document the client sent, an internal brief, and a public version safe to advertise.</li>
+<li><strong>Advertising.</strong> Post to job boards and the agency's own site from the job, with a closing date, repost, and pre-screen questions on the application.</li>
+<li><strong>Match from the database.</strong> Candidates already held who fit this job, surfaced from the job without a separate search.</li>
+<li><strong>Interviews and offers.</strong> Interview scheduling with rounds, offer recorded, and an approval step where the agency wants one.</li>
+<li><strong>Forecast.</strong> Chance of filling, expected fee, projected placement date, so the job contributes to a pipeline value.</li>
+<li><strong>Placement from the job.</strong> Placing a candidate creates the placement from the job, carrying rates and dates across without retyping, and the placement stays linked.</li>
+<li><strong>Client sharing.</strong> Send a shortlist to the hiring manager, or let them see and act on it in a portal, with stage updating from their response.</li>
+<li><strong>Notes, tasks, files and activity.</strong> The standard four on the job, with email logged against it.</li>
+<li><strong>Custom fields.</strong> Agency-defined fields on the job, and on the type-specific layout where the system has one.</li>
+</ol>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:14px">
+<h2 style="margin:0;font-size:22px;font-weight:700;letter-spacing:-0.0075em">Scorecard</h2>
+<p style="margin:0;font-size:13px;color:rgba(43,33,27,.55)">Yes: present as described. Part: present in a weaker or adjacent form, or through a bundled partner. No: not found. NP: not public in the vendor's own material. High confidence is a help centre read; Medium is product pages and third party guides.</p>
+<div style="overflow-x:auto">
+<table style="border-collapse:collapse;min-width:980px;width:100%;font-size:13px">
+<thead>
+<tr style="text-align:left;font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">
+<th style="padding:0 8px 10px 0;border-bottom:3.4px solid #2B211B;font-weight:700">System</th>
+<th style="padding:0 6px 10px;border-bottom:3.4px solid #2B211B;font-weight:700">1 Brief</th>
+<th style="padding:0 6px 10px;border-bottom:3.4px solid #2B211B;font-weight:700">2 By type</th>
+<th style="padding:0 6px 10px;border-bottom:3.4px solid #2B211B;font-weight:700">3 Pipeline</th>
+<th style="padding:0 6px 10px;border-bottom:3.4px solid #2B211B;font-weight:700">4 Descr.</th>
+<th style="padding:0 6px 10px;border-bottom:3.4px solid #2B211B;font-weight:700">5 Advert</th>
+<th style="padding:0 6px 10px;border-bottom:3.4px solid #2B211B;font-weight:700">6 Match</th>
+<th style="padding:0 6px 10px;border-bottom:3.4px solid #2B211B;font-weight:700">7 Interv.</th>
+<th style="padding:0 6px 10px;border-bottom:3.4px solid #2B211B;font-weight:700">8 Forecast</th>
+<th style="padding:0 6px 10px;border-bottom:3.4px solid #2B211B;font-weight:700">9 Place</th>
+<th style="padding:0 6px 10px;border-bottom:3.4px solid #2B211B;font-weight:700">10 Client</th>
+<th style="padding:0 6px 10px;border-bottom:3.4px solid #2B211B;font-weight:700">11 Notes</th>
+<th style="padding:0 6px 10px;border-bottom:3.4px solid #2B211B;font-weight:700">12 Custom</th>
+<th style="padding:0 0 10px 6px;border-bottom:3.4px solid #2B211B;font-weight:700">Conf.</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background:#EFE7DA"><td style="padding:10px 8px 10px 6px;border-bottom:1px solid #D9CFC0;font-weight:700">Cannie, job panel today</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0;color:#9E2D53;font-weight:600">No</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0;color:#9E2D53;font-weight:600">No</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0;color:#9E2D53;font-weight:600">No</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0;color:#9E2D53;font-weight:600">No</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0;color:#9E2D53;font-weight:600">No</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0;color:#9E2D53;font-weight:600">No</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0;color:#9E2D53;font-weight:600">No</td><td style="padding:10px 6px 10px;border-bottom:1px solid #D9CFC0;color:rgba(43,33,27,.55)">Prototype</td></tr>
+<tr><td style="padding:10px 8px 10px 0;border-bottom:1px solid #D9CFC0;font-weight:600">Bullhorn</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">NP</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 0 10px 6px;border-bottom:1px solid #D9CFC0;color:rgba(43,33,27,.55)">High</td></tr>
+<tr><td style="padding:10px 8px 10px 0;border-bottom:1px solid #D9CFC0;font-weight:600">Vincere</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 0 10px 6px;border-bottom:1px solid #D9CFC0;color:rgba(43,33,27,.55)">High</td></tr>
+<tr><td style="padding:10px 8px 10px 0;border-bottom:1px solid #D9CFC0;font-weight:600">Firefish</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">NP</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 0 10px 6px;border-bottom:1px solid #D9CFC0;color:rgba(43,33,27,.55)">High</td></tr>
+<tr><td style="padding:10px 8px 10px 0;border-bottom:1px solid #D9CFC0;font-weight:600">JobAdder</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 0 10px 6px;border-bottom:1px solid #D9CFC0;color:rgba(43,33,27,.55)">Medium</td></tr>
+<tr><td style="padding:10px 8px 10px 0;border-bottom:1px solid #D9CFC0;font-weight:600">Access Recruitment CRM</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">NP</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 0 10px 6px;border-bottom:1px solid #D9CFC0;color:rgba(43,33,27,.55)">Medium</td></tr>
+<tr><td style="padding:10px 8px 10px 0;border-bottom:1px solid #D9CFC0;font-weight:600">Tracker RMS</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">NP</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 0 10px 6px;border-bottom:1px solid #D9CFC0;color:rgba(43,33,27,.55)">Medium</td></tr>
+<tr><td style="padding:10px 8px 10px 0;border-bottom:1px solid #D9CFC0;font-weight:600">Recruit CRM</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 0 10px 6px;border-bottom:1px solid #D9CFC0;color:rgba(43,33,27,.55)">Medium</td></tr>
+<tr><td style="padding:10px 8px 10px 0;border-bottom:1px solid #D9CFC0;font-weight:600">Manatal</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">No</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 0 10px 6px;border-bottom:1px solid #D9CFC0;color:rgba(43,33,27,.55)">Medium</td></tr>
+<tr><td style="padding:10px 8px 10px 0;border-bottom:1px solid #D9CFC0;font-weight:600">Zoho Recruit</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 0 10px 6px;border-bottom:1px solid #D9CFC0;color:rgba(43,33,27,.55)">Medium</td></tr>
+<tr><td style="padding:10px 8px 10px 0;border-bottom:1px solid #D9CFC0;font-weight:600">Loxo</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">No</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 0 10px 6px;border-bottom:1px solid #D9CFC0;color:rgba(43,33,27,.55)">Medium</td></tr>
+<tr><td style="padding:10px 8px 10px 0;border-bottom:1px solid #D9CFC0;font-weight:600">SourceWhale</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0;color:#9E2D53;font-weight:600">No</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0;color:#9E2D53;font-weight:600">No</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0;color:#9E2D53;font-weight:600">No</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0;color:#9E2D53;font-weight:600">No</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0;color:#9E2D53;font-weight:600">No</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0;color:#9E2D53;font-weight:600">No</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Yes</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 6px;border-bottom:1px solid #D9CFC0">Part</td><td style="padding:10px 0 10px 6px;border-bottom:1px solid #D9CFC0;color:rgba(43,33,27,.55)">Medium</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:14px">
+<h2 style="margin:0;font-size:22px;font-weight:700;letter-spacing:-0.0075em">What the field agrees on</h2>
+<p style="margin:0">Ten of ten carry a brief, a pipeline by stage, advertising from the job, the four standard tabs, and custom fields. Eight of ten make the placement from the job. Six of ten match from their own database without a separate search. Those seven are table stakes; a job record without them is not a job record.</p>
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="margin:0"><strong>Bullhorn</strong> holds the clearest data model. A job must have exactly one contact; candidates attach through submissions; a placement is a submission that reached accepted, and its fields are correlated from the job so nobody retypes rates or dates. Employment type drives which fields show, up to five layouts. Pipeline is four fixed stages (submitted, sent to client, interview, placed) with statuses under each, customisable.</p>
+<p style="margin:0"><strong>Vincere</strong> has the richest job profile. Details split into status (stage, headcount, purchase order, sourcing open and close dates, submission limit, start and end), details (type, perm subtype, employment type, skills, industry, function, location, owner), groups (brand, branch, team, division) and forecasting (chance of placement, forecast fee, projected date, difficulty and why). Three descriptions: original document, public, internal. A pipeline strip across the top of every job. Onboarding documents required per job. Offer approvers per job. LiveList sends a shortlist to the client and updates the stage from their response.</p>
+<p style="margin:0"><strong>Firefish</strong> separates the advert from the job. The advert is its own record linked to a job, with job alert criteria, pre-screen questions that can auto-reject, branding, closing date and repost; adverts due to expire appear in a renewals to-do. The employer portal lets a hiring manager move applicants to the shortlist. Perm, temp and contract are distinct workflows: temp adds availability, shifts and confirmations; contract adds renewals and end dates.</p>
+<p style="margin:0"><strong>JobAdder, Access and Tracker</strong> are close to Bullhorn in shape: job order, submissions, placement, back office attached. Tracker and Access carry timesheets and billing on the placement; JobAdder leans on posting (200 boards) and a client portal.</p>
+<p style="margin:0"><strong>SourceWhale</strong> is the one recruiters name unprompted, and it is not a job record system. It is outreach: sequences across email, LinkedIn and phone, with candidate and client projects that sync to the ATS underneath (Bullhorn, Vincere, JobAdder, Loxo and others). Scored honestly it is Yes on matching and on client sharing (a project is a shortlist you work with the hiring manager in), Part on brief, pipeline, notes and custom fields (a project carries them but the record of truth stays in the ATS), and No on the rest. What it tells the job record: the moment a job is taken, the recruiter wants to start reaching people from it, in sequence, without leaving the record. That is the Matches tab's next step, not a separate tool.</p>
+<p style="margin:0"><strong>Recruit CRM, Manatal, Zoho, Loxo</strong> are perm-shaped. Pipeline is a kanban of candidates on the job, matching and scoring is AI-led, posting is wide. Contract is an add-on (Recruit CRM's Bill and Pay) or absent. Zoho is the only one of the four with forecast fields (probability, expected revenue) as standard.</p>
+</div>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:14px">
+<h2 style="margin:0;font-size:22px;font-weight:700;letter-spacing:-0.0075em">Why the prototype scores what it scores</h2>
+<p style="margin:0;font-size:13px;color:rgba(43,33,27,.55)">Scored on what a job row's panel gives from the client record. There is no job record yet, so this is the floor, not a verdict.</p>
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="margin:0"><strong>1, Brief: Part.</strong> Role, type, manager, status, next step. No location, headcount, owner, open date, or close reason.</p>
+<p style="margin:0"><strong>2, By type: Part.</strong> Perm, SOW and T&M exist as a filter and fees by type live on the client's Commercials. Nothing type-specific is captured on the job itself.</p>
+<p style="margin:0"><strong>3, Pipeline: Part.</strong> Stage counts and a next step on the row. No candidate list by stage, no move-forward action.</p>
+<p style="margin:0"><strong>4, 5, 6, 7, 8, 10, 12: No.</strong> Descriptions, advertising, matching, interviews and offers, forecast, client sharing and custom fields have no home yet. All of them belong to the job, not the client, which is why the client record was right to leave them out.</p>
+<p style="margin:0"><strong>9, Placement: Part.</strong> Filled and live carries fee, rebate window, start and end. The link back to the job is a row, not a record, and nothing is correlated across on placing.</p>
+<p style="margin:0"><strong>11, Notes: Part.</strong> Notes on the client can be about a job. Tasks, files and activity are client-scoped.</p>
+</div>
+</section>
+
+<section style="background:#EFE7DA;border-radius:14px;padding:28px 32px;display:flex;flex-direction:column;gap:12px">
+<span style="font-size:11px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Where that leaves it</span>
+<p style="margin:0;font-size:17px;font-weight:600;color:#9E2D53">Nobody models a statement of work or T&M as a job. That is the gap and the opening.</p>
+<p style="margin:0">Every system here treats a job as a perm vacancy first, with contract bolted on through rates and an end date. None carries milestones, deliverables, burn against a budget, or timesheets as part of the job's own life. The prototype already has those on the client's Statements of work tab, so the job record can be the place where perm, SOW and T&M become three shapes of one entity, with the pipeline strip, brief, advert and placement handoff that the field expects on all three. Vincere is the bar on breadth (twelve of twelve); Bullhorn is the bar on model discipline (one contact, correlated placement, type-driven layouts). Match both, then add what neither has.</p>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:14px">
+<h2 style="margin:0;font-size:22px;font-weight:700;letter-spacing:-0.0075em">What the job record must carry</h2>
+<ol style="margin:0;padding-left:22px;display:flex;flex-direction:column;gap:8px">
+<li><strong>A type-driven header and brief.</strong> One record, three layouts. Perm: salary band, fee, start. SOW: budget, milestones, deliverables, contractors. T&M: pay and charge bands, headcount, end date, extensions. Common: client and contact (one owning contact, others as interested), location, owner, open date, status with close reason.</li>
+<li><strong>Pipeline as the first tab on perm and T&M</strong>, candidates by stage, moved from the row, with the count strip in the header. On SOW the first tab is Milestones, and the pipeline sits behind it as Contractors.</li>
+<li><strong>Three descriptions</strong>: the client's original document, internal brief, public advert text. Versioned like every other document in the prototype.</li>
+<li><strong>Advert as a state of the job, not a separate record.</strong> Where posted, closing date, repost, pre-screen questions, applications landing in the pipeline's first stage. Expiring adverts feed Needs you.</li>
+<li><strong>Matched from the database</strong>, a list of held candidates against this brief with one action, add to pipeline. The step after, and the reason recruiters rate SourceWhale: put a matched set into an outreach sequence from the job, with replies landing on the pipeline.</li>
+<li><strong>Interviews and offers on the pipeline row</strong>, rounds, dates, outcome, offer with an approval step the agency can turn on.</li>
+<li><strong>Forecast on the header</strong>: chance, expected fee, projected date. Derived where it can be (fee from the client's rate card and headcount), typed where it cannot.</li>
+<li><strong>Place from the row.</strong> Creates the placement with rates, dates and rebate window carried across, appears on the client's Filled and live, and on SOW assigns the contractor to the statement.</li>
+<li><strong>Share with the hiring manager</strong>: a shortlist sent from the job, with the response recorded against the stage. A portal is a later question.</li>
+<li><strong>Notes, tasks, files and activity scoped to the job</strong>, and rolled up to the client record's Activity so nothing is written twice.</li>
+<li><strong>Needs you per job</strong>, the same rules as the client (stalled stage, quiet manager, unapproved milestone, ending assignment, expiring advert), scoped to one job.</li>
+<li><strong>Custom fields</strong> stay parked, as on the client record. Note it, do not design it.</li>
+</ol>
+</section>
+
+</article>
+</x-dc>
+</body>
+</html>

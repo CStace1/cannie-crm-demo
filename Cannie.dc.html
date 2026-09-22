@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div style="padding:40px 32px;font-family:'Poppins',sans-serif;color:#2B211B;background:#F3EEE6;min-height:100vh;box-sizing:border-box"><p style="margin:0;font-size:15px">Opening Cannie. If nothing happens, <a href="Overview.dc.html" style="color:#9E2D53">go to Overview</a>.</p></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const MAP = {overview: 'Overview.dc.html', board: 'Job Board.dc.html', job: 'Job Record.dc.html', clients: 'Clients.dc.html', client: 'Client Record.dc.html', candidates: 'Candidates.dc.html', candidate: 'Candidate Record.dc.html', contact: 'Contact Record.dc.html', contacts: 'Contacts.dc.html', standards: 'Standards.dc.html', pipeline: 'Pipeline.dc.html'};
+class Component extends DCLogic {
+  componentDidMount() { const u = new URLSearchParams(window.location.search); const p = u.get('page') || 'overview'; u.delete('page'); const rest = u.toString(); window.location.replace((MAP[p] || 'Overview.dc.html') + (rest ? '?' + rest : '')); }
+  renderVals() { return {}; }
+}
+
+</script>
+</body>
+</html>

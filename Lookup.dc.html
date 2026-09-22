@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div style="position:relative;display:flex;flex-direction:column;gap:5px;font-family:'Poppins',sans-serif;color:#2B211B">
+<sc-if value="{{ hasLabel }}" hint-placeholder-val="{{ true }}"><span style="font-size:13px;font-weight:600">{{ label }}</span></sc-if>
+<div onClick="{{ focusField }}" style="min-height:40px;display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:4px 8px;border:1px solid {{ fieldBorder }};border-radius:10px;background:#F3EEE6;box-sizing:border-box;cursor:text">
+<sc-for list="{{ tokens }}" as="t" hint-placeholder-count="1">
+<span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 4px 0 6px;border-radius:6px;background:#EFE7DA;font-size:13px;font-weight:600"><span style="width:20px;height:20px;border-radius:999px;background:#2B211B;color:#F3EEE6;font-size:9px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">{{ t.initials }}</span>{{ t.label }}<button onClick="{{ t.remove }}" title="Remove" style="width:22px;height:22px;border:none;border-radius:6px;background:transparent;cursor:pointer;color:#2B211B;display:inline-flex;align-items:center;justify-content:center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button></span>
+</sc-for>
+<sc-if value="{{ showInput }}" hint-placeholder-val="{{ true }}">
+<input type="text" ref="{{ inputRef }}" value="{{ q }}" onChange="{{ setQ }}" onFocus="{{ open }}" onKeyDown="{{ onKey }}" placeholder="{{ placeholder }}" style="flex:1;min-width:120px;height:30px;border:none;outline:none;background:transparent;font-family:inherit;font-size:14px;color:#2B211B;padding:0 4px">
+</sc-if>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:auto;color:rgba(43,33,27,.70);flex:0 0 auto"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+</div>
+<sc-if value="{{ isOpen }}" hint-placeholder-val="{{ false }}">
+<div onClick="{{ close }}" style="position:fixed;inset:0;z-index:18"></div>
+<div style="position:absolute;left:0;right:0;top:100%;margin-top:4px;z-index:19;background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;box-shadow:0 12px 32px rgba(43,33,27,.18);display:flex;flex-direction:column;overflow:hidden">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70);padding:10px 14px 4px">{{ listHead }}</span>
+<div style="display:flex;flex-direction:column;max-height:240px;overflow:auto;padding-bottom:4px">
+<sc-for list="{{ results }}" as="r" hint-placeholder-count="4">
+<button onClick="{{ r.pick }}" style="display:flex;align-items:center;gap:10px;padding:8px 14px;background:{{ r.bg }};border:none;font-family:inherit;text-align:left;cursor:pointer;color:#2B211B;width:100%" style-hover="background:rgba(43,33,27,.05)">
+<span style="width:28px;height:28px;flex:0 0 auto;border-radius:999px;background:#EFE7DA;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">{{ r.initials }}</span>
+<span style="display:flex;flex-direction:column;gap:1px;min-width:0"><span style="font-size:14px;font-weight:600">{{ r.label }}</span><span style="font-size:12px;color:rgba(43,33,27,.70)">{{ r.sub }}</span></span>
+</button>
+</sc-for>
+<sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}"><span style="padding:8px 14px;font-size:13px;color:rgba(43,33,27,.70)">{{ noResultsLine }}</span></sc-if>
+</div>
+<sc-if value="{{ canCreate }}" hint-placeholder-val="{{ true }}">
+<button onClick="{{ create }}" style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:transparent;border:none;border-top:1px solid #D9CFC0;font-family:inherit;font-size:13px;font-weight:600;color:#9E2D53;text-align:left;cursor:pointer;width:100%" style-hover="background:rgba(43,33,27,.05)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg><span>{{ createLabel }}</span></button>
+</sc-if>
+</div>
+</sc-if>
+<sc-if value="{{ hasNote }}" hint-placeholder-val="{{ false }}"><span style="font-size:12px;color:rgba(43,33,27,.70)">{{ note }}</span></sc-if>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 420, &quot;height&quot;: 360}, &quot;label&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Hiring manager&quot;, &quot;tsType&quot;: &quot;string&quot;}, &quot;noun&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;contact&quot;, &quot;tsType&quot;: &quot;string&quot;}, &quot;placeholder&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;&quot;, &quot;tsType&quot;: &quot;string&quot;}, &quot;multi&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot;}, &quot;creatable&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;}, &quot;value&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;string | string[] | null&quot;}, &quot;options&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;{value:string,label:string,sub?:string}[]&quot;}, &quot;onChange&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;(v:any)=&gt;void&quot;}, &quot;onCreate&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;(text:string)=&gt;void&quot;}, &quot;onNew&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;()=&gt;void&quot;}, &quot;note&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;&quot;, &quot;tsType&quot;: &quot;string&quot;}, &quot;recentLabel&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;&quot;, &quot;tsType&quot;: &quot;string&quot;}}">
+const ini = n => String(n || '').split(/\s+/).filter(Boolean).map(p => p[0]).join('').slice(0, 2).toUpperCase();
+class Component extends DCLogic {
+  state = {q: '', open: false, hi: 0};
+  inputRef = React.createRef();
+  renderVals() {
+    const p = this.props, s = this.state;
+    const multi = !!p.multi;
+    const opts = p.options || [];
+    const vals = multi ? (p.value || []) : (p.value ? [p.value] : []);
+    const find = v => opts.find(o => o.value === v) || {value: v, label: v, sub: ''};
+    const term = s.q.trim().toLowerCase();
+    const pool = opts.filter(o => !vals.includes(o.value));
+    const results = (term ? pool.filter(o => (o.label + ' ' + (o.sub || '')).toLowerCase().includes(term)) : pool.slice(0, 6)).slice(0, 12);
+    const noun = p.noun || 'record';
+    const exact = opts.some(o => o.label.toLowerCase() === term);
+    const set = v => { p.onChange && p.onChange(v); };
+    const pick = o => { set(multi ? [...vals, o.value] : o.value); this.setState({q: '', open: multi, hi: 0}); };
+    const doCreate = () => { const t = s.q.trim(); if (p.onCreate) p.onCreate(t); else set(multi ? [...vals, t] : t); this.setState({q: '', open: false}); };
+    return {
+      hasLabel: !!p.label, label: p.label || '', hasNote: !!p.note, note: p.note || '',
+      fieldBorder: s.open ? '#9E2D53' : 'rgba(43,33,27,.85)',
+      tokens: vals.map(v => { const o = find(v); return {label: o.label, initials: ini(o.label), remove: e => { e.stopPropagation(); set(multi ? vals.filter(x => x !== v) : null); }}; }),
+      showInput: multi || vals.length === 0,
+      inputRef: this.inputRef, focusField: () => { if (this.inputRef.current) this.inputRef.current.focus(); },
+      q: s.q, setQ: e => this.setState({q: e.target.value, open: true, hi: 0}),
+      open: () => this.setState({open: true}), close: () => this.setState({open: false, q: ''}),
+      onKey: e => {
+        if (e.key === 'ArrowDown') { e.preventDefault(); this.setState({hi: Math.min(s.hi + 1, results.length - 1)}); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); this.setState({hi: Math.max(s.hi - 1, 0)}); }
+        else if (e.key === 'Enter') { e.preventDefault(); if (results[s.hi]) pick(results[s.hi]); else if (s.q.trim() && p.creatable !== false) doCreate(); }
+        else if (e.key === 'Escape') this.setState({open: false});
+        else if (e.key === 'Backspace' && !s.q && vals.length) set(multi ? vals.slice(0, -1) : null);
+      },
+      placeholder: vals.length ? 'Add another' : (p.placeholder || 'Search ' + noun + 's'),
+      isOpen: s.open, listHead: term ? results.length + ' ' + noun + (results.length === 1 ? '' : 's') : (p.recentLabel || 'Recent'),
+      results: results.map((o, i) => ({label: o.label, sub: o.sub || '', initials: ini(o.label), bg: i === s.hi ? 'rgba(43,33,27,.05)' : 'transparent', pick: () => pick(o)})),
+      noResults: results.length === 0, noResultsLine: term ? 'No ' + noun + ' called "' + s.q.trim() + '".' : 'Type to search.',
+      canCreate: p.creatable !== false && (!term || !exact),
+      createLabel: term ? 'New ' + noun + ': "' + s.q.trim() + '"' : 'New ' + noun,
+      create: () => { if (!s.q.trim()) { if (p.onNew) p.onNew(); else if (this.inputRef.current) this.inputRef.current.focus(); return; } doCreate(); },
+    };
+  }
+}
+
+</script>
+</body>
+</html>

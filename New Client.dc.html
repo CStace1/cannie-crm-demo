@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/styles.css">
+<script src="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/_ds_bundle.js"></script>
+<style>body{margin:0;background:#F3EEE6}a{color:#9E2D53}a:hover{color:#7D2342}</style>
+</helmet>
+<div style="max-width:640px;margin:0 auto;padding:40px 32px 80px;font-family:'Poppins',sans-serif;color:#2B211B;display:flex;flex-direction:column;gap:24px">
+<a href="Clients.dc.html" style="font-size:13px;color:#9E2D53;text-decoration:none">← Back to Clients</a>
+<div style="display:flex;flex-direction:column;gap:6px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">New client</span>
+<h1 style="margin:0;font-size:28px;font-weight:700;letter-spacing:-0.0075em">Name it and one route</h1>
+<p style="margin:0;font-size:13px;color:rgba(43,33,27,.55)">Lands as a prospect. Terms, jobs and everything else come later, once you take a job or agree fees.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;flex-direction:column;gap:5px">
+<span style="font-size:13px;font-weight:600">Company name</span>
+<input type="text" value="{{ name }}" onChange="{{ setName }}" placeholder="Halden Energy" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box">
+</div>
+<div style="display:flex;flex-direction:column;gap:5px">
+<span style="font-size:13px;font-weight:600">Sector and location</span>
+<input type="text" value="{{ sector }}" onChange="{{ setSector }}" placeholder="Energy trading, London" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box">
+</div>
+<div style="display:flex;flex-direction:column;gap:5px">
+<span style="font-size:13px;font-weight:600">First contact's name</span>
+<input type="text" value="{{ contact }}" onChange="{{ setContact }}" placeholder="Marcus Lyle" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box">
+</div>
+<div style="display:flex;flex-direction:column;gap:5px">
+<span style="font-size:13px;font-weight:600">Their role</span>
+<input type="text" value="{{ contactRole }}" onChange="{{ setContactRole }}" placeholder="Head of Platform" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box">
+</div>
+<div style="display:flex;flex-direction:column;gap:5px">
+<span style="font-size:13px;font-weight:600">How they came to you</span>
+<div style="display:flex;gap:7px;flex-wrap:wrap">
+<sc-for list="{{ sources }}" as="so" hint-placeholder-count="4">
+<button onClick="{{ so.pick }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ so.bg }};border:{{ so.border }};color:{{ so.ink }};font-weight:{{ so.weight }}">{{ so.label }}</button>
+</sc-for>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:5px">
+<span style="font-size:13px;font-weight:600">First stage</span>
+<div style="display:flex;gap:7px;flex-wrap:wrap">
+<sc-for list="{{ stages }}" as="st" hint-placeholder-count="4">
+<button onClick="{{ st.pick }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ st.bg }};border:{{ st.border }};color:{{ st.ink }};font-weight:{{ st.weight }}">{{ st.label }}</button>
+</sc-for>
+</div>
+</div>
+<sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:13px;color:#9E2D53;font-weight:600">{{ error }}</p></sc-if>
+<div style="display:flex;gap:12px;align-items:center">
+<button onClick="{{ create }}" style="height:40px;padding:0 18px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer">Create prospect</button>
+<a href="Clients.dc.html?view=Prospects" style="font-size:13px;font-weight:600;color:#2B211B">Cancel</a>
+</div>
+</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const INK = '#2B211B', TAUPE = '#D9CFC0';
+class Component extends DCLogic {
+  state = {name: '', sector: '', contact: '', contactRole: '', source: 'Referral', stage: 'Identified', error: ''};
+  renderVals() {
+    const s = this.state;
+    const chip = (val, cur, key) => ({label: val, pick: () => this.setState({[key]: val, error: ''}), bg: cur === val ? INK : 'transparent', border: cur === val ? '1px solid ' + INK : '1px solid ' + TAUPE, ink: cur === val ? '#F3EEE6' : 'rgba(43,33,27,.70)', weight: cur === val ? '600' : '400'});
+    return {
+      name: s.name, setName: e => this.setState({name: e.target.value, error: ''}),
+      sector: s.sector, setSector: e => this.setState({sector: e.target.value}),
+      contact: s.contact, setContact: e => this.setState({contact: e.target.value}),
+      contactRole: s.contactRole, setContactRole: e => this.setState({contactRole: e.target.value}),
+      sources: ['Referral', 'Inbound', 'Cold outreach', 'Repeat client'].map(v => chip(v, s.source, 'source')),
+      stages: ['Identified', 'Contacted', 'Meeting booked', 'Terms sent'].map(v => chip(v, s.stage, 'stage')),
+      hasError: !!s.error, error: s.error,
+      create: () => {
+        if (!s.name.trim()) { this.setState({error: 'A company name is enough to start.'}); return; }
+        const id = 'np' + Date.now().toString(36);
+        const rec = {id, name: s.name.trim(), sub: (s.sector.trim() ? s.sector.trim() + '. ' : '') + 'Prospect, ' + s.source.toLowerCase() + '.', status: 'Prospect', pstage: s.stage, toFill: 0, onSite: 0, billed: 0, needs: [], jobs: [], people: s.contact.trim() ? [{name: s.contact.trim(), role: s.contactRole.trim() || 'Role not set', last: 'Added today'}] : [], terms: 'None yet', outstanding: 0, prospect: true};
+        try { const list = JSON.parse(localStorage.getItem('cannie.newProspects') || '[]'); localStorage.setItem('cannie.newProspects', JSON.stringify([rec, ...list])); } catch (e) {}
+        window.location.href = 'Clients.dc.html?view=Prospects&sel=' + id;
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

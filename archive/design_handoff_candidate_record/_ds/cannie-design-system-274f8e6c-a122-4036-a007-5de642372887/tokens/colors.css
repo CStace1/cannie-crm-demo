@@ -1,0 +1,98 @@
+/* Cannie colour system.
+   Hard rules from DESIGN-cannie.md: no grey in any form, no navy, ever.
+   Two accents only: berry on light surfaces, soft berry on ink. Never mixed on
+   one background, never a third accent. Every neutral here is warm and
+   ink-derived, so nothing in the system reads as grey. */
+:root{
+  /* Brand base */
+  --cannie-ink:#2B211B;
+  --cannie-ink-raised:#3A2E26;
+  --cannie-ink-line:#4C3D33;
+  --cannie-bone:#F3EEE6;
+  --cannie-sand:#EFE7DA;
+  --cannie-taupe:#D9CFC0;
+  --cannie-taupe-deep:#C4B7A5;
+  --cannie-berry:#9E2D53;
+  --cannie-berry-deep:#7F2342;
+  --cannie-berry-soft:#E896B3;
+  --cannie-berry-wash:#F2E2E8;
+
+  /* Ink alphas: hovers, scrims, hairlines. Warm, never neutral grey. */
+  --cannie-ink-a5:rgba(43,33,27,.05);
+  --cannie-ink-a10:rgba(43,33,27,.10);
+  --cannie-ink-a16:rgba(43,33,27,.16);
+  --cannie-ink-a55:rgba(43,33,27,.55);
+  --cannie-ink-a70:rgba(43,33,27,.70);
+  --cannie-bone-a10:rgba(243,238,230,.10);
+  --cannie-bone-a16:rgba(243,238,230,.16);
+  --cannie-bone-a70:rgba(243,238,230,.70);
+
+  /* Semantic, light surfaces (default) */
+  --surface-page:var(--cannie-bone);
+  --surface-card:var(--cannie-sand);
+  --surface-raised:var(--cannie-bone);
+  --surface-sunken:var(--cannie-taupe);
+  --surface-inverse:var(--cannie-ink);
+  --surface-accent:var(--cannie-berry);
+  --surface-selected:var(--cannie-berry-wash);
+  --surface-hover:var(--cannie-ink-a5);
+  --surface-press:var(--cannie-ink-a10);
+  --surface-scrim:rgba(43,33,27,.55);
+
+  --text-title:var(--cannie-ink);
+  --text-body:var(--cannie-ink);
+  --text-caption:var(--cannie-ink-a55);
+  --text-kicker:var(--cannie-ink-a70);
+  --text-accent:var(--cannie-berry);
+  --text-on-accent:var(--cannie-bone);
+  --text-on-inverse:var(--cannie-bone);
+  --text-link:var(--cannie-berry);
+  --text-link-hover:var(--cannie-berry-deep);
+  --text-disabled:var(--cannie-ink-a55);
+
+  --border-hairline:var(--cannie-taupe);
+  --border-strong:var(--cannie-taupe-deep);
+  --border-accent:var(--cannie-berry);
+  --border-focus:var(--cannie-berry);
+
+  --accent:var(--cannie-berry);
+  --accent-hover:var(--cannie-berry-deep);
+  --accent-press:var(--cannie-berry-deep);
+  --mark-color:var(--cannie-berry);
+  --rule-color:var(--cannie-berry);
+}
+/* Ink surfaces. Apply data-theme="dark" to any ink-backed region. */
+[data-theme="dark"]{
+  --surface-page:var(--cannie-ink);
+  --surface-card:var(--cannie-ink-raised);
+  --surface-raised:var(--cannie-ink-raised);
+  --surface-sunken:var(--cannie-ink);
+  --surface-inverse:var(--cannie-bone);
+  --surface-accent:var(--cannie-berry-soft);
+  --surface-selected:rgba(232,150,179,.14);
+  --surface-hover:var(--cannie-bone-a10);
+  --surface-press:var(--cannie-bone-a16);
+  --surface-scrim:rgba(43,33,27,.72);
+
+  --text-title:var(--cannie-bone);
+  --text-body:var(--cannie-bone);
+  --text-caption:var(--cannie-bone-a70);
+  --text-kicker:var(--cannie-taupe);
+  --text-accent:var(--cannie-berry-soft);
+  --text-on-accent:var(--cannie-ink);
+  --text-on-inverse:var(--cannie-ink);
+  --text-link:var(--cannie-berry-soft);
+  --text-link-hover:var(--cannie-bone);
+  --text-disabled:var(--cannie-bone-a70);
+
+  --border-hairline:var(--cannie-ink-line);
+  --border-strong:var(--cannie-taupe-deep);
+  --border-accent:var(--cannie-berry-soft);
+  --border-focus:var(--cannie-berry-soft);
+
+  --accent:var(--cannie-berry-soft);
+  --accent-hover:var(--cannie-bone);
+  --accent-press:var(--cannie-taupe);
+  --mark-color:var(--cannie-berry-soft);
+  --rule-color:var(--cannie-berry-soft);
+}

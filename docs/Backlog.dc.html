@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="../_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/tokens/fonts.css">
+<link rel="stylesheet" href="../_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/styles.css">
+<script src="../_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/_ds_bundle.js"></script>
+</helmet>
+<x-import component-from-global-scope="doc-page" from="../archive/doc-page.js" hint-size="100%,100%">
+<div slot="header" style="font-size:11px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70);font-family:'Poppins',sans-serif">Backlog, for review</div>
+<div style="font-family:'Poppins',sans-serif;color:#2B211B;font-size:13px;line-height:1.4;display:flex;flex-direction:column;gap:28px">
+<h1 style="margin:0;font-size:24px;font-weight:700;letter-spacing:-0.0075em">Backlog, for review</h1>
+<p style="margin:0;font-size:13px;color:rgba(43,33,27,.70)">Effort (S/M/L), usage (how often a recruiter touches it), priority (P1 now, P2 next, P3 later) are my suggestions, not decisions. Grouped by the entity it lives on. Done items landed this session.</p>
+
+<sc-for list="{{ groups }}" as="g" hint-placeholder-count="7">
+<section style="display:flex;flex-direction:column;gap:8px">
+<h2 style="margin:0;font-size:16px;font-weight:700;letter-spacing:-0.0075em">{{ g.title }}</h2>
+<sc-if value="{{ g.note }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:12px;color:rgba(43,33,27,.70)">{{ g.note }}</p></sc-if>
+<sc-if value="{{ g.hasRows }}" hint-placeholder-val="{{ true }}">
+<table style="width:100%;border-collapse:collapse;font-size:12.5px">
+<thead><tr style="text-align:left;border-bottom:1.5px solid #2B211B"><th style="padding:6px 8px 6px 0">Item</th><th style="padding:6px 8px;width:60px">Effort</th><th style="padding:6px 8px;width:80px">Usage</th><th style="padding:6px 0 6px 8px;width:70px">Priority</th></tr></thead>
+<tbody>
+<sc-for list="{{ g.rows }}" as="r" hint-placeholder-count="6">
+<tr style="border-bottom:1px solid #D9CFC0"><td style="padding:7px 8px 7px 0">{{ r.item }}<sc-if value="{{ r.done }}" hint-placeholder-val="{{ false }}"><span style="color:#9E2D53;font-weight:600"> · Done</span></sc-if></td><td style="padding:7px 8px;color:rgba(43,33,27,.70)">{{ r.effort }}</td><td style="padding:7px 8px;color:rgba(43,33,27,.70)">{{ r.usage }}</td><td style="padding:7px 0 7px 8px;font-weight:600">{{ r.priority }}</td></tr>
+</sc-for>
+</tbody>
+</table>
+</sc-if>
+</section>
+</sc-for>
+</div>
+</x-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const row = (item, effort, usage, priority, done) => ({item, effort, usage, priority, done: !!done});
+    const groups = [
+      {title: 'Overview / desk', rows: [
+        row('Recruiter page: targets and KPIs', 'M', 'Daily', 'P1'),
+        row('Search results page, full', 'S', 'Weekly', 'P2'),
+        row('Recent, see more', 'S', 'Weekly', 'P3'),
+        row('Calendar view incl. Outlook', 'L', 'Daily', 'P1'),
+        row('Action templates / sequences', 'M', 'Weekly', 'P2'),
+      ]},
+      {title: 'Job', rows: [
+        row('Pipeline as kanban, toggle alongside the table', 'M', 'Daily', 'P1'),
+        row('Stage-move capture pass on screen/sent/interview/out', 'M', 'Daily', 'P1'),
+        row('Milestones row layout and approver', 'S', 'Daily', 'P1', true),
+        row('Competitors on a role', 'S', 'Weekly', 'P3'),
+        row('Job landing view, separate from Job board', 'S', 'Weekly', 'P2'),
+        row('Job board as a real live board', 'M', 'Daily', 'P1', true),
+      ]},
+      {title: 'Candidate', rows: [
+        row('Candidate search fix', 'S', 'Daily', 'P1', true),
+        row('Put forward, proper capture', 'M', 'Weekly', 'P1', true),
+        row('Recent panel, real activity', 'S', 'Daily', 'P1', true),
+        row('Candidate landing view, confirm shape', 'S', 'Daily', 'P2'),
+        row('Duplicate merge, real flow', 'M', 'Occasional', 'P2'),
+        row('Bulk import', '—', 'Occasional', 'Backlog, ignore'),
+        row('SAR / erasure admin queue, desk-wide', 'M', 'Occasional', 'Backlog, ignore'),
+      ]},
+      {title: 'Client', rows: [
+        row('Rate card standard / edit flow', 'M', 'Weekly', 'P1'),
+        row('Milestones standard, shared with Job SOW', 'S', 'Weekly', 'P1'),
+        row('Add contractor / contractors list', 'M', 'Weekly', 'P1'),
+        row('Group structure, parent/child', 'M', 'Occasional', 'P3'),
+        row('Add another address/phone/email, one reused pattern', 'M', 'Weekly', 'P1'),
+        row('Timesheets page', 'L', 'Daily', 'P1'),
+        row('Invoices page', 'L', 'Daily', 'P2'),
+        row('New client creation flow', 'S', 'Occasional', 'P2'),
+        row('New business / prospect pipeline', 'L', 'Weekly', 'P3'),
+      ]},
+      {title: 'Contact', rows: [
+        row('Contacts landing / list page', 'S', 'Weekly', 'P1'),
+        row('Activities/note/call as a named standard', 'S', '—', 'P3'),
+      ]},
+      {title: 'Cross-cutting, capture pattern', rows: [
+        row('Lookup + create-if-not-found on With/About fields', 'M', 'Daily', 'P1'),
+        row('Shortlist send flow, one manager, several candidates', 'M', 'Weekly', 'P1'),
+        row('Templates: files to add', 'M', 'Weekly', 'P2'),
+        row('Bulk email', '—', 'Weekly', 'Backlog, mocked'),
+      ]},
+      {title: 'Admin / settings, all confirmed backlog', note: 'User permissions, integration settings, custom fields, sign in/profile, audit log, holiday/absence, referral tracking, agency-wide reporting, commission/split admin, desk transfer.', rows: []},
+      {title: 'Naming consistency sweep', note: 'Chase / Follow up / Next action, Needs you / Waiting on, and similar terms used loosely across the nine pages. One dedicated pass once scope above settles.', rows: []},
+    ];
+    return {groups: groups.map(g => ({...g, hasRows: g.rows.length > 0, note: g.note || ''}))};
+  }
+}
+</script>
+</body>
+</html>

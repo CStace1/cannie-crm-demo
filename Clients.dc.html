@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/styles.css">
+<script src="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/_ds_bundle.js"></script>
+<style>
+body{margin:0;background:#F3EEE6}
+a{color:#9E2D53}
+a:hover{color:#7D2342}
+@media (max-width:720px){
+  [data-shell]{flex-direction:column}
+  [data-side]{position:static !important;height:auto !important;width:auto !important;flex:0 0 auto !important;flex-direction:row !important;flex-wrap:wrap;align-items:center;gap:14px !important;padding:12px 16px !important}
+  [data-side] nav{flex-direction:row !important;flex-wrap:wrap}
+  [data-side] [data-context]{border-top:none !important;padding-top:0 !important;flex-direction:row !important;flex-wrap:wrap;align-items:center;gap:12px !important}
+  [data-side] [data-context] > :first-child{display:none}
+  [data-side] [data-user]{margin-top:0 !important;margin-left:auto}
+  [data-page]{padding-left:20px !important;padding-right:20px !important}
+}
+@media (max-width:1180px){
+  [data-actions]{flex-basis:100% !important}
+  [data-queue]{grid-template-columns:minmax(0,1fr) !important}
+  [data-queue] > div:first-child{border-right:none !important;border-bottom:1px solid #D9CFC0;padding-right:0 !important;padding-bottom:20px}
+  [data-queue] > div:last-child{padding-left:0 !important;position:static !important;padding-top:24px}
+}
+@media (max-width:760px){
+  [data-rowhead]{display:none !important}
+  [data-row]{grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;gap:6px 12px !important;padding:10px 4px}
+  [data-row] > :first-child{grid-column:1 / -1}
+}
+</style>
+</helmet>
+<div data-shell="1" style="display:flex;width:100%;min-height:100vh;background:#F3EEE6;color:#2B211B;font-family:'Poppins',sans-serif;font-size:15px;line-height:1.3">
+
+<aside data-side="1" style="position:sticky;top:0;height:100vh;box-sizing:border-box;overflow-y:auto;align-self:flex-start;width:222px;flex:0 0 222px;background:#2B211B;color:#F3EEE6;padding:24px 14px 20px;display:flex;flex-direction:column;gap:22px">
+<div style="padding:0 8px;display:flex">
+<x-import component-from-global-scope="CannieDesignSystem_274f8e.Lockup" tone="dark" height="24" hint-size="117px,24px"></x-import>
+</div>
+<nav style="display:flex;flex-direction:column;gap:2px">
+<a href="Overview.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg><span>Overview</span></a>
+<a href="Pipeline.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18"/></svg><span>Pipeline</span></a>
+<a href="Job Board.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg><span>Job board</span></a>
+<sc-if value="{{ hasPins }}" hint-placeholder-val="{{ false }}">
+<span style="border-top:1px solid #4C3D33;margin:12px 0 10px"></span><a href="Calendar.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span>Calendar</span></a><a href="Activities.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Activities</span></a><span style="border-top:1px solid #4C3D33;margin:12px 0 10px"></span>
+<button onClick="{{ togglePinsCollapsed }}" style="display:flex;align-items:center;justify-content:space-between;gap:6px;padding:0 12px 4px;background:transparent;border:none;font-family:inherit;cursor:pointer;width:100%">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:#D9CFC0">Pinned {{ pinCount }}</span>
+<span style="color:#D9CFC0;font-size:11px;transform:{{ pinsChevron }}">▾</span>
+</button>
+<sc-if value="{{ pinsExpanded }}" hint-placeholder-val="{{ true }}">
+<sc-for list="{{ pinnedItems }}" as="pn" hint-placeholder-count="2">
+<div style="display:flex;align-items:center;gap:6px;height:32px;padding:0 12px;border-radius:10px" style-hover="background:rgba(243,238,230,.08)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;color:#D9CFC0"><path d="M12 17v5M9 3h6l-1 7 3 3H7l3-3z"/></svg><a href="{{ pn.href }}" style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px;color:#F3EEE6;text-decoration:none">{{ pn.title }}</a><button onClick="{{ pn.unpin }}" title="Unpin" style="background:transparent;border:none;padding:0 2px;font-family:inherit;font-size:14px;line-height:1;color:#D9CFC0;cursor:pointer;opacity:.7">×</button></div>
+</sc-for>
+</sc-if>
+</sc-if>
+<span style="border-top:1px solid #4C3D33;margin:12px 0 10px"></span>
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:#D9CFC0;padding:0 12px 4px">Records</span>
+<a href="Clients.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;background:rgba(232,150,179,.14);color:#E896B3;font-weight:600;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2M10 6h4M10 10h4M10 14h4M10 18h4"/></svg><span>Clients</span></a>
+<a href="Job Record.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg><span>Jobs</span></a>
+<a href="Candidates.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg><span>Candidates</span></a>
+<a href="Contacts.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg><span>Contacts</span></a><span style="border-top:1px solid #4C3D33;margin:12px 0 10px"></span><a href="Recruiter.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M3 3v18h18"/><path d="M7 15l4-6 4 3 4-8"/></svg><span>My targets</span></a><span style="border-top:1px solid #4C3D33;margin:12px 0 10px"></span><a href="Timesheets.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><span>Timesheets</span></a><a href="Invoices.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><span>Invoices</span></a>
+<span style="border-top:1px solid #4C3D33;margin:12px 0 10px"></span>
+<a href="Standards.dc.html" style="display:flex;align-items:center;gap:11px;height:36px;padding:0 12px;border-radius:10px;color:#F3EEE6;font-size:14px;text-decoration:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><span>Standards</span></a>
+</nav>
+<div data-context="1" style="border-top:1px solid #4C3D33;padding-top:20px;display:flex;flex-direction:column;gap:9px;flex-shrink:0">
+<a href="Overview.dc.html" style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:#D9CFC0;padding:0 12px;text-decoration:none">My desk, clients</a>
+<sc-for list="{{ sideViews }}" as="sv" hint-placeholder-count="4">
+<button onClick="{{ sv.go }}" style="display:flex;justify-content:space-between;gap:8px;padding:0 12px;font-size:14px;background:transparent;border:none;font-family:inherit;cursor:pointer;text-align:left;color:{{ sv.ink }};font-weight:{{ sv.weight }}"><span>{{ sv.title }}</span><span style="opacity:.65;font-size:12px">{{ sv.count }}</span></button>
+</sc-for>
+<a href="New Client.dc.html" style="padding:0 12px;font-size:13px;color:#D9CFC0;text-decoration:underline">New client</a>
+</div>
+</aside>
+
+<main style="flex:1;min-width:0;display:flex;flex-direction:column">
+<div data-topbar="1" style="position:sticky;top:0;z-index:6;display:flex;align-items:center;gap:14px;padding:10px 32px;background:#F3EEE6;border-bottom:1px solid #D9CFC0">
+<button onClick="{{ goBack }}" title="Back" style="height:38px;width:38px;flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;border:1px solid #D9CFC0;border-radius:10px;background:transparent;color:#2B211B;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+<div style="position:relative;flex:1 1 240px;min-width:0;max-width:640px">
+<input type="text" value="{{ gq }}" onChange="{{ setGq }}" onKeyDown="{{ gqKey }}" placeholder="Search everything: a name, a client, a skill, a job. Press / to focus." style="height:38px;width:100%;padding:0 12px 0 38px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;left:12px;top:10px;color:rgba(43,33,27,.55)"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+<sc-if value="{{ gqOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:0;right:0;top:44px;background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;padding:8px 0;box-shadow:0 12px 32px rgba(43,33,27,.18);display:flex;flex-direction:column;max-height:70vh;overflow:auto">
+<sc-for list="{{ gqGroups }}" as="g" hint-placeholder-count="3">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70);padding:8px 16px 4px">{{ g.label }}</span>
+<sc-for list="{{ g.hits }}" as="h" hint-placeholder-count="3">
+<a href="{{ h.href }}" style="display:flex;justify-content:space-between;gap:12px;padding:8px 16px;text-decoration:none;color:#2B211B" style-hover="background:rgba(43,33,27,.05)"><span style="display:flex;flex-direction:column;gap:1px;min-width:0"><span style="font-size:14px;font-weight:600">{{ h.title }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ h.sub }}</span></span><span style="font-size:12px;color:rgba(43,33,27,.55);white-space:nowrap">{{ h.right }}</span></a>
+</sc-for>
+</sc-for>
+<sc-if value="{{ gqEmpty }}" hint-placeholder-val="{{ false }}"><span style="padding:10px 16px;font-size:14px;color:rgba(43,33,27,.55)">Nothing matches. Try a surname, a client, or a skill.</span></sc-if>
+<span style="padding:8px 16px 4px;font-size:12px;color:rgba(43,33,27,.55);border-top:1px solid #D9CFC0;margin-top:4px">Enter opens the first result. Reads candidates, clients, contacts, jobs and documents.</span><a href="#" onClick="{{ gqSeeAll }}" style="padding:6px 16px 4px;font-size:13px;font-weight:600;color:#9E2D53;text-decoration:underline">See all results</a>
+</div>
+</sc-if>
+</div>
+<span style="flex:1 0 8px"></span>
+<div style="position:relative;flex:0 0 auto">
+<button onClick="{{ toggleCreate }}" title="Create" style="flex:0 0 auto;height:38px;padding:0 14px;display:inline-flex;align-items:center;gap:8px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg><span>New</span></button>
+<sc-if value="{{ createOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;right:0;top:44px;width:260px;background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;padding:8px 0;box-shadow:0 12px 32px rgba(43,33,27,.18);display:flex;flex-direction:column;z-index:7">
+<sc-for list="{{ createItems }}" as="c" hint-placeholder-count="5">
+<a href="{{ c.href }}" style="display:flex;flex-direction:column;gap:1px;padding:9px 16px;text-decoration:none;color:#2B211B" style-hover="background:rgba(43,33,27,.05)"><span style="font-size:14px;font-weight:600">{{ c.label }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ c.sub }}</span></a>
+</sc-for>
+</div>
+</sc-if>
+</div>
+<div data-syncchip="1" style="position:relative;flex:0 0 auto">
+<button onClick="{{ toggleSync }}" title="Outlook sync" style="height:38px;padding:0 12px;display:inline-flex;align-items:center;gap:7px;border:1px solid {{ syncBorder }};border-radius:10px;background:{{ syncBg }};color:#2B211B;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer"><span style="width:8px;height:8px;border-radius:999px;background:{{ syncDot }}"></span><span>{{ syncLabel }}</span></button>
+<sc-if value="{{ syncOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;right:0;top:44px;width:320px;background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;padding:14px 16px;box-shadow:0 12px 32px rgba(43,33,27,.18);display:flex;flex-direction:column;gap:10px;z-index:7">
+<div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Outlook, priya.shah@cannie.example</span><span style="font-size:14px;font-weight:600">{{ syncHead }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ syncSub }}</span></div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;border-top:1px solid #D9CFC0;padding-top:10px">
+<sc-for list="{{ syncFacts }}" as="f" hint-placeholder-count="3"><span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">{{ f.label }}</span><span style="font-size:15px;font-weight:700;color:{{ f.ink }}">{{ f.value }}</span></span></sc-for>
+</div>
+<sc-for list="{{ syncRows }}" as="r" hint-placeholder-count="3"><div style="display:flex;justify-content:space-between;gap:10px;font-size:13px;border-top:1px solid #D9CFC0;padding:7px 0"><span style="min-width:0">{{ r.what }}</span><span style="font-size:12px;color:rgba(43,33,27,.55);white-space:nowrap">{{ r.when }}</span></div></sc-for>
+<div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding-top:4px"><button onClick="{{ syncToggleState }}" style="height:32px;padding:0 12px;border-radius:10px;border:1px solid rgba(43,33,27,.85);background:transparent;font-family:inherit;font-size:13px;font-weight:600;color:#2B211B;cursor:pointer">{{ syncAction }}</button><span style="font-size:12px;color:rgba(43,33,27,.55)">Calendar, mail and contacts. Cannie is the record; Outlook is where you see it.</span></div>
+</div>
+</sc-if>
+</div>
+<button onClick="{{ togglePin }}" title="{{ pinTitle }}" style="flex:0 0 auto;height:38px;padding:0 12px;display:inline-flex;align-items:center;gap:6px;border:1px solid {{ pinBorder }};border-radius:10px;background:{{ pinBg }};color:{{ pinInk }};font-family:inherit;font-size:13px;font-weight:600;cursor:pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="{{ pinFill }}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17v5M9 3h6l-1 7 3 3H7l3-3z"/></svg><span>{{ pinLabel }}</span></button>
+<button onClick="{{ toggleRecent }}" title="Recent" style="flex:0 0 auto;height:38px;width:38px;display:inline-flex;align-items:center;justify-content:center;border:1px solid #D9CFC0;border-radius:10px;background:transparent;color:#2B211B;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></button>
+<sc-if value="{{ recentOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;right:88px;top:52px;width:300px;background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;padding:8px 0;box-shadow:0 12px 32px rgba(43,33,27,.18);display:flex;flex-direction:column;z-index:7">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70);padding:8px 16px 4px">Recent</span>
+<sc-for list="{{ recentItems }}" as="r" hint-placeholder-count="5">
+<a href="{{ r.href }}" style="display:flex;justify-content:space-between;gap:12px;padding:8px 16px;text-decoration:none;color:#2B211B" style-hover="background:rgba(43,33,27,.05)"><span style="display:flex;flex-direction:column;gap:1px"><span style="font-size:14px;font-weight:600">{{ r.title }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ r.sub }}</span></span><span style="font-size:12px;color:rgba(43,33,27,.55);white-space:nowrap">{{ r.when }}</span></a>
+</sc-for>
+<a href="Recent.dc.html" style="padding:8px 16px 4px;font-size:13px;font-weight:600;color:#9E2D53;text-decoration:underline;border-top:1px solid #D9CFC0;margin-top:4px">See all</a>
+</div>
+</sc-if>
+<span style="flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:999px;background:#2B211B;color:#F3EEE6;font-size:11px;font-weight:600">PS</span>
+</div>
+
+<div data-page="1" style="padding:26px 32px 64px;display:flex;flex-direction:column;gap:22px">
+<header style="display:flex;flex-direction:column;gap:18px">
+<div style="display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap">
+<div style="display:flex;flex-direction:column;gap:6px;min-width:0;flex:1 1 380px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Clients</span>
+<h1 style="margin:0;font-size:30px;font-weight:700;letter-spacing:-0.0075em">{{ viewTitle }}</h1>
+<p style="margin:0;font-size:13px;color:rgba(43,33,27,.55)">{{ viewLine }}<sc-if value="{{ hasScope }}" hint-placeholder-val="{{ false }}"><button onClick="{{ clearScope }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">Show all</button></sc-if></p>
+</div>
+<div data-actions="1" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;flex:0 0 auto">
+<a href="New Client.dc.html" style="white-space:nowrap;height:40px;padding:0 18px;display:inline-flex;align-items:center;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-size:14px;font-weight:600;text-decoration:none">New client</a>
+</div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:22px 42px">
+<sc-for list="{{ facts }}" as="f" hint-placeholder-count="5">
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">{{ f.label }}</span><span style="font-size:15px;font-weight:700;color:{{ f.ink }}">{{ f.value }}</span></div>
+</sc-for>
+</div>
+<div style="display:flex;gap:6px;flex-wrap:wrap;align-items:baseline;font-size:14px;color:#9E2D53">
+<span style="font-weight:700">Needs you today:</span>
+<sc-for list="{{ needs }}" as="n" hint-placeholder-count="3">
+<a href="{{ n.href }}" style="font-weight:600;color:#9E2D53">{{ n.label }}</a><span>{{ n.sep }}</span>
+</sc-for>
+</div>
+</header>
+
+<dc-import name="FilterBar" hint-size="100%,96px" q="{{ q }}" on-q="{{ fbOnQ }}" placeholder="Search clients, contacts or a sector" views="{{ fbViews }}" view="{{ fbView }}" on-view="{{ fbOnView }}" filters="{{ fbFilters }}" on-filter="{{ fbOnFilter }}" on-clear="{{ fbClear }}" sort="{{ fbSort }}" sort-options="{{ fbSortOptions }}" on-sort="{{ fbOnSort }}" saved="{{ fbSaved }}" saved-label="Saved" on-save="{{ fbOnSave }}" result-line="{{ fbResult }}"></dc-import>
+
+<sc-if value="{{ isProspectView }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;gap:3px;padding:3px;background:#EFE7DA;border-radius:999px;align-self:flex-start;margin-bottom:8px">
+<sc-for list="{{ prospectToggle }}" as="vt" hint-placeholder-count="2">
+<button onClick="{{ vt.go }}" style="height:30px;padding:0 15px;border:none;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;white-space:nowrap;background:{{ vt.bg }};color:{{ vt.ink }};font-weight:{{ vt.weight }}">{{ vt.label }}</button>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{ isProspectKanban }}" hint-placeholder-val="{{ false }}">
+<div style="overflow-x:auto;padding-bottom:6px"><div style="display:flex;gap:14px;min-width:max-content;align-items:flex-start">
+<sc-for list="{{ prospectCols }}" as="col" hint-placeholder-count="4">
+<div style="display:flex;flex-direction:column;gap:10px;width:220px;flex:0 0 220px">
+<div style="display:flex;align-items:baseline;gap:8px;padding:0 4px"><span style="font-size:13px;font-weight:700">{{ col.label }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ col.count }}</span></div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<sc-for list="{{ col.cards }}" as="card" hint-placeholder-count="2">
+<button onClick="{{ card.pick }}" style="display:flex;flex-direction:column;gap:4px;align-items:flex-start;text-align:left;background:#F3EEE6;border:1px solid #D9CFC0;border-radius:10px;padding:11px;font-family:inherit;cursor:pointer;width:100%"><span style="font-size:14px;font-weight:600">{{ card.name }}</span><span style="font-size:11px;color:rgba(43,33,27,.55)">{{ card.sub }}</span></button>
+</sc-for>
+<sc-if value="{{ col.empty }}" hint-placeholder-val="{{ false }}"><p style="margin:0;padding:4px;font-size:12px;color:rgba(43,33,27,.45)">Empty</p></sc-if>
+</div>
+</div>
+</sc-for>
+</div></div>
+</sc-if>
+<sc-if value="{{ isProspectTable }}" hint-placeholder-val="{{ true }}">
+<div data-queue="1" style="display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:0;align-items:start">
+<div style="display:flex;flex-direction:column;border-right:1px solid #D9CFC0;padding-right:24px;min-width:0;overflow-x:auto">
+<div data-rowhead="1" style="display:grid;grid-template-columns:minmax(160px,1.6fr) 64px 64px 110px minmax(140px,1.2fr);gap:12px;padding:0 4px 8px;border-bottom:3.4px solid #2B211B;font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">
+<sc-for list="{{ colHeads }}" as="h" hint-placeholder-count="5">
+<sc-if value="{{ h.sortable }}" hint-placeholder-val="{{ true }}"><button onClick="{{ h.go }}" title="{{ h.title }}" style="display:flex;align-items:center;gap:4px;background:transparent;border:none;padding:0;font-family:inherit;font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:{{ h.ink }};cursor:pointer;text-align:left;min-width:0"><span>{{ h.label }}</span><sc-if value="{{ h.on }}" hint-placeholder-val="{{ false }}"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;transform:{{ h.rot }}"><path d="M6 9l6 6 6-6"></path></svg></sc-if></button></sc-if>
+<sc-if value="{{ h.plain }}" hint-placeholder-val="{{ false }}"><span>{{ h.label }}</span></sc-if>
+</sc-for>
+</div>
+<sc-for list="{{ rows }}" as="c" hint-placeholder-count="6">
+<button data-row="1" onClick="{{ c.pick }}" style="display:grid;grid-template-columns:minmax(160px,1.6fr) 64px 64px 110px minmax(140px,1.2fr);gap:12px;align-items:center;border:none;border-top:1px solid #D9CFC0;padding:12px 4px;background:{{ c.bg }};font-family:inherit;color:inherit;cursor:pointer;text-align:left;width:100%" style-hover="background:rgba(43,33,27,.05)">
+<span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font-size:15px;font-weight:600">{{ c.name }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ c.sub }}</span></span>
+<span style="font-size:14px;font-weight:600">{{ c.toFill }}</span>
+<span style="font-size:14px">{{ c.onSite }}</span>
+<span style="font-size:14px">{{ c.billed }}</span>
+<span style="font-size:13px;color:{{ c.needInk }};font-weight:{{ c.needWeight }}">{{ c.need }}</span>
+</button>
+</sc-for>
+<sc-if value="{{ empty }}" hint-placeholder-val="{{ false }}"><p style="margin:14px 0 0;font-size:14px;color:rgba(43,33,27,.55)">No clients match. Clear the filter or search by a contact's name.</p></sc-if>
+<p style="margin:14px 0 0;font-size:12px;color:rgba(43,33,27,.55)">{{ footLine }}</p>
+</div>
+
+<div style="padding-left:24px;display:flex;flex-direction:column;gap:18px;position:sticky;top:24px">
+<div style="display:flex;flex-direction:column;gap:6px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">{{ selKicker }}</span>
+<h2 style="margin:0;font-size:22px;font-weight:700;letter-spacing:-0.0075em">{{ selName }}</h2>
+<span style="font-size:13px;color:rgba(43,33,27,.55)">{{ selLine }}</span>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:14px 28px;background:#EFE7DA;border-radius:14px;padding:16px 18px">
+<sc-for list="{{ selFacts }}" as="f" hint-placeholder-count="4">
+<div style="display:flex;flex-direction:column;gap:3px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">{{ f.label }}</span><span style="font-size:14px;font-weight:700">{{ f.value }}</span></div>
+</sc-for>
+</div>
+<div style="display:flex;flex-direction:column;gap:4px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Needs you</span>
+<sc-for list="{{ selNeeds }}" as="n" hint-placeholder-count="2">
+<span style="font-size:14px;font-weight:{{ n.weight }};color:{{ n.ink }}">{{ n.label }}</span>
+</sc-for>
+</div>
+<div style="display:flex;flex-direction:column;gap:4px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Jobs to fill</span>
+<sc-for list="{{ selJobs }}" as="j" hint-placeholder-count="3">
+<a href="{{ j.href }}" style="display:flex;justify-content:space-between;gap:10px;font-size:14px;color:#2B211B;text-decoration:none;border-top:1px solid #D9CFC0;padding:7px 0"><span>{{ j.title }}</span><span style="font-size:12px;color:rgba(43,33,27,.55);white-space:nowrap">{{ j.stage }}</span></a>
+</sc-for>
+</div>
+<div style="display:flex;flex-direction:column;gap:4px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">People</span>
+<sc-for list="{{ selPeople }}" as="p" hint-placeholder-count="2">
+<span style="font-size:14px"><strong>{{ p.name }}</strong>, {{ p.role }}. <span style="color:rgba(43,33,27,.55)">{{ p.last }}</span></span>
+</sc-for>
+</div>
+<div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+<a href="{{ selHref }}" style="height:40px;padding:0 18px;display:inline-flex;align-items:center;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-size:14px;font-weight:600;text-decoration:none">Open the record</a>
+<a href="{{ selHref }}" style="font-size:13px;font-weight:600;color:#2B211B">Take a new job</a>
+</div>
+</div>
+</div>
+</sc-if>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const INK = '#2B211B', BERRY = '#9E2D53', MUTED = 'rgba(43,33,27,.55)', MID = 'rgba(43,33,27,.70)', TAUPE = '#D9CFC0';
+const BASE_CLIENTS = [
+  {id: 'bw', name: 'Brightwell Payments', sub: 'Fintech, Leeds and London. Owner you.', status: 'Active', toFill: 6, onSite: 9, billed: 48000, needs: ['Milestone 3 unapproved 5 days', 'Lucía Ferreira, no feedback 3 days', 'Femi Adebayo right to work expires in 9 days'], jobs: [{title: 'Senior Backend Engineer', stage: '3 at Interview', href: 'Job Record.dc.html'}, {title: 'Data Engineers, payments platform', stage: '1 of 3 filled', href: 'Job Record.dc.html?type=T%26M'}, {title: 'Payments migration, phase 2', stage: 'Milestone 3 awaiting', href: 'Job Record.dc.html?type=SOW'}, {title: 'Security Engineer', stage: '4 at Screened', href: 'Job Record.dc.html'}], people: [{name: 'Dan Okafor', role: 'Head of Engineering', last: 'Call Mon, 4 items waiting'}, {name: 'Claire Dunn', role: 'Procurement', last: 'Rate card review 30 Sep'}], terms: 'MSA to Mar 2027', outstanding: 12400, prospect: false},
+  {id: 'nb', name: 'Northbeam Data', sub: 'Analytics, Leeds. Owner Nadia Croft, you on two jobs.', status: 'Active', toFill: 3, onSite: 5, billed: 32000, needs: ['Invoice INV-2026-0341 overdue 12 days, £8,400', 'MSA review due 30 Sep'], jobs: [{title: 'Platform Lead', stage: '2 at Interview', href: 'Job Record.dc.html'}, {title: 'Payments Engineer', stage: 'New, 0 sent', href: 'Job Record.dc.html'}], people: [{name: 'Ruth Vance', role: 'CTO', last: 'Met Tue'}], terms: 'MSA review 30 Sep', outstanding: 8400, prospect: false},
+  {id: 'od', name: 'Ordell Software', sub: 'SaaS, Manchester. Owner you.', status: 'Active', toFill: 4, onSite: 3, billed: 19500, needs: ['Amara Osei offer out, answer due Fri', 'Tom Whitfield rebate window ends 3 Oct'], jobs: [{title: 'Senior Engineer', stage: '1 at Offer', href: 'Job Record.dc.html'}, {title: 'QA Lead', stage: '2 at Sent', href: 'Job Record.dc.html'}], people: [{name: 'Ruth Vance', role: 'VP Engineering', last: 'Quiet 9 days, two live jobs'}], terms: 'Terms Jan 2026', outstanding: 0, prospect: false},
+  {id: 'he', name: 'Halden Energy', sub: 'Energy trading, London. Prospect.', status: 'Prospect', pstage: 'Terms sent', toFill: 0, onSite: 0, billed: 0, needs: ['Terms sent, meeting Tue'], jobs: [], people: [{name: 'Marcus Lyle', role: 'Head of Platform', last: 'Meeting Tue'}], terms: 'Terms sent 12 Sep', outstanding: 0, prospect: true},
+  {id: 'mh', name: 'Merrow Health', sub: 'Healthtech, Bristol. Prospect.', status: 'Prospect', pstage: 'Meeting booked', toFill: 0, onSite: 0, billed: 0, needs: [], jobs: [], people: [{name: 'Sana Iqbal', role: 'Engineering Manager', last: 'Engaged, brief expected'}], terms: 'None', outstanding: 0, prospect: true},
+  {id: 'ap', name: 'Aldgate and Percival', sub: 'Law, London. Prospect, referred by Claire Dunn.', status: 'Prospect', pstage: 'Identified', toFill: 0, onSite: 0, billed: 0, needs: [], jobs: [], people: [{name: 'James Percival', role: 'COO', last: 'Not yet contacted'}], terms: 'None', outstanding: 0, prospect: true},
+  {id: 'tv', name: 'Tessellate Ventures', sub: 'VC, London. Dormant since 2025.', status: 'Dormant', toFill: 0, onSite: 0, billed: 0, needs: [], jobs: [], people: [{name: 'Hugo Lane', role: 'Partner', last: 'Last placed Nov 2024'}], terms: 'Terms expired Nov 2025', outstanding: 0, prospect: false},
+  {id: 'kf', name: 'Kestrel Freight', sub: 'Logistics, Warrington. Owner Sam Iyer, you on one job.', status: 'Active', toFill: 1, onSite: 2, billed: 9800, needs: [], jobs: [{title: 'Integration Engineer', stage: '1 at Sent', href: 'Job Record.dc.html'}], people: [{name: 'Pat Doyle', role: 'IT Director', last: 'Email Fri'}], terms: 'Terms Mar 2026', outstanding: 0, prospect: false},
+];
+const CLIENTS = (() => { try { return [...JSON.parse(localStorage.getItem('cannie.newProspects') || '[]'), ...BASE_CLIENTS]; } catch (e) { return BASE_CLIENTS; } })();
+const gbp = n => '£' + Math.round(n).toLocaleString('en-GB');
+
+class Component extends DCLogic {
+  heads(cols, cur, dir, set) {
+    return cols.map(c => { const on = !!c.key && cur === c.key; return {label: c.label, sortable: !!c.key, plain: !c.key, on, title: c.key ? 'Sort by ' + c.label.toLowerCase() : '', ink: on ? '#2B211B' : 'rgba(43,33,27,.70)', rot: on && dir === 1 ? 'rotate(180deg)' : 'none', go: () => set(c.key, on ? -dir : (c.defaultDir || 1))}; });
+  }
+
+  syncVals() {
+    const s = this.state; const off = !!s.syncOff;
+    const rows = [{what: 'Event created: Call Amara, 18:30', when: '10:31'}, {what: 'Moved in Outlook: Rate card call, now 14:30', when: '09:12'}, {what: '3 emails attached: Dan Okafor, Ruth Vance, Amara Osei', when: '09:02'}, {what: 'Interview invite accepted: Priya Lam, Thu 10:00', when: 'Yesterday'}];
+    return {syncOpen: !!s.syncOpen, toggleSync: () => this.setState({syncOpen: !s.syncOpen, createOpen: false, recentOpen: false, gq: ''}),
+      syncLabel: off ? 'Outlook off' : 'Outlook', syncDot: off ? '#9E2D53' : '#2B211B', syncBorder: off ? '#9E2D53' : '#D9CFC0', syncBg: off ? '#EFE7DA' : 'transparent',
+      syncHead: off ? 'Disconnected' : 'Connected, synced 2 minutes ago', syncSub: off ? 'Actions and interviews still save; nothing reaches your calendar until you reconnect.' : 'Timed actions become events. Moves and declines in Outlook come back here. Mail from people on your records attaches itself.',
+      syncFacts: [{label: 'Events today', value: off ? '0' : '6', ink: '#2B211B'}, {label: 'Mail attached', value: off ? '0' : '14', ink: '#2B211B'}, {label: 'Not on a record', value: off ? '0' : '3', ink: off ? '#2B211B' : '#9E2D53'}],
+      syncRows: off ? [{what: 'Consent revoked in Microsoft 365 admin', when: 'Today 08:40'}] : rows,
+      syncAction: off ? 'Reconnect' : 'Disconnect', syncToggleState: () => { this.setState({syncOff: !off}); if (this.say) this.say(off ? 'Outlook reconnected. Catching up on the last hour.' : 'Outlook disconnected. Nothing sent or read until you reconnect.'); }};
+  }
+  topbarVals() {
+    const s = this.state; const q = (s.gq || '').trim().toLowerCase();
+    const INDEX = [
+      {g: 'Candidates', title: 'Amara Osei', sub: 'Backend Engineer, Monzo. Go, Kafka, payments.', right: 'Interview, Offer', href: 'Candidate Record.dc.html', k: 'amara osei monzo go kafka payments candidate'},
+      {g: 'Candidates', title: 'Lucía Ferreira', sub: 'Staff Engineer, Wise.', right: 'Sent', href: 'Candidate Record.dc.html', k: 'lucia lucía ferreira wise go kubernetes'},
+      {g: 'Candidates', title: 'Rosa Alvarez', sub: 'Data Engineer, contractor.', right: 'Offer', href: 'Candidate Record.dc.html', k: 'rosa alvarez data spark python contractor'},
+      {g: 'Candidates', title: 'Femi Adebayo', sub: 'On site, Brightwell. Right to work expires in 9 days.', right: 'Contractor', href: 'Candidate Record.dc.html', k: 'femi adebayo brightwell contractor right to work'},
+      {g: 'Candidates', title: 'Priyanka Rao', sub: 'Applied yesterday, unowned.', right: 'New', href: 'Candidates.dc.html', k: 'priyanka rao applied unowned gocardless'},
+      {g: 'Clients', title: 'Brightwell Payments', sub: 'Fintech, Leeds and London. 6 to fill, 9 on site.', right: '5 need you', href: 'Client Record.dc.html', k: 'brightwell payments fintech leeds london client'},
+      {g: 'Clients', title: 'Ordell Software', sub: 'SaaS, Manchester. Ruth quiet 9 days.', right: 'Quiet', href: 'Client Record.dc.html', k: 'ordell software saas manchester client'},
+      {g: 'Clients', title: 'Northbeam Data', sub: 'Analytics, Leeds. Invoice overdue.', right: 'Overdue', href: 'Client Record.dc.html', k: 'northbeam data analytics leeds client invoice'},
+      {g: 'Contacts', title: 'Dan Okafor', sub: 'Head of Engineering, Brightwell. 4 items waiting.', right: 'Contact', href: 'Contact Record.dc.html', k: 'dan okafor brightwell head of engineering hiring manager'},
+      {g: 'Contacts', title: 'Ruth Vance', sub: 'VP Engineering, Ordell.', right: 'Contact', href: 'Contact Record.dc.html', k: 'ruth vance ordell vp engineering'},
+      {g: 'Contacts', title: 'Claire Dunn', sub: 'Procurement, Brightwell. Rate card review 30 Sep.', right: 'Contact', href: 'Contact Record.dc.html', k: 'claire dunn brightwell procurement rate card'},
+      {g: 'Jobs', title: 'Senior Backend Engineer', sub: 'Brightwell, perm, £85,000 to £95,000. 3 sent, 2 at interview.', right: '24 days', href: 'Job Record.dc.html', k: 'senior backend engineer brightwell perm go kafka postgres payments job'},
+      {g: 'Jobs', title: 'Data Engineers, payments platform', sub: 'Brightwell, T&M, £550 to £600 a day.', right: '31 days', href: 'Job Record.dc.html?type=T%26M', k: 'data engineers payments platform brightwell t&m contract spark python job'},
+      {g: 'Jobs', title: 'Payments migration, phase 2', sub: 'Brightwell, SOW, milestone 3 awaiting.', right: 'Delivering', href: 'Job Record.dc.html?type=SOW', k: 'payments migration phase 2 brightwell sow statement of work milestone'},
+      {g: 'Jobs', title: 'Platform Lead', sub: 'Northbeam, perm, Nadia\'s job.', right: '18 days', href: 'Job Record.dc.html', k: 'platform lead northbeam perm kubernetes leadership job'},
+      {g: 'Documents', title: 'Brightwell terms of business', sub: 'Signed 3 Mar 2026, 16%, rebate to 12 weeks.', right: 'Contracts', href: 'Client Record.dc.html', k: 'brightwell terms of business msa contract rebate fee'},
+      {g: 'Documents', title: 'Amara Osei CV Sep 2026', sub: 'Current version, sent to Brightwell and Ordell.', right: 'CV', href: 'Candidate Record.dc.html', k: 'amara osei cv resume'},
+    ];
+    const words = q.split(/\s+/).filter(Boolean);
+    const hits = q.length < 2 ? [] : INDEX.filter(x => words.every(w => (x.title + ' ' + x.sub + ' ' + x.k).toLowerCase().includes(w)));
+    const order = ['Candidates', 'Clients', 'Contacts', 'Jobs', 'Documents'];
+    const groups = order.map(g => ({label: g, hits: hits.filter(h => h.g === g).slice(0, 4)})).filter(g => g.hits.length);
+    return {
+      goBack: () => { if (window.history.length > 1) window.history.back(); else window.location.href = 'Overview.dc.html'; },
+      ...this.syncVals(),
+      gq: s.gq || '', setGq: e => this.setState({gq: e.target.value, createOpen: false, recentOpen: false}), gqOpen: q.length >= 2, gqGroups: groups, gqEmpty: hits.length === 0,
+      gqKey: e => { if (e.key === 'Enter' && hits[0]) window.location.href = hits[0].href; if (e.key === 'Escape') this.setState({gq: ''}); },
+      gqSeeAll: e => { e.preventDefault(); window.location.href = 'Search.dc.html?q=' + encodeURIComponent(s.gq || ''); },
+      createOpen: !!s.createOpen, toggleCreate: () => this.setState({createOpen: !s.createOpen, recentOpen: false, gq: ''}),
+      createItems: [{label: 'Candidate', sub: 'Name, a route, how they came to you. CV can follow.', href: 'Candidates.dc.html'}, {label: 'Job', sub: 'Pick the client first; the brief follows.', href: 'Clients.dc.html'}, {label: 'Client', sub: 'Name and one route. Lands on the empty record.', href: 'New Client.dc.html'}, {label: 'Contact', sub: 'At a client you already have.', href: 'Clients.dc.html'}, {label: 'Note or call', sub: 'Against anyone. Same drawer as every record.', href: '#'}],
+      recentOpen: !!s.recentOpen, toggleRecent: () => this.setState({recentOpen: !s.recentOpen, createOpen: false, gq: ''}),
+      recentItems: [{title: 'Amara Osei', sub: 'Candidate', when: '10 min', href: 'Candidate Record.dc.html'}, {title: 'Senior Backend Engineer', sub: 'Job, Brightwell', when: '25 min', href: 'Job Record.dc.html'}, {title: 'Brightwell Payments', sub: 'Client', when: '1 hr', href: 'Client Record.dc.html'}, {title: 'Dan Okafor', sub: 'Contact, Brightwell', when: 'Yesterday', href: 'Contact Record.dc.html'}, {title: 'Payments migration, phase 2', sub: 'SOW, Brightwell', when: 'Yesterday', href: 'Job Record.dc.html?type=SOW'}],
+      ...(() => { const KEY = 'cannie.pins'; const read = () => { try { return JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { return null; } }; const here = {title: 'Clients', sub: 'List', href: window.location.pathname.split('/').pop() + window.location.search}; const pins = read() || []; const write = p => { localStorage.setItem(KEY, JSON.stringify(p)); this.forceUpdate(); }; const isPinned = pins.some(p => p.title === here.title); const full = pins.length >= 6 && !isPinned;
+        return {pinLabel: isPinned ? 'Pinned' : 'Pin', pinTitle: isPinned ? 'Unpin this page' : full ? 'Six pinned already. Unpin one first.' : 'Pin this page', pinBg: isPinned ? '#EFE7DA' : 'transparent', pinBorder: isPinned ? '#2B211B' : '#D9CFC0', pinInk: '#2B211B', pinFill: isPinned ? '#2B211B' : 'none',
+          togglePin: () => { if (isPinned) { write(pins.filter(p => p.title !== here.title)); if (this.say) this.say('Unpinned ' + here.title + '.'); } else if (full) { if (this.say) this.say('Six pinned already. Unpin one first.'); } else { write([here, ...pins]); if (this.say) this.say('Pinned ' + here.title + '. It sits in the sidebar on every page.'); } },
+          pinCount: String(pins.length), noPins: pins.length === 0, hasPins: pins.length > 0, pinsExpanded: localStorage.getItem('cannie.pinsCollapsed') !== '1', pinsChevron: localStorage.getItem('cannie.pinsCollapsed') === '1' ? 'rotate(-90deg)' : 'none', togglePinsCollapsed: () => { localStorage.setItem('cannie.pinsCollapsed', localStorage.getItem('cannie.pinsCollapsed') === '1' ? '0' : '1'); this.forceUpdate(); }, pinnedItems: pins.map(p => ({...p, unpin: () => write(pins.filter(x => x.title !== p.title))}))}; })(),
+      pinnedItemsUnused: [{title: 'Brightwell Payments', sub: 'Client', href: 'Client Record.dc.html'}, {title: 'Job board', sub: 'All live jobs', href: 'Job Board.dc.html'}],
+    };
+  }
+  state = (() => { const u = new URLSearchParams(window.location.search); const pick = u.get('sel'); let savedViews = []; try { savedViews = JSON.parse(localStorage.getItem('cannie.clientViews') || '[]'); } catch (e) {} return {savedViews, f: {},view: u.get('view') || 'Mine', quiet: !!u.get('quiet'), sel: pick && CLIENTS.some(x => x.id === pick) ? pick : u.get('quiet') ? 'od' : 'bw', q: '', sort: 'Needs you', prospectView: u.get('board') ? 'kanban' : 'table'}; })();
+  renderVals() {
+    const s = this.state; const q = s.q.trim().toLowerCase();
+    const views = [{key: 'Mine', title: 'Your clients', count: CLIENTS.filter(c => !c.prospect && c.status !== 'Dormant').length, line: 'Clients you own, then clients you have a job on.'}, {key: 'Active', title: 'Active clients', count: CLIENTS.filter(c => c.status === 'Active').length, line: 'Every client with terms in place and a live job or contractor.'}, {key: 'Prospects', title: 'Prospects', count: CLIENTS.filter(c => c.prospect).length, line: 'No terms yet. Move to Active by taking a job.'}, {key: 'Dormant', title: 'Dormant', count: CLIENTS.filter(c => c.status === 'Dormant').length, line: 'Nothing live for twelve months. Terms may have lapsed.'}, {key: 'All', title: 'All clients', count: CLIENTS.length, line: 'Everything on the desk.'}];
+    const view = views.find(v => v.key === s.view);
+    let rows = CLIENTS.filter(c => s.view === 'All' ? true : s.view === 'Mine' ? (!c.prospect && c.status !== 'Dormant') : s.view === 'Active' ? c.status === 'Active' : s.view === 'Prospects' ? c.prospect : c.status === 'Dormant');
+    if (q) rows = rows.filter(c => (c.name + ' ' + c.sub + ' ' + c.people.map(p => p.name).join(' ')).toLowerCase().includes(q));
+    if (s.quiet) rows = rows.filter(c => c.status === 'Active' && c.people.some(p => /quiet|9 days|no contact/i.test(p.last)));
+    const sectorOf = c => c.sub.split(',')[0].trim();
+    const placeOf = c => ((c.sub.split(',')[1] || '').split('.')[0] || '').trim();
+    const ownerOf = c => /Owner you/.test(c.sub) ? 'Priya Shah' : ((c.sub.match(/Owner ([A-Z][a-z]+ [A-Z][a-z]+)/) || [])[1] || (c.prospect ? 'Priya Shah' : 'Unassigned'));
+    const f = s.f || {};
+    if ((f.sector || []).length) rows = rows.filter(c => f.sector.includes(sectorOf(c)));
+    if ((f.place || []).length) rows = rows.filter(c => f.place.some(p => placeOf(c).includes(p)));
+    if ((f.owner || []).length) rows = rows.filter(c => f.owner.includes(ownerOf(c)));
+    if (f.needs === 'yes') rows = rows.filter(c => c.needs.length); if (f.needs === 'no') rows = rows.filter(c => !c.needs.length);
+    if (f.jobs === 'open') rows = rows.filter(c => c.toFill > 0); if (f.jobs === 'none') rows = rows.filter(c => !c.toFill);
+    if (f.pstage) rows = rows.filter(c => c.pstage === f.pstage);
+    const sorters = {'Needs you': (a, b) => b.needs.length - a.needs.length || b.toFill - a.toFill, 'To fill': (a, b) => b.toFill - a.toFill, 'Billed': (a, b) => b.billed - a.billed, 'Name': (a, b) => a.name.localeCompare(b.name)};
+    sorters['On site'] = (a, b) => b.onSite - a.onSite; const dir = s.sortDir || 1; rows = [...rows].sort((a, b) => sorters[s.sort](a, b) * dir); if (s.view === 'Mine' && s.sort === 'Needs you' && dir === 1) rows = [...rows].sort((a, b) => (b.sub.includes('Owner you') ? 1 : 0) - (a.sub.includes('Owner you') ? 1 : 0));
+    const sel = CLIENTS.find(c => c.id === s.sel) || rows[0] || CLIENTS[0];
+    const active = CLIENTS.filter(c => c.status === 'Active');
+    const allNeeds = CLIENTS.flatMap(c => c.needs.slice(0, 1).map(n => ({label: n + ', ' + c.name.split(' ')[0], href: 'Client Record.dc.html'}))).slice(0, 4);
+    const uniq = xs => Array.from(new Set(xs)).filter(Boolean).sort();
+    const places = uniq(CLIENTS.flatMap(c => placeOf(c).split(/ and |, /).map(x => x.trim())));
+    const mineSaved = s.savedViews || [];
+    const fb = {
+      fbOnQ: v => this.setState({q: v}),
+      fbViews: views.map(v => ({value: v.key, label: v.title, count: v.count})), fbView: s.view, fbOnView: v => this.setState({view: v, quiet: false}),
+      fbFilters: [
+        {key: 'owner', label: 'Owner', multi: true, options: uniq(CLIENTS.map(ownerOf)).map(o => ({value: o, label: o === 'Priya Shah' ? 'You' : o, count: CLIENTS.filter(c => ownerOf(c) === o).length})), value: f.owner || []},
+        {key: 'sector', label: 'Sector', multi: true, options: uniq(CLIENTS.map(sectorOf)).map(o => ({value: o, label: o, count: CLIENTS.filter(c => sectorOf(c) === o).length})), value: f.sector || []},
+        {key: 'place', label: 'Where', multi: true, options: places.map(o => ({value: o, label: o})), value: f.place || []},
+        {key: 'needs', label: 'Needs you', options: [{value: 'yes', label: 'Something waiting'}, {value: 'no', label: 'Nothing waiting'}], value: f.needs || null},
+        {key: 'jobs', label: 'Jobs', options: [{value: 'open', label: 'Has jobs to fill'}, {value: 'none', label: 'No open jobs'}], value: f.jobs || null},
+        {key: 'pstage', label: 'Prospect stage', options: ['Identified', 'Contacted', 'Meeting booked', 'Terms sent'].map(o => ({value: o, label: o})), value: f.pstage || null},
+      ],
+      fbOnFilter: (k, v) => this.setState({f: {...f, [k]: v}}), fbClear: () => this.setState({q: '', f: {}, quiet: false}),
+      fbSort: s.sort, fbSortOptions: Object.keys(sorters).map(k => ({value: k, label: k === 'Name' ? 'Name, A to Z' : k === 'Billed' ? 'Billed, highest' : k === 'To fill' ? 'Most to fill' : k})), fbOnSort: v => this.setState({sort: v, sortDir: 1}),
+      fbSaved: mineSaved.map((x, i) => ({label: x.label, sub: 'Saved by you', go: () => this.setState(x.p), del: () => { const n = mineSaved.filter((_, j) => j !== i); this.setState({savedViews: n}); try { localStorage.setItem('cannie.clientViews', JSON.stringify(n)); } catch (e) {} }})),
+      fbOnSave: name => { const n = [...mineSaved, {label: name, p: {view: s.view, q: s.q, f}}]; this.setState({savedViews: n}); try { localStorage.setItem('cannie.clientViews', JSON.stringify(n)); } catch (e) {} },
+      fbResult: rows.length + ' of ' + view.count + ' shown.',
+    };
+    const setSort = (k, d) => this.setState({sort: k, sortDir: d});
+    return {...this.topbarVals(), ...fb,
+      colHeads: this.heads([{label: 'Client', key: 'Name'}, {label: 'To fill', key: 'To fill'}, {label: 'On site', key: 'On site'}, {label: 'Billed, 90 days', key: 'Billed'}, {label: 'Needs you', key: 'Needs you'}], s.sort, dir, setSort),
+      viewTitle: s.quiet ? 'Quiet clients' : view.title, viewLine: s.quiet ? 'Active clients with a live job where the hiring manager has not been heard from in seven days. ' : view.line + (q ? ' Filtered by "' + s.q.trim() + '".' : ''), hasScope: s.quiet, clearScope: () => this.setState({quiet: false}),
+      q: s.q, setQ: e => this.setState({q: e.target.value}),
+      facts: [{label: 'Active clients', value: String(active.length), ink: INK}, {label: 'Jobs to fill', value: String(CLIENTS.reduce((n, c) => n + c.toFill, 0)), ink: INK}, {label: 'Contractors on site', value: String(CLIENTS.reduce((n, c) => n + c.onSite, 0)), ink: INK}, {label: 'Billed, 90 days', value: gbp(CLIENTS.reduce((n, c) => n + c.billed, 0)), ink: INK}, {label: 'Outstanding', value: gbp(CLIENTS.reduce((n, c) => n + c.outstanding, 0)) + ', one overdue', ink: BERRY}],
+      needs: allNeeds.map((n, i) => ({...n, sep: i < allNeeds.length - 1 ? '·' : ''})),
+      sideViews: views.map(v => ({title: v.title, count: String(v.count), go: () => this.setState({view: v.key}), ink: s.view === v.key ? '#E896B3' : '#F3EEE6', weight: s.view === v.key ? '600' : '400'})),
+      filters: views.map(v => ({label: v.title + ' ' + v.count, go: () => this.setState({view: v.key}), border: s.view === v.key ? '1px solid ' + INK : '1px solid ' + TAUPE, ink: s.view === v.key ? INK : MID, weight: s.view === v.key ? '600' : '400'})),
+      sorts: Object.keys(sorters).map(k => ({label: k, go: () => this.setState({sort: k}), ink: s.sort === k ? INK : MID, weight: s.sort === k ? '600' : '400', deco: s.sort === k ? 'underline' : 'none'})),
+      rows: rows.map(c => ({name: c.name, sub: c.sub, toFill: c.toFill ? String(c.toFill) : '', onSite: c.onSite ? String(c.onSite) : '', billed: c.billed ? gbp(c.billed) : (c.prospect ? 'Prospect' : ''), need: c.needs[0] || (c.prospect ? 'Nothing yet' : 'Nothing today'), needInk: c.needs.length ? BERRY : MUTED, needWeight: c.needs.length ? '600' : '400', bg: sel.id === c.id ? '#EFE7DA' : 'transparent', pick: () => this.setState({sel: c.id})})),
+      empty: rows.length === 0, footLine: rows.length + ' of ' + CLIENTS.length + '. A row opens the summary; Open the record for the full client.',
+      isProspectView: s.view === 'Prospects',
+      isProspectTable: !(s.view === 'Prospects' && s.prospectView === 'kanban'), isProspectKanban: s.view === 'Prospects' && s.prospectView === 'kanban',
+      prospectToggle: [['table', 'Table'], ['kanban', 'Kanban']].map(([key, label]) => { const on = (s.prospectView || 'table') === key; return {label, go: () => this.setState({prospectView: key}), bg: on ? INK : 'transparent', ink: on ? '#F3EEE6' : MID, weight: on ? '600' : '400'}; }),
+      prospectCols: ['Identified', 'Contacted', 'Meeting booked', 'Terms sent'].map(stage => { const inStage = CLIENTS.filter(c => c.prospect && c.pstage === stage); return {label: stage, count: String(inStage.length), empty: !inStage.length, cards: inStage.map(c => ({name: c.name, sub: c.sub, pick: () => this.setState({sel: c.id})}))}; }),
+      selKicker: sel.status, selName: sel.name, selLine: sel.sub, selHref: 'Client Record.dc.html',
+      selFacts: [{label: 'To fill', value: String(sel.toFill)}, {label: 'On site', value: String(sel.onSite)}, {label: 'Billed, 90 days', value: sel.billed ? gbp(sel.billed) : 'None'}, {label: 'Terms', value: sel.terms}],
+      selNeeds: sel.needs.length ? sel.needs.map((n, i) => ({label: n, ink: i === 0 ? BERRY : INK, weight: '600'})) : [{label: sel.prospect ? 'Nothing until terms are agreed.' : 'Nothing today.', ink: MUTED, weight: '400'}],
+      selJobs: sel.jobs.length ? sel.jobs : [{title: sel.prospect ? 'No jobs yet. Take one to make this client active.' : 'None to fill.', stage: '', href: 'Client Record.dc.html'}],
+      selPeople: sel.people,
+    };
+  }
+}
+</script>
+</body>
+</html>

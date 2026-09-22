@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/styles.css">
+<script src="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/_ds_bundle.js"></script>
+<style>body{margin:0;background:#EFE7DA} a{color:#9E2D53} a:hover{color:#7D2342}</style>
+</helmet>
+<div style="padding:48px 40px 96px;font-family:'Poppins',sans-serif;color:#2B211B;display:flex;flex-direction:column;gap:32px">
+<div style="display:flex;flex-direction:column;gap:8px;max-width:760px">
+<a href="Index.dc.html" style="font-size:13px;color:#9E2D53;text-decoration:none">← Demo home</a>
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Mobile light</span>
+<h1 style="margin:0;font-size:30px;font-weight:700;letter-spacing:-0.0075em">Six screens for a recruiter away from the desk</h1>
+<p style="margin:0;font-size:14px;color:rgba(43,33,27,.70);line-height:1.5">Read and react, not administer. The phone carries Needs you, the pipeline as a swipeable column per stage, one filter bar, quick logging, and the moves that cannot wait. Briefs, commercials, timesheets and forecasting stay on the desktop. Same ink, bone, sand and berry; a bottom bar instead of the sidebar; one primary action per screen.</p>
+</div>
+
+<div style="display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start">
+
+<div style="display:flex;flex-direction:column;gap:12px">
+<span style="font-size:12px;font-weight:600;color:rgba(43,33,27,.70)">1 Overview</span>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+<div style="height:100%;display:flex;flex-direction:column;background:#F3EEE6;font-family:'Poppins',sans-serif;color:#2B211B;font-size:15px;line-height:1.3">
+<div style="padding:64px 20px 0;display:flex;flex-direction:column;gap:16px;flex:1;overflow:auto">
+<div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Monday 22 Sep</span><span style="width:30px;height:30px;border-radius:999px;background:#2B211B;color:#F3EEE6;font-size:10px;font-weight:600;display:inline-flex;align-items:center;justify-content:center">PS</span></div>
+<h2 style="margin:0;font-size:24px;font-weight:700;letter-spacing:-0.0075em">Needs you today</h2>
+<div style="display:flex;flex-direction:column;gap:8px">
+<sc-for list="{{ needs }}" as="n" hint-placeholder-count="4">
+<div style="display:flex;justify-content:space-between;gap:10px;align-items:center;background:#EFE7DA;border-radius:14px;padding:12px 14px"><span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font-size:14px;font-weight:600;color:{{ n.ink }}">{{ n.title }}</span><span style="font-size:12px;color:rgba(43,33,27,.70)">{{ n.sub }}</span></span><span style="height:32px;padding:0 12px;border-radius:10px;background:#2B211B;color:#F3EEE6;font-size:12px;font-weight:600;display:inline-flex;align-items:center;white-space:nowrap">{{ n.act }}</span></div>
+</sc-for>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Today</span><span style="font-size:12px;font-weight:600;color:#9E2D53">Calendar</span></div>
+<sc-for list="{{ today }}" as="t" hint-placeholder-count="3">
+<div style="display:grid;grid-template-columns:52px minmax(0,1fr);gap:10px;align-items:baseline;border-top:1px solid #D9CFC0;padding:9px 0"><span style="font-size:12px;font-weight:700;color:{{ t.ink }}">{{ t.time }}</span><span style="display:flex;flex-direction:column;gap:1px"><span style="font-size:14px;font-weight:600">{{ t.title }}</span><span style="font-size:12px;color:rgba(43,33,27,.70)">{{ t.sub }}</span></span></div>
+</sc-for>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Month so far</span>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+<sc-for list="{{ kpis }}" as="k" hint-placeholder-count="3">
+<div style="background:#EFE7DA;border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:2px"><span style="font-size:18px;font-weight:700;letter-spacing:-0.0075em">{{ k.v }}</span><span style="font-size:11px;color:rgba(43,33,27,.70)">{{ k.l }}</span></div>
+</sc-for>
+</div>
+</div>
+<div style="height:16px"></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid #D9CFC0;padding:10px 8px 28px;background:#F3EEE6">
+<sc-for list="{{ tabsHome }}" as="tb" hint-placeholder-count="5"><span style="display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;font-weight:{{ tb.w }};color:{{ tb.ink }}"><span style="width:22px;height:22px;border-radius:6px;border:2px solid {{ tb.ink }}"></span>{{ tb.l }}</span></sc-for>
+</div>
+</div>
+</x-import>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:12px">
+<span style="font-size:12px;font-weight:600;color:rgba(43,33,27,.70)">2 Pipeline, one stage a swipe</span>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+<div style="height:100%;display:flex;flex-direction:column;background:#F3EEE6;font-family:'Poppins',sans-serif;color:#2B211B;font-size:15px;line-height:1.3">
+<div style="padding:64px 20px 0;display:flex;flex-direction:column;gap:14px;flex:1;overflow:auto">
+<div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Pipeline, your desk</span><h2 style="margin:0;font-size:24px;font-weight:700;letter-spacing:-0.0075em">16 in play, 3 stuck</h2></div>
+<div style="display:flex;gap:6px;overflow:hidden">
+<sc-for list="{{ stages }}" as="st" hint-placeholder-count="6"><span style="height:30px;padding:0 11px;border-radius:999px;font-size:12px;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;background:{{ st.bg }};color:{{ st.ink }};font-weight:{{ st.w }};border:1px solid {{ st.border }}">{{ st.l }}<span style="opacity:.7">{{ st.n }}</span></span></sc-for>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<sc-for list="{{ sentCards }}" as="c" hint-placeholder-count="3">
+<div style="background:#EFE7DA;border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;gap:10px;align-items:center"><span style="width:30px;height:30px;border-radius:999px;background:#F3EEE6;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">{{ c.ini }}</span><span style="display:flex;flex-direction:column;gap:1px;flex:1;min-width:0"><span style="font-size:15px;font-weight:600">{{ c.name }}</span><span style="font-size:12px;color:rgba(43,33,27,.70)">{{ c.job }}</span></span><span style="font-size:12px;font-weight:{{ c.dw }};white-space:nowrap">{{ c.days }}</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span style="font-size:12px;color:rgba(43,33,27,.70)">{{ c.next }}</span><span style="display:flex;gap:6px"><span style="height:30px;padding:0 10px;border-radius:10px;border:1px solid rgba(43,33,27,.85);font-size:12px;font-weight:600;display:inline-flex;align-items:center">Log</span><span style="height:30px;padding:0 10px;border-radius:10px;background:#2B211B;color:#F3EEE6;font-size:12px;font-weight:600;display:inline-flex;align-items:center">Move →</span></span></div>
+</div>
+</sc-for>
+</div>
+<p style="margin:0;font-size:12px;color:rgba(43,33,27,.70)">Swipe left for Interview. Move asks what happened and the next step, as on the desk. Undo sits on the toast.</p>
+<div style="height:16px"></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid #D9CFC0;padding:10px 8px 28px;background:#F3EEE6">
+<sc-for list="{{ tabsPipe }}" as="tb" hint-placeholder-count="5"><span style="display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;font-weight:{{ tb.w }};color:{{ tb.ink }}"><span style="width:22px;height:22px;border-radius:6px;border:2px solid {{ tb.ink }}"></span>{{ tb.l }}</span></sc-for>
+</div>
+</div>
+</x-import>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:12px">
+<span style="font-size:12px;font-weight:600;color:rgba(43,33,27,.70)">3 Candidates, one filter bar</span>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+<div style="height:100%;display:flex;flex-direction:column;background:#F3EEE6;font-family:'Poppins',sans-serif;color:#2B211B;font-size:15px;line-height:1.3">
+<div style="padding:64px 20px 0;display:flex;flex-direction:column;gap:12px;flex:1;overflow:auto">
+<h2 style="margin:0;font-size:24px;font-weight:700;letter-spacing:-0.0075em">Candidates</h2>
+<div style="display:flex;gap:16px;border-bottom:1px solid #D9CFC0;overflow:hidden">
+<sc-for list="{{ candViews }}" as="v" hint-placeholder-count="4"><span style="padding:0 0 8px;border-bottom:3.4px solid {{ v.line }};font-size:13px;font-weight:{{ v.w }};color:{{ v.ink }};white-space:nowrap">{{ v.l }} <span style="font-size:11px;color:rgba(43,33,27,.70)">{{ v.n }}</span></span></sc-for>
+</div>
+<div style="height:38px;border:1px solid rgba(43,33,27,.85);border-radius:10px;display:flex;align-items:center;gap:8px;padding:0 12px;color:rgba(43,33,27,.55);font-size:14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>go kafka leeds, or a name</div>
+<div style="display:flex;gap:6px;overflow:hidden">
+<sc-for list="{{ candPills }}" as="p" hint-placeholder-count="4"><span style="height:32px;padding:0 10px;border-radius:10px;border:1px solid {{ p.border }};background:{{ p.bg }};font-size:12px;font-weight:{{ p.w }};display:inline-flex;align-items:center;gap:4px;white-space:nowrap">{{ p.l }}<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></sc-for>
+</div>
+<span style="font-size:12px;color:rgba(43,33,27,.70)">6 of 22. Sorted by newest.</span>
+<div style="display:flex;flex-direction:column">
+<sc-for list="{{ candRows }}" as="r" hint-placeholder-count="5">
+<div style="display:flex;justify-content:space-between;gap:10px;border-top:1px solid #D9CFC0;padding:11px 0"><span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font-size:15px;font-weight:600">{{ r.name }}</span><span style="font-size:12px;color:rgba(43,33,27,.70)">{{ r.sub }}</span></span><span style="font-size:12px;font-weight:600;color:{{ r.ink }};white-space:nowrap;text-align:right">{{ r.state }}</span></div>
+</sc-for>
+</div>
+<div style="height:16px"></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid #D9CFC0;padding:10px 8px 28px;background:#F3EEE6">
+<sc-for list="{{ tabsCand }}" as="tb" hint-placeholder-count="5"><span style="display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;font-weight:{{ tb.w }};color:{{ tb.ink }}"><span style="width:22px;height:22px;border-radius:6px;border:2px solid {{ tb.ink }}"></span>{{ tb.l }}</span></sc-for>
+</div>
+</div>
+</x-import>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:12px">
+<span style="font-size:12px;font-weight:600;color:rgba(43,33,27,.70)">4 Candidate, reach and log</span>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+<div style="height:100%;display:flex;flex-direction:column;background:#F3EEE6;font-family:'Poppins',sans-serif;color:#2B211B;font-size:15px;line-height:1.3">
+<div style="padding:64px 20px 0;display:flex;flex-direction:column;gap:14px;flex:1;overflow:auto">
+<span style="font-size:13px;color:#9E2D53">← Candidates</span>
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Candidate, yours</span><h2 style="margin:0;font-size:24px;font-weight:700;letter-spacing:-0.0075em">Amara Osei</h2><span style="font-size:13px;color:rgba(43,33,27,.70)">Backend Engineer, Monzo. London, will do Manchester. Wants £92,000.</span></div>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+<sc-for list="{{ reach }}" as="r" hint-placeholder-count="4"><span style="height:44px;border-radius:10px;border:1px solid rgba(43,33,27,.85);font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;background:{{ r.bg }};color:{{ r.ink }}">{{ r.l }}</span></sc-for>
+</div>
+<div style="background:#EFE7DA;border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:6px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">In the running</span>
+<sc-for list="{{ amaraApps }}" as="a" hint-placeholder-count="2"><div style="display:flex;justify-content:space-between;gap:10px;border-top:1px solid #D9CFC0;padding:8px 0"><span style="font-size:14px;font-weight:600">{{ a.job }}</span><span style="font-size:12px;color:#9E2D53;font-weight:600;white-space:nowrap">{{ a.stage }}</span></div></sc-for>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Log the call</span>
+<div style="min-height:80px;border:1px solid rgba(43,33,27,.85);border-radius:10px;padding:10px 12px;font-size:14px;color:rgba(43,33,27,.55)">Keen on Brightwell, wants the second stage this week. Not looking elsewhere.</div>
+<div style="display:flex;gap:6px;flex-wrap:wrap">
+<sc-for list="{{ nextChips }}" as="n" hint-placeholder-count="4"><span style="height:30px;padding:0 11px;border-radius:999px;font-size:12px;display:inline-flex;align-items:center;border:1px solid {{ n.border }};background:{{ n.bg }};color:{{ n.ink }};font-weight:{{ n.w }}">{{ n.l }}</span></sc-for>
+</div>
+</div>
+<div style="height:16px"></div>
+</div>
+<div style="padding:10px 20px 32px;background:#F3EEE6;border-top:1px solid #D9CFC0"><span style="height:48px;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center">Save and add the chase</span></div>
+</div>
+</x-import>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:12px">
+<span style="font-size:12px;font-weight:600;color:rgba(43,33,27,.70)">5 Move a stage</span>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+<div style="height:100%;display:flex;flex-direction:column;background:#F3EEE6;font-family:'Poppins',sans-serif;color:#2B211B;font-size:15px;line-height:1.3;position:relative">
+<div style="position:absolute;inset:0;background:rgba(43,33,27,.55)"></div>
+<div style="position:absolute;left:0;right:0;bottom:0;background:#F3EEE6;border-radius:24px 24px 0 0;padding:14px 20px 36px;display:flex;flex-direction:column;gap:14px">
+<span style="width:40px;height:4px;border-radius:999px;background:#D9CFC0;margin:0 auto"></span>
+<div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Sent to Interview</span><h2 style="margin:0;font-size:20px;font-weight:700;letter-spacing:-0.0075em">Lucía Ferreira, Senior Backend Engineer</h2></div>
+<div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">When</span><div style="height:40px;border:1px solid rgba(43,33,27,.85);border-radius:10px;padding:0 12px;display:flex;align-items:center;font-size:14px">Thu 25 Sep, 10am, on site</div></div>
+<div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">What happened</span><div style="min-height:64px;border:1px solid rgba(43,33,27,.85);border-radius:10px;padding:10px 12px;font-size:14px;color:rgba(43,33,27,.55)">Dan wants to meet, first stage with the team</div></div>
+<div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">Next step</span><div style="height:40px;border:1px solid rgba(43,33,27,.85);border-radius:10px;padding:0 12px;display:flex;align-items:center;font-size:14px;color:rgba(43,33,27,.55)">Send the prep pack Tuesday</div></div>
+<div style="display:flex;gap:10px"><span style="flex:1;height:48px;border-radius:10px;border:1px solid rgba(43,33,27,.85);font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center">Cancel</span><span style="flex:2;height:48px;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center">Move to Interview</span></div>
+</div>
+</div>
+</x-import>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:12px">
+<span style="font-size:12px;font-weight:600;color:rgba(43,33,27,.70)">6 Targets, read only</span>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+<div style="height:100%;display:flex;flex-direction:column;background:#F3EEE6;font-family:'Poppins',sans-serif;color:#2B211B;font-size:15px;line-height:1.3">
+<div style="padding:64px 20px 0;display:flex;flex-direction:column;gap:16px;flex:1;overflow:auto">
+<div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">My targets, quarter</span><h2 style="margin:0;font-size:24px;font-weight:700;letter-spacing:-0.0075em">£67,900 forecast</h2><span style="font-size:14px;font-weight:600;color:#9E2D53">£4,100 short at these rates.</span></div>
+<div style="height:18px;border-radius:6px;background:#EFE7DA;overflow:hidden;display:flex;position:relative"><div style="width:76%;background:#2B211B"></div><div style="width:9%;background:#D9CFC0"></div><div style="position:absolute;top:0;bottom:0;left:90%;width:2px;background:#2B211B"></div></div>
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px">
+<sc-for list="{{ tKpis }}" as="k" hint-placeholder-count="4">
+<div style="background:#EFE7DA;border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:4px"><span style="font-size:11px;color:rgba(43,33,27,.70)">{{ k.l }}</span><span style="font-size:18px;font-weight:700;letter-spacing:-0.0075em">{{ k.v }}</span><div style="height:5px;border-radius:999px;background:#D9CFC0;overflow:hidden"><div style="height:100%;width:{{ k.p }};background:#2B211B"></div></div></div>
+</sc-for>
+</div>
+<div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Funnel</span>
+<sc-for list="{{ funnel }}" as="f" hint-placeholder-count="6"><div style="display:grid;grid-template-columns:78px minmax(0,1fr) 34px;gap:8px;align-items:center;padding:5px 0"><span style="font-size:12px">{{ f.l }}</span><span style="height:14px;width:{{ f.w }};background:#2B211B;border-radius:4px;display:block"></span><span style="font-size:12px;font-weight:700;text-align:right">{{ f.n }}</span></div></sc-for>
+</div>
+<p style="margin:0;font-size:12px;color:rgba(43,33,27,.70)">What-if and the working live on the desktop.</p>
+<div style="height:16px"></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid #D9CFC0;padding:10px 8px 28px;background:#F3EEE6">
+<sc-for list="{{ tabsMore }}" as="tb" hint-placeholder-count="5"><span style="display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;font-weight:{{ tb.w }};color:{{ tb.ink }}"><span style="width:22px;height:22px;border-radius:6px;border:2px solid {{ tb.ink }}"></span>{{ tb.l }}</span></sc-for>
+</div>
+</div>
+</x-import>
+</div>
+
+</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const INK = '#2B211B', BERRY = '#9E2D53', MID = 'rgba(43,33,27,.70)', TAUPE = '#D9CFC0', SAND = '#EFE7DA';
+const tabs = on => ['Home', 'Pipeline', 'People', 'Calendar', 'More'].map(l => ({l, ink: l === on ? BERRY : MID, w: l === on ? '700' : '500'}));
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      needs: [{title: 'Priyanka Rao applied, unowned', sub: 'Senior Backend Engineer, Brightwell. 1 day.', act: 'Claim', ink: BERRY}, {title: 'Femi Adebayo right to work', sub: 'Expires in 9 days. Chase the new visa.', act: 'Call', ink: BERRY}, {title: 'Milestone 3 unapproved', sub: 'Brightwell SOW, 5 days with Dan.', act: 'Chase', ink: INK}, {title: 'Rosa Alvarez offer', sub: 'Dan to sign off the rate.', act: 'Chase', ink: INK}],
+      today: [{time: '10:00', title: 'Call Amara Osei', sub: 'Before the second stage', ink: BERRY}, {time: '14:00', title: 'Rate card review', sub: 'Claire Dunn, Brightwell', ink: INK}, {time: '16:30', title: 'Desk sync', sub: 'Internal', ink: MID}],
+      kpis: [{v: '34', l: 'Calls of 40'}, {v: '12', l: 'CVs sent of 15'}, {v: '7', l: 'Interviews of 8'}],
+      tabsHome: tabs('Home'), tabsPipe: tabs('Pipeline'), tabsCand: tabs('People'), tabsMore: tabs('More'),
+      stages: [['Applied', 3], ['Screened', 3], ['Sent', 4], ['Interview', 3], ['Offer', 2], ['Placed', 2]].map(([l, n], i) => ({l, n: String(n), bg: i === 2 ? INK : 'transparent', ink: i === 2 ? '#F3EEE6' : INK, border: i === 2 ? INK : TAUPE, w: i === 2 ? '600' : '400'})),
+      sentCards: [{ini: 'LF', name: 'Lucía Ferreira', job: 'Senior Backend Engineer, Brightwell', days: '9 days', dw: '700', next: 'Chase Dan for feedback'}, {ini: 'GO', name: 'Grace Oduya', job: 'Platform Lead, Northbeam', days: '11 days', dw: '700', next: 'Chase Northbeam'}, {ini: 'KA', name: 'Kwame Asante', job: 'Data Engineers, Brightwell', days: '2 days', dw: '400', next: 'Await Dan'}],
+      candViews: [['New', '6', true], ['Yours', '10', false], ['In the running', '5', false], ['Everyone', '22', false]].map(([l, n, on]) => ({l, n, line: on ? BERRY : 'transparent', ink: on ? INK : MID, w: on ? '600' : '400'})),
+      candPills: [['Skills: Go +1', true], ['Type', false], ['Where', false], ['Available', false], ['More 4', false]].map(([l, on]) => ({l, border: on ? INK : TAUPE, bg: on ? SAND : 'transparent', w: on ? '600' : '400'})),
+      candRows: [{name: 'Priyanka Rao', sub: 'Software Engineer, GoCardless. Go, Kafka.', state: 'Unowned, 1 day', ink: BERRY}, {name: 'Dev Patel', sub: 'Backend Engineer, Starling. Go, Postgres.', state: 'Unowned, 2 days', ink: BERRY}, {name: 'Hannah Blake', sub: 'Engineer, Checkout.com. Go, Kafka.', state: 'Screened', ink: INK}, {name: 'Marek Nowak', sub: 'Platform Engineer, Ocado. Go, Kubernetes.', state: 'Applied', ink: INK}, {name: 'Oliver Grant', sub: 'Data Engineer, contractor. Spark, Go.', state: 'Applied', ink: INK}],
+      reach: [['Call', INK, '#F3EEE6'], ['Text', 'transparent', INK], ['Email', 'transparent', INK], ['CV', 'transparent', INK]].map(([l, bg, ink]) => ({l, bg, ink})),
+      amaraApps: [{job: 'Senior Backend Engineer, Brightwell', stage: 'Interview, 2nd Wed'}, {job: 'Senior Engineer, Ordell', stage: 'Offer out, Fri'}],
+      nextChips: [['Chase Dan Friday', true], ['Send prep pack', false], ['Call back Monday', false], ['No next step', false]].map(([l, on]) => ({l, border: on ? INK : TAUPE, bg: on ? INK : 'transparent', ink: on ? '#F3EEE6' : INK, w: on ? '600' : '400'})),
+      tKpis: [{l: 'Calls', v: '108 of 120', p: '90%'}, {l: 'CVs sent', v: '38 of 45', p: '84%'}, {l: 'Interviews', v: '21 of 24', p: '88%'}, {l: 'Fee billed', v: '£61,200', p: '85%'}],
+      funnel: [['Applied', 172], ['Screened', 74], ['Sent', 38], ['Interview', 21], ['Offer', 8], ['Placed', 4]].map(([l, n]) => ({l, n: String(n), w: Math.max(4, Math.round(n / 172 * 100)) + '%'})),
+    };
+  }
+}
+
+</script>
+</body>
+</html>

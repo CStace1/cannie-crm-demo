@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/styles.css">
+<script src="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/_ds_bundle.js"></script>
+<style>body{margin:0;background:#F3EEE6} a{color:#9E2D53} a:hover{color:#7D2342}</style>
+</helmet>
+<article style="max-width:980px;margin:0 auto;padding:56px 40px 96px;font-family:'Poppins',sans-serif;color:#2B211B;font-size:15px;line-height:1.5;display:flex;flex-direction:column;gap:44px">
+<header style="display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;gap:14px"><span style="display:inline-block;width:40px;height:3.4px;background:#9E2D53"></span><span style="font-size:11px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Standards</span></div>
+<h1 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.0075em;line-height:1.15">What each thing is, what it captures, and the rules it keeps</h1>
+<p style="margin:0;font-size:17px;max-width:760px">One section per entity or component. Each names the page that shows it built, the fields with their option sets, what is derived rather than typed, and the rules. Where two pages show the same thing, this is the version they both follow.</p>
+<nav style="display:flex;gap:8px;flex-wrap:wrap">
+<sc-for list="{{ toc }}" as="t" hint-placeholder-count="10">
+<a href="{{ t.href }}" style="height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:999px;border:1px solid #D9CFC0;font-size:13px;color:#2B211B;text-decoration:none">{{ t.label }}</a>
+</sc-for>
+</nav>
+</header>
+
+<sc-for list="{{ sections }}" as="s" hint-placeholder-count="10">
+<section id="{{ s.id }}" style="display:flex;flex-direction:column;gap:12px;border-top:1px solid #D9CFC0;padding-top:32px">
+<div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><h2 style="margin:0;font-size:24px;font-weight:700;letter-spacing:-0.0075em">{{ s.title }}</h2><sc-if value="{{ s.hasPage }}" hint-placeholder-val="{{ false }}"><a href="{{ s.pageHref }}" style="font-size:13px;font-weight:600">Open {{ s.pageLabel }}</a></sc-if></div>
+<p style="margin:0;font-size:15px;max-width:760px">{{ s.summary }}</p>
+<sc-if value="{{ s.hasFields }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:4px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Fields</span>
+<sc-for list="{{ s.fields }}" as="f" hint-placeholder-count="4">
+<div style="display:grid;grid-template-columns:180px minmax(0,1fr);gap:16px;border-top:1px solid #D9CFC0;padding:9px 4px"><span style="font-size:14px;font-weight:600">{{ f.name }}</span><span style="font-size:14px;color:rgba(43,33,27,.70)">{{ f.detail }}</span></div>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{ s.hasDerived }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:4px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Derived, not typed</span>
+<p style="margin:0;font-size:14px;color:rgba(43,33,27,.70)">{{ s.derived }}</p>
+</div>
+</sc-if>
+<sc-if value="{{ s.hasRules }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:4px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Rules</span>
+<ul style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px;font-size:14px;color:rgba(43,33,27,.70)">
+<sc-for list="{{ s.rules }}" as="r" hint-placeholder-count="3"><li>{{ r }}</li></sc-for>
+</ul>
+</div>
+</sc-if>
+</section>
+</sc-for>
+</article>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const SECTIONS = [
+  {id: 'client', title: 'Client', pageHref: 'Client Record.dc.html', pageLabel: 'the client record',
+    summary: 'Jobs first, then Statements of work, People, Commercials, Contracts and admin, Billing, Activity. Header carries a derived Needs you line and five facts.',
+    fields: [['Status', 'Prospect, Active, Dormant. Valid from/to.'], ['Owner', 'One recruiter, also-on list.'], ['Terms', 'MSA/framework type, signed date, review date, document reference.'], ['Rate card', 'Bands by role, charge, pay, margin derived, valid from.'], ['Fee, perm', 'Percent, rebate window, invoiced when.']],
+    derived: 'Needs you (unapproved milestones, stalled jobs, quiet managers, expiring rebates and right-to-work, PO drawdown, overdue invoices). Hiring manager and approver roles read from jobs and assignments, never ticked.',
+    rules: ['Perm, SOW and T&M are a filter inside Jobs, not separate tabs.', 'A custom fee overrides terms for one job only and states who agreed it and why.', 'Documents version; nothing is overwritten.']},
+  {id: 'contact', title: 'Contact', pageHref: 'Contact Record.dc.html', pageLabel: 'the contact record',
+    summary: 'A person at a client. Snapshot card, then Jobs, Approvals, Responsiveness, Details, Consent, Activity.',
+    fields: [['Roles', 'Hiring manager, approver, decision maker, signatory. Derived.'], ['Preferred route', 'Call, email, Teams. Best time to call.'], ['Marketing consent', 'B2B legitimate interest, opt-out honoured immediately.']],
+    derived: 'Roles, days to feedback, days to approve, quiet warning, "also a candidate" link.',
+    rules: ['One person, two roles: a contact who is also a candidate is flagged both ways and cannot apply to their own employer.']},
+  {id: 'job', title: 'Job', pageHref: 'Job Record.dc.html', pageLabel: 'the job record',
+    summary: 'One record, three layouts by type. Perm and T&M open on Pipeline; SOW opens on Milestones. Brief, Advert, Matches, Commercials, Activity follow.',
+    fields: [['Type', 'Perm, T&M, SOW. Drives the layout.'], ['Closing date', 'Captured on the brief; read by the header and the job board.'], ['Commercials', 'Fee/charge from client terms or a custom override with reason and sign-off.'], ['Forecast', 'Chance percent, expected fee derived.']],
+    derived: 'Header facts (pipeline count, chance, closing), Needs you scoped to the job, fee when not customised.',
+    rules: ['Placing carries rates and dates across without retyping.', 'A candidate late-stage on two jobs is flagged on both.']},
+  {id: 'candidate', title: 'Candidate', pageHref: 'Candidate Record.dc.html', pageLabel: 'the candidate record',
+    summary: 'One person over time, not one applicant on one job. Applications first, then Profile, Availability and pay, Compliance, Placements, Consent, Activity, Matches.',
+    fields: [['Source', 'One list across the system: Headhunted, Referral, Own database, LinkedIn, Applied (board named), Applied by email.'], ['Availability', 'Notice, available from, engagement.'], ['Right to work', 'Document, expiry, checked by/how. Five-state, never a flag.'], ['Consent', 'Lawful basis, retention (consent date + 3 years, recomputed unless set by hand).']],
+    derived: 'Tenure from work history, duplicate flag (mobile/email/name+employer), "also on" flags, asked-and-agreed pay history from screens/offers/placements.',
+    rules: ['CV parsing is a seam, not built; skills and history are typed (see legal note in the handoff).', 'Erasure is a scheduled state; nothing deletes.']},
+  {id: 'application', title: 'Candidate on a job', pageHref: 'Job Record.dc.html', pageLabel: 'the job record, Pipeline tab',
+    summary: 'The row and drawer shared by the job\'s Pipeline and the candidate\'s Applications tab: same stage, same days, same next step, same drawer.',
+    fields: [['Stage', 'Applied, Screened, Sent, Interview, Offer, Placed, Out of the running.'], ['Fit', 'Written against the brief at each move; required to advance.'], ['Screen capture', 'Right to work, licence, credential, current pay, wants, notice, commute, elsewhere, availability.']],
+    derived: 'Days in stage, stalled flag, knockout flags against the brief\'s rules.',
+    rules: ['Nothing moves without a note.', 'A knockout on screen must be flagged again before sending.']},
+  {id: 'placement', title: 'Placement', pageHref: 'Client Record.dc.html', pageLabel: 'the client record, Filled and live',
+    summary: 'Created by placing from the job; carries fee/rate, dates and rebate across. Shown on the client (Filled and live), the job (Placement facts) and the candidate (Placements tab).',
+    fields: [['Perm', 'Fee, rebate window, invoice timing.'], ['T&M/SOW', 'Rate, margin, engagement, timesheet cadence.']],
+    derived: 'Rebate end date, extension due date (8 weeks before end).',
+    rules: ['One placement, three views; no re-entry of rates or dates.']},
+  {id: 'action', title: 'Next action', pageHref: 'Job Record.dc.html', pageLabel: 'any record\'s Next actions',
+    summary: 'The one capture form used on every record: Client, Job, Candidate, Contact, Overview.',
+    fields: [['Type', 'Call, Email, Meeting, Task, Chase.'], ['With', 'Lookup on the record\'s people; phone numbers shown for Call.'], ['About', 'The record\'s own things, or Other with free text.'], ['When', 'Date-time, defaults to now.'], ['Priority', 'Normal or High, one flag.'], ['Follow up', 'None / Tomorrow / Next week / Next month / Other (own date-time), created on Done with the same note.'], ['Who does it', 'Defaults to you; Other is a team lookup with + Add.']],
+    derived: 'Overdue state, calendar state (In your Outlook calendar / Moved / Removed) once Exchange sync is live.',
+    rules: ['Done and Drop both log to Activity.', 'One person per action; a second person is a second action.']},
+  {id: 'interview', title: 'Interview', pageHref: 'Job Record.dc.html', pageLabel: 'the job record, book an interview',
+    summary: 'Booked from the pipeline row. Round, with, format, and a free/busy slot picker once Outlook sync is live.',
+    fields: [['Format', 'Video, on site, phone.'], ['Link/venue/number', 'Set by format.'], ['Invites', 'Both, candidate only, or hold.']],
+    derived: 'Status (sent, confirmed, done, fed back) driving Needs you.',
+    rules: ['A decline raises Needs you on the job.']},
+  {id: 'shortlist', title: 'Shortlist / bulk email', pageHref: 'archive/Bulk Email.dc.html', pageLabel: 'Bulk Email (future)',
+    summary: 'Backlog item, prototyped so the shape is agreed: one email per person from the recruiter\'s own mailbox, to contacts at a client, candidates on a job, or a saved pool.',
+    fields: [['Who', 'Ticked list; consent enforced, opted-out people cannot be ticked.'], ['Template', 'Per mode: client update, job status, market note.'], ['Then', 'Follow-up action per non-replier.']],
+    derived: 'Merge preview per recipient.',
+    rules: ['Not built. Marked future everywhere it is linked from.']},
+  {id: 'timesheets', title: 'Timesheets and Invoices', pageHref: '', pageLabel: '',
+    summary: 'Named in the sidebar, not yet designed. A contractor\'s weeks in one grid with approve/chase, and an invoice list with state and ageing.',
+    fields: [], derived: '', rules: []},
+  {id: 'exchange', title: 'Exchange sync', pageHref: 'EXCHANGE-SYNC.md', pageLabel: 'the sync spec',
+    summary: 'Calendar, mail and contacts via Microsoft Graph. Shown throughout as the Outlook chip, calendar state on actions, invites on Call/Meeting, free/busy on interviews, and mail rows on Activity.',
+    fields: [], derived: '', rules: ['Cannie owns content; Outlook owns time.', 'Nothing Cannie did not create is imported.']},
+];
+class Component extends DCLogic {
+  renderVals() {
+    return {toc: SECTIONS.map(s => ({label: s.title, href: '#' + s.id})),
+      sections: SECTIONS.map(s => ({...s, hasPage: !!s.pageHref, hasFields: s.fields.length > 0, fields: s.fields.map(([name, detail]) => ({name, detail})), hasDerived: !!s.derived, hasRules: s.rules.length > 0}))};
+  }
+}
+</script>
+</body>
+</html>

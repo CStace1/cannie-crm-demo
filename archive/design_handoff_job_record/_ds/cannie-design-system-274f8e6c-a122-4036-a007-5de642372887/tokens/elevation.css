@@ -1,0 +1,13 @@
+/* Cannie is a flat system. Inline cards carry no shadow at all: the separator is
+   whitespace, or at most a taupe hairline. Shadow is reserved for layers that
+   genuinely float above the page (dialog, popover, dropdown, toast) and is
+   always warm ink, never a neutral black. */
+:root{
+  --shadow-none:none;
+  --shadow-card:none;
+  --shadow-popover:0 12px 28px -12px rgba(43,33,27,.35);
+  --shadow-overlay:0 32px 64px -28px rgba(43,33,27,.50),0 2px 6px rgba(43,33,27,.06);
+
+  --focus-ring:0 0 0 2px var(--surface-page),0 0 0 4px var(--border-focus);
+  --blur-scrim:blur(3px); /* @kind other */
+}

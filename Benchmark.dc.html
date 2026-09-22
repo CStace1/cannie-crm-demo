@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/styles.css">
+<script src="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/_ds_bundle.js"></script>
+<style>body{margin:0;background:#F3EEE6} a{color:#9E2D53} a:hover{color:#7D2342}
+@media (max-width:760px){[data-grid]{grid-template-columns:minmax(0,1fr) 60px !important}[data-grid] > *:nth-child(n+3){display:none}}
+</style>
+</helmet>
+<article style="max-width:960px;margin:0 auto;padding:56px 40px 96px;font-family:'Poppins',sans-serif;color:#2B211B;font-size:15px;line-height:1.45;display:flex;flex-direction:column;gap:40px">
+<a href="Index.dc.html" style="font-size:13px;color:#9E2D53;text-decoration:none">← Demo home</a>
+<header style="display:flex;flex-direction:column;gap:10px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Benchmark, September 2026</span>
+<h1 style="margin:0;font-size:32px;font-weight:700;letter-spacing:-0.0075em">Where this demo stands against the field</h1>
+<p style="margin:0;font-size:15px;max-width:680px;color:rgba(43,33,27,.70)">Scored against what a UK agency recruiter uses day to day in Bullhorn, Vincere and JobAdder. Scores are our own judgement from the prototype and public product documentation, not a vendor comparison. 0 is absent, 3 is on a par, 4 is a genuine edge.</p>
+</header>
+<section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px">
+<sc-for list="{{ totals }}" as="t" hint-placeholder-count="4">
+<div style="background:#EFE7DA;border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:6px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">{{ t.label }}</span>
+<span style="font-size:28px;font-weight:700;letter-spacing:-0.0075em;color:{{ t.ink }}">{{ t.value }}</span>
+<span style="font-size:12px;color:rgba(43,33,27,.70)">{{ t.note }}</span>
+</div>
+</sc-for>
+</section>
+<section style="display:flex;flex-direction:column;gap:12px">
+<h2 style="margin:0;font-size:20px;font-weight:700;letter-spacing:-0.0075em">Score by area</h2>
+<div style="display:flex;flex-direction:column">
+<div data-grid="1" style="display:grid;grid-template-columns:minmax(200px,1.6fr) 80px 80px 80px 80px minmax(200px,2fr);gap:12px;padding:0 4px 8px;border-bottom:3.4px solid #2B211B;font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)"><span>Area</span><span>Demo</span><span>Bullhorn</span><span>Vincere</span><span>JobAdder</span><span>Read</span></div>
+<sc-for list="{{ rows }}" as="r" hint-placeholder-count="10">
+<a href="{{ r.href }}" data-grid="1" style="display:grid;grid-template-columns:minmax(200px,1.6fr) 80px 80px 80px 80px minmax(200px,2fr);gap:12px;align-items:center;border-top:1px solid #D9CFC0;padding:12px 4px;text-decoration:none;color:#2B211B" style-hover="background:rgba(43,33,27,.03)">
+<span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font-size:15px;font-weight:600">{{ r.area }}</span><span style="font-size:12px;color:rgba(43,33,27,.70)">{{ r.sub }}</span></span>
+<span style="font-size:15px;font-weight:700;color:{{ r.inkDemo }}">{{ r.demo }}</span>
+<span style="font-size:14px">{{ r.bh }}</span>
+<span style="font-size:14px">{{ r.vc }}</span>
+<span style="font-size:14px">{{ r.ja }}</span>
+<span style="font-size:13px;color:rgba(43,33,27,.70)">{{ r.read }}</span>
+</a>
+</sc-for>
+</div>
+<p style="margin:0;font-size:12px;color:rgba(43,33,27,.70)">Each row opens the screen it scores. Competitor scores are for the broadly configured product a mid-size agency runs, not the best any customer has built on it.</p>
+</section>
+<section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+<sc-for list="{{ cols }}" as="c" hint-placeholder-count="3">
+<div style="background:{{ c.bg }};color:{{ c.ink }};border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:{{ c.kicker }}">{{ c.label }}</span>
+<ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14px">
+<sc-for list="{{ c.items }}" as="i" hint-placeholder-count="4"><li>{{ i }}</li></sc-for>
+</ul>
+</div>
+</sc-for>
+</section>
+<section style="display:flex;flex-direction:column;gap:10px;border-top:1px solid #D9CFC0;padding-top:28px">
+<h2 style="margin:0;font-size:20px;font-weight:700;letter-spacing:-0.0075em">Method and caveats</h2>
+<ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14px;color:rgba(43,33,27,.85)">
+<sc-for list="{{ method }}" as="m" hint-placeholder-count="4"><li>{{ m }}</li></sc-for>
+</ul>
+</section>
+</article>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const INK = '#2B211B', BERRY = '#9E2D53', MID = 'rgba(43,33,27,.70)';
+const ROWS = [
+  {area: 'Needs you today', sub: 'A prioritised desk, not a dashboard of charts', demo: 4, bh: 2, vc: 3, ja: 2, read: 'Every list page opens with what is waiting. Others show widgets you configure.', href: 'Overview.dc.html'},
+  {area: 'Pipeline board', sub: 'Drag, capture on move, undo', demo: 3, bh: 3, vc: 4, ja: 3, read: 'Vincere\'s board is richer on bulk actions. Ours forces a note and next step on every move.', href: 'Pipeline.dc.html'},
+  {area: 'Search and filters', sub: 'One bar, saved pools, sortable columns', demo: 3, bh: 4, vc: 3, ja: 3, read: 'Bullhorn\'s boolean search is deeper. Ours is quicker to learn and consistent across every list.', href: 'Candidates.dc.html'},
+  {area: 'Duplicate handling', sub: 'Detect, compare, merge with field picks', demo: 3, bh: 3, vc: 2, ja: 2, read: 'On a par with Bullhorn\'s merge. Others flag but leave the merge to admins.', href: 'Candidates.dc.html'},
+  {area: 'Job brief and rules', sub: 'Structured brief, gaps called out, competitors', demo: 4, bh: 2, vc: 2, ja: 2, read: 'Nobody else tells the recruiter what the brief is missing before they source.', href: 'Job Record.dc.html'},
+  {area: 'Client commercials', sub: 'Terms, rate card, fee per job, SOW milestones', demo: 4, bh: 3, vc: 3, ja: 2, read: 'SOW and milestone billing is usually a bolt-on. Here it sits on the job.', href: 'Client Record.dc.html'},
+  {area: 'Contacts and relationship', sub: 'Quiet managers, waiting on him, one person two roles', demo: 3, bh: 3, vc: 3, ja: 3, read: 'Level. The quiet-for-7-days view is the one thing others make you build.', href: 'Contacts.dc.html'},
+  {area: 'Calendar and activities', sub: 'Week view, colour by kind, date range filter', demo: 2, bh: 3, vc: 3, ja: 3, read: 'Outlook sync is mocked. Real two-way sync is the gap to close.', href: 'Calendar.dc.html'},
+  {area: 'Targets and forecast', sub: 'Weighted pipeline, what-if, funnel ratios', demo: 4, bh: 3, vc: 3, ja: 2, read: 'Others report history. Ours lets a recruiter test what closes the gap.', href: 'Recruiter.dc.html'},
+  {area: 'Timesheets and invoices', sub: 'Approve, chase, send, mark paid', demo: 2, bh: 3, vc: 3, ja: 2, read: 'Enough for a demo. Real pay and bill needs a proper back office or integration.', href: 'Timesheets.dc.html'},
+  {area: 'Email and bulk send', sub: 'Merge send from own mailbox', demo: 1, bh: 3, vc: 3, ja: 3, read: 'Designed, not built. See the backlog.', href: 'archive/Bulk Email.dc.html'},
+  {area: 'Mobile', sub: 'Find, reach, log, book', demo: 2, bh: 3, vc: 3, ja: 3, read: 'Five phone screens as a light version. Competitors ship full apps.', href: 'Mobile.dc.html'},
+  {area: 'Compliance', sub: 'Right to work, consent, GDPR retention', demo: 2, bh: 3, vc: 3, ja: 3, read: 'Right to work and consent are on the record. Retention rules are not built.', href: 'Standards.dc.html'},
+  {area: 'Reporting', sub: 'Beyond the recruiter\'s own targets', demo: 1, bh: 4, vc: 3, ja: 3, read: 'No manager or agency-wide reporting yet. The biggest gap for a sale.', href: 'Recruiter.dc.html'},
+];
+class Component extends DCLogic {
+  renderVals() {
+    const sum = k => ROWS.reduce((n, r) => n + r[k], 0); const max = ROWS.length * 4;
+    const pct = k => Math.round(sum(k) / max * 100) + '%';
+    const ahead = ROWS.filter(r => r.demo > Math.max(r.bh, r.vc, r.ja)).length, behind = ROWS.filter(r => r.demo < Math.min(r.bh, r.vc, r.ja)).length;
+    return {
+      totals: [{label: 'Demo', value: pct('demo'), ink: BERRY, note: sum('demo') + ' of ' + max + ' across ' + ROWS.length + ' areas'}, {label: 'Bullhorn', value: pct('bh'), ink: INK, note: 'Broadest, heaviest to run'}, {label: 'Vincere', value: pct('vc'), ink: INK, note: 'Strongest board'}, {label: 'JobAdder', value: pct('ja'), ink: INK, note: 'Simplest, SME focus'}],
+      rows: ROWS.map(r => ({...r, demo: String(r.demo), bh: String(r.bh), vc: String(r.vc), ja: String(r.ja), inkDemo: r.demo >= 4 ? BERRY : r.demo <= 1 ? MID : INK})),
+      cols: [
+        {label: 'Ahead in ' + ahead, bg: INK, ink: '#F3EEE6', kicker: '#D9CFC0', items: ['Needs you today on every list, not a dashboard', 'Job brief that names its own gaps and competitors', 'SOW milestones and rate cards on the job, not bolted on', 'Forecast a recruiter can push on, with the working shown']},
+        {label: 'Level', bg: '#EFE7DA', ink: INK, kicker: MID, items: ['Pipeline board with capture on move', 'Duplicate detect and merge', 'Contacts, quiet managers, one person two roles', 'Search and filters that are consistent everywhere']},
+        {label: 'Behind in ' + behind, bg: '#F3EEE6', ink: INK, kicker: MID, items: ['Agency-wide and manager reporting', 'Bulk email from the recruiter\'s mailbox', 'Real Outlook sync, not mocked', 'Full mobile app and GDPR retention rules']},
+      ],
+      method: ['Fourteen areas chosen from the delivery plan and what recruiters raised in review. Each scored 0 to 4 by the design team.', 'Competitor scores come from public documentation and hands-on time with trial accounts, as of September 2026. They will drift.', 'The demo is scored on what works in the prototype today, not what is designed. Bulk email and reporting are scored low for that reason.', 'Ahead means the demo beats all three. Behind means all three beat the demo. Everything else is level.'],
+    };
+  }
+}
+
+</script>
+</body>
+</html>
