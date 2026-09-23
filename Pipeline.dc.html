@@ -13,7 +13,7 @@
 <script src="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/_ds_bundle.js"></script>
 <style>body{margin:0;background:#F3EEE6}a{color:#9E2D53}a:hover{color:#7D2342}
 @media (max-width:1100px){[data-board]{grid-template-columns:minmax(0,1fr) !important}}
-@media (max-width:720px){[data-shell]{flex-direction:column}[data-side]{position:static !important;height:auto !important;width:auto !important;flex:0 0 auto !important;flex-direction:row !important;flex-wrap:wrap;align-items:center;gap:14px !important;padding:12px 16px !important}[data-side] nav{flex-direction:row !important;flex-wrap:wrap}[data-page]{padding-left:20px !important;padding-right:20px !important}[data-toast]{left:16px !important;right:16px !important}}
+@media (max-width:720px){[data-shell]{flex-direction:column}[data-side]{position:static !important;height:auto !important;width:auto !important;flex:0 0 auto !important;flex-direction:row !important;flex-wrap:wrap;align-items:center;gap:14px !important;padding:12px 16px !important}[data-side] nav{flex-direction:row !important;flex-wrap:wrap}[data-side] nav>span{flex-basis:100%}[data-page]{padding-left:20px !important;padding-right:20px !important}[data-toast]{left:16px !important;right:16px !important}}
 </style>
 </helmet>
 <div data-shell="1" style="display:flex;width:100%;min-height:100vh;background:#F3EEE6;color:#2B211B;font-family:'Poppins',sans-serif;font-size:15px;line-height:1.3">
@@ -74,6 +74,7 @@
 </sc-for>
 </div>
 <span style="flex:1"></span>
+<button onClick="{{ openAdd }}" style="height:38px;padding:0 16px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer">Add to pipeline</button>
 <sc-if value="{{ isBoard }}" hint-placeholder-val="{{ true }}">
 <label style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(43,33,27,.70)">Order cards by
 <select value="{{ sort }}" onChange="{{ setSort }}" style="height:34px;padding:0 8px;border:1px solid #D9CFC0;border-radius:8px;background:#F3EEE6;font-family:inherit;font-size:13px;color:#2B211B">
@@ -159,6 +160,33 @@
 </div>
 </div>
 </main>
+
+<sc-if value="{{ hasAdd }}" hint-placeholder-val="{{ false }}">
+<div style="position:fixed;inset:0;background:rgba(43,33,27,.55);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;z-index:30;padding:24px">
+<div style="background:#F3EEE6;border-radius:14px;padding:28px;max-width:480px;width:100%;display:flex;flex-direction:column;gap:18px;box-shadow:0 18px 48px rgba(43,33,27,.28)">
+<div style="display:flex;flex-direction:column;gap:4px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Add to pipeline</span>
+<h2 style="margin:0;font-size:20px;font-weight:700;letter-spacing:-0.0075em">Put a person on a job</h2>
+<p style="margin:0;font-size:13px;color:rgba(43,33,27,.70)">Search for someone already in the database, or create a new candidate. Needs a job and a stage.</p>
+</div>
+<label style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">Candidate</span>
+<dc-import name="Lookup" hint-size="100%,40px" noun="candidate" placeholder="Search a candidate, or type a new name" value="{{ addName }}" options="{{ addCandOptions }}" on-change="{{ setAddName }}" on-create="{{ setAddName }}"></dc-import></label>
+<label style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">Job</span>
+<select value="{{ addJob }}" onChange="{{ setAddJob }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B">
+<sc-for list="{{ addJobOptions }}" as="ajo" hint-placeholder-count="4"><option value="{{ ajo.key }}">{{ ajo.label }}</option></sc-for>
+</select></label>
+<label style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">Stage</span>
+<select value="{{ addStage }}" onChange="{{ setAddStage }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B">
+<sc-for list="{{ addStageOptions }}" as="aso" hint-placeholder-count="6"><option value="{{ aso }}">{{ aso }}</option></sc-for>
+</select></label>
+<sc-if value="{{ hasAddError }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:13px;font-weight:600;color:#9E2D53">{{ addError }}</p></sc-if>
+<div style="display:flex;gap:12px;align-items:center;justify-content:flex-end">
+<button onClick="{{ cancelAdd }}" style="height:40px;padding:0 16px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:transparent;font-family:inherit;font-size:14px;font-weight:600;color:#2B211B;cursor:pointer">Cancel</button>
+<button onClick="{{ confirmAdd }}" style="height:40px;padding:0 18px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer" style-hover="background:#7D2342">Add</button>
+</div>
+</div>
+</div>
+</sc-if>
 
 <sc-if value="{{ hasMove }}" hint-placeholder-val="{{ false }}">
 <div style="position:fixed;inset:0;background:rgba(43,33,27,.55);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;z-index:30;padding:24px">
@@ -247,10 +275,14 @@ const EXTRA = {
 const NOTE_PH = {Screened: 'Screening call done, keen, notice one month', Sent: 'CV sent to the hiring manager with a short note', Interview: 'Dan wants to meet, first stage with the team', Offer: 'Verbal offer made by Dan, candidate thinking it over', Placed: 'Signed, references back', Applied: 'Moved back to review'};
 const REASONS = ['Client rejected', 'Candidate withdrew', 'Took another offer', 'Not right for the role'];
 const initials = n => n.split(' ').map(p => p[0]).join('').slice(0, 2).toUpperCase();
+const loadApps = () => { try { const v = JSON.parse(localStorage.getItem('cannie.pipeline') || 'null'); if (Array.isArray(v) && v.length) return v; } catch (e) {} return SEED; };
+const CAND_POOL = [...new Set(SEED.map(a => a.name))];
 class Component extends DCLogic {
-  state = (() => { const u = new URLSearchParams(window.location.search); return {apps: SEED, view: u.get('view') === 'table' ? 'table' : 'board', job: u.get('job') || 'all', owner: 'Mine', q: '', sort: 'Longest in stage', tSort: 'days', tDir: -1, sel: null, move: null, remove: null, toast: '', undoApps: null, dragOver: null}; })();
+  state = (() => { const u = new URLSearchParams(window.location.search); return {apps: loadApps(), view: u.get('view') === 'table' ? 'table' : 'board', job: u.get('job') || 'all', owner: 'Mine', q: '', sort: 'Longest in stage', tSort: 'days', tDir: -1, sel: null, move: null, remove: null, add: null, toast: '', undoApps: null, dragOver: null}; })();
   say(msg, undoApps) { clearTimeout(this.t); this.setState({toast: msg, undoApps: undoApps || null}); this.t = setTimeout(() => this.setState({toast: '', undoApps: null}), 5000); }
   componentWillUnmount() { clearTimeout(this.t); }
+  persist(apps) { try { localStorage.setItem('cannie.pipeline', JSON.stringify(apps)); } catch (e) {} }
+  setApps(apps) { this.persist(apps); this.setState({apps}); }
   openMove(id, to) { const a = this.state.apps.find(x => x.id === id); if (!a || a.stage === to) return; this.setState({move: {id, to, note: '', next: '', extra: '', error: ''}, dragOver: null}); }
   renderVals() {
     const s = this.state; const term = s.q.trim().toLowerCase();
@@ -277,6 +309,7 @@ class Component extends DCLogic {
     const sel = s.apps.find(a => a.id === s.sel);
     const mv = s.move; const mvApp = mv && s.apps.find(a => a.id === mv.id); const ex = mv && EXTRA[mv.to];
     const rm = s.remove; const rmApp = rm && s.apps.find(a => a.id === rm.id);
+    const ad = s.add;
     const jobKeys = Object.keys(JOBS);
     const countFor = k => scoped.filter(a => k === 'all' || a.job === k).length;
     const stuck = rows.filter(a => a.days >= 7 && a.stage !== 'Placed').length;
@@ -312,15 +345,31 @@ class Component extends DCLogic {
       confirmMove: () => {
         if (ex && ex.required && !mv.extra.trim()) { this.setState({move: {...mv, error: ex.label + ' is needed for ' + mv.to + '.'}}); return; }
         const prev = s.apps; const nextStep = mv.next.trim() || (ex ? ex.label + ' ' + mv.extra.trim() : 'Not set');
-        this.setState({apps: s.apps.map(a => a.id === mv.id ? {...a, stage: mv.to, days: 0, next: nextStep} : a), move: null, dragOver: null});
+        this.setApps(s.apps.map(a => a.id === mv.id ? {...a, stage: mv.to, days: 0, next: nextStep} : a));
+        this.setState({move: null, dragOver: null});
         this.say(mvApp.name + ' moved to ' + mv.to + '.', prev);
       },
       hasRemove: !!rmApp, removeTitle: rmApp ? rmApp.name + ', ' + JOBS[rmApp.job].title : '',
       removeReasons: REASONS.map(r => { const on = rm && rm.reason === r; return {label: r, go: () => this.setState({remove: {...rm, reason: r}}), bg: on ? INK : 'transparent', ink: on ? '#F3EEE6' : INK}; }),
       cancelRemove: () => this.setState({remove: null}),
-      confirmRemove: () => { const prev = s.apps; this.setState({apps: s.apps.filter(a => a.id !== rm.id), remove: null, sel: null}); this.say(rmApp.name + ' taken off, ' + rm.reason.toLowerCase() + '.', prev); },
+      confirmRemove: () => { const prev = s.apps; this.setApps(s.apps.filter(a => a.id !== rm.id)); this.setState({remove: null, sel: null}); this.say(rmApp.name + ' taken off, ' + rm.reason.toLowerCase() + '.', prev); },
       hasToast: !!s.toast, toast: s.toast, canUndo: !!s.undoApps,
-      undo: () => { clearTimeout(this.t); this.setState({apps: s.undoApps, toast: 'Undone.', undoApps: null}); this.t = setTimeout(() => this.setState({toast: ''}), 2000); },
+      undo: () => { clearTimeout(this.t); this.setApps(s.undoApps); this.setState({toast: 'Undone.', undoApps: null}); this.t = setTimeout(() => this.setState({toast: ''}), 2000); },
+      hasAdd: !!ad, addName: ad ? ad.name : null, addCandOptions: CAND_POOL.map(n => ({value: n, label: n})),
+      setAddName: v => this.setState({add: {...s.add, name: v || '', error: ''}}),
+      addJob: ad ? ad.job : jobKeys[0], addJobOptions: jobKeys.map(k => ({key: k, label: JOBS[k].title + ', ' + JOBS[k].client})),
+      setAddJob: e => this.setState({add: {...s.add, job: e.target.value}}),
+      addStage: ad ? ad.stage : 'Applied', addStageOptions: STAGES,
+      setAddStage: e => this.setState({add: {...s.add, stage: e.target.value}}),
+      hasAddError: !!(ad && ad.error), addError: ad ? ad.error : '',
+      openAdd: () => this.setState({add: {name: '', job: s.job !== 'all' ? s.job : jobKeys[0], stage: 'Applied', error: ''}}),
+      cancelAdd: () => this.setState({add: null}),
+      confirmAdd: () => {
+        if (!ad.name || !ad.name.trim()) { this.setState({add: {...ad, error: 'Name the candidate first.'}}); return; }
+        const rec = {id: 'p' + Date.now().toString(36), name: ad.name.trim(), job: ad.job, stage: ad.stage, days: 0, owner: 'Priya Shah', next: 'Not set', added: 0};
+        const prev = s.apps; this.setApps([rec, ...s.apps]); this.setState({add: null, sel: rec.id});
+        this.say(rec.name + ' added to ' + JOBS[rec.job].title + ', ' + rec.stage + '.', prev);
+      },
     };
   }
 }

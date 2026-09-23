@@ -17,7 +17,7 @@
 <a href="Job Board.dc.html" style="font-size:13px;color:#9E2D53;text-decoration:none">← Back to Job board</a>
 <div style="display:flex;flex-direction:column;gap:6px">
 <span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">New job</span>
-<h1 style="margin:0;font-size:28px;font-weight:700;letter-spacing:-0.0075em">Pick the client, then name it</h1>
+<h1 style="margin:0;font-size:28px;font-weight:700;letter-spacing:-0.0075em">{{ h1 }}</h1>
 <p style="margin:0;font-size:13px;color:rgba(43,33,27,.55)">Lands live and open, owned by you. The brief and skills can follow.</p>
 </div>
 <div style="display:flex;flex-direction:column;gap:16px">
@@ -57,12 +57,14 @@
 <script type="text/x-dc" data-dc-script>
 const INK = '#2B211B', TAUPE = '#D9CFC0';
 const CLIENTS = ['Brightwell Payments', 'Ordell Software', 'Northbeam Data', 'Halden Energy', 'Kestrel Freight', 'Merrow Health'];
+const qsClient = () => { try { const v = new URLSearchParams(window.location.search).get('client'); return v ? v.trim() : null; } catch (e) { return null; } };
 class Component extends DCLogic {
-  state = {client: null, title: '', place: '', type: 'Perm', pay: '', error: ''};
+  state = {client: qsClient(), title: '', place: '', type: 'Perm', pay: '', error: ''};
   pill(on) { return {bg: on ? INK : 'transparent', border: on ? '1px solid ' + INK : '1px solid ' + TAUPE, ink: on ? '#F3EEE6' : INK, weight: on ? '600' : '400'}; }
   renderVals() {
     const s = this.state;
     return {
+      h1: s.client ? 'Name it for ' + s.client : 'Pick the client, then name it',
       client: s.client, clientOptions: CLIENTS.map(v => ({value: v, label: v})), setClient: v => this.setState({client: v || null, error: ''}),
       title: s.title, setTitle: e => this.setState({title: e.target.value, error: ''}),
       place: s.place, setPlace: e => this.setState({place: e.target.value}),

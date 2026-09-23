@@ -60,7 +60,7 @@ const RESET = {kind: 'Note', jobV: null, clientV: null, candV: null, contactV: n
 class Component extends DCLogic {
   state = {...RESET};
   pill(on) { return {bg: on ? INK : 'transparent', border: on ? '1px solid ' + INK : '1px solid ' + TAUPE, ink: on ? '#F3EEE6' : INK, weight: on ? '600' : '400'}; }
-  followDateFor(quick, picked) { if (quick === 'Pick a date') return picked || ''; return ({'Tomorrow': '2026-09-24', 'In 3 days': '2026-09-26', 'Next week': '2026-09-30', 'Next month': '2026-10-23'})[quick] || ''; }
+  followDateFor(quick, picked) { if (quick === 'Pick a date') return picked || ''; return ({'Tomorrow': '2026-09-24', 'In 3 working days': '2026-09-28', 'Next week': '2026-09-30', 'Next month': '2026-10-23'})[quick] || ''; }
   componentWillUnmount() { clearTimeout(this._closeTimer); }
   renderVals() {
     const s = this.state, p = this.props;
@@ -75,7 +75,7 @@ class Component extends DCLogic {
       contactValue: s.contactV, contactOptions: CONTACTS.map(v => ({value: v, label: v})), setContact: v => this.setState({contactV: v || null}),
       about: s.about || '', setAbout: e => this.setState({about: e.target.value}),
       note: s.note || '', setNote: e => this.setState({note: e.target.value}),
-      followOpts: ['None', 'Tomorrow', 'In 3 days', 'Next week', 'Next month', 'Pick a date'].map(o => ({label: o, pick: () => this.setState({follow: o}), ...this.pill((s.follow || 'None') === o)})),
+      followOpts: ['None', 'Tomorrow', 'In 3 working days', 'Next week', 'Next month', 'Pick a date'].map(o => ({label: o, pick: () => this.setState({follow: o}), ...this.pill((s.follow || 'None') === o)})),
       showFollowDate: s.follow === 'Pick a date',
       showFollowTime: !!(s.follow && s.follow !== 'None'),
       followDate: s.followDate || '', setFollowDate: e => this.setState({followDate: e.target.value}),

@@ -12,8 +12,9 @@
 <link rel="stylesheet" href="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/styles.css">
 <script src="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/_ds_bundle.js"></script>
 <style>body{margin:0;background:#F3EEE6}a{color:#9E2D53}a:hover{color:#7D2342}
-@media (max-width:720px){[data-shell]{flex-direction:column}[data-side]{position:static !important;height:auto !important;width:auto !important;flex:0 0 auto !important;flex-direction:row !important;flex-wrap:wrap;align-items:center;gap:14px !important;padding:12px 16px !important}[data-side] nav{flex-direction:row !important;flex-wrap:wrap}}
+@media (max-width:720px){[data-shell]{flex-direction:column}[data-side]{position:static !important;height:auto !important;width:auto !important;flex:0 0 auto !important;flex-direction:row !important;flex-wrap:wrap;align-items:center;gap:14px !important;padding:12px 16px !important}[data-side] nav{flex-direction:row !important;flex-wrap:wrap}[data-side] nav>span{flex-basis:100%}}
 @media (max-width:480px){[data-rowhead]{display:none !important}[data-activityrow]{grid-template-columns:1fr auto !important;grid-template-areas:"when kind" "what what" !important;gap:4px 10px !important}[data-activityrow] > :nth-child(1){grid-area:when}[data-activityrow] > :nth-child(2){grid-area:kind;justify-self:end}[data-activityrow] > :nth-child(3){grid-area:what}}
+@media (max-width:900px){[data-actlist]{grid-template-columns:minmax(0,1fr) !important}[data-actlist] aside{position:static !important}}
 </style>
 </helmet>
 <div data-shell="1" style="display:flex;width:100%;min-height:100vh;background:#F3EEE6;color:#2B211B;font-family:'Poppins',sans-serif;font-size:15px;line-height:1.3">
@@ -67,7 +68,8 @@
 
 <dc-import name="FilterBar" hint-size="100%,96px" q="{{ q }}" on-q="{{ fbOnQ }}" placeholder="Search what happened" views="{{ fbViews }}" view="{{ fbView }}" on-view="{{ fbOnView }}" filters="{{ fbFilters }}" on-filter="{{ fbOnFilter }}" on-clear="{{ fbClear }}" sort="{{ fbSort }}" sort-options="{{ fbSortOptions }}" on-sort="{{ fbOnSort }}" result-line="{{ resultLine }}"></dc-import>
 
-<section style="display:flex;flex-direction:column">
+<div data-actlist="1" style="display:grid;grid-template-columns:minmax(0,1fr) {{ panelCol }};gap:20px;align-items:start">
+<section style="display:flex;flex-direction:column;min-width:0">
 <div data-rowhead="1" style="display:grid;grid-template-columns:104px 118px minmax(0,1fr);gap:16px;padding:0 4px 8px;border-bottom:3.4px solid #2B211B;font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">
 <sc-for list="{{ colHeads }}" as="h" hint-placeholder-count="3">
 <sc-if value="{{ h.sortable }}" hint-placeholder-val="{{ true }}"><button onClick="{{ h.go }}" title="{{ h.title }}" style="display:flex;align-items:center;gap:4px;background:transparent;border:none;padding:0;font-family:inherit;font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:{{ h.ink }};cursor:pointer;text-align:left;min-width:0"><span>{{ h.label }}</span><sc-if value="{{ h.on }}" hint-placeholder-val="{{ false }}"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;transform:{{ h.rot }}"><path d="M6 9l6 6 6-6"></path></svg></sc-if></button></sc-if>
@@ -75,15 +77,27 @@
 </sc-for>
 </div>
 <sc-for list="{{ rows }}" as="a" hint-placeholder-count="8">
-<a data-activityrow="1" href="{{ a.href }}" style="display:grid;grid-template-columns:104px 118px minmax(0,1fr);gap:16px;border-top:1px solid #D9CFC0;padding:13px 4px;align-items:start;text-decoration:none;color:inherit" style-hover="background:rgba(43,33,27,.03)">
+<button data-activityrow="1" onClick="{{ a.pick }}" style="display:grid;grid-template-columns:104px 118px minmax(0,1fr);gap:16px;border:none;border-top:1px solid #D9CFC0;padding:13px 4px;align-items:start;text-align:left;background:{{ a.bg }};font-family:inherit;color:inherit;cursor:pointer;width:100%;box-sizing:border-box" style-hover="background:rgba(43,33,27,.03)">
 <span style="font-size:12px;color:rgba(43,33,27,.55)">{{ a.when }}</span>
 <span style="display:inline-flex;align-items:center;justify-self:start;height:22px;padding:0 9px;white-space:nowrap;border:1px solid #D9CFC0;border-radius:6px;font-size:11px;font-weight:600;color:rgba(43,33,27,.70)">{{ a.kind }}</span>
 <span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font-size:14px;font-weight:600">{{ a.what }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ a.byLine }}</span></span>
-</a>
+</button>
 </sc-for>
 <sc-if value="{{ empty }}" hint-placeholder-val="{{ false }}"><p style="margin:14px 0 0;font-size:14px;color:rgba(43,33,27,.55)">Nothing matches. Clear a filter or widen the date range.</p></sc-if>
 <p style="margin:14px 0 0;font-size:12px;color:rgba(43,33,27,.55)">{{ footLine }}</p>
 </section>
+<sc-if value="{{ hasSel }}" hint-placeholder-val="{{ false }}">
+<aside style="position:sticky;top:20px;background:#EFE7DA;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;align-items:flex-start;gap:10px"><div style="display:flex;flex-direction:column;gap:4px;flex:1;min-width:0"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">{{ selKind }}</span><h2 style="margin:0;font-size:20px;font-weight:700;letter-spacing:-0.0075em">{{ selWhat }}</h2><span style="font-size:13px;color:rgba(43,33,27,.55)">{{ selWhen }}</span></div>
+<button onClick="{{ closeSel }}" title="Close" style="width:32px;height:32px;border:none;border-radius:10px;background:transparent;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;color:#2B211B"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"></path></svg></button></div>
+<div style="display:flex;flex-direction:column">
+<sc-for list="{{ selFacts }}" as="f" hint-placeholder-count="4"><div style="display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-top:1px solid #D9CFC0;font-size:13px"><span style="color:rgba(43,33,27,.70)">{{ f.label }}</span><span style="font-weight:600;text-align:right">{{ f.value }}</span></div></sc-for>
+</div>
+<sc-if value="{{ selHasFollow }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;gap:2px;border-top:1px solid #D9CFC0;padding-top:10px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Follow up</span><span style="font-size:14px;font-weight:600">{{ selFollow }}</span></div></sc-if>
+<sc-if value="{{ selHasLinks }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;gap:6px;border-top:1px solid #D9CFC0;padding-top:10px"><sc-for list="{{ selLinks }}" as="l" hint-placeholder-count="2"><a href="{{ l.href }}" style="font-size:13px;font-weight:600;color:#9E2D53">{{ l.label }}</a></sc-for></div></sc-if>
+</aside>
+</sc-if>
+</div>
 </div>
 
 <sc-if value="{{ dOpen }}" hint-placeholder-val="{{ false }}">
@@ -116,7 +130,7 @@
 <sc-if value="{{ d.isArea }}" hint-placeholder-val="{{ false }}"><textarea value="{{ d.value }}" onChange="{{ d.set }}" placeholder="{{ d.placeholder }}" style="min-height:90px;padding:10px 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;resize:vertical;width:100%;box-sizing:border-box"></textarea></sc-if>
 <sc-if value="{{ d.isDatetime }}" hint-placeholder-val="{{ false }}"><input type="datetime-local" step="900" value="{{ d.value }}" onChange="{{ d.set }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:100%;box-sizing:border-box"></sc-if>
 <sc-if value="{{ d.isDate }}" hint-placeholder-val="{{ false }}"><input type="date" value="{{ d.value }}" onChange="{{ d.set }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:100%;box-sizing:border-box"></sc-if>
-<sc-if value="{{ d.isTime }}" hint-placeholder-val="{{ false }}"><input type="time" value="{{ d.value }}" onChange="{{ d.set }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:100%;max-width:160px;box-sizing:border-box"></sc-if>
+<sc-if value="{{ d.isTime }}" hint-placeholder-val="{{ false }}"><input type="time" step="900" value="{{ d.value }}" onChange="{{ d.set }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:100%;max-width:160px;box-sizing:border-box"></sc-if>
 <sc-if value="{{ d.isSelect }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:7px;flex-wrap:wrap">
 <sc-for list="{{ d.options }}" as="o" hint-placeholder-count="3">
 <button onClick="{{ o.pick }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ o.bg }};border:{{ o.border }};color:{{ o.ink }};font-weight:{{ o.weight }}">{{ o.label }}</button>
@@ -174,13 +188,13 @@ const BASE_ACT = [
 ];
 const ACT = (() => { try { return [...JSON.parse(localStorage.getItem('cannie.globalNotes') || '[]'), ...BASE_ACT]; } catch (e) { return BASE_ACT; } })();
 class Component extends DCLogic {
-  state = {q: '', f: {}, view: 'Everyone', sort: 'Newest', sortDir: 1, dateFrom: '', dateTo: '', drawer: null, dDraft: null, dError: ''};
+  state = {q: '', f: {}, view: 'Everyone', sort: 'Newest', sortDir: 1, dateFrom: '', dateTo: '', sel: null, drawer: null, dDraft: null, dError: ''};
   act() { return this.state.activities || ACT; }
   pill(on) { return {bg: on ? INK : 'transparent', border: on ? '1px solid ' + INK : '1px solid ' + TAUPE, ink: on ? '#F3EEE6' : INK, weight: on ? '600' : '400'}; }
   heads(cols, cur, dir, set) {
     return cols.map(c => { const on = !!c.key && cur === c.key; return {label: c.label, sortable: !!c.key, plain: !c.key, on, title: c.key ? 'Sort by ' + c.label.toLowerCase() : '', ink: on ? '#2B211B' : 'rgba(43,33,27,.70)', rot: on && dir === 1 ? 'rotate(180deg)' : 'none', go: () => set(c.key, on ? -dir : (c.defaultDir || 1))}; });
   }
-  followDate(quick, picked) { if (quick === 'Pick a date') return picked || ''; return ({'Tomorrow': '2026-09-23', 'In 3 days': '2026-09-25', 'Next week': '2026-09-29', 'Next month': '2026-10-22'})[quick] || ''; }
+  followDate(quick, picked) { if (quick === 'Pick a date') return picked || ''; return ({'Tomorrow': '2026-09-23', 'In 3 working days': '2026-09-25', 'Next week': '2026-09-29', 'Next month': '2026-10-22'})[quick] || ''; }
   fmtFollow(iso, time) { if (!iso) return ''; const d = new Date(iso + 'T00:00:00'); return d.toLocaleDateString('en-GB', {day: 'numeric', month: 'short'}) + ', ' + (time || '09:00'); }
   // Same field renderer as the record pages' shared drawer (Contact Record.dc.html), ported
   // verbatim so this drawer is the same component, not an approximation of it.
@@ -227,6 +241,7 @@ class Component extends DCLogic {
     const setD = nd => this.setState({dDraft: nd});
     const F = defs => this.field(defs, dr, setD);
     const isMsg = dr.kind === 'Email' || dr.kind === 'SMS';
+    const sel = s.sel;
     return {
       colHeads: this.heads([{label: 'When', key: 'Newest'}, {label: 'Kind', key: 'Kind'}, {label: 'What happened', key: null}], s.sort, dir, setSort),
       facts: [{label: 'Logged', value: String(act.length), ink: INK}, {label: 'Yours', value: String(mine), ink: INK}, {label: 'Calls', value: String(act.filter(a => a.kind === 'Call').length), ink: INK}, {label: 'Follow ups set', value: String(act.filter(a => a.follow).length), ink: INK}],
@@ -242,8 +257,13 @@ class Component extends DCLogic {
       dateTo: s.dateTo, setDateTo: e => this.setState({dateTo: e.target.value}),
       hasDateFilter: !!(s.dateFrom || s.dateTo), clearDates: () => this.setState({dateFrom: '', dateTo: ''}),
       resultLine: rows.length + ' of ' + act.length + ' logged.',
-      rows: rows.map(a => ({...a, byLine: a.who + ', about ' + a.about + (a.subject ? ', ' + a.subject : '') + (a.follow ? ', follow up ' + a.follow.toLowerCase() : '')})), empty: rows.length === 0,
-      footLine: rows.length + ' of ' + act.length + '. A row opens the record it is about.',
+      rows: rows.map(a => ({...a, byLine: a.who + ', about ' + a.about + (a.subject ? ', ' + a.subject : '') + (a.follow ? ', follow up ' + a.follow.toLowerCase() : ''), bg: s.sel === a ? 'rgba(43,33,27,.05)' : 'transparent', pick: () => this.setState({sel: s.sel === a ? null : a})})), empty: rows.length === 0,
+      footLine: rows.length + ' of ' + act.length + '. A row opens a quick read; open the record from there.',
+      panelCol: sel ? '360px' : '0px', hasSel: !!sel, closeSel: () => this.setState({sel: null}),
+      selKind: sel ? sel.kind : '', selWhat: sel ? sel.what : '', selWhen: sel ? sel.when : '',
+      selFacts: sel ? [{label: 'Who logged it', value: sel.who}, {label: 'About', value: sel.about}, ...(sel.subject ? [{label: 'Subject', value: sel.subject}] : [])] : [],
+      selHasFollow: !!(sel && sel.follow), selFollow: sel ? sel.follow : '',
+      selHasLinks: !!(sel && sel.href && sel.href !== '#'), selLinks: sel && sel.href && sel.href !== '#' ? [{label: 'Open ' + sel.about, href: sel.href}] : [],
       openAdd: () => this.setState({drawer: {kind: 'log'}, dDraft: {kind: 'Note', with: '', about: '', note: '', follow: 'None', followDate: '', followTime: '09:00'}, dError: ''}),
       dOpen: !!d, dClose: () => this.setState({drawer: null, dDraft: null, dError: ''}),
       dKicker: 'Log', dTitle: 'Log', dMeta: 'One entry, added to the list below.',
@@ -253,7 +273,7 @@ class Component extends DCLogic {
         {label: 'With', key: 'with', kind: 'text', placeholder: 'Dan Okafor'},
         {label: 'About', key: 'about', kind: 'text', placeholder: 'Which job, client or candidate'},
         {label: isMsg ? 'Message' : 'What happened', key: 'note', kind: 'area', placeholder: isMsg ? 'What you wrote.' : 'What happened, what you agreed.'},
-        {label: 'Follow up', key: 'follow', kind: 'select', options: ['None', 'Tomorrow', 'In 3 days', 'Next week', 'Next month', 'Pick a date'], note: 'Time defaults to 9am.'},
+        {label: 'Follow up', key: 'follow', kind: 'select', options: ['None', 'Tomorrow', 'In 3 working days', 'Next week', 'Next month', 'Pick a date'], note: 'Time defaults to 9am.'},
         ...(dr.follow === 'Pick a date' ? [{label: 'Follow up, on', key: 'followDate', kind: 'date'}] : []),
         ...(dr.follow && dr.follow !== 'None' ? [{label: 'Follow up, at', key: 'followTime', kind: 'time', default: '09:00'}] : []),
       ]),

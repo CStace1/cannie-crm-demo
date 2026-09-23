@@ -19,6 +19,7 @@ a:hover{color:#7D2342}
   [data-shell]{flex-direction:column}
   [data-side]{position:static !important;height:auto !important;width:auto !important;flex:0 0 auto !important;flex-direction:row !important;flex-wrap:wrap;align-items:center;gap:14px !important;padding:12px 16px !important}
   [data-side] nav{flex-direction:row !important;flex-wrap:wrap}
+  [data-side] nav>span{flex-basis:100%}
   [data-weekgrid]{display:none !important}
   [data-agenda]{display:flex !important}
   [data-calpage]{padding-left:20px !important;padding-right:20px !important}
@@ -111,6 +112,25 @@ a:hover{color:#7D2342}
 <p style="margin:12px 0 0;font-size:12px;color:rgba(43,33,27,.55)">Timed actions and booked interviews appear here automatically. Synced with Outlook; a move on either side updates the other.</p>
 </div>
 
+<sc-if value="{{ hasSel }}" hint-placeholder-val="{{ false }}">
+<aside style="position:fixed;top:0;right:0;bottom:0;width:360px;max-width:100vw;box-sizing:border-box;overflow-y:auto;z-index:20;background:#EFE7DA;border-left:1px solid #D9CFC0;padding:24px;display:flex;flex-direction:column;gap:16px;box-shadow:-12px 0 32px rgba(43,33,27,.16)">
+<div style="display:flex;align-items:flex-start;gap:10px">
+<div style="display:flex;flex-direction:column;gap:4px;flex:1;min-width:0">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">{{ selKind }}</span>
+<h2 style="margin:0;font-size:20px;font-weight:700;letter-spacing:-0.0075em">{{ selTitle }}</h2>
+<span style="font-size:13px;color:rgba(43,33,27,.70)">{{ selWhen }}</span>
+</div>
+<button onClick="{{ closeSel }}" title="Close" style="width:32px;height:32px;border:none;border-radius:10px;background:transparent;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;color:#2B211B"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"></path></svg></button>
+</div>
+<div style="display:flex;flex-direction:column">
+<sc-for list="{{ selFacts }}" as="f" hint-placeholder-count="3"><div style="display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-top:1px solid #D9CFC0;font-size:13px"><span style="color:rgba(43,33,27,.70)">{{ f.label }}</span><span style="font-weight:600;text-align:right">{{ f.value }}</span></div></sc-for>
+</div>
+<sc-if value="{{ selHasDetail }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">What happened</span><p style="margin:0;font-size:14px">{{ selDetail }}</p></div></sc-if>
+<sc-if value="{{ selHasFollowTo }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;gap:2px;border-top:1px solid #D9CFC0;padding-top:10px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Follow up to</span><span style="font-size:14px;font-weight:600">{{ selFollowTo }}</span></div></sc-if>
+<sc-if value="{{ selHasLink }}" hint-placeholder-val="{{ false }}"><div style="border-top:1px solid #D9CFC0;padding-top:10px"><a href="{{ selHref }}" style="font-size:13px;font-weight:600;color:#9E2D53">{{ selLinkLabel }}</a></div></sc-if>
+</aside>
+</sc-if>
+
 <sc-if value="{{ dOpen }}" hint-placeholder-val="{{ false }}">
 <div style="position:fixed;inset:0;background:rgba(43,33,27,.55);backdrop-filter:blur(3px);display:flex;justify-content:flex-end;z-index:20">
 <div onClick="{{ dClose }}" style="flex:1"></div>
@@ -141,7 +161,7 @@ a:hover{color:#7D2342}
 <sc-if value="{{ d.isArea }}" hint-placeholder-val="{{ false }}"><textarea value="{{ d.value }}" onChange="{{ d.set }}" placeholder="{{ d.placeholder }}" style="min-height:90px;padding:10px 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;resize:vertical;width:100%;box-sizing:border-box"></textarea></sc-if>
 <sc-if value="{{ d.isDatetime }}" hint-placeholder-val="{{ false }}"><input type="datetime-local" step="900" value="{{ d.value }}" onChange="{{ d.set }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:100%;box-sizing:border-box"></sc-if>
 <sc-if value="{{ d.isDate }}" hint-placeholder-val="{{ false }}"><input type="date" value="{{ d.value }}" onChange="{{ d.set }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:100%;box-sizing:border-box"></sc-if>
-<sc-if value="{{ d.isTime }}" hint-placeholder-val="{{ false }}"><input type="time" value="{{ d.value }}" onChange="{{ d.set }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:100%;max-width:160px;box-sizing:border-box"></sc-if>
+<sc-if value="{{ d.isTime }}" hint-placeholder-val="{{ false }}"><input type="time" step="900" value="{{ d.value }}" onChange="{{ d.set }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:100%;max-width:160px;box-sizing:border-box"></sc-if>
 <sc-if value="{{ d.isSelect }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:7px;flex-wrap:wrap">
 <sc-for list="{{ d.options }}" as="o" hint-placeholder-count="3">
 <button onClick="{{ o.pick }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ o.bg }};border:{{ o.border }};color:{{ o.ink }};font-weight:{{ o.weight }}">{{ o.label }}</button>
@@ -187,18 +207,18 @@ a:hover{color:#7D2342}
 const BERRY = '#9E2D53', INK = '#2B211B', TAUPE = '#D9CFC0', SAND = '#EFE7DA', SOFT = '#E896B3';
 // cat: Stage (pipeline moves/interviews), Client, Internal, Candidate
 const EVENTS = [
-  {day: 0, hour: 10, len: 1, title: 'Call Amara Osei', cat: 'Candidate', href: 'Candidate Record.dc.html'},
-  {day: 0, hour: 14, len: 1, title: 'Rate card review, Claire Dunn', cat: 'Client', href: 'Client Record.dc.html'},
-  {day: 1, hour: 9, len: 1, title: 'Interview, Tobias Reyes', cat: 'Stage', href: 'Job Record.dc.html'},
-  {day: 1, hour: 11, len: 1, title: 'Desk sync', cat: 'Internal', href: '#'},
-  {day: 2, hour: 10, len: 2, title: '2nd interview, Amara Osei', cat: 'Stage', href: 'Job Record.dc.html'},
-  {day: 3, hour: 15, len: 1, title: 'Milestone 3 check in, Dan Okafor', cat: 'Client', href: 'Job Record.dc.html?type=SOW'},
-  {day: 4, hour: 9, len: 1, title: 'Weekly desk review', cat: 'Internal', href: '#'},
+  {day: 0, hour: 10, len: 1, title: 'Call Amara Osei', cat: 'Candidate', href: 'Candidate Record.dc.html', kind: 'Call', who: 'Priya Shah', about: 'Amara Osei', detail: 'Catching up on both live applications.'},
+  {day: 0, hour: 14, len: 1, title: 'Rate card review, Claire Dunn', cat: 'Client', href: 'Client Record.dc.html', kind: 'Meeting', who: 'Priya Shah', about: 'Claire Dunn', detail: 'Annual rate card review for Brightwell Payments.'},
+  {day: 1, hour: 9, len: 1, title: 'Interview, Tobias Reyes', cat: 'Stage', href: 'Job Record.dc.html', kind: 'Interview', who: 'Priya Shah', about: 'Tobias Reyes', detail: 'First interview, Senior Backend Engineer.'},
+  {day: 1, hour: 11, len: 1, title: 'Desk sync', cat: 'Internal', href: '#', kind: 'Meeting', who: 'Priya Shah', about: 'The desk', detail: 'Weekly sync with the desk.'},
+  {day: 2, hour: 10, len: 2, title: '2nd interview, Amara Osei', cat: 'Stage', href: 'Job Record.dc.html', kind: 'Interview', who: 'Priya Shah', about: 'Amara Osei', detail: 'Second interview, on site with Dan and Priya Lam.'},
+  {day: 3, hour: 15, len: 1, title: 'Milestone 3 check in, Dan Okafor', cat: 'Client', href: 'Job Record.dc.html?type=SOW', kind: 'Call', who: 'Priya Shah', about: 'Dan Okafor', detail: 'Check in on milestone 3 approval.'},
+  {day: 4, hour: 9, len: 1, title: 'Weekly desk review', cat: 'Internal', href: '#', kind: 'Meeting', who: 'Priya Shah', about: 'The desk', detail: 'Weekly desk review.'},
 ];
 const TASKS = [
-  {day: 0, title: 'Chase Dan on the shortlist', cat: 'Client', href: 'Job Record.dc.html'},
-  {day: 1, title: 'Right to work check, Femi Adebayo', cat: 'Candidate', href: 'Candidate Record.dc.html'},
-  {day: 3, title: 'Prep the desk review deck', cat: 'Internal', href: '#'},
+  {day: 0, title: 'Chase Dan on the shortlist', cat: 'Client', href: 'Job Record.dc.html', kind: 'Task', who: 'Priya Shah', about: 'Dan Okafor', detail: 'Chase Dan on the shortlist.'},
+  {day: 1, title: 'Right to work check, Femi Adebayo', cat: 'Candidate', href: 'Candidate Record.dc.html', kind: 'Task', who: 'Priya Shah', about: 'Femi Adebayo', detail: 'Right to work check.'},
+  {day: 3, title: 'Prep the desk review deck', cat: 'Internal', href: '#', kind: 'Task', who: 'Priya Shah', about: 'The desk', detail: 'Prep the desk review deck.'},
 ];
 const CAT_STYLE = {
   Stage: {bg: SAND, border: TAUPE, ink: INK, dot: INK},
@@ -211,10 +231,10 @@ const CAT_STYLE = {
 const FOLLOW_STYLE = {bg: '#F3EEE6', border: INK, ink: 'rgba(43,33,27,.70)'};
 const TIME_LABELS = Array.from({length: 9}, (_, i) => i + 8).map(hr => ({hr, label: (hr % 12 || 12) + (hr < 12 ? 'am' : 'pm')}));
 class Component extends DCLogic {
-  state = {weekOffset: 0, q: '', drawer: null, dDraft: null, dError: ''};
+  state = {weekOffset: 0, q: '', sel: null, drawer: null, dDraft: null, dError: ''};
   evts() { return this.state.events || EVENTS; }
   pill(on) { return {bg: on ? INK : 'transparent', border: on ? '1px solid ' + INK : '1px solid ' + TAUPE, ink: on ? '#F3EEE6' : INK, weight: on ? '600' : '400'}; }
-  followDate(quick, picked) { if (quick === 'Pick a date') return picked || ''; return ({'Tomorrow': '2026-09-22', 'In 3 days': '2026-09-24', 'Next week': '2026-09-28', 'Next month': '2026-10-21'})[quick] || ''; }
+  followDate(quick, picked) { if (quick === 'Pick a date') return picked || ''; return ({'Tomorrow': '2026-09-22', 'In 3 working days': '2026-09-24', 'Next week': '2026-09-28', 'Next month': '2026-10-21'})[quick] || ''; }
   fmtFollow(iso, time) { if (!iso) return ''; const d = new Date(iso + 'T00:00:00'); return d.toLocaleDateString('en-GB', {day: 'numeric', month: 'short'}) + ', ' + (time || '09:00'); }
   // Where a follow up date actually falls on this grid: which week (relative to the week
   // this page pins as "now") and which weekday column, Monday first. Saturday/Sunday return
@@ -253,7 +273,7 @@ class Component extends DCLogic {
     const matches = e => !term || e.title.toLowerCase().includes(term) || e.cat.toLowerCase().includes(term);
     const hours = Array.from({length: 9}, (_, i) => i + 8).map(hr => ({
       label: (hr % 12 || 12) + (hr < 12 ? 'am' : 'pm'),
-      cells: dayNames.map((_, di) => ({events: evts.filter(e => (e.weekOffset ?? 0) === s.weekOffset && e.day === di && e.hour === hr && matches(e)).map(e => { const st = e.isFollow ? FOLLOW_STYLE : CAT_STYLE[e.cat]; return {bg: st.bg, borderCss: (e.isFollow ? '1px dashed ' : '1px solid ') + st.border, ink: st.ink, time: (hr % 12 || 12) + (hr < 12 ? 'am' : 'pm'), title: e.title, open: () => { if (e.href !== '#') window.location.href = e.href; }}; })}))
+      cells: dayNames.map((_, di) => ({events: evts.filter(e => (e.weekOffset ?? 0) === s.weekOffset && e.day === di && e.hour === hr && matches(e)).map(e => { const st = e.isFollow ? FOLLOW_STYLE : CAT_STYLE[e.cat]; return {bg: st.bg, borderCss: (e.isFollow ? '1px dashed ' : '1px solid ') + st.border, ink: st.ink, time: (hr % 12 || 12) + (hr < 12 ? 'am' : 'pm'), title: e.title, open: () => this.setState({sel: e})}; })}))
     }));
     // Mobile pattern: a day-by-day agenda, not a shrunk five-column grid (a grid
     // cannot fit a phone width). Same events, same week navigation, grouped and
@@ -262,20 +282,30 @@ class Component extends DCLogic {
       const dayEvents = evts.filter(e => (e.weekOffset ?? 0) === s.weekOffset && e.day === di && matches(e)).sort((a, b) => a.hour - b.hour);
       return {
         dow: day.dow, num: day.num, ink: day.ink, empty: dayEvents.length === 0, emptyLine: 'Nothing on ' + day.dow + '.',
-        events: dayEvents.map(e => { const st = e.isFollow ? FOLLOW_STYLE : CAT_STYLE[e.cat]; return {bg: st.bg, borderCss: (e.isFollow ? '1px dashed ' : '1px solid ') + st.border, ink: st.ink, time: (e.hour % 12 || 12) + (e.hour < 12 ? 'am' : 'pm'), title: e.title, open: () => { if (e.href !== '#') window.location.href = e.href; }}; })
+        events: dayEvents.map(e => { const st = e.isFollow ? FOLLOW_STYLE : CAT_STYLE[e.cat]; return {bg: st.bg, borderCss: (e.isFollow ? '1px dashed ' : '1px solid ') + st.border, ink: st.ink, time: (e.hour % 12 || 12) + (e.hour < 12 ? 'am' : 'pm'), title: e.title, open: () => this.setState({sel: e})}; })
       };
     });
     const d = s.drawer, dr = s.dDraft || {};
     const setD = nd => this.setState({dDraft: nd});
     const F = defs => this.field(defs, dr, setD);
     const isMsg = dr.kind === 'Email' || dr.kind === 'SMS';
+    const sel = s.sel;
+    const selDayLabel = sel && typeof sel.day === 'number' && dayNames[sel.day] ? dayNames[sel.day] : '';
+    const selTimeLabel = sel && typeof sel.hour === 'number' ? ((sel.hour % 12 || 12) + (sel.hour < 12 ? 'am' : 'pm')) : '';
     return {
       weekLabel: monday.toLocaleDateString('en-GB', {day: 'numeric', month: 'long', year: 'numeric'}) + ', week',
       prevWeek: () => this.setState({weekOffset: s.weekOffset - 1}), nextWeek: () => this.setState({weekOffset: s.weekOffset + 1}),
       days, hours, agendaDays, q: s.q, setQ: e => this.setState({q: e.target.value}),
+      hasSel: !!sel, closeSel: () => this.setState({sel: null}),
+      selKind: sel ? (sel.kind || sel.cat || '') : '', selTitle: sel ? sel.title : '',
+      selWhen: sel ? (selDayLabel + (selTimeLabel ? ', ' + selTimeLabel : '')) : '',
+      selFacts: sel ? [{label: 'With', value: sel.about || 'Not set'}, {label: 'Logged by', value: sel.who || 'Priya Shah'}] : [],
+      selHasDetail: !!(sel && sel.detail), selDetail: sel ? (sel.detail || '') : '',
+      selHasFollowTo: !!(sel && sel.followTo), selFollowTo: sel ? (sel.followTo || '') : '',
+      selHasLink: !!(sel && sel.href && sel.href !== '#'), selHref: sel ? sel.href : '#', selLinkLabel: sel ? 'Open ' + (sel.about || 'the record') : '',
       syncLabel: 'Outlook', syncDot: INK, syncBorder: '#D9CFC0', syncBg: 'transparent',
       legend: ['Stage', 'Client', 'Candidate', 'Internal'].map(c => ({label: c, dot: CAT_STYLE[c].dot})),
-      tasks: s.weekOffset === 0 ? TASKS.filter(t => !term || t.title.toLowerCase().includes(term) || t.cat.toLowerCase().includes(term)).map(t => ({...CAT_STYLE[t.cat], title: t.title, day: dayNames[t.day], open: () => { if (t.href !== '#') window.location.href = t.href; }})) : [],
+      tasks: s.weekOffset === 0 ? TASKS.filter(t => !term || t.title.toLowerCase().includes(term) || t.cat.toLowerCase().includes(term)).map(t => ({...CAT_STYLE[t.cat], title: t.title, day: dayNames[t.day], open: () => this.setState({sel: t})})) : [],
       openAdd: () => this.setState({drawer: {kind: 'add'}, dDraft: {kind: 'Meeting', with: '', about: '', note: '', day: 'Mon', time: '9am', follow: 'None', followDate: '', followTime: '09:00'}, dError: '', weekOffset: 0}),
       dOpen: !!d, dClose: () => this.setState({drawer: null, dDraft: null, dError: ''}),
       dKicker: 'Log', dTitle: 'Log', dMeta: "One entry, added to this week's grid.",
@@ -287,7 +317,7 @@ class Component extends DCLogic {
         {label: isMsg ? 'Message' : 'What happened', key: 'note', kind: 'area', placeholder: isMsg ? 'What you wrote.' : 'What it is, one line.'},
         {label: 'Day', key: 'day', kind: 'select', options: dayNames},
         {label: 'Time', key: 'time', kind: 'select', options: TIME_LABELS.map(t => t.label), note: 'Monday to Friday of this week only.'},
-        {label: 'Follow up', key: 'follow', kind: 'select', options: ['None', 'Tomorrow', 'In 3 days', 'Next week', 'Next month', 'Pick a date'], note: 'Time defaults to 9am.'},
+        {label: 'Follow up', key: 'follow', kind: 'select', options: ['None', 'Tomorrow', 'In 3 working days', 'Next week', 'Next month', 'Pick a date'], note: 'Time defaults to 9am.'},
         ...(dr.follow === 'Pick a date' ? [{label: 'Follow up, on', key: 'followDate', kind: 'date'}] : []),
         ...(dr.follow && dr.follow !== 'None' ? [{label: 'Follow up, at', key: 'followTime', kind: 'time', default: '09:00'}] : []),
       ]),
@@ -302,14 +332,15 @@ class Component extends DCLogic {
         const title = dr.note.trim() + (withName ? ', ' + withName : '');
         const dayIdx = dayNames.indexOf(dr.day || 'Mon');
         const hr = (TIME_LABELS.find(t => t.label === (dr.time || '9am')) || {hr: 9}).hr;
-        const rows = [{day: dayIdx < 0 ? 0 : dayIdx, hour: hr, weekOffset: 0, len: 1, title, cat, href: '#', isFollow: false}];
+        const rows = [{day: dayIdx < 0 ? 0 : dayIdx, hour: hr, weekOffset: 0, len: 1, title, cat, href: '#', isFollow: false, kind, who: 'Priya Shah', about: withName || about || 'Unfiled', detail: dr.note.trim()}];
         const fDate = this.followDate(dr.follow, dr.followDate);
         if (dr.follow && dr.follow !== 'None' && fDate) {
           const info = this.dayInfo(fDate);
           const ftime = dr.followTime || '09:00';
           const fhour = parseInt(ftime.split(':')[0], 10);
           if (info && info.day >= 0 && info.day <= 4) {
-            rows.push({day: info.day, hour: fhour, weekOffset: info.weekOffset, len: 1, title: 'Follow up: ' + (withName || about || dr.note.trim()), cat: 'Internal', href: '#', isFollow: true});
+            const followTo = withName || about || dr.note.trim();
+            rows.push({day: info.day, hour: fhour, weekOffset: info.weekOffset, len: 1, title: 'Follow up: ' + followTo, cat: 'Internal', href: '#', isFollow: true, kind: 'Follow up', who: 'Priya Shah', about: followTo, detail: dr.note.trim(), followTo});
           }
         }
         this.setState({events: [...evts, ...rows], drawer: null, dDraft: null, dError: ''});
