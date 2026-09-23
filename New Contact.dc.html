@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/styles.css">
+<script src="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/_ds_bundle.js"></script>
+<style>body{margin:0;background:#F3EEE6}a{color:#9E2D53}a:hover{color:#7D2342}</style>
+</helmet>
+<div style="max-width:640px;margin:0 auto;padding:40px 32px 80px;font-family:'Poppins',sans-serif;color:#2B211B;display:flex;flex-direction:column;gap:24px">
+<a href="Contacts.dc.html" style="font-size:13px;color:#9E2D53;text-decoration:none">← Back to Contacts</a>
+<div style="display:flex;flex-direction:column;gap:6px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">New contact</span>
+<h1 style="margin:0;font-size:28px;font-weight:700;letter-spacing:-0.0075em">Name, role, and the client they sit at</h1>
+<p style="margin:0;font-size:13px;color:rgba(43,33,27,.55)">At a client you already have. A route is enough to start.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;flex-direction:column;gap:5px">
+<span style="font-size:13px;font-weight:600">Full name</span>
+<input type="text" value="{{ name }}" onChange="{{ setName }}" placeholder="Sana Iqbal" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box">
+</div>
+<div style="display:flex;flex-direction:column;gap:5px">
+<span style="font-size:13px;font-weight:600">Job title</span>
+<input type="text" value="{{ title }}" onChange="{{ setTitle }}" placeholder="Engineering Manager" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box">
+</div>
+<div style="display:flex;flex-direction:column;gap:5px">
+<span style="font-size:13px;font-weight:600">Client</span>
+<dc-import name="Lookup" hint-size="100%,40px" noun="client" placeholder="Search a client you already have" value="{{ client }}" options="{{ clientOptions }}" on-change="{{ setClient }}"></dc-import>
+</div>
+<div style="display:flex;flex-direction:column;gap:5px">
+<span style="font-size:13px;font-weight:600">Email</span>
+<input type="text" value="{{ email }}" onChange="{{ setEmail }}" placeholder="sana.iqbal@merrow.example" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box">
+</div>
+<sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:13px;color:#9E2D53;font-weight:600">{{ error }}</p></sc-if>
+<div style="display:flex;gap:12px;align-items:center">
+<button onClick="{{ create }}" style="height:40px;padding:0 18px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer">Create contact</button>
+<a href="Contacts.dc.html" style="font-size:13px;font-weight:600;color:#2B211B">Cancel</a>
+</div>
+</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const CLIENTS = ['Brightwell Payments', 'Ordell Software', 'Northbeam Data', 'Halden Energy', 'Kestrel Freight', 'Merrow Health', 'Aldgate and Percival', 'Tessellate Ventures'];
+class Component extends DCLogic {
+  state = {name: '', title: '', client: null, email: '', error: ''};
+  renderVals() {
+    const s = this.state;
+    return {
+      name: s.name, setName: e => this.setState({name: e.target.value, error: ''}),
+      title: s.title, setTitle: e => this.setState({title: e.target.value}),
+      client: s.client, clientOptions: CLIENTS.map(v => ({value: v, label: v})), setClient: v => this.setState({client: v || null, error: ''}),
+      email: s.email, setEmail: e => this.setState({email: e.target.value}),
+      hasError: !!s.error, error: s.error,
+      create: () => {
+        if (!s.name.trim()) { this.setState({error: 'A name is enough to start.'}); return; }
+        if (!(s.client || '').trim()) { this.setState({error: 'Pick the client they sit at.'}); return; }
+        const id = 'ncn' + Date.now().toString(36);
+        const rec = {id, name: s.name.trim(), title: s.title.trim() || 'Not asked', client: s.client.trim(), clientHref: 'Client Record.dc.html', hm: false, lastN: 'Just added', quiet: false, needs: [], jobs: [], routes: s.email.trim() ? [{label: 'Email', value: s.email.trim(), href: 'mailto:' + s.email.trim()}] : []};
+        try { const list = JSON.parse(localStorage.getItem('cannie.newContacts') || '[]'); localStorage.setItem('cannie.newContacts', JSON.stringify([rec, ...list])); } catch (e) {}
+        window.location.href = 'Contacts.dc.html';
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

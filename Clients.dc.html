@@ -102,7 +102,7 @@ a:hover{color:#7D2342}
 <sc-if value="{{ createOpen }}" hint-placeholder-val="{{ false }}">
 <div style="position:absolute;right:0;top:44px;width:260px;background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;padding:8px 0;box-shadow:0 12px 32px rgba(43,33,27,.18);display:flex;flex-direction:column;z-index:7">
 <sc-for list="{{ createItems }}" as="c" hint-placeholder-count="5">
-<a href="{{ c.href }}" style="display:flex;flex-direction:column;gap:1px;padding:9px 16px;text-decoration:none;color:#2B211B" style-hover="background:rgba(43,33,27,.05)"><span style="font-size:14px;font-weight:600">{{ c.label }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ c.sub }}</span></a>
+<a href="{{ c.href }}" onClick="{{ c.pick }}" style="display:flex;flex-direction:column;gap:1px;padding:9px 16px;text-decoration:none;color:#2B211B" style-hover="background:rgba(43,33,27,.05)"><span style="font-size:14px;font-weight:600">{{ c.label }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ c.sub }}</span></a>
 </sc-for>
 </div>
 </sc-if>
@@ -243,6 +243,7 @@ a:hover{color:#7D2342}
 </sc-if>
 </div>
 </main>
+<dc-import name="NoteOrCall" open="{{ noteOpen }}" on-close="{{ closeNoteOrCall }}" on-saved="{{ noteSaved }}"></dc-import>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script>
@@ -307,7 +308,8 @@ class Component extends DCLogic {
       gqKey: e => { if (e.key === 'Enter' && hits[0]) window.location.href = hits[0].href; if (e.key === 'Escape') this.setState({gq: ''}); },
       gqSeeAll: e => { e.preventDefault(); window.location.href = 'Search.dc.html?q=' + encodeURIComponent(s.gq || ''); },
       createOpen: !!s.createOpen, toggleCreate: () => this.setState({createOpen: !s.createOpen, recentOpen: false, gq: ''}),
-      createItems: [{label: 'Candidate', sub: 'Name, a route, how they came to you. CV can follow.', href: 'Candidates.dc.html'}, {label: 'Job', sub: 'Pick the client first; the brief follows.', href: 'Clients.dc.html'}, {label: 'Client', sub: 'Name and one route. Lands on the empty record.', href: 'New Client.dc.html'}, {label: 'Contact', sub: 'At a client you already have.', href: 'Clients.dc.html'}, {label: 'Note or call', sub: 'Against anyone. Same drawer as every record.', href: '#'}],
+      createItems: [{label: 'Candidate', sub: 'Name, a route, how they came to you. CV can follow.', href: 'New Candidate.dc.html', pick: () => {}}, {label: 'Job', sub: 'Pick the client first; the brief follows.', href: 'New Job.dc.html', pick: () => {}}, {label: 'Client', sub: 'Name and one route. Lands on the empty record.', href: 'New Client.dc.html', pick: () => {}}, {label: 'Contact', sub: 'At a client you already have.', href: 'New Contact.dc.html', pick: () => {}}, {label: 'Note or call', sub: 'Against anyone. Same drawer as every record.', href: '#', pick: e => { e.preventDefault(); this.setState({noteOpen: true, createOpen: false}); }}],
+      noteOpen: !!s.noteOpen, closeNoteOrCall: () => this.setState({noteOpen: false}), noteSaved: () => {},
       recentOpen: !!s.recentOpen, toggleRecent: () => this.setState({recentOpen: !s.recentOpen, createOpen: false, gq: ''}),
       recentItems: [{title: 'Amara Osei', sub: 'Candidate', when: '10 min', href: 'Candidate Record.dc.html'}, {title: 'Senior Backend Engineer', sub: 'Job, Brightwell', when: '25 min', href: 'Job Record.dc.html'}, {title: 'Brightwell Payments', sub: 'Client', when: '1 hr', href: 'Client Record.dc.html'}, {title: 'Dan Okafor', sub: 'Contact, Brightwell', when: 'Yesterday', href: 'Contact Record.dc.html'}, {title: 'Payments migration, phase 2', sub: 'SOW, Brightwell', when: 'Yesterday', href: 'Job Record.dc.html?type=SOW'}],
       ...(() => { const KEY = 'cannie.pins'; const read = () => { try { return JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { return null; } }; const here = {title: 'Clients', sub: 'List', href: window.location.pathname.split('/').pop() + window.location.search}; const pins = read() || []; const write = p => { localStorage.setItem(KEY, JSON.stringify(p)); this.forceUpdate(); }; const isPinned = pins.some(p => p.title === here.title); const full = pins.length >= 6 && !isPinned;

@@ -89,7 +89,7 @@ a:hover{color:#7D2342}
 <sc-if value="{{ createOpen }}" hint-placeholder-val="{{ false }}">
 <div style="position:absolute;right:0;top:44px;width:260px;background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;padding:8px 0;box-shadow:0 12px 32px rgba(43,33,27,.18);display:flex;flex-direction:column;z-index:7">
 <sc-for list="{{ createItems }}" as="c" hint-placeholder-count="5">
-<a href="{{ c.href }}" style="display:flex;flex-direction:column;gap:1px;padding:9px 16px;text-decoration:none;color:#2B211B" style-hover="background:rgba(43,33,27,.05)"><span style="font-size:14px;font-weight:600">{{ c.label }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ c.sub }}</span></a>
+<a href="{{ c.href }}" onClick="{{ c.pick }}" style="display:flex;flex-direction:column;gap:1px;padding:9px 16px;text-decoration:none;color:#2B211B" style-hover="background:rgba(43,33,27,.05)"><span style="font-size:14px;font-weight:600">{{ c.label }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ c.sub }}</span></a>
 </sc-for>
 </div>
 </sc-if>
@@ -172,11 +172,12 @@ a:hover{color:#7D2342}
 <sc-if value="{{ hasFlash }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:14px;font-weight:600;color:#9E2D53">{{ flash }}</p></sc-if>
 </div>
 </main>
+<dc-import name="NoteOrCall" open="{{ noteOpen }}" on-close="{{ closeNoteOrCall }}" on-saved="{{ noteSaved }}"></dc-import>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 const INK = '#2B211B', BERRY = '#9E2D53', MUTED = 'rgba(43,33,27,.55)', MID = 'rgba(43,33,27,.70)', TAUPE = '#D9CFC0', SAND = '#EFE7DA';
-const JOBS = [
+const BASE_JOBS = [
   {id: 'bw1', title: 'Senior Backend Engineer', client: 'Brightwell Payments', owner: 'Priya Shah', type: 'Perm', pays: '£85,000 to £95,000', hi: 95000, place: 'London, hybrid 2', skills: ['Go', 'Kafka', 'Postgres', 'Payments'], tags: ['No sponsorship', 'Migration scars', 'Hybrid 2'], live: 6, sent: 3, stages: {Screened: 1, Sent: 3, Interview: 2}, furthest: 'Interview', open: 24, updated: 0, updatedWhat: '2nd interview booked, Amara Osei', source: "Brief taken in person", closes: '2026-11-03', href: 'Job Record.dc.html'},
   {id: 'bw2', title: 'Data Engineers, payments platform', client: 'Brightwell Payments', owner: 'Priya Shah', type: 'T&M', pays: '£550 to £600 a day', hi: 600, place: 'London, on site 3', skills: ['Python', 'Spark', 'Kafka', 'Payments'], tags: ['Outside IR35', '3 heads', 'Starts 6 Oct'], live: 4, sent: 2, stages: {Screened: 1, Sent: 2, Offer: 1}, furthest: 'Offer', open: 31, updated: 2, updatedWhat: 'Offer to Rosa Alvarez awaiting sign off', source: "Extension of last year's team", closes: '2026-10-06', href: 'Job Record.dc.html?type=T%26M'},
   {id: 'bw3', title: 'Payments migration, phase 2', client: 'Brightwell Payments', owner: 'Nadia Croft', type: 'SOW', pays: '£240,000 budget', hi: 0, place: 'Leeds, hybrid', skills: ['Migrations', 'Kafka', 'Java'], tags: ['Milestone 3 awaiting', '4 contractors', 'Ends Jun 2027'], live: 4, sent: 0, stages: {}, furthest: 'Delivering', open: 120, updated: 5, updatedWhat: 'Milestone 3 sent to Dan', source: "Won on tender", closes: '2027-06-30', href: 'Job Record.dc.html?type=SOW'},
@@ -190,6 +191,7 @@ const JOBS = [
   {id: 'mh1', title: 'Backend Engineer, contract', client: 'Merrow Health', owner: 'Nadia Croft', type: 'T&M', pays: '£500 to £550 a day', hi: 550, place: 'Bristol, remote', skills: ['Python', 'Postgres', 'FHIR'], tags: ['Prospect', 'Remote', 'Outside IR35'], live: 1, sent: 0, stages: {Applied: 1}, furthest: 'Applied', open: 2, updated: 0, updatedWhat: 'Hana Sato applied', source: "Inbound from website", closes: '2026-10-20', href: 'Job Record.dc.html?type=T%26M'},
   {id: 'od3', title: 'Data platform rebuild', client: 'Ordell Software', owner: 'Sam Iyer', type: 'SOW', pays: '£180,000 budget', hi: 0, place: 'Manchester, hybrid', skills: ['Spark', 'Kafka', 'Migrations'], tags: ['Milestone 1 of 5', '2 contractors', 'Needs 1 more'], live: 2, sent: 0, stages: {}, furthest: 'Delivering', open: 40, updated: 7, updatedWhat: 'Variation 1 signed', source: "Follow on from Senior Engineer", closes: '2027-03-31', href: 'Job Record.dc.html?type=SOW'},
 ];
+const JOBS = (() => { try { return [...JSON.parse(localStorage.getItem('cannie.newJobs') || '[]'), ...BASE_JOBS]; } catch (e) { return BASE_JOBS; } })();
 const CANDS = [
   {id: 'none', name: 'No one', skills: [], wants: 0, place: '', type: '', on: []},
   {id: 'amara', name: 'Amara Osei', skills: ['Go', 'Kafka', 'Postgres', 'Payments', 'Kubernetes'], wants: 92000, place: 'London', relocate: 'Manchester', type: 'Perm', on: ['bw1', 'od1']},
@@ -247,7 +249,8 @@ class Component extends DCLogic {
       gqKey: e => { if (e.key === 'Enter' && hits[0]) window.location.href = hits[0].href; if (e.key === 'Escape') this.setState({gq: ''}); },
       gqSeeAll: e => { e.preventDefault(); window.location.href = 'Search.dc.html?q=' + encodeURIComponent(s.gq || ''); },
       createOpen: !!s.createOpen, toggleCreate: () => this.setState({createOpen: !s.createOpen, recentOpen: false, gq: ''}),
-      createItems: [{label: 'Candidate', sub: 'Name, a route, how they came to you. CV can follow.', href: 'Candidates.dc.html'}, {label: 'Job', sub: 'Pick the client first; the brief follows.', href: 'Clients.dc.html'}, {label: 'Client', sub: 'Name and one route. Lands on the empty record.', href: 'New Client.dc.html'}, {label: 'Contact', sub: 'At a client you already have.', href: 'Clients.dc.html'}, {label: 'Note or call', sub: 'Against anyone. Same drawer as every record.', href: '#'}],
+      createItems: [{label: 'Candidate', sub: 'Name, a route, how they came to you. CV can follow.', href: 'New Candidate.dc.html', pick: () => {}}, {label: 'Job', sub: 'Pick the client first; the brief follows.', href: 'New Job.dc.html', pick: () => {}}, {label: 'Client', sub: 'Name and one route. Lands on the empty record.', href: 'New Client.dc.html', pick: () => {}}, {label: 'Contact', sub: 'At a client you already have.', href: 'New Contact.dc.html', pick: () => {}}, {label: 'Note or call', sub: 'Against anyone. Same drawer as every record.', href: '#', pick: e => { e.preventDefault(); this.setState({noteOpen: true, createOpen: false}); }}],
+      noteOpen: !!s.noteOpen, closeNoteOrCall: () => this.setState({noteOpen: false}), noteSaved: entry => { if (this.say) this.say('Logged' + (entry && entry.about && entry.about !== 'Unfiled' ? ', linked to ' + entry.about + '.' : '.')); },
       recentOpen: !!s.recentOpen, toggleRecent: () => this.setState({recentOpen: !s.recentOpen, createOpen: false, gq: ''}),
       recentItems: [{title: 'Amara Osei', sub: 'Candidate', when: '10 min', href: 'Candidate Record.dc.html'}, {title: 'Senior Backend Engineer', sub: 'Job, Brightwell', when: '25 min', href: 'Job Record.dc.html'}, {title: 'Brightwell Payments', sub: 'Client', when: '1 hr', href: 'Client Record.dc.html'}, {title: 'Dan Okafor', sub: 'Contact, Brightwell', when: 'Yesterday', href: 'Contact Record.dc.html'}, {title: 'Payments migration, phase 2', sub: 'SOW, Brightwell', when: 'Yesterday', href: 'Job Record.dc.html?type=SOW'}],
       ...(() => { const KEY = 'cannie.pins'; const read = () => { try { return JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { return null; } }; const here = {title: 'Job board', sub: 'All live jobs', href: window.location.pathname.split('/').pop() + window.location.search}; const pins = read() || []; const write = p => { localStorage.setItem(KEY, JSON.stringify(p)); this.forceUpdate(); }; const isPinned = pins.some(p => p.title === here.title); const full = pins.length >= 6 && !isPinned;

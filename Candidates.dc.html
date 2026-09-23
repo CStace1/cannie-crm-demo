@@ -100,7 +100,7 @@ a:hover{color:#7D2342}
 <sc-if value="{{ createOpen }}" hint-placeholder-val="{{ false }}">
 <div style="position:absolute;right:0;top:44px;width:260px;background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;padding:8px 0;box-shadow:0 12px 32px rgba(43,33,27,.18);display:flex;flex-direction:column;z-index:7">
 <sc-for list="{{ createItems }}" as="c" hint-placeholder-count="5">
-<a href="{{ c.href }}" style="display:flex;flex-direction:column;gap:1px;padding:9px 16px;text-decoration:none;color:#2B211B" style-hover="background:rgba(43,33,27,.05)"><span style="font-size:14px;font-weight:600">{{ c.label }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ c.sub }}</span></a>
+<a href="{{ c.href }}" onClick="{{ c.pick }}" style="display:flex;flex-direction:column;gap:1px;padding:9px 16px;text-decoration:none;color:#2B211B" style-hover="background:rgba(43,33,27,.05)"><span style="font-size:14px;font-weight:600">{{ c.label }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ c.sub }}</span></a>
 </sc-for>
 </div>
 </sc-if>
@@ -269,13 +269,14 @@ a:hover{color:#7D2342}
 </div>
 </div>
 </sc-if>
+<dc-import name="NoteOrCall" open="{{ noteOpen }}" on-close="{{ closeNoteOrCall }}" on-saved="{{ noteSaved }}"></dc-import>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;listLayout&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;Queue and panel&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;options&quot;: [&quot;Queue and panel&quot;, &quot;Full rows&quot;], &quot;section&quot;: &quot;A/B&quot;}}">
 const INK = '#2B211B', BERRY = '#9E2D53', MUTED = 'rgba(43,33,27,.55)', MID = 'rgba(43,33,27,.70)', TAUPE = '#D9CFC0';
 const gbp = n => '£' + Math.round(n).toLocaleString('en-GB');
 const matchesQuery = (hay, q) => { const h = hay.toLowerCase(); const toks = []; const re = /"([^"]+)"|(\S+)/g; let m; while ((m = re.exec(q.toLowerCase()))) toks.push(m[1] || m[2]); const neg = toks.filter(t => t.startsWith('-') && t.length > 1).map(t => t.slice(1)); const pos = toks.filter(t => !(t.startsWith('-') && t.length > 1)); const branches = []; let cur = []; for (const t of pos) { if (t === 'or') { branches.push(cur); cur = []; } else cur.push(t); } branches.push(cur); return neg.every(w => !h.includes(w)) && branches.some(b => b.every(w => h.includes(w))); };
-const C = [
+const BASE_C = [
   {id: 'amara', name: 'Amara Osei', title: 'Backend Engineer', employer: 'Fenmark', place: 'London', skills: ['Go', 'Kafka', 'Postgres', 'Payments', 'Kubernetes'], wants: 92000, unit: 'year', type: 'Perm', notice: '1 month', owner: 'Priya Shah', source: 'Own database', added: '2020-01-06', last: 'Today', state: 'live', apps: [{title: 'Senior Backend Engineer, Brightwell', stage: 'Interview', href: 'Job Record.dc.html'}, {title: 'Senior Engineer, Ordell', stage: 'Offer', href: 'Job Record.dc.html'}], read: 'Late stage on two jobs; answer due to Ordell Friday.', href: 'Candidate Record.dc.html', mobile: '07700 900 121', email: 'amara.osei@example.com'},
   {id: 'lucia', name: 'Lucía Ferreira', title: 'Staff Engineer', employer: 'Emberly', place: 'London', skills: ['Go', 'Kubernetes', 'Leadership', 'Payments'], wants: 98000, unit: 'year', type: 'Perm', notice: '2 months', owner: 'Priya Shah', source: 'LinkedIn', added: '2026-08-28', last: '3 days', state: 'live', apps: [{title: 'Senior Backend Engineer, Brightwell', stage: 'Sent, 3 days', href: 'Job Record.dc.html'}, {title: 'Platform Lead, Northbeam', stage: 'Interview', href: 'Job Record.dc.html'}], read: 'CV with Dan, no reply. Chase.', href: 'Candidate Record.dc.html'},
     {id: 'femi', name: 'Femi Adebayo', title: 'Data Engineer', employer: 'On site, Brightwell', place: 'Leeds', skills: ['Python', 'Spark', 'Airflow'], wants: 580, unit: 'day', type: 'T&M', notice: 'On assignment to Mar 2027', ends: '2027-03-31', extension: false, owner: 'Priya Shah', source: 'Applied, Indeed', added: '2025-11-02', last: 'Mon', state: 'onsite', apps: [{title: 'Data Engineer, Brightwell', stage: 'On site', href: 'Client Record.dc.html'}], read: 'Right to work expires in 9 days. Timesheet w/c 8 Sep unapproved.', href: 'Candidate Record.dc.html'},
@@ -299,6 +300,7 @@ const C = [
   {id: 'p3', name: 'Elena Petrova', title: 'Data Engineer', employer: 'Contractor, Ltd', place: 'Bristol', skills: ['Python', 'Spark', 'Kafka'], wants: 550, unit: 'day', type: 'T&M', notice: 'Available 1 Oct', owner: 'Nadia Croft', source: 'Referral', added: '2024-09-11', last: '2 weeks', state: 'available', apps: [], read: 'Free from 1 Oct. Fits Data Engineers at Brightwell and Merrow.', href: 'Candidate Record.dc.html'},
   {id: 'p4', name: 'James Okoro', title: 'Engineering Manager', employer: 'Groveline', place: 'London', skills: ['Leadership', 'Go', 'Kubernetes'], wants: 120000, unit: 'year', type: 'Perm', notice: '3 months', owner: 'Sam Iyer', source: 'Own database', added: '2022-11-03', last: 'Jan', state: 'passive', apps: [], read: 'Consent review due Nov.', href: 'Candidate Record.dc.html'},
 ];
+const C = (() => { try { return [...JSON.parse(localStorage.getItem('cannie.newCandidates') || '[]'), ...BASE_C]; } catch (e) { return BASE_C; } })();
 
 class Component extends DCLogic {
   heads(cols, cur, dir, set) {
@@ -347,7 +349,8 @@ class Component extends DCLogic {
       gqKey: e => { if (e.key === 'Enter' && hits[0]) window.location.href = hits[0].href; if (e.key === 'Escape') this.setState({gq: ''}); },
       gqSeeAll: e => { e.preventDefault(); window.location.href = 'Search.dc.html?q=' + encodeURIComponent(s.gq || ''); },
       createOpen: !!s.createOpen, toggleCreate: () => this.setState({createOpen: !s.createOpen, recentOpen: false, gq: ''}),
-      createItems: [{label: 'Candidate', sub: 'Name, a route, how they came to you. CV can follow.', href: 'Candidates.dc.html'}, {label: 'Job', sub: 'Pick the client first; the brief follows.', href: 'Clients.dc.html'}, {label: 'Client', sub: 'Name and one route. Lands on the empty record.', href: 'New Client.dc.html'}, {label: 'Contact', sub: 'At a client you already have.', href: 'Clients.dc.html'}, {label: 'Note or call', sub: 'Against anyone. Same drawer as every record.', href: '#'}],
+      createItems: [{label: 'Candidate', sub: 'Name, a route, how they came to you. CV can follow.', href: 'New Candidate.dc.html', pick: () => {}}, {label: 'Job', sub: 'Pick the client first; the brief follows.', href: 'New Job.dc.html', pick: () => {}}, {label: 'Client', sub: 'Name and one route. Lands on the empty record.', href: 'New Client.dc.html', pick: () => {}}, {label: 'Contact', sub: 'At a client you already have.', href: 'New Contact.dc.html', pick: () => {}}, {label: 'Note or call', sub: 'Against anyone. Same drawer as every record.', href: '#', pick: e => { e.preventDefault(); this.setState({noteOpen: true, createOpen: false}); }}],
+      noteOpen: !!s.noteOpen, closeNoteOrCall: () => this.setState({noteOpen: false}), noteSaved: entry => { if (this.say) this.say('Logged' + (entry && entry.about && entry.about !== 'Unfiled' ? ', linked to ' + entry.about + '.' : '.')); },
       recentOpen: !!s.recentOpen, toggleRecent: () => this.setState({recentOpen: !s.recentOpen, createOpen: false, gq: ''}),
       recentItems: [{title: 'Amara Osei', sub: 'Candidate', when: '10 min', href: 'Candidate Record.dc.html'}, {title: 'Senior Backend Engineer', sub: 'Job, Brightwell', when: '25 min', href: 'Job Record.dc.html'}, {title: 'Brightwell Payments', sub: 'Client', when: '1 hr', href: 'Client Record.dc.html'}, {title: 'Dan Okafor', sub: 'Contact, Brightwell', when: 'Yesterday', href: 'Contact Record.dc.html'}, {title: 'Payments migration, phase 2', sub: 'SOW, Brightwell', when: 'Yesterday', href: 'Job Record.dc.html?type=SOW'}],
       ...(() => { const KEY = 'cannie.pins'; const read = () => { try { return JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { return null; } }; const here = {title: 'Candidates', sub: 'The database', href: window.location.pathname.split('/').pop() + window.location.search}; const pins = read() || []; const write = p => { localStorage.setItem(KEY, JSON.stringify(p)); this.forceUpdate(); }; const isPinned = pins.some(p => p.title === here.title); const full = pins.length >= 6 && !isPinned;
@@ -357,7 +360,7 @@ class Component extends DCLogic {
       pinnedItemsUnused: [{title: 'Brightwell Payments', sub: 'Client', href: 'Client Record.dc.html'}, {title: 'Job board', sub: 'All live jobs', href: 'Job Board.dc.html'}],
     };
   }
-  state = (() => { const u = new URLSearchParams(window.location.search); const view = u.get('view') || 'New'; const scope = u.get('ending') ? 'ending' : u.get('starting') ? 'starting' : u.get('extension') ? 'extension' : null; let userPools = []; try { userPools = JSON.parse(localStorage.getItem('cannie.pools') || '[]'); } catch (e) {} return {userPools, owners: [], view, scope, type: 'All', sort: 'Newest', sel: scope === 'starting' ? 'tom' : scope ? 'femi' : 'n1', q: '', flash: '', claimed: {}, dupeDismissed: false, mergeOpen: false, mergeKeep: {}, mergedIds: [], mergedRow: null}; })();
+  state = (() => { const u = new URLSearchParams(window.location.search); const view = u.get('view') || 'New'; const scope = u.get('ending') ? 'ending' : u.get('starting') ? 'starting' : u.get('extension') ? 'extension' : null; let userPools = []; try { userPools = JSON.parse(localStorage.getItem('cannie.pools') || '[]'); } catch (e) {} return {userPools, owners: [], view, scope, type: 'All', sort: 'Newest', sel: u.get('sel') || (scope === 'starting' ? 'tom' : scope ? 'femi' : 'n1'), q: '', flash: '', claimed: {}, dupeDismissed: false, mergeOpen: false, mergeKeep: {}, mergedIds: [], mergedRow: null}; })();
   mergeVals() {
     const s = this.state;
     const A = C.find(c => c.id === 'n1'), B = C.find(c => c.id === 'n1b');

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/styles.css">
+<script src="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/_ds_bundle.js"></script>
+<style>body{margin:0;background:#F3EEE6}a{color:#9E2D53}a:hover{color:#7D2342}</style>
+</helmet>
+<div style="max-width:640px;margin:0 auto;padding:40px 32px 80px;font-family:'Poppins',sans-serif;color:#2B211B;display:flex;flex-direction:column;gap:24px">
+<a href="Candidates.dc.html" style="font-size:13px;color:#9E2D53;text-decoration:none">← Back to Candidates</a>
+<div style="display:flex;flex-direction:column;gap:6px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">New candidate</span>
+<h1 style="margin:0;font-size:28px;font-weight:700;letter-spacing:-0.0075em">Name, a route, how they came to you</h1>
+<p style="margin:0;font-size:13px;color:rgba(43,33,27,.55)">Lands in New and unowned. Skills, CV and everything else can follow.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;flex-direction:column;gap:5px">
+<span style="font-size:13px;font-weight:600">Full name</span>
+<input type="text" value="{{ name }}" onChange="{{ setName }}" placeholder="Priyanka Rao" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box">
+</div>
+<div style="display:flex;flex-direction:column;gap:5px">
+<span style="font-size:13px;font-weight:600">Current title and employer</span>
+<input type="text" value="{{ role }}" onChange="{{ setRole }}" placeholder="Software Engineer, Paycrest" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box">
+</div>
+<div style="display:flex;flex-direction:column;gap:5px">
+<span style="font-size:13px;font-weight:600">Location</span>
+<input type="text" value="{{ place }}" onChange="{{ setPlace }}" placeholder="London, hybrid" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box">
+</div>
+<div style="display:flex;flex-direction:column;gap:5px">
+<span style="font-size:13px;font-weight:600">Email or mobile</span>
+<input type="text" value="{{ route }}" onChange="{{ setRoute }}" placeholder="priyanka.rao@example.com" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box">
+</div>
+<div style="display:flex;flex-direction:column;gap:5px">
+<span style="font-size:13px;font-weight:600">Looking for</span>
+<div style="display:flex;gap:7px;flex-wrap:wrap">
+<sc-for list="{{ types }}" as="t" hint-placeholder-count="3">
+<button onClick="{{ t.pick }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ t.bg }};border:{{ t.border }};color:{{ t.ink }};font-weight:{{ t.weight }}">{{ t.label }}</button>
+</sc-for>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:5px">
+<span style="font-size:13px;font-weight:600">How they came to you</span>
+<div style="display:flex;gap:7px;flex-wrap:wrap">
+<sc-for list="{{ sources }}" as="so" hint-placeholder-count="4">
+<button onClick="{{ so.pick }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ so.bg }};border:{{ so.border }};color:{{ so.ink }};font-weight:{{ so.weight }}">{{ so.label }}</button>
+</sc-for>
+</div>
+</div>
+<sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:13px;color:#9E2D53;font-weight:600">{{ error }}</p></sc-if>
+<div style="display:flex;gap:12px;align-items:center">
+<button onClick="{{ create }}" style="height:40px;padding:0 18px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer">Create candidate</button>
+<a href="Candidates.dc.html" style="font-size:13px;font-weight:600;color:#2B211B">Cancel</a>
+</div>
+</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const INK = '#2B211B', TAUPE = '#D9CFC0';
+class Component extends DCLogic {
+  state = {name: '', role: '', place: '', route: '', type: 'Perm', source: 'Applied', error: ''};
+  renderVals() {
+    const s = this.state;
+    const chip = (val, cur, key) => ({label: val, pick: () => this.setState({[key]: val, error: ''}), bg: cur === val ? INK : 'transparent', border: cur === val ? '1px solid ' + INK : '1px solid ' + TAUPE, ink: cur === val ? '#F3EEE6' : 'rgba(43,33,27,.70)', weight: cur === val ? '600' : '400'});
+    return {
+      name: s.name, setName: e => this.setState({name: e.target.value, error: ''}),
+      role: s.role, setRole: e => this.setState({role: e.target.value}),
+      place: s.place, setPlace: e => this.setState({place: e.target.value}),
+      route: s.route, setRoute: e => this.setState({route: e.target.value}),
+      types: ['Perm', 'T&M', 'Either'].map(v => chip(v, s.type, 'type')),
+      sources: ['Applied', 'LinkedIn', 'Referral', 'Own database'].map(v => chip(v, s.source, 'source')),
+      hasError: !!s.error, error: s.error,
+      create: () => {
+        if (!s.name.trim()) { this.setState({error: 'A name is enough to start.'}); return; }
+        const id = 'nc' + Date.now().toString(36);
+        const parts = (s.role || '').split(',');
+        const title = (parts[0] || '').trim() || 'Not asked';
+        const employer = parts.slice(1).join(',').trim() || 'Not asked';
+        const rec = {id, name: s.name.trim(), title, employer, place: s.place.trim() || 'Not set', skills: [], wants: 0, unit: s.type === 'T&M' ? 'day' : 'year', type: s.type, notice: 'Not asked', owner: '', source: s.source, added: '2026-09-23', last: 'Never', state: 'new', apps: [], read: '', href: 'Candidate Record.dc.html', mobile: /\d/.test(s.route) ? s.route.trim() : '', email: /@/.test(s.route) ? s.route.trim() : ''};
+        try { const list = JSON.parse(localStorage.getItem('cannie.newCandidates') || '[]'); localStorage.setItem('cannie.newCandidates', JSON.stringify([rec, ...list])); } catch (e) {}
+        window.location.href = 'Candidates.dc.html?sel=' + id;
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

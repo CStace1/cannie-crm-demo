@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<sc-if value="{{ dOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:fixed;inset:0;background:rgba(43,33,27,.55);backdrop-filter:blur(3px);display:flex;justify-content:flex-end;z-index:30;font-family:'Poppins',sans-serif;color:#2B211B">
+<div onClick="{{ dClose }}" style="flex:1"></div>
+<div style="width:min(520px,100%);background:#F3EEE6;height:100%;overflow-y:auto;overflow-x:hidden;box-sizing:border-box;padding:28px 30px 44px;display:flex;flex-direction:column;gap:20px;box-shadow:-8px 0 24px rgba(43,33,27,.18)">
+<div style="display:flex;align-items:flex-start;gap:16px">
+<div style="display:flex;flex-direction:column;gap:6px;min-width:0">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Log</span>
+<h2 style="margin:0;font-size:24px;font-weight:700;letter-spacing:-0.0075em">Note or call</h2>
+<span style="font-size:13px;color:rgba(43,33,27,.55)">Against anyone. Link what it touches; none of it is compulsory.</span>
+</div>
+<div style="flex:1"></div>
+<button onClick="{{ dClose }}" style="height:32px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:transparent;font-family:inherit;font-size:13px;color:#2B211B;cursor:pointer">Close</button>
+</div>
+<sc-if value="{{ saved }}" hint-placeholder-val="{{ false }}">
+<p style="margin:0;font-size:14px;font-weight:600;color:#2B211B">Logged. Saved to Activities; it does not appear inline on this page.</p>
+</sc-if>
+<sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;flex-direction:column;gap:7px"><span style="font-size:13px;font-weight:600">Kind</span><div style="display:flex;gap:7px;flex-wrap:wrap"><sc-for list="{{ kindOpts }}" as="o" hint-placeholder-count="5"><button onClick="{{ o.pick }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ o.bg }};border:{{ o.border }};color:{{ o.ink }};font-weight:{{ o.weight }}">{{ o.label }}</button></sc-for></div></div>
+<div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">Job</span><dc-import name="Lookup" hint-size="100%,40px" noun="job" placeholder="Search a job" value="{{ jobValue }}" options="{{ jobOptions }}" on-change="{{ setJob }}"></dc-import></div>
+<div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">Client</span><dc-import name="Lookup" hint-size="100%,40px" noun="client" placeholder="Search a client" value="{{ clientValue }}" options="{{ clientOptions }}" on-change="{{ setClient }}"></dc-import></div>
+<div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">Candidate</span><dc-import name="Lookup" hint-size="100%,40px" noun="candidate" placeholder="Search a candidate" value="{{ candValue }}" options="{{ candOptions }}" on-change="{{ setCand }}"></dc-import></div>
+<div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">Contact</span><dc-import name="Lookup" hint-size="100%,40px" noun="contact" placeholder="Search a contact" value="{{ contactValue }}" options="{{ contactOptions }}" on-change="{{ setContact }}"></dc-import></div>
+<div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">About</span><input type="text" value="{{ about }}" onChange="{{ setAbout }}" placeholder="What it's about" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:100%;box-sizing:border-box"></div>
+<div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">What was said</span><textarea value="{{ note }}" onChange="{{ setNote }}" placeholder="What happened, what you agreed." style="min-height:90px;padding:10px 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;resize:vertical;width:100%;box-sizing:border-box"></textarea></div>
+<div style="display:flex;flex-direction:column;gap:7px"><span style="font-size:13px;font-weight:600">Follow up</span><div style="display:flex;gap:7px;flex-wrap:wrap"><sc-for list="{{ followOpts }}" as="o" hint-placeholder-count="6"><button onClick="{{ o.pick }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ o.bg }};border:{{ o.border }};color:{{ o.ink }};font-weight:{{ o.weight }}">{{ o.label }}</button></sc-for></div>
+<sc-if value="{{ showFollowTime }}" hint-placeholder-val="{{ false }}">
+<span style="font-size:12px;color:rgba(43,33,27,.55)">Time defaults to 9am.</span>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<sc-if value="{{ showFollowDate }}" hint-placeholder-val="{{ false }}"><input type="date" value="{{ followDate }}" onChange="{{ setFollowDate }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:180px;max-width:100%;box-sizing:border-box"></sc-if>
+<input type="time" value="{{ followTime }}" onChange="{{ setFollowTime }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:130px;box-sizing:border-box">
+</div>
+</sc-if>
+</div>
+<sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:13px;font-weight:600;color:#9E2D53">{{ error }}</p></sc-if>
+<div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+<button onClick="{{ save }}" style="height:40px;padding:0 18px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer">Save to activity</button>
+<span style="font-size:12px;color:rgba(43,33,27,.55)">Saves to Activities. Not shown inline on this page.</span>
+</div>
+</sc-if>
+</div>
+</div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 520, &quot;height&quot;: 640}, &quot;open&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;}, &quot;onClose&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;()=&gt;void&quot;}, &quot;onSaved&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;(entry:any)=&gt;void&quot;}}">
+const INK = '#2B211B', TAUPE = '#D9CFC0';
+const JOBS = ['Senior Backend Engineer, Brightwell', 'Data Engineers, payments platform, Brightwell', 'Payments migration, phase 2, Brightwell', 'Platform Lead, Northbeam'];
+const CLIENTS = ['Brightwell Payments', 'Ordell Software', 'Northbeam Data'];
+const CANDS = ['Amara Osei', 'Lucía Ferreira', 'Rosa Alvarez', 'Femi Adebayo', 'Priyanka Rao'];
+const CONTACTS = ['Dan Okafor', 'Claire Dunn', 'Ruth Vance', 'Priya Lam', 'Sanjay Mehta'];
+const RESET = {kind: 'Note', jobV: null, clientV: null, candV: null, contactV: null, about: '', note: '', follow: 'None', followDate: '', followTime: '09:00', tried: false, saved: false};
+class Component extends DCLogic {
+  state = {...RESET};
+  pill(on) { return {bg: on ? INK : 'transparent', border: on ? '1px solid ' + INK : '1px solid ' + TAUPE, ink: on ? '#F3EEE6' : INK, weight: on ? '600' : '400'}; }
+  followDateFor(quick, picked) { if (quick === 'Pick a date') return picked || ''; return ({'Tomorrow': '2026-09-24', 'In 3 days': '2026-09-26', 'Next week': '2026-09-30', 'Next month': '2026-10-23'})[quick] || ''; }
+  componentWillUnmount() { clearTimeout(this._closeTimer); }
+  renderVals() {
+    const s = this.state, p = this.props;
+    return {
+      dOpen: !!p.open,
+      saved: !!s.saved, showForm: !s.saved,
+      dClose: () => { clearTimeout(this._closeTimer); this.setState({...RESET}); p.onClose && p.onClose(); },
+      kindOpts: ['Note', 'Call', 'Email', 'SMS', 'Meeting'].map(o => ({label: o, pick: () => this.setState({kind: o}), ...this.pill((s.kind || 'Note') === o)})),
+      jobValue: s.jobV, jobOptions: JOBS.map(v => ({value: v, label: v})), setJob: v => this.setState({jobV: v || null}),
+      clientValue: s.clientV, clientOptions: CLIENTS.map(v => ({value: v, label: v})), setClient: v => this.setState({clientV: v || null}),
+      candValue: s.candV, candOptions: CANDS.map(v => ({value: v, label: v})), setCand: v => this.setState({candV: v || null}),
+      contactValue: s.contactV, contactOptions: CONTACTS.map(v => ({value: v, label: v})), setContact: v => this.setState({contactV: v || null}),
+      about: s.about || '', setAbout: e => this.setState({about: e.target.value}),
+      note: s.note || '', setNote: e => this.setState({note: e.target.value}),
+      followOpts: ['None', 'Tomorrow', 'In 3 days', 'Next week', 'Next month', 'Pick a date'].map(o => ({label: o, pick: () => this.setState({follow: o}), ...this.pill((s.follow || 'None') === o)})),
+      showFollowDate: s.follow === 'Pick a date',
+      showFollowTime: !!(s.follow && s.follow !== 'None'),
+      followDate: s.followDate || '', setFollowDate: e => this.setState({followDate: e.target.value}),
+      followTime: s.followTime || '09:00', setFollowTime: e => this.setState({followTime: e.target.value}),
+      hasError: !!s.tried && !(s.note || '').trim(), error: 'Say what happened, one line is enough.',
+      save: () => {
+        if (!(s.note || '').trim()) { this.setState({tried: true}); return; }
+        const links = [s.clientV, s.jobV, s.candV, s.contactV].filter(Boolean);
+        const fDate = this.followDateFor(s.follow, s.followDate);
+        const fTime = s.followTime || '09:00';
+        const followText = (s.follow && s.follow !== 'None' && fDate) ? (new Date(fDate + 'T00:00:00').toLocaleDateString('en-GB', {day: 'numeric', month: 'short'}) + ', ' + fTime) : '';
+        const kind = s.kind || 'Note';
+        const verb = kind === 'Call' ? 'Called ' : kind === 'Email' ? 'Emailed ' : kind === 'SMS' ? 'Texted ' : kind === 'Meeting' ? 'Met ' : '';
+        const what = (verb && links.length ? verb + links.join(', ') + ': ' : '') + s.note.trim();
+        const entry = {date: '2026-09-23', when: 'Just now', kind, what, who: 'Priya Shah', about: links.join(', ') || 'Unfiled', subject: (s.about || '').trim(), follow: followText, href: '#'};
+        try { const list = JSON.parse(localStorage.getItem('cannie.globalNotes') || '[]'); localStorage.setItem('cannie.globalNotes', JSON.stringify([entry, ...list])); } catch (e) {}
+        p.onSaved && p.onSaved(entry);
+        this.setState({saved: true});
+        this._closeTimer = setTimeout(() => { this.setState({...RESET}); p.onClose && p.onClose(); }, 1400);
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

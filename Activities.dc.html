@@ -119,7 +119,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 const INK = '#2B211B', BERRY = '#9E2D53', MID = 'rgba(43,33,27,.70)', TAUPE = '#D9CFC0';
-const ACT = [
+const BASE_ACT = [
   {date: '2026-09-22', when: 'Today, 10:31', kind: 'Call', what: 'Called Dan Okafor on the shortlist', who: 'Priya Shah', about: 'Dan Okafor', href: 'Contact Record.dc.html'},
   {date: '2026-09-22', when: 'Today, 09:12', kind: 'Stage', what: 'Amara Osei moved to Interview', who: 'Priya Shah', about: 'Amara Osei', href: 'Candidate Record.dc.html'},
   {date: '2026-09-22', when: 'Today, 08:50', kind: 'Email', what: '3 emails attached to Brightwell Payments', who: 'System', about: 'Brightwell Payments', href: 'Client Record.dc.html'},
@@ -131,6 +131,7 @@ const ACT = [
   {date: '2026-09-18', when: '4 days ago', kind: 'Email', what: 'Sent terms of business to Marcus Lyle', who: 'Sam Iyer', about: 'Marcus Lyle', href: 'Contact Record.dc.html'},
   {date: '2026-09-17', when: '5 days ago', kind: 'Note', what: 'Tom Whitfield rebate window ends 3 Oct', who: 'Priya Shah', about: 'Tom Whitfield', href: 'Candidate Record.dc.html'},
 ];
+const ACT = (() => { try { return [...JSON.parse(localStorage.getItem('cannie.globalNotes') || '[]'), ...BASE_ACT]; } catch (e) { return BASE_ACT; } })();
 class Component extends DCLogic {
   state = {q: '', personSearch: '', personFilter: '', personListOpen: false, kind: 'All', dateFrom: '', dateTo: '', drawer: null, dDraft: null, dError: ''};
   act() { return this.state.activities || ACT; }

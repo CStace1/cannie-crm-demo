@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/styles.css">
+<script src="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/_ds_bundle.js"></script>
+<style>body{margin:0;background:#F3EEE6}a{color:#9E2D53}a:hover{color:#7D2342}</style>
+</helmet>
+<div style="max-width:640px;margin:0 auto;padding:40px 32px 80px;font-family:'Poppins',sans-serif;color:#2B211B;display:flex;flex-direction:column;gap:24px">
+<a href="Job Board.dc.html" style="font-size:13px;color:#9E2D53;text-decoration:none">← Back to Job board</a>
+<div style="display:flex;flex-direction:column;gap:6px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">New job</span>
+<h1 style="margin:0;font-size:28px;font-weight:700;letter-spacing:-0.0075em">Pick the client, then name it</h1>
+<p style="margin:0;font-size:13px;color:rgba(43,33,27,.55)">Lands live and open, owned by you. The brief and skills can follow.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;flex-direction:column;gap:5px">
+<span style="font-size:13px;font-weight:600">Client</span>
+<dc-import name="Lookup" hint-size="100%,40px" noun="client" placeholder="Search a client, or type a new name" value="{{ client }}" options="{{ clientOptions }}" on-change="{{ setClient }}"></dc-import>
+</div>
+<div style="display:flex;flex-direction:column;gap:5px">
+<span style="font-size:13px;font-weight:600">Job title</span>
+<input type="text" value="{{ title }}" onChange="{{ setTitle }}" placeholder="Senior Backend Engineer" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box">
+</div>
+<div style="display:flex;flex-direction:column;gap:5px">
+<span style="font-size:13px;font-weight:600">Location</span>
+<input type="text" value="{{ place }}" onChange="{{ setPlace }}" placeholder="London, hybrid 2" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box">
+</div>
+<div style="display:flex;flex-direction:column;gap:5px">
+<span style="font-size:13px;font-weight:600">Type</span>
+<div style="display:flex;gap:7px;flex-wrap:wrap">
+<sc-for list="{{ types }}" as="t" hint-placeholder-count="3">
+<button onClick="{{ t.pick }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ t.bg }};border:{{ t.border }};color:{{ t.ink }};font-weight:{{ t.weight }}">{{ t.label }}</button>
+</sc-for>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:5px">
+<span style="font-size:13px;font-weight:600">{{ payLabel }}</span>
+<input type="text" value="{{ pay }}" onChange="{{ setPay }}" placeholder="{{ payPh }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box">
+</div>
+<sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:13px;color:#9E2D53;font-weight:600">{{ error }}</p></sc-if>
+<div style="display:flex;gap:12px;align-items:center">
+<button onClick="{{ create }}" style="height:40px;padding:0 18px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer">Create job</button>
+<a href="Job Board.dc.html" style="font-size:13px;font-weight:600;color:#2B211B">Cancel</a>
+</div>
+</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const INK = '#2B211B', TAUPE = '#D9CFC0';
+const CLIENTS = ['Brightwell Payments', 'Ordell Software', 'Northbeam Data', 'Halden Energy', 'Kestrel Freight', 'Merrow Health'];
+class Component extends DCLogic {
+  state = {client: null, title: '', place: '', type: 'Perm', pay: '', error: ''};
+  pill(on) { return {bg: on ? INK : 'transparent', border: on ? '1px solid ' + INK : '1px solid ' + TAUPE, ink: on ? '#F3EEE6' : INK, weight: on ? '600' : '400'}; }
+  renderVals() {
+    const s = this.state;
+    return {
+      client: s.client, clientOptions: CLIENTS.map(v => ({value: v, label: v})), setClient: v => this.setState({client: v || null, error: ''}),
+      title: s.title, setTitle: e => this.setState({title: e.target.value, error: ''}),
+      place: s.place, setPlace: e => this.setState({place: e.target.value}),
+      types: ['Perm', 'T&M', 'SOW'].map(t => ({label: t, pick: () => this.setState({type: t}), ...this.pill(s.type === t)})),
+      payLabel: s.type === 'Perm' ? 'Salary' : s.type === 'T&M' ? 'Day rate' : 'Budget',
+      payPh: s.type === 'Perm' ? '£85,000 to £95,000' : s.type === 'T&M' ? '£550 to £600 a day' : '£240,000 budget',
+      pay: s.pay, setPay: e => this.setState({pay: e.target.value}),
+      hasError: !!s.error, error: s.error,
+      create: () => {
+        if (!(s.client || '').trim()) { this.setState({error: 'Pick a client first.'}); return; }
+        if (!s.title.trim()) { this.setState({error: 'Name the job.'}); return; }
+        const id = 'nj' + Date.now().toString(36);
+        const href = s.type === 'T&M' ? 'Job Record.dc.html?type=T%26M' : s.type === 'SOW' ? 'Job Record.dc.html?type=SOW' : 'Job Record.dc.html';
+        const closes = s.type === 'SOW' ? '2027-06-30' : '2026-11-21';
+        const rec = {id, title: s.title.trim(), client: s.client.trim(), owner: 'Priya Shah', type: s.type, pays: s.pay.trim() || 'Not agreed yet', hi: 0, place: s.place.trim() || 'Not set', skills: [], tags: ['New'], live: 0, sent: 0, stages: {}, furthest: 'Applied', open: 0, updated: 0, updatedWhat: 'Job opened', source: 'Added from New job', closes, href};
+        try { const list = JSON.parse(localStorage.getItem('cannie.newJobs') || '[]'); localStorage.setItem('cannie.newJobs', JSON.stringify([rec, ...list])); } catch (e) {}
+        window.location.href = 'Job Board.dc.html';
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>
