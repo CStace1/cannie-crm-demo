@@ -21,11 +21,17 @@ a:hover{color:#7D2342}
   [data-side] nav{flex-direction:row !important;flex-wrap:wrap}
   [data-side] [data-user]{margin-top:0 !important;margin-left:auto}
   [data-page]{padding-left:20px !important;padding-right:20px !important}
+  [data-topbar]{flex-wrap:wrap;padding:10px 20px !important}
+  [data-topspacer]{display:none !important}
 }
 @media (max-width:1180px){
   [data-actions]{flex-basis:100% !important}
   [data-two]{grid-template-columns:minmax(0,1fr) !important}
   [data-needrow] > button:first-child{flex-basis:100%}
+}
+@media (max-width:600px){
+  [data-jobhead]{display:none !important}
+  [data-jobrow]{grid-template-columns:1fr !important;gap:6px !important}
 }
 </style>
 </helmet>
@@ -66,7 +72,7 @@ a:hover{color:#7D2342}
 </div>
 </sc-if>
 </div>
-<span style="flex:1 0 8px"></span>
+<span data-topspacer="1" style="flex:1 0 8px"></span>
 <div style="position:relative;flex:0 0 auto">
 <button onClick="{{ toggleCreate }}" title="Create" style="flex:0 0 auto;height:38px;padding:0 14px;display:inline-flex;align-items:center;gap:8px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg><span>New</span></button>
 <sc-if value="{{ createOpen }}" hint-placeholder-val="{{ false }}">
@@ -112,7 +118,7 @@ a:hover{color:#7D2342}
 <p style="margin:0;font-size:13px;color:rgba(43,33,27,.55)">{{ headLine }}</p>
 </div>
 <div data-actions="1" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;flex:0 0 auto">
-<button onClick="{{ logCall }}" style="white-space:nowrap;height:40px;padding:0 18px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer">Log a call</button>
+<button onClick="{{ logCall }}" style="white-space:nowrap;height:40px;padding:0 18px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer">Log</button>
 </div>
 </header>
 
@@ -211,9 +217,9 @@ a:hover{color:#7D2342}
 <section style="display:flex;flex-direction:column;gap:12px">
 <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Jobs, where each one is</span><span style="font-size:13px;color:rgba(43,33,27,.55)">{{ pipeLine }}</span></div>
 <div style="background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;padding:4px 18px 10px;display:flex;flex-direction:column">
-<div style="display:grid;grid-template-columns:minmax(180px,1.5fr) 150px 60px minmax(160px,1.3fr);gap:12px;padding:8px 0 6px;border-bottom:3.4px solid #2B211B;font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)"><span>Job</span><span>Sourced, sent, int, offer</span><span>Days</span><span>Waiting on</span></div>
+<div data-jobhead="1" style="display:grid;grid-template-columns:minmax(180px,1.5fr) 150px 60px minmax(160px,1.3fr);gap:12px;padding:8px 0 6px;border-bottom:3.4px solid #2B211B;font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)"><span>Job</span><span>Sourced, sent, int, offer</span><span>Days</span><span>Waiting on</span></div>
 <sc-for list="{{ jobs }}" as="j" hint-placeholder-count="5">
-<a href="{{ j.href }}" style="display:grid;grid-template-columns:minmax(180px,1.5fr) 150px 60px minmax(160px,1.3fr);gap:12px;padding:6px 0;border-bottom:1px solid #D9CFC0;font-size:14px;color:#2B211B;text-decoration:none;align-items:center"><span style="display:flex;flex-direction:column;gap:1px;min-width:0"><span style="font-weight:600">{{ j.title }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ j.sub }}</span></span><span style="display:flex;gap:4px"><sc-for list="{{ j.strip }}" as="st" hint-placeholder-count="4"><span style="width:28px;height:22px;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;font-size:12px;font-weight:600;background:{{ st.bg }};color:{{ st.ink }}">{{ st.n }}</span></sc-for></span><span style="width:32px;height:22px;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;font-size:13px;font-weight:600;background:#EFE7DA">{{ j.days }}</span><span style="font-size:13px;color:{{ j.waitInk }};font-weight:{{ j.waitWeight }}">{{ j.waiting }}</span></a>
+<a href="{{ j.href }}" data-jobrow="1" style="display:grid;grid-template-columns:minmax(180px,1.5fr) 150px 60px minmax(160px,1.3fr);gap:12px;padding:6px 0;border-bottom:1px solid #D9CFC0;font-size:14px;color:#2B211B;text-decoration:none;align-items:center"><span style="display:flex;flex-direction:column;gap:1px;min-width:0"><span style="font-weight:600">{{ j.title }}</span><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ j.sub }}</span></span><span style="display:flex;gap:4px"><sc-for list="{{ j.strip }}" as="st" hint-placeholder-count="4"><span style="width:28px;height:22px;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;font-size:12px;font-weight:600;background:{{ st.bg }};color:{{ st.ink }}">{{ st.n }}</span></sc-for></span><span style="width:32px;height:22px;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;font-size:13px;font-weight:600;background:#EFE7DA">{{ j.days }}</span><span style="font-size:13px;color:{{ j.waitInk }};font-weight:{{ j.waitWeight }}">{{ j.waiting }}</span></a>
 </sc-for>
 <div style="display:flex;justify-content:space-between;padding-top:8px;font-size:12px;color:rgba(43,33,27,.55)"><span>{{ jobsFoot }}</span><a href="Job Board.dc.html" style="font-weight:600">Job board</a></div>
 </div>
@@ -379,7 +385,7 @@ class Component extends DCLogic {
     const actions = [...(s.extraActions || []), {what: 'Send prep pack to Amara, 2nd interview Thu', where: 'Candidate', when: 'Today', ink: BERRY, href: 'Candidate Record.dc.html'}, {what: 'Chase Dan on milestone 3, copy Claire', where: 'Contact, Dan Okafor', when: 'Today', ink: BERRY, href: 'Contact Record.dc.html'}, {what: 'Call Amara 18:30, Brightwell vs Ordell', where: 'Candidate', when: 'Today, 18:30', ink: BERRY, href: 'Candidate Record.dc.html'}, {what: 'Call Dan Thu 09:00, he is in Leeds', where: 'Contact', when: '24 Sep, 09:00', ink: INK, href: 'Contact Record.dc.html'}, {what: 'Get the Ordell custom fee agreed in writing', where: 'Job, Senior Engineer', when: '26 Sep', ink: INK, href: 'Job Record.dc.html'}].filter((a, i) => !s.done[i]).map((a, i) => ({...a, done: a.done || (() => { this.setState({done: {...s.done, [i]: true}}); this.say('Done. Logged on ' + a.where.split(',')[0].toLowerCase() + '.'); })}));
     return {...this.topbarVals(),
       headLine: 'Engineering desk. 7 jobs to fill, 17 contractors out, 4 placed this month. ' + needsToday.length + ' things need you today.',
-      logCall: () => this.say('Log a call opens the same drawer as on every record: who, about what, what happened, follow up.'),
+      logCall: () => this.say('Log opens the same drawer as on every record: who, about what, what happened, follow up.'),
       openBilled: () => { const rows = {'This month': [['Brightwell Payments', 'Perm fee, Tom Whitfield placed', '£12,480', 'INV-2026-0338, paid'], ['Brightwell Payments', 'T&M, 9 contractors, weeks 1 to 2', '£24,700', 'INV-2026-0341 to 0349'], ['Northbeam Data', 'Perm fee, Platform Engineer', '£15,520', 'INV-2026-0340, overdue 12 days'], ['Brightwell Payments', 'SOW milestone 2, approved 3 Sep', '£8,500', 'INV-2026-0339, paid']], 'This quarter': [['Brightwell Payments', 'T&M, 9 contractors, 13 weeks', '£63,300', '39 invoices'], ['Perm fees', 'Four placements', '£61,000', '4 invoices'], ['SOW', 'Milestones 1 and 2', '£18,500', '2 invoices']], 'This year': [['T&M margin', '17 contractors', '£181,000', 'Weekly'], ['Perm fees', '11 placements', '£172,000', ''], ['SOW', 'Two statements', '£59,000', '']]}[s.period]; this.setState({drawer: {kind: 'list', kicker: 'Billed, ' + s.period.toLowerCase(), title: gbp(p.billed), meta: 'Approved time and invoiced fees, your desk. Each line is an invoice or a run of them; open the client to see the invoice.', facts: [{label: 'Target', value: gbp(p.target)}, {label: 'Pace', value: Math.round(p.billed / p.target * 100) + '%'}, {label: 'Overdue', value: '£15,520'}], rows: rows.map(([t, sub, amt, st]) => ({title: t, sub: sub + (st ? '. ' + st : ''), right: amt, ink: /overdue/i.test(st) ? BERRY : INK, href: 'Client Record.dc.html?tab=billing'})), links: [{label: 'Open Invoices', go: () => this.say('Invoices page is next on the list.')}], foot: 'Timesheets awaiting approval are not in here until approved.'}}); },
       moneyLine: 'Your own numbers. Billed is approved time and invoiced fees; forecast is live assignments and approved milestones to year end; pipeline is fee at band mid times chance.',
       periods: Object.keys(P).map(k => chip(k, s.period === k, () => this.setState({period: k}))),

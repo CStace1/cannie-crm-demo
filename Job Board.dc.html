@@ -21,6 +21,8 @@ a:hover{color:#7D2342}
   [data-side] nav{flex-direction:row !important;flex-wrap:wrap}
   [data-side] [data-user]{margin-top:0 !important;margin-left:auto}
   [data-page]{padding-left:20px !important;padding-right:20px !important}
+  [data-topbar]{flex-wrap:wrap;padding:10px 20px !important}
+  [data-topspacer]{display:none !important}
 }
 @media (max-width:1180px){
   [data-actions]{flex-basis:100% !important}
@@ -83,7 +85,7 @@ a:hover{color:#7D2342}
 </div>
 </sc-if>
 </div>
-<span style="flex:1 0 8px"></span>
+<span data-topspacer="1" style="flex:1 0 8px"></span>
 <div style="position:relative;flex:0 0 auto">
 <button onClick="{{ toggleCreate }}" title="Create" style="flex:0 0 auto;height:38px;padding:0 14px;display:inline-flex;align-items:center;gap:8px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg><span>New</span></button>
 <sc-if value="{{ createOpen }}" hint-placeholder-val="{{ false }}">

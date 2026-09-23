@@ -23,6 +23,8 @@ a:hover{color:#7D2342}
   [data-side] [data-context] > :first-child{display:none}
   [data-side] [data-user]{margin-top:0 !important;margin-left:auto}
   [data-page],[data-sticky]{padding-left:20px !important;padding-right:20px !important}
+  [data-topbar]{flex-wrap:wrap;padding:10px 20px !important}
+  [data-topspacer]{display:none !important}
 }
 @media (max-width:1180px){
   [data-actions]{flex-basis:100% !important}
@@ -100,7 +102,7 @@ a:hover{color:#7D2342}
 </div>
 </sc-if>
 </div>
-<span style="flex:1 0 8px"></span>
+<span data-topspacer="1" style="flex:1 0 8px"></span>
 <div style="position:relative;flex:0 0 auto">
 <button onClick="{{ toggleCreate }}" title="Create" style="flex:0 0 auto;height:38px;padding:0 14px;display:inline-flex;align-items:center;gap:8px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg><span>New</span></button>
 <sc-if value="{{ createOpen }}" hint-placeholder-val="{{ false }}">
@@ -710,7 +712,7 @@ class Component extends DCLogic {
       roleChips: [{label: 'Hiring manager on 4', href: '#'}, {label: 'Approves 3 assignments, 1 SOW', href: '#'}, {label: 'Decides to £100k', href: '#'}],
       isCandidate,
       recSearch: s.recSearch, setRecSearch: e => this.setState({recSearch: e.target.value}), isSearch: q.length >= 2, searchTitle: hits.length + ' result' + (hits.length === 1 ? '' : 's') + ' for "' + s.recSearch.trim() + '"', searchHits: hits, searchEmpty: hits.length === 0, clearSearch: () => this.setState({recSearch: ''}),
-      secondaryGo: () => { window.location.href = 'Client Record.dc.html'; }, primaryLabel: s.tab === 'Approvals' ? 'Chase everything waiting' : 'Log a call',
+      secondaryGo: () => { window.location.href = 'Client Record.dc.html'; }, primaryLabel: s.tab === 'Approvals' ? 'Chase everything waiting' : 'Log',
       primaryGo: s.tab === 'Approvals' ? () => this.openDrawer({kind: 'log', draft: {kind: 'Email', about: 'The account', tpl: 'Chase approval', note: 'Dan, four things are waiting on you: milestone 3 (5 days), Femi\'s timesheet (6 days), Rosa\'s offer (2 days), feedback on Lucía (3 days). Fifteen minutes Thursday morning would clear all four.', follow: 'Next week'}}) : () => this.openDrawer({kind: 'log', draft: {kind: 'Call', about: 'The account', note: '', follow: 'None'}}),
       needsLabel: lead.label + ':', needsInk: lead.ink, needsItems: sep(lead.items),
       needsToggles: others.map(h => ({label: h.items.length + ' ' + h.short, go: () => this.setState({needsOpen: s.needsOpen === h.key ? null : h.key}), weight: s.needsOpen === h.key ? '600' : '400', deco: s.needsOpen === h.key ? 'underline' : 'none'})),

@@ -23,6 +23,8 @@ a:hover{color:#7D2342}
   [data-side] [data-context] > :first-child{display:none}
   [data-side] [data-user]{margin-top:0 !important;margin-left:auto}
   [data-page],[data-sticky]{padding-left:20px !important;padding-right:20px !important}
+  [data-topbar]{flex-wrap:wrap;padding:10px 20px !important}
+  [data-topspacer]{display:none !important}
 }
 @media (max-width:1180px){
   [data-split]{grid-template-columns:minmax(0,1fr) !important}
@@ -99,7 +101,7 @@ a:hover{color:#7D2342}
 </div>
 </sc-if>
 </div>
-<span style="flex:1 0 8px"></span>
+<span data-topspacer="1" style="flex:1 0 8px"></span>
 <div style="position:relative;flex:0 0 auto">
 <button onClick="{{ toggleCreate }}" title="Create" style="flex:0 0 auto;height:38px;padding:0 14px;display:inline-flex;align-items:center;gap:8px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg><span>New</span></button>
 <sc-if value="{{ createOpen }}" hint-placeholder-val="{{ false }}">
@@ -344,7 +346,7 @@ a:hover{color:#7D2342}
 <span style="display:flex;flex-direction:column;gap:2px;min-width:0"><a href="Client Record.dc.html" style="font-size:14px;font-weight:600;color:#2B211B">Dan Okafor</a><span style="font-size:12px;color:rgba(43,33,27,.55)">Head of Platform, approves offers</span></span>
 </div>
 <p style="margin:0;font-size:13px;color:{{ mgrInk }};font-weight:{{ mgrWeight }}">{{ mgrLine }}</p>
-<div style="display:flex;gap:14px;flex-wrap:wrap"><button onClick="{{ openShortlist }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">{{ shortlistLabel }}</button><button onClick="{{ logCall }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;color:rgba(43,33,27,.70);text-decoration:underline;cursor:pointer">Log a call</button></div>
+<div style="display:flex;gap:14px;flex-wrap:wrap"><button onClick="{{ openShortlist }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">{{ shortlistLabel }}</button><button onClick="{{ logCall }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;color:rgba(43,33,27,.70);text-decoration:underline;cursor:pointer">Log</button></div>
 </section>
 <section style="background:#F3EEE6;border:1px solid #D9CFC0;border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:8px">
 <div style="display:flex;align-items:baseline;gap:10px"><h2 style="margin:0;font-size:18px;font-weight:700;letter-spacing:-0.0075em">{{ sideCardTitle }}</h2><div style="flex:1"></div><button onClick="{{ goCommercials }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">Edit</button></div>

@@ -23,6 +23,8 @@ a:hover{color:#7D2342}
   [data-side] [data-context] > :first-child{display:none}
   [data-side] [data-user]{margin-top:0 !important;margin-left:auto}
   [data-page],[data-sticky]{padding-left:20px !important;padding-right:20px !important}
+  [data-topbar]{flex-wrap:wrap;padding:10px 20px !important}
+  [data-topspacer]{display:none !important}
 }
 @media (max-width:1180px){
   [data-actions]{flex-basis:100% !important}
@@ -97,7 +99,7 @@ a:hover{color:#7D2342}
 </div>
 </sc-if>
 </div>
-<span style="flex:1 0 8px"></span>
+<span data-topspacer="1" style="flex:1 0 8px"></span>
 <div style="position:relative;flex:0 0 auto">
 <button onClick="{{ toggleCreate }}" title="Create" style="flex:0 0 auto;height:38px;padding:0 14px;display:inline-flex;align-items:center;gap:8px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg><span>New</span></button>
 <sc-if value="{{ createOpen }}" hint-placeholder-val="{{ false }}">
@@ -963,8 +965,8 @@ class Component extends DCLogic {
       bandAction: onSite ? 'Raise an extension' : 'Confirm the start', bandGo: onSite ? () => { window.location.href = 'Job Record.dc.html?type=T%26M'; } : () => this.openDrawer({kind: 'log', where: 'Senior Backend Engineer, Brightwell', draft: {kind: 'Call', note: 'Confirmed start Mon 3 Nov, 09:00, 23 Corvane Street. Dan confirmed too.', follow: 'None'}}),
       assignmentFacts: onSite ? [{label: 'Rate', value: '£580 a day', ink: INK}, {label: 'Charge', value: '£700 a day', ink: INK}, {label: 'Engagement', value: 'Ltd, outside IR35', ink: INK}, {label: 'Approver', value: 'Dan Okafor', ink: INK}, {label: 'Timesheets', value: 'Weekly, 1 unapproved', ink: BERRY}, {label: 'Extension', value: 'Raise by 3 Feb', ink: INK}] : [{label: 'Start', value: 'Mon 3 Nov, 09:00', ink: INK}, {label: 'Agreed', value: '£92,000 a year', ink: INK}, {label: 'Fee', value: '£14,720 at 16%', ink: INK}, {label: 'Invoice', value: 'On start date', ink: INK}, {label: 'Rebate', value: '100% to 4 wks, sliding to 12', ink: INK}, {label: 'Notice given', value: 'Yes, 30 Sep', ink: INK}],
       recSearch: s.recSearch, setRecSearch: e => this.setState({recSearch: e.target.value}), isSearch: q.length >= 2, searchTitle: hits.length + ' result' + (hits.length === 1 ? '' : 's') + ' for "' + s.recSearch.trim() + '"', searchHits: hits, searchEmpty: hits.length === 0, clearSearch: () => this.setState({recSearch: ''}),
-      secondaryLabel: 'Log a call', secondaryGo: () => this.openDrawer({kind: 'log', draft: {kind: 'Call', note: '', follow: 'None'}}),
-      primaryLabel: tab === 'Compliance' ? 'Add a document' : tab === 'Profile' ? 'Upload a new CV' : onSite ? 'Raise an extension' : placedWait ? 'Confirm the start' : tab === 'Matches' ? 'Log a call' : 'Put forward',
+      secondaryLabel: 'Log', secondaryGo: () => this.openDrawer({kind: 'log', draft: {kind: 'Call', note: '', follow: 'None'}}),
+      primaryLabel: tab === 'Compliance' ? 'Add a document' : tab === 'Profile' ? 'Upload a new CV' : onSite ? 'Raise an extension' : placedWait ? 'Confirm the start' : tab === 'Matches' ? 'Log' : 'Put forward',
       primaryGo: tab === 'Compliance' ? () => this.openDrawer({kind: 'doc', draft: {kind: 'Right to work', how: 'Seen on video, copy held'}}) : tab === 'Profile' ? () => this.openDrawer({kind: 'cv', draft: {from: 'She sent it'}}) : onSite ? () => { window.location.href = 'Job Record.dc.html?type=T%26M'; } : placedWait ? () => this.openDrawer({kind: 'log', where: 'Senior Backend Engineer, Brightwell', draft: {kind: 'Call', note: 'Confirmed start Mon 3 Nov, 09:00, 23 Corvane Street. Dan confirmed too.', follow: 'None'}}) : tab === 'Matches' ? () => this.openDrawer({kind: 'log', draft: {kind: 'Call', note: '', follow: 'None'}}) : go('Matches'),
       facts: ps !== 'Candidate' ? stateFacts : [{label: 'In the running', value: apps.length + ' jobs', ink: INK}, {label: 'Wants', value: gbp(Number(avail.wants)) + ', perm', ink: INK}, {label: 'Available', value: avail.notice + ' notice', ink: INK}, {label: 'Right to work', value: rtwDoc ? rtwDoc.state + ', ' + rtwDoc.name.replace(/ passport$/, '') : 'Unchecked', ink: rtwDoc ? INK : BERRY}, {label: 'Consent', value: consent.basis.split(',')[0] + ', to ' + this.fmtDate(consent.retention), ink: INK}],
       needsLabel: lead.label + ':', needsInk: lead.ink, needsItems: sep(lead.items),
