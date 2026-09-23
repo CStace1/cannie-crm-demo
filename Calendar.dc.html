@@ -59,6 +59,7 @@ a:hover{color:#7D2342}
 </sc-for>
 </div>
 <div style="display:flex;gap:7px;align-items:center;height:38px;padding:0 12px;border:1px solid {{ syncBorder }};border-radius:10px;background:{{ syncBg }}"><span style="width:8px;height:8px;border-radius:999px;background:{{ syncDot }}"></span><span style="font-size:13px;font-weight:600">{{ syncLabel }}</span></div>
+<button onClick="{{ openAdd }}" style="height:38px;padding:0 16px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap">Add to calendar</button>
 </div>
 <div style="padding:20px 32px 12px;display:flex;flex-direction:column;gap:6px">
 <span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Tasks this week</span>
@@ -92,6 +93,37 @@ a:hover{color:#7D2342}
 </main>
 </div>
 
+<sc-if value="{{ dOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:fixed;inset:0;background:rgba(43,33,27,.55);backdrop-filter:blur(3px);display:flex;justify-content:flex-end;z-index:20">
+<div onClick="{{ dClose }}" style="flex:1"></div>
+<div style="width:min(520px,100%);background:#F3EEE6;height:100%;overflow-y:auto;overflow-x:hidden;box-sizing:border-box;padding:28px 30px 44px;display:flex;flex-direction:column;gap:20px;box-shadow:-8px 0 24px rgba(43,33,27,.18)">
+<div style="display:flex;align-items:flex-start;gap:16px">
+<div style="display:flex;flex-direction:column;gap:6px;min-width:0">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Add</span>
+<h2 style="margin:0;font-size:24px;font-weight:700;letter-spacing:-0.0075em">Add to calendar</h2>
+<span style="font-size:13px;color:rgba(43,33,27,.55)">One entry, added to this week's grid.</span>
+</div>
+<div style="flex:1"></div>
+<button onClick="{{ dClose }}" style="height:32px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:transparent;font-family:inherit;font-size:13px;color:#2B211B;cursor:pointer">Close</button>
+</div>
+<div style="display:flex;flex-direction:column;gap:7px"><span style="font-size:13px;font-weight:600">Kind</span><div style="display:flex;gap:7px;flex-wrap:wrap"><sc-for list="{{ dKindOpts }}" as="o" hint-placeholder-count="5"><button onClick="{{ o.pick }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ o.bg }};border:{{ o.border }};color:{{ o.ink }};font-weight:{{ o.weight }}">{{ o.label }}</button></sc-for></div></div>
+<div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">With</span><input type="text" value="{{ dWith }}" onChange="{{ setDWith }}" placeholder="Dan Okafor" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:100%;box-sizing:border-box"></div>
+<div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">About</span><input type="text" value="{{ dAbout }}" onChange="{{ setDAbout }}" placeholder="Which job, client or candidate" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:100%;box-sizing:border-box"></div>
+<div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">What</span><textarea value="{{ dNote }}" onChange="{{ setDNote }}" placeholder="What it is, one line." style="min-height:70px;padding:10px 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;resize:vertical;width:100%;box-sizing:border-box"></textarea></div>
+<div style="display:flex;flex-direction:column;gap:7px"><span style="font-size:13px;font-weight:600">Day</span><div style="display:flex;gap:7px;flex-wrap:wrap"><sc-for list="{{ dDayOpts }}" as="o" hint-placeholder-count="5"><button onClick="{{ o.pick }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ o.bg }};border:{{ o.border }};color:{{ o.ink }};font-weight:{{ o.weight }}">{{ o.label }}</button></sc-for></div></div>
+<div style="display:flex;flex-direction:column;gap:7px"><span style="font-size:13px;font-weight:600">Time</span><div style="display:flex;gap:7px;flex-wrap:wrap"><sc-for list="{{ dTimeOpts }}" as="o" hint-placeholder-count="9"><button onClick="{{ o.pick }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ o.bg }};border:{{ o.border }};color:{{ o.ink }};font-weight:{{ o.weight }}">{{ o.label }}</button></sc-for></div><span style="font-size:12px;color:rgba(43,33,27,.55)">Monday to Friday of this week only.</span></div>
+<div style="display:flex;flex-direction:column;gap:7px"><span style="font-size:13px;font-weight:600">Follow up</span><div style="display:flex;gap:7px;flex-wrap:wrap"><sc-for list="{{ dFollowOpts }}" as="o" hint-placeholder-count="6"><button onClick="{{ o.pick }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ o.bg }};border:{{ o.border }};color:{{ o.ink }};font-weight:{{ o.weight }}">{{ o.label }}</button></sc-for></div>
+<span style="font-size:12px;color:rgba(43,33,27,.55)">Time defaults to 9am.</span>
+<sc-if value="{{ dShowFollowDate }}" hint-placeholder-val="{{ false }}"><input type="date" value="{{ dFollowDate }}" onChange="{{ setDFollowDate }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:100%;box-sizing:border-box"></sc-if>
+</div>
+<sc-if value="{{ dHasError }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:13px;font-weight:600;color:#9E2D53">{{ dError }}</p></sc-if>
+<div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+<button onClick="{{ dSave }}" style="height:40px;padding:0 18px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer">Add</button>
+</div>
+</div>
+</div>
+</sc-if>
+
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 const BERRY = '#9E2D53', INK = '#2B211B', TAUPE = '#D9CFC0', SAND = '#EFE7DA', SOFT = '#E896B3';
@@ -117,17 +149,23 @@ const CAT_STYLE = {
   Internal: {bg: '#F3EEE6', border: TAUPE, ink: 'rgba(43,33,27,.70)', dot: TAUPE},
 };
 class Component extends DCLogic {
-  state = {weekOffset: 0, q: ''};
+  state = {weekOffset: 0, q: '', drawer: null, dDraft: null, dError: ''};
+  evts() { return this.state.events || EVENTS; }
+  pill(on) { return {bg: on ? INK : 'transparent', border: on ? '1px solid ' + INK : '1px solid ' + TAUPE, ink: on ? '#F3EEE6' : INK, weight: on ? '600' : '400'}; }
+  followDate(quick, picked) { if (quick === 'Pick a date') return picked || ''; return ({'Tomorrow': '2026-09-22', 'In 3 days': '2026-09-24', 'Next week': '2026-09-28', 'Next month': '2026-10-21'})[quick] || ''; }
+  fmtFollow(iso) { if (!iso) return ''; const d = new Date(iso + 'T00:00:00'); return d.toLocaleDateString('en-GB', {day: 'numeric', month: 'short'}) + ', 09:00'; }
   renderVals() {
     const s = this.state; const term = s.q.trim().toLowerCase();
+    const evts = this.evts();
     const monday = new Date('2026-09-21T00:00:00'); monday.setDate(monday.getDate() + s.weekOffset * 7);
     const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
     const days = dayNames.map((dow, i) => { const d = new Date(monday); d.setDate(d.getDate() + i); return {dow, num: d.getDate(), bg: i === 0 && s.weekOffset === 0 ? '#EFE7DA' : '#F3EEE6', ink: INK}; });
     const matches = e => !term || e.title.toLowerCase().includes(term) || e.cat.toLowerCase().includes(term);
     const hours = Array.from({length: 9}, (_, i) => i + 8).map(hr => ({
       label: (hr % 12 || 12) + (hr < 12 ? 'am' : 'pm'),
-      cells: dayNames.map((_, di) => ({events: s.weekOffset === 0 ? EVENTS.filter(e => e.day === di && e.hour === hr && matches(e)).map(e => ({...CAT_STYLE[e.cat], time: (hr % 12 || 12) + (hr < 12 ? 'am' : 'pm'), title: e.title, open: () => { if (e.href !== '#') window.location.href = e.href; }})) : []}))
+      cells: dayNames.map((_, di) => ({events: s.weekOffset === 0 ? evts.filter(e => e.day === di && e.hour === hr && matches(e)).map(e => ({...CAT_STYLE[e.cat], time: (hr % 12 || 12) + (hr < 12 ? 'am' : 'pm'), title: e.title, open: () => { if (e.href !== '#') window.location.href = e.href; }})) : []}))
     }));
+    const d = s.drawer, dr = s.dDraft || {};
     return {
       weekLabel: monday.toLocaleDateString('en-GB', {day: 'numeric', month: 'long', year: 'numeric'}) + ', week',
       prevWeek: () => this.setState({weekOffset: s.weekOffset - 1}), nextWeek: () => this.setState({weekOffset: s.weekOffset + 1}),
@@ -135,6 +173,27 @@ class Component extends DCLogic {
       syncLabel: 'Outlook', syncDot: INK, syncBorder: '#D9CFC0', syncBg: 'transparent',
       legend: ['Stage', 'Client', 'Candidate', 'Internal'].map(c => ({label: c, dot: CAT_STYLE[c].dot})),
       tasks: s.weekOffset === 0 ? TASKS.filter(t => !term || t.title.toLowerCase().includes(term) || t.cat.toLowerCase().includes(term)).map(t => ({...CAT_STYLE[t.cat], title: t.title, day: dayNames[t.day], open: () => { if (t.href !== '#') window.location.href = t.href; }})) : [],
+      openAdd: () => this.setState({drawer: {kind: 'add'}, dDraft: {kind: 'Meeting', with: '', about: '', note: '', day: 0, hour: 9, follow: 'None', followDate: ''}, dError: '', weekOffset: 0}),
+      dOpen: !!d, dClose: () => this.setState({drawer: null, dDraft: null, dError: ''}),
+      dKindOpts: ['Note', 'Call', 'Email', 'SMS', 'Meeting'].map(o => ({label: o, pick: () => this.setState({dDraft: {...dr, kind: o}}), ...this.pill((dr.kind || 'Meeting') === o)})),
+      dWith: dr.with || '', setDWith: e => this.setState({dDraft: {...dr, with: e.target.value}}),
+      dAbout: dr.about || '', setDAbout: e => this.setState({dDraft: {...dr, about: e.target.value}}),
+      dNote: dr.note || '', setDNote: e => this.setState({dDraft: {...dr, note: e.target.value}}),
+      dDayOpts: dayNames.map((label, i) => ({label, pick: () => this.setState({dDraft: {...dr, day: i}}), ...this.pill((dr.day ?? 0) === i)})),
+      dTimeOpts: Array.from({length: 9}, (_, i) => i + 8).map(hr => ({label: (hr % 12 || 12) + (hr < 12 ? 'am' : 'pm'), pick: () => this.setState({dDraft: {...dr, hour: hr}}), ...this.pill((dr.hour ?? 9) === hr)})),
+      dFollowOpts: ['None', 'Tomorrow', 'In 3 days', 'Next week', 'Next month', 'Pick a date'].map(o => ({label: o, pick: () => this.setState({dDraft: {...dr, follow: o}}), ...this.pill((dr.follow || 'None') === o)})),
+      dShowFollowDate: dr.follow === 'Pick a date',
+      dFollowDate: dr.followDate || '', setDFollowDate: e => this.setState({dDraft: {...dr, followDate: e.target.value}}),
+      dHasError: !!s.dError, dError: s.dError,
+      dSave: () => {
+        if (!(dr.note || '').trim()) { this.setState({dError: 'Say what it is.'}); return; }
+        const kind = dr.kind || 'Meeting';
+        const cat = (kind === 'Meeting' || kind === 'Call') ? 'Client' : 'Internal';
+        const withName = (dr.with || '').trim();
+        const title = dr.note.trim() + (withName ? ', ' + withName : '');
+        const row = {day: dr.day ?? 0, hour: dr.hour ?? 9, len: 1, title, cat, href: '#'};
+        this.setState({events: [...evts, row], drawer: null, dDraft: null, dError: ''});
+      },
     };
   }
 }

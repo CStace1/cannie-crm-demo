@@ -39,9 +39,12 @@
 </aside>
 <main style="flex:1;min-width:0;display:flex;flex-direction:column">
 <div style="padding:26px 32px 64px;display:flex;flex-direction:column;gap:20px;max-width:900px">
-<div style="display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;align-items:flex-start;gap:16px">
+<div style="display:flex;flex-direction:column;gap:6px;flex:1">
 <span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Activities</span>
 <h1 style="margin:0;font-size:28px;font-weight:700;letter-spacing:-0.0075em">Everything logged, across the desk</h1>
+</div>
+<button onClick="{{ openAdd }}" style="height:40px;padding:0 18px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap">Log an activity</button>
 </div>
 <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
 <input type="text" value="{{ q }}" onChange="{{ setQ }}" placeholder="Search what happened" style="height:38px;flex:1 1 220px;max-width:320px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box">
@@ -81,6 +84,35 @@
 </main>
 </div>
 
+<sc-if value="{{ dOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:fixed;inset:0;background:rgba(43,33,27,.55);backdrop-filter:blur(3px);display:flex;justify-content:flex-end;z-index:20">
+<div onClick="{{ dClose }}" style="flex:1"></div>
+<div style="width:min(520px,100%);background:#F3EEE6;height:100%;overflow-y:auto;overflow-x:hidden;box-sizing:border-box;padding:28px 30px 44px;display:flex;flex-direction:column;gap:20px;box-shadow:-8px 0 24px rgba(43,33,27,.18)">
+<div style="display:flex;align-items:flex-start;gap:16px">
+<div style="display:flex;flex-direction:column;gap:6px;min-width:0">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Log</span>
+<h2 style="margin:0;font-size:24px;font-weight:700;letter-spacing:-0.0075em">Log an activity</h2>
+<span style="font-size:13px;color:rgba(43,33,27,.55)">One entry, added to the list below.</span>
+</div>
+<div style="flex:1"></div>
+<button onClick="{{ dClose }}" style="height:32px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:transparent;font-family:inherit;font-size:13px;color:#2B211B;cursor:pointer">Close</button>
+</div>
+<div style="display:flex;flex-direction:column;gap:7px"><span style="font-size:13px;font-weight:600">Kind</span><div style="display:flex;gap:7px;flex-wrap:wrap"><sc-for list="{{ dKindOpts }}" as="o" hint-placeholder-count="5"><button onClick="{{ o.pick }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ o.bg }};border:{{ o.border }};color:{{ o.ink }};font-weight:{{ o.weight }}">{{ o.label }}</button></sc-for></div></div>
+<div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">With</span><input type="text" value="{{ dWith }}" onChange="{{ setDWith }}" placeholder="Dan Okafor" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:100%;box-sizing:border-box"></div>
+<div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">About</span><input type="text" value="{{ dAbout }}" onChange="{{ setDAbout }}" placeholder="Which job, client or candidate" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:100%;box-sizing:border-box"></div>
+<div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">What was said</span><textarea value="{{ dNote }}" onChange="{{ setDNote }}" placeholder="What happened, what you agreed." style="min-height:90px;padding:10px 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;resize:vertical;width:100%;box-sizing:border-box"></textarea></div>
+<div style="display:flex;flex-direction:column;gap:7px"><span style="font-size:13px;font-weight:600">Follow up</span><div style="display:flex;gap:7px;flex-wrap:wrap"><sc-for list="{{ dFollowOpts }}" as="o" hint-placeholder-count="6"><button onClick="{{ o.pick }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ o.bg }};border:{{ o.border }};color:{{ o.ink }};font-weight:{{ o.weight }}">{{ o.label }}</button></sc-for></div>
+<span style="font-size:12px;color:rgba(43,33,27,.55)">Time defaults to 9am.</span>
+<sc-if value="{{ dShowFollowDate }}" hint-placeholder-val="{{ false }}"><input type="date" value="{{ dFollowDate }}" onChange="{{ setDFollowDate }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:100%;box-sizing:border-box"></sc-if>
+</div>
+<sc-if value="{{ dHasError }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:13px;font-weight:600;color:#9E2D53">{{ dError }}</p></sc-if>
+<div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+<button onClick="{{ dSave }}" style="height:40px;padding:0 18px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer">Save</button>
+</div>
+</div>
+</div>
+</sc-if>
+
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 const INK = '#2B211B', BERRY = '#9E2D53', MID = 'rgba(43,33,27,.70)', TAUPE = '#D9CFC0';
@@ -97,31 +129,58 @@ const ACT = [
   {date: '2026-09-17', when: '5 days ago', kind: 'Note', what: 'Tom Whitfield rebate window ends 3 Oct', who: 'Priya Shah', about: 'Tom Whitfield', href: 'Candidate Record.dc.html'},
 ];
 class Component extends DCLogic {
-  state = {q: '', personSearch: '', personFilter: '', personListOpen: false, kind: 'All', dateFrom: '', dateTo: ''};
+  state = {q: '', personSearch: '', personFilter: '', personListOpen: false, kind: 'All', dateFrom: '', dateTo: '', drawer: null, dDraft: null, dError: ''};
+  act() { return this.state.activities || ACT; }
+  pill(on) { return {bg: on ? INK : 'transparent', border: on ? '1px solid ' + INK : '1px solid ' + TAUPE, ink: on ? '#F3EEE6' : INK, weight: on ? '600' : '400'}; }
+  followDate(quick, picked) { if (quick === 'Pick a date') return picked || ''; return ({'Tomorrow': '2026-09-23', 'In 3 days': '2026-09-25', 'Next week': '2026-09-29', 'Next month': '2026-10-22'})[quick] || ''; }
+  fmtFollow(iso) { if (!iso) return ''; const d = new Date(iso + 'T00:00:00'); return d.toLocaleDateString('en-GB', {day: 'numeric', month: 'short'}) + ', 09:00'; }
   renderVals() {
     const s = this.state;
-    const people = Array.from(new Set(ACT.map(a => a.about))).sort();
+    const act = this.act();
+    const people = Array.from(new Set(act.map(a => a.about))).sort();
     const term = s.personSearch.trim().toLowerCase();
     const q = s.q.trim().toLowerCase();
-    let rows = ACT;
+    let rows = act;
     if (q) rows = rows.filter(a => (a.what + ' ' + a.who + ' ' + a.about + ' ' + a.kind).toLowerCase().includes(q));
     if (s.personFilter) rows = rows.filter(a => a.about === s.personFilter);
     if (s.kind !== 'All') rows = rows.filter(a => a.kind === s.kind);
     if (s.dateFrom) rows = rows.filter(a => a.date >= s.dateFrom);
     if (s.dateTo) rows = rows.filter(a => a.date <= s.dateTo);
-    const kinds = ['All', ...Array.from(new Set(ACT.map(a => a.kind)))];
+    const kinds = ['All', ...Array.from(new Set(act.map(a => a.kind)))];
+    const d = s.drawer, dr = s.dDraft || {};
     return {
       q: s.q, setQ: e => this.setState({q: e.target.value}),
       personSearch: s.personSearch, setPersonSearch: e => this.setState({personSearch: e.target.value, personListOpen: true}),
       openPersonList: () => this.setState({personListOpen: true}), personListOpen: s.personListOpen,
-      personMatches: people.filter(p => !term || p.toLowerCase().includes(term)).slice(0, 8).map(p => ({name: p, count: String(ACT.filter(a => a.about === p).length), pick: () => this.setState({personFilter: p, personSearch: p, personListOpen: false})})),
+      personMatches: people.filter(p => !term || p.toLowerCase().includes(term)).slice(0, 8).map(p => ({name: p, count: String(act.filter(a => a.about === p).length), pick: () => this.setState({personFilter: p, personSearch: p, personListOpen: false})})),
       hasPersonFilter: !!s.personFilter, clearPerson: () => this.setState({personFilter: '', personSearch: '', personListOpen: false}),
       kindFilters: kinds.map(k => ({label: k, go: () => this.setState({kind: k}), border: s.kind === k ? '1px solid ' + INK : '1px solid ' + TAUPE, ink: s.kind === k ? INK : MID, weight: s.kind === k ? '600' : '400'})),
       dateFrom: s.dateFrom, setDateFrom: e => this.setState({dateFrom: e.target.value}),
       dateTo: s.dateTo, setDateTo: e => this.setState({dateTo: e.target.value}),
       hasDateFilter: !!(s.dateFrom || s.dateTo), clearDates: () => this.setState({dateFrom: '', dateTo: ''}),
-      resultLine: rows.length + ' of ' + ACT.length + ' logged' + (s.personFilter ? ', about ' + s.personFilter : '') + (s.kind !== 'All' ? ', ' + s.kind.toLowerCase() : '') + '.',
-      rows: rows.map(a => ({...a, byLine: a.who + ', about ' + a.about})), empty: rows.length === 0,
+      resultLine: rows.length + ' of ' + act.length + ' logged' + (s.personFilter ? ', about ' + s.personFilter : '') + (s.kind !== 'All' ? ', ' + s.kind.toLowerCase() : '') + '.',
+      rows: rows.map(a => ({...a, byLine: a.who + ', about ' + a.about + (a.subject ? ', ' + a.subject : '') + (a.follow ? ', follow up ' + a.follow.toLowerCase() : '')})), empty: rows.length === 0,
+      openAdd: () => this.setState({drawer: {kind: 'log'}, dDraft: {kind: 'Note', with: '', about: '', note: '', follow: 'None', followDate: ''}, dError: ''}),
+      dOpen: !!d, dClose: () => this.setState({drawer: null, dDraft: null, dError: ''}),
+      dKindOpts: ['Note', 'Call', 'Email', 'SMS', 'Meeting'].map(o => ({label: o, pick: () => this.setState({dDraft: {...dr, kind: o}}), ...this.pill((dr.kind || 'Note') === o)})),
+      dWith: dr.with || '', setDWith: e => this.setState({dDraft: {...dr, with: e.target.value}}),
+      dAbout: dr.about || '', setDAbout: e => this.setState({dDraft: {...dr, about: e.target.value}}),
+      dNote: dr.note || '', setDNote: e => this.setState({dDraft: {...dr, note: e.target.value}}),
+      dFollowOpts: ['None', 'Tomorrow', 'In 3 days', 'Next week', 'Next month', 'Pick a date'].map(o => ({label: o, pick: () => this.setState({dDraft: {...dr, follow: o}}), ...this.pill((dr.follow || 'None') === o)})),
+      dShowFollowDate: dr.follow === 'Pick a date',
+      dFollowDate: dr.followDate || '', setDFollowDate: e => this.setState({dDraft: {...dr, followDate: e.target.value}}),
+      dHasError: !!s.dError, dError: s.dError,
+      dSave: () => {
+        if (!(dr.note || '').trim()) { this.setState({dError: 'Say what happened.'}); return; }
+        const fDate = this.followDate(dr.follow, dr.followDate);
+        const followText = (dr.follow && dr.follow !== 'None' && fDate) ? this.fmtFollow(fDate) : '';
+        const kind = dr.kind || 'Note';
+        const verb = kind === 'Call' ? 'Called ' : kind === 'Email' ? 'Emailed ' : kind === 'SMS' ? 'Texted ' : kind === 'Meeting' ? 'Met ' : '';
+        const withName = (dr.with || '').trim();
+        const what = (verb && withName ? verb + withName + ': ' : '') + dr.note.trim();
+        const row = {date: '2026-09-22', when: 'Just now', kind, what, who: 'Priya Shah', about: withName || 'Unfiled', subject: (dr.about || '').trim(), follow: followText, href: '#'};
+        this.setState({activities: [row, ...act], drawer: null, dDraft: null, dError: ''});
+      },
     };
   }
 }
