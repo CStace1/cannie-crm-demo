@@ -14,9 +14,19 @@
 <script src="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/_ds_bundle.js"></script>
 <style>body{margin:0;background:#EFE7DA} a{color:#9E2D53} a:hover{color:#7D2342}
 @media (max-width:720px){
-  [data-mobilepage]{padding:28px 16px 64px !important}
-  [data-phonewrap]{width:322px !important;height:699px !important;overflow:hidden !important}
-  [data-phonescale]{transform:scale(0.8);transform-origin:top left}
+  [data-mobilepage]{padding:0 !important;gap:0 !important}
+  [data-mobilepage] > div:first-child{padding:14px 16px 10px;gap:4px !important}
+  [data-mobilepage] > div:first-child h1{font-size:18px !important}
+  [data-mobilepage] > div:first-child p{display:none !important}
+  [data-mobilepage] > div:first-child span{display:none !important}
+  [data-phoneintro]{display:none !important}
+  [data-mobilepage] *{box-sizing:border-box}
+  [data-mobilepage] > div{width:100% !important;max-width:100% !important;min-width:0 !important}
+  [data-mobilepage] > div > div{width:100% !important;max-width:100% !important;min-width:0 !important}
+  [data-mobilepage] > div:first-child h1{font-size:19px !important;line-height:1.25 !important}
+  [data-phonewrap],[data-phonescale]{width:100% !important;max-width:100% !important;height:auto !important;min-height:100vh;transform:none !important}
+  [data-phonescale] > *{width:100% !important;max-width:100% !important;height:auto !important;min-height:100vh;border-radius:0 !important;box-shadow:none !important;border:none !important}
+  [data-phonescale] > * > *{max-width:100% !important}
 }
 </style>
 </helmet>
@@ -31,7 +41,7 @@
 <div style="display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start">
 
 <div style="display:flex;flex-direction:column;gap:12px">
-<span style="font-size:12px;font-weight:600;color:rgba(43,33,27,.70)">Recruiter's phone, live</span>
+<span data-phoneintro="1" style="font-size:12px;font-weight:600;color:rgba(43,33,27,.70)">Recruiter's phone, live</span>
 <div data-phonewrap="1" style="width:402px;height:874px">
 <div data-phonescale="1" style="width:402px;height:874px">
 <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
