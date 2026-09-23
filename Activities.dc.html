@@ -103,7 +103,10 @@
 <div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">What was said</span><textarea value="{{ dNote }}" onChange="{{ setDNote }}" placeholder="What happened, what you agreed." style="min-height:90px;padding:10px 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;resize:vertical;width:100%;box-sizing:border-box"></textarea></div>
 <div style="display:flex;flex-direction:column;gap:7px"><span style="font-size:13px;font-weight:600">Follow up</span><div style="display:flex;gap:7px;flex-wrap:wrap"><sc-for list="{{ dFollowOpts }}" as="o" hint-placeholder-count="6"><button onClick="{{ o.pick }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ o.bg }};border:{{ o.border }};color:{{ o.ink }};font-weight:{{ o.weight }}">{{ o.label }}</button></sc-for></div>
 <span style="font-size:12px;color:rgba(43,33,27,.55)">Time defaults to 9am.</span>
-<sc-if value="{{ dShowFollowDate }}" hint-placeholder-val="{{ false }}"><input type="date" value="{{ dFollowDate }}" onChange="{{ setDFollowDate }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:100%;box-sizing:border-box"></sc-if>
+<sc-if value="{{ dShowFollowTime }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:8px;flex-wrap:wrap">
+<sc-if value="{{ dShowFollowDate }}" hint-placeholder-val="{{ false }}"><input type="date" value="{{ dFollowDate }}" onChange="{{ setDFollowDate }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:180px;max-width:100%;box-sizing:border-box"></sc-if>
+<input type="time" value="{{ dFollowTime }}" onChange="{{ setDFollowTime }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:130px;box-sizing:border-box">
+</div></sc-if>
 </div>
 <sc-if value="{{ dHasError }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:13px;font-weight:600;color:#9E2D53">{{ dError }}</p></sc-if>
 <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
@@ -133,7 +136,7 @@ class Component extends DCLogic {
   act() { return this.state.activities || ACT; }
   pill(on) { return {bg: on ? INK : 'transparent', border: on ? '1px solid ' + INK : '1px solid ' + TAUPE, ink: on ? '#F3EEE6' : INK, weight: on ? '600' : '400'}; }
   followDate(quick, picked) { if (quick === 'Pick a date') return picked || ''; return ({'Tomorrow': '2026-09-23', 'In 3 days': '2026-09-25', 'Next week': '2026-09-29', 'Next month': '2026-10-22'})[quick] || ''; }
-  fmtFollow(iso) { if (!iso) return ''; const d = new Date(iso + 'T00:00:00'); return d.toLocaleDateString('en-GB', {day: 'numeric', month: 'short'}) + ', 09:00'; }
+  fmtFollow(iso, time) { if (!iso) return ''; const d = new Date(iso + 'T00:00:00'); return d.toLocaleDateString('en-GB', {day: 'numeric', month: 'short'}) + ', ' + (time || '09:00'); }
   renderVals() {
     const s = this.state;
     const act = this.act();
@@ -160,7 +163,7 @@ class Component extends DCLogic {
       hasDateFilter: !!(s.dateFrom || s.dateTo), clearDates: () => this.setState({dateFrom: '', dateTo: ''}),
       resultLine: rows.length + ' of ' + act.length + ' logged' + (s.personFilter ? ', about ' + s.personFilter : '') + (s.kind !== 'All' ? ', ' + s.kind.toLowerCase() : '') + '.',
       rows: rows.map(a => ({...a, byLine: a.who + ', about ' + a.about + (a.subject ? ', ' + a.subject : '') + (a.follow ? ', follow up ' + a.follow.toLowerCase() : '')})), empty: rows.length === 0,
-      openAdd: () => this.setState({drawer: {kind: 'log'}, dDraft: {kind: 'Note', with: '', about: '', note: '', follow: 'None', followDate: ''}, dError: ''}),
+      openAdd: () => this.setState({drawer: {kind: 'log'}, dDraft: {kind: 'Note', with: '', about: '', note: '', follow: 'None', followDate: '', followTime: '09:00'}, dError: ''}),
       dOpen: !!d, dClose: () => this.setState({drawer: null, dDraft: null, dError: ''}),
       dKindOpts: ['Note', 'Call', 'Email', 'SMS', 'Meeting'].map(o => ({label: o, pick: () => this.setState({dDraft: {...dr, kind: o}}), ...this.pill((dr.kind || 'Note') === o)})),
       dWith: dr.with || '', setDWith: e => this.setState({dDraft: {...dr, with: e.target.value}}),
@@ -168,12 +171,14 @@ class Component extends DCLogic {
       dNote: dr.note || '', setDNote: e => this.setState({dDraft: {...dr, note: e.target.value}}),
       dFollowOpts: ['None', 'Tomorrow', 'In 3 days', 'Next week', 'Next month', 'Pick a date'].map(o => ({label: o, pick: () => this.setState({dDraft: {...dr, follow: o}}), ...this.pill((dr.follow || 'None') === o)})),
       dShowFollowDate: dr.follow === 'Pick a date',
+      dShowFollowTime: !!(dr.follow && dr.follow !== 'None'),
       dFollowDate: dr.followDate || '', setDFollowDate: e => this.setState({dDraft: {...dr, followDate: e.target.value}}),
+      dFollowTime: dr.followTime || '09:00', setDFollowTime: e => this.setState({dDraft: {...dr, followTime: e.target.value}}),
       dHasError: !!s.dError, dError: s.dError,
       dSave: () => {
         if (!(dr.note || '').trim()) { this.setState({dError: 'Say what happened.'}); return; }
         const fDate = this.followDate(dr.follow, dr.followDate);
-        const followText = (dr.follow && dr.follow !== 'None' && fDate) ? this.fmtFollow(fDate) : '';
+        const followText = (dr.follow && dr.follow !== 'None' && fDate) ? this.fmtFollow(fDate, dr.followTime || '09:00') : '';
         const kind = dr.kind || 'Note';
         const verb = kind === 'Call' ? 'Called ' : kind === 'Email' ? 'Emailed ' : kind === 'SMS' ? 'Texted ' : kind === 'Meeting' ? 'Met ' : '';
         const withName = (dr.with || '').trim();

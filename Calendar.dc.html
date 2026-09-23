@@ -80,7 +80,7 @@ a:hover{color:#7D2342}
 <sc-for list="{{ h.cells }}" as="cell" hint-placeholder-count="5">
 <div style="background:#F3EEE6;min-height:46px;padding:2px;display:flex;flex-direction:column;gap:2px">
 <sc-for list="{{ cell.events }}" as="ev" hint-placeholder-count="1">
-<button onClick="{{ ev.open }}" style="text-align:left;background:{{ ev.bg }};border:1px solid {{ ev.border }};border-radius:6px;padding:4px 6px;font-family:inherit;cursor:pointer;display:flex;flex-direction:column;gap:1px">
+<button onClick="{{ ev.open }}" title="{{ ev.title }}" style="text-align:left;background:{{ ev.bg }};border:{{ ev.borderCss }};border-radius:6px;padding:4px 6px;font-family:inherit;cursor:pointer;display:flex;flex-direction:column;gap:1px">
 <span style="font-size:11px;font-weight:700;color:{{ ev.ink }}">{{ ev.time }}</span><span style="font-size:11px;color:{{ ev.ink }};overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ ev.title }}</span>
 </button>
 </sc-for>
@@ -114,7 +114,10 @@ a:hover{color:#7D2342}
 <div style="display:flex;flex-direction:column;gap:7px"><span style="font-size:13px;font-weight:600">Time</span><div style="display:flex;gap:7px;flex-wrap:wrap"><sc-for list="{{ dTimeOpts }}" as="o" hint-placeholder-count="9"><button onClick="{{ o.pick }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ o.bg }};border:{{ o.border }};color:{{ o.ink }};font-weight:{{ o.weight }}">{{ o.label }}</button></sc-for></div><span style="font-size:12px;color:rgba(43,33,27,.55)">Monday to Friday of this week only.</span></div>
 <div style="display:flex;flex-direction:column;gap:7px"><span style="font-size:13px;font-weight:600">Follow up</span><div style="display:flex;gap:7px;flex-wrap:wrap"><sc-for list="{{ dFollowOpts }}" as="o" hint-placeholder-count="6"><button onClick="{{ o.pick }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ o.bg }};border:{{ o.border }};color:{{ o.ink }};font-weight:{{ o.weight }}">{{ o.label }}</button></sc-for></div>
 <span style="font-size:12px;color:rgba(43,33,27,.55)">Time defaults to 9am.</span>
-<sc-if value="{{ dShowFollowDate }}" hint-placeholder-val="{{ false }}"><input type="date" value="{{ dFollowDate }}" onChange="{{ setDFollowDate }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:100%;box-sizing:border-box"></sc-if>
+<sc-if value="{{ dShowFollowTime }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:8px;flex-wrap:wrap">
+<sc-if value="{{ dShowFollowDate }}" hint-placeholder-val="{{ false }}"><input type="date" value="{{ dFollowDate }}" onChange="{{ setDFollowDate }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:180px;max-width:100%;box-sizing:border-box"></sc-if>
+<input type="time" value="{{ dFollowTime }}" onChange="{{ setDFollowTime }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:130px;box-sizing:border-box">
+</div></sc-if>
 </div>
 <sc-if value="{{ dHasError }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:13px;font-weight:600;color:#9E2D53">{{ dError }}</p></sc-if>
 <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
@@ -148,12 +151,20 @@ const CAT_STYLE = {
   Candidate: {bg: '#F3EEE6', border: SOFT, ink: '#7D2342', dot: SOFT},
   Internal: {bg: '#F3EEE6', border: TAUPE, ink: 'rgba(43,33,27,.70)', dot: TAUPE},
 };
+// A follow up is a reminder to yourself, not a commitment to somebody else: an outline
+// chip in ink, dashed, never the solid client/candidate berry, so it never reads as a meeting.
+const FOLLOW_STYLE = {bg: '#F3EEE6', border: INK, ink: 'rgba(43,33,27,.70)'};
 class Component extends DCLogic {
   state = {weekOffset: 0, q: '', drawer: null, dDraft: null, dError: ''};
   evts() { return this.state.events || EVENTS; }
   pill(on) { return {bg: on ? INK : 'transparent', border: on ? '1px solid ' + INK : '1px solid ' + TAUPE, ink: on ? '#F3EEE6' : INK, weight: on ? '600' : '400'}; }
   followDate(quick, picked) { if (quick === 'Pick a date') return picked || ''; return ({'Tomorrow': '2026-09-22', 'In 3 days': '2026-09-24', 'Next week': '2026-09-28', 'Next month': '2026-10-21'})[quick] || ''; }
-  fmtFollow(iso) { if (!iso) return ''; const d = new Date(iso + 'T00:00:00'); return d.toLocaleDateString('en-GB', {day: 'numeric', month: 'short'}) + ', 09:00'; }
+  fmtFollow(iso, time) { if (!iso) return ''; const d = new Date(iso + 'T00:00:00'); return d.toLocaleDateString('en-GB', {day: 'numeric', month: 'short'}) + ', ' + (time || '09:00'); }
+  // Where a follow up date actually falls on this grid: which week (relative to the week
+  // this page pins as "now") and which weekday column, Monday first. Saturday/Sunday return
+  // day 5/6, off the five-day grid on purpose; the item simply does not render, same as any
+  // other event on a day this calendar does not show.
+  dayInfo(iso) { const base = new Date('2026-09-21T00:00:00'); const d = new Date(iso + 'T00:00:00'); if (isNaN(d)) return null; const diff = Math.round((d - base) / 86400000); const weekOffset = Math.floor(diff / 7); return {weekOffset, day: diff - weekOffset * 7}; }
   renderVals() {
     const s = this.state; const term = s.q.trim().toLowerCase();
     const evts = this.evts();
@@ -163,7 +174,7 @@ class Component extends DCLogic {
     const matches = e => !term || e.title.toLowerCase().includes(term) || e.cat.toLowerCase().includes(term);
     const hours = Array.from({length: 9}, (_, i) => i + 8).map(hr => ({
       label: (hr % 12 || 12) + (hr < 12 ? 'am' : 'pm'),
-      cells: dayNames.map((_, di) => ({events: s.weekOffset === 0 ? evts.filter(e => e.day === di && e.hour === hr && matches(e)).map(e => ({...CAT_STYLE[e.cat], time: (hr % 12 || 12) + (hr < 12 ? 'am' : 'pm'), title: e.title, open: () => { if (e.href !== '#') window.location.href = e.href; }})) : []}))
+      cells: dayNames.map((_, di) => ({events: evts.filter(e => (e.weekOffset ?? 0) === s.weekOffset && e.day === di && e.hour === hr && matches(e)).map(e => { const st = e.isFollow ? FOLLOW_STYLE : CAT_STYLE[e.cat]; return {bg: st.bg, borderCss: (e.isFollow ? '1px dashed ' : '1px solid ') + st.border, ink: st.ink, time: (hr % 12 || 12) + (hr < 12 ? 'am' : 'pm'), title: e.title, open: () => { if (e.href !== '#') window.location.href = e.href; }}; })}))
     }));
     const d = s.drawer, dr = s.dDraft || {};
     return {
@@ -173,7 +184,7 @@ class Component extends DCLogic {
       syncLabel: 'Outlook', syncDot: INK, syncBorder: '#D9CFC0', syncBg: 'transparent',
       legend: ['Stage', 'Client', 'Candidate', 'Internal'].map(c => ({label: c, dot: CAT_STYLE[c].dot})),
       tasks: s.weekOffset === 0 ? TASKS.filter(t => !term || t.title.toLowerCase().includes(term) || t.cat.toLowerCase().includes(term)).map(t => ({...CAT_STYLE[t.cat], title: t.title, day: dayNames[t.day], open: () => { if (t.href !== '#') window.location.href = t.href; }})) : [],
-      openAdd: () => this.setState({drawer: {kind: 'add'}, dDraft: {kind: 'Meeting', with: '', about: '', note: '', day: 0, hour: 9, follow: 'None', followDate: ''}, dError: '', weekOffset: 0}),
+      openAdd: () => this.setState({drawer: {kind: 'add'}, dDraft: {kind: 'Meeting', with: '', about: '', note: '', day: 0, hour: 9, follow: 'None', followDate: '', followTime: '09:00'}, dError: '', weekOffset: 0}),
       dOpen: !!d, dClose: () => this.setState({drawer: null, dDraft: null, dError: ''}),
       dKindOpts: ['Note', 'Call', 'Email', 'SMS', 'Meeting'].map(o => ({label: o, pick: () => this.setState({dDraft: {...dr, kind: o}}), ...this.pill((dr.kind || 'Meeting') === o)})),
       dWith: dr.with || '', setDWith: e => this.setState({dDraft: {...dr, with: e.target.value}}),
@@ -183,16 +194,28 @@ class Component extends DCLogic {
       dTimeOpts: Array.from({length: 9}, (_, i) => i + 8).map(hr => ({label: (hr % 12 || 12) + (hr < 12 ? 'am' : 'pm'), pick: () => this.setState({dDraft: {...dr, hour: hr}}), ...this.pill((dr.hour ?? 9) === hr)})),
       dFollowOpts: ['None', 'Tomorrow', 'In 3 days', 'Next week', 'Next month', 'Pick a date'].map(o => ({label: o, pick: () => this.setState({dDraft: {...dr, follow: o}}), ...this.pill((dr.follow || 'None') === o)})),
       dShowFollowDate: dr.follow === 'Pick a date',
+      dShowFollowTime: !!(dr.follow && dr.follow !== 'None'),
       dFollowDate: dr.followDate || '', setDFollowDate: e => this.setState({dDraft: {...dr, followDate: e.target.value}}),
+      dFollowTime: dr.followTime || '09:00', setDFollowTime: e => this.setState({dDraft: {...dr, followTime: e.target.value}}),
       dHasError: !!s.dError, dError: s.dError,
       dSave: () => {
         if (!(dr.note || '').trim()) { this.setState({dError: 'Say what it is.'}); return; }
         const kind = dr.kind || 'Meeting';
         const cat = (kind === 'Meeting' || kind === 'Call') ? 'Client' : 'Internal';
         const withName = (dr.with || '').trim();
+        const about = (dr.about || '').trim();
         const title = dr.note.trim() + (withName ? ', ' + withName : '');
-        const row = {day: dr.day ?? 0, hour: dr.hour ?? 9, len: 1, title, cat, href: '#'};
-        this.setState({events: [...evts, row], drawer: null, dDraft: null, dError: ''});
+        const rows = [{day: dr.day ?? 0, hour: dr.hour ?? 9, weekOffset: 0, len: 1, title, cat, href: '#', isFollow: false}];
+        const fDate = this.followDate(dr.follow, dr.followDate);
+        if (dr.follow && dr.follow !== 'None' && fDate) {
+          const info = this.dayInfo(fDate);
+          const ftime = dr.followTime || '09:00';
+          const fhour = parseInt(ftime.split(':')[0], 10);
+          if (info && info.day >= 0 && info.day <= 4) {
+            rows.push({day: info.day, hour: fhour, weekOffset: info.weekOffset, len: 1, title: 'Follow up: ' + (withName || about || dr.note.trim()), cat: 'Internal', href: '#', isFollow: true});
+          }
+        }
+        this.setState({events: [...evts, ...rows], drawer: null, dDraft: null, dError: ''});
       },
     };
   }
