@@ -118,10 +118,9 @@ class Component extends DCLogic {
     return cols.map(c => { const on = !!c.key && cur === c.key; return {label: c.label, sortable: !!c.key, plain: !c.key, on, title: c.key ? 'Sort by ' + c.label.toLowerCase() : '', ink: on ? '#2B211B' : 'rgba(43,33,27,.70)', rot: on && dir === 1 ? 'rotate(180deg)' : 'none', go: () => set(c.key, on ? -dir : (c.defaultDir || 1))}; });
   }
   state = {status: 'All', invs: (() => { try { const v = JSON.parse(localStorage.getItem('cannie.invoices') || 'null'); if (v) return v; } catch (e) {} return INVOICES; })(), sel: null, toast: ''};
-  componentDidUpdate(pp, ps) { if (ps.invs !== this.state.invs) try { localStorage.setItem('cannie.invoices', JSON.stringify(this.state.invs)); } catch (e) {} }
   say(m) { clearTimeout(this.tm); this.setState({toast: m}); this.tm = setTimeout(() => this.setState({toast: ''}), 4000); }
   componentWillUnmount() { clearTimeout(this.tm); }
-  setStatus(no, status, msg) { this.setState({invs: this.state.invs.map(x => x.no === no ? {...x, status, age: status === 'Sent' ? 0 : x.age} : x)}); this.say(msg); }
+  setStatus(no, status, msg) { const next = this.state.invs.map(x => x.no === no ? {...x, status, age: status === 'Sent' ? 0 : x.age} : x); this.setState({invs: next}); try { localStorage.setItem('cannie.invoices', JSON.stringify(next)); } catch (e) {} this.say(msg); }
   renderVals() {
     const s = this.state; const ALL = s.invs;
     let rows = ALL;

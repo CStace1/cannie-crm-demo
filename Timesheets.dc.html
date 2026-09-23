@@ -99,7 +99,7 @@ class Component extends DCLogic {
     return cols.map(c => { const on = !!c.key && cur === c.key; return {label: c.label, sortable: !!c.key, plain: !c.key, on, title: c.key ? 'Sort by ' + c.label.toLowerCase() : '', ink: on ? '#2B211B' : 'rgba(43,33,27,.70)', rot: on && dir === 1 ? 'rotate(180deg)' : 'none', go: () => set(c.key, on ? -dir : (c.defaultDir || 1))}; });
   }
   state = {status: 'All', sheets: (() => { try { const v = JSON.parse(localStorage.getItem('cannie.timesheets') || 'null'); if (v) return v; } catch (e) {} return SHEETS.map((r, i) => ({...r, id: 't' + i, chased: false})); })(), open: null, toast: ''};
-  componentDidUpdate(pp, ps) { if (ps.sheets !== this.state.sheets) try { localStorage.setItem('cannie.timesheets', JSON.stringify(this.state.sheets)); } catch (e) {} }
+  persistSheets(sheets) { this.setState({sheets}); try { localStorage.setItem('cannie.timesheets', JSON.stringify(sheets)); } catch (e) {} }
   say(m) { clearTimeout(this.tm); this.setState({toast: m}); this.tm = setTimeout(() => this.setState({toast: ''}), 4000); }
   componentWillUnmount() { clearTimeout(this.tm); }
   renderVals() {
@@ -122,8 +122,8 @@ class Component extends DCLogic {
         action: r.status === 'Awaiting approval' ? 'Approve' : r.status === 'Not submitted' ? (r.chased ? 'Chased' : 'Chase') : (s.open === r.id ? 'Hide days' : 'View days'),
         isOpen: s.open === r.id, dayCells: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'].map((d, i) => ({d, v: i < Math.floor(r.days) ? '1' : (i === Math.floor(r.days) && r.days % 1 ? '0.5' : '0')})),
         act: () => {
-          if (r.status === 'Awaiting approval') { this.setState({sheets: SHEETS.map(x => x.id === r.id ? {...x, status: 'Approved'} : x)}); this.say(r.name + ' approved, ' + gbp(r.days * r.rate) + ' ready to invoice.'); }
-          else if (r.status === 'Not submitted') { if (!r.chased) { this.setState({sheets: SHEETS.map(x => x.id === r.id ? {...x, chased: true} : x)}); this.say(r.name + ' chased by email and text.'); } }
+          if (r.status === 'Awaiting approval') { this.persistSheets(s.sheets.map(x => x.id === r.id ? {...x, status: 'Approved'} : x)); this.say(r.name + ' approved, ' + gbp(r.days * r.rate) + ' ready to invoice.'); }
+          else if (r.status === 'Not submitted') { if (!r.chased) { this.persistSheets(s.sheets.map(x => x.id === r.id ? {...x, chased: true} : x)); this.say(r.name + ' chased by email and text.'); } }
           else this.setState({open: s.open === r.id ? null : r.id});
         } })),
       hasToast: !!s.toast, toast: s.toast,
