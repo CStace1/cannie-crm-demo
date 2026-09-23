@@ -14,34 +14,23 @@
 <script src="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/_ds_bundle.js"></script>
 <style>body{margin:0;background:#EFE7DA} a{color:#9E2D53} a:hover{color:#7D2342}
 @media (max-width:720px){
-  [data-mobilepage]{padding:0 !important;gap:0 !important}
-  [data-mobilepage] > div:first-child{padding:14px 16px 10px;gap:4px !important}
-  [data-mobilepage] > div:first-child h1{font-size:18px !important}
-  [data-mobilepage] > div:first-child p{display:none !important}
-  [data-mobilepage] > div:first-child span{display:none !important}
-  [data-phoneintro]{display:none !important}
+  [data-mobilepage]{padding:0 !important}
+  [data-mobilepage] > div:first-child{padding:10px 16px !important}
+  [data-mobilepage] > div:last-child{padding:0 !important;align-items:stretch !important;justify-content:stretch !important}
   [data-mobilepage] *{box-sizing:border-box}
-  [data-mobilepage] > div{width:100% !important;max-width:100% !important;min-width:0 !important}
-  [data-mobilepage] > div > div{width:100% !important;max-width:100% !important;min-width:0 !important}
-  [data-mobilepage] > div:first-child h1{font-size:19px !important;line-height:1.25 !important}
   [data-phonewrap],[data-phonescale]{width:100% !important;max-width:100% !important;height:auto !important;min-height:100vh;transform:none !important}
   [data-phonescale] > *{width:100% !important;max-width:100% !important;height:auto !important;min-height:100vh;border-radius:0 !important;box-shadow:none !important;border:none !important}
   [data-phonescale] > * > *{max-width:100% !important}
 }
 </style>
 </helmet>
-<div data-mobilepage="1" style="padding:48px 40px 96px;font-family:'Poppins',sans-serif;color:#2B211B;display:flex;flex-direction:column;gap:32px">
-<div style="display:flex;flex-direction:column;gap:8px;max-width:760px">
-<a href="Index.dc.html" style="font-size:13px;color:#9E2D53;text-decoration:none">← Demo home</a>
-<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Mobile</span>
-<h1 style="margin:0;font-size:30px;font-weight:700;letter-spacing:-0.0075em">One phone, tap it like a recruiter would</h1>
-<p style="margin:0;font-size:14px;color:rgba(43,33,27,.70);line-height:1.5">Read and react, not administer. Tap a tab, filter candidates, move someone through the pipeline. Same ink, bone, sand and berry. A bottom bar instead of the sidebar, one primary action per screen.</p>
+<div data-mobilepage="1" style="min-height:100vh;display:flex;flex-direction:column;font-family:'Poppins',sans-serif;color:#2B211B;box-sizing:border-box">
+<div style="padding:16px 20px">
+<a href="Index.dc.html" style="font-size:12px;color:#9E2D53;text-decoration:none">← Demo home</a>
 </div>
 
-<div style="display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start">
+<div style="flex:1;display:flex;align-items:center;justify-content:center;padding:0 20px 40px;box-sizing:border-box">
 
-<div style="display:flex;flex-direction:column;gap:12px">
-<span data-phoneintro="1" style="font-size:12px;font-weight:600;color:rgba(43,33,27,.70)">Recruiter's phone, live</span>
 <div data-phonewrap="1" style="width:402px;height:874px">
 <div data-phonescale="1" style="width:402px;height:874px">
 <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
@@ -180,6 +169,10 @@
 </div>
 </sc-if>
 
+<sc-if value="{{ noCandidate }}" hint-placeholder-val="{{ true }}">
+<button onClick="{{ openCreate }}" title="Create" style="position:absolute;right:20px;bottom:104px;width:52px;height:52px;padding:0;border-radius:999px;background:#9E2D53;color:#F3EEE6;border:none;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px rgba(43,33,27,.32);cursor:pointer;z-index:15;font-family:inherit"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
+</sc-if>
+
 <sc-if value="{{ hasMove }}" hint-placeholder-val="{{ false }}">
 <div style="position:absolute;inset:0;background:rgba(43,33,27,.55);z-index:30"></div>
 <div style="position:absolute;left:0;right:0;bottom:0;background:#F3EEE6;border-radius:24px 24px 0 0;padding:14px 20px 36px;display:flex;flex-direction:column;gap:12px;z-index:31;max-height:88%;overflow:auto;box-sizing:border-box">
@@ -215,6 +208,90 @@
 </div>
 </sc-if>
 
+<sc-if value="{{ hasCreateMenu }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;inset:0;background:rgba(43,33,27,.55);z-index:30"></div>
+<div style="position:absolute;left:0;right:0;bottom:0;background:#F3EEE6;border-radius:24px 24px 0 0;padding:14px 20px 36px;display:flex;flex-direction:column;gap:10px;z-index:31;max-height:88%;overflow:auto;box-sizing:border-box">
+<span style="width:40px;height:4px;border-radius:999px;background:#D9CFC0;margin:0 auto"></span>
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">New</span>
+<div style="display:flex;flex-direction:column;gap:8px">
+<sc-for list="{{ createMenuItems }}" as="c" hint-placeholder-count="5">
+<button onClick="{{ c.go }}" style="display:flex;flex-direction:column;gap:2px;background:#EFE7DA;border-radius:14px;padding:12px 14px;border:none;text-align:left;font-family:inherit;cursor:pointer;width:100%;box-sizing:border-box"><span style="font-size:15px;font-weight:600">{{ c.label }}</span><span style="font-size:12px;color:rgba(43,33,27,.70)">{{ c.sub }}</span></button>
+</sc-for>
+</div>
+<button onClick="{{ closeCreate }}" style="align-self:center;background:transparent;border:none;padding:8px 0 0;font-family:inherit;font-size:13px;font-weight:600;color:#2B211B;cursor:pointer">Cancel</button>
+</div>
+</sc-if>
+
+<sc-if value="{{ hasCreateCandidate }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;inset:0;background:rgba(43,33,27,.55);z-index:30"></div>
+<div style="position:absolute;left:0;right:0;bottom:0;background:#F3EEE6;border-radius:24px 24px 0 0;padding:14px 20px 36px;display:flex;flex-direction:column;gap:12px;z-index:31;max-height:88%;overflow:auto;box-sizing:border-box">
+<span style="width:40px;height:4px;border-radius:999px;background:#D9CFC0;margin:0 auto"></span>
+<div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">New candidate</span><h2 style="margin:0;font-size:20px;font-weight:700;letter-spacing:-0.0075em">Name, a route, how they came to you</h2></div>
+<label style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">Full name</span><input type="text" value="{{ ncName }}" onChange="{{ setNcName }}" placeholder="Priyanka Rao" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box;width:100%"></label>
+<label style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">Current title and employer</span><input type="text" value="{{ ncRole }}" onChange="{{ setNcRole }}" placeholder="Software Engineer, Paycrest" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box;width:100%"></label>
+<label style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">Location</span><input type="text" value="{{ ncPlace }}" onChange="{{ setNcPlace }}" placeholder="London, hybrid" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box;width:100%"></label>
+<div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">Looking for</span><div style="display:flex;gap:7px;flex-wrap:wrap"><sc-for list="{{ ncTypes }}" as="t" hint-placeholder-count="3"><button onClick="{{ t.pick }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ t.bg }};border:{{ t.border }};color:{{ t.ink }};font-weight:{{ t.weight }}">{{ t.label }}</button></sc-for></div></div>
+<sc-if value="{{ hasCfError }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:13px;font-weight:600;color:#9E2D53">{{ cfError }}</p></sc-if>
+<div style="display:flex;gap:10px"><button onClick="{{ closeCreate }}" style="flex:1;height:48px;border-radius:10px;border:1px solid rgba(43,33,27,.85);background:transparent;font-family:inherit;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;cursor:pointer">Cancel</button><button onClick="{{ createCandidate }}" style="flex:2;height:48px;border-radius:10px;background:#9E2D53;color:#F3EEE6;border:none;font-family:inherit;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;cursor:pointer">Create candidate</button></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ hasCreateJob }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;inset:0;background:rgba(43,33,27,.55);z-index:30"></div>
+<div style="position:absolute;left:0;right:0;bottom:0;background:#F3EEE6;border-radius:24px 24px 0 0;padding:14px 20px 36px;display:flex;flex-direction:column;gap:12px;z-index:31;max-height:88%;overflow:auto;box-sizing:border-box">
+<span style="width:40px;height:4px;border-radius:999px;background:#D9CFC0;margin:0 auto"></span>
+<div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">New job</span><h2 style="margin:0;font-size:20px;font-weight:700;letter-spacing:-0.0075em">{{ njH1 }}</h2></div>
+<div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">Client</span><div style="display:flex;gap:7px;flex-wrap:wrap"><sc-for list="{{ njClients }}" as="c" hint-placeholder-count="6"><button onClick="{{ c.pick }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ c.bg }};border:{{ c.border }};color:{{ c.ink }};font-weight:{{ c.weight }}">{{ c.label }}</button></sc-for></div></div>
+<label style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">Job title</span><input type="text" value="{{ njTitle }}" onChange="{{ setNjTitle }}" placeholder="Senior Backend Engineer" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box;width:100%"></label>
+<label style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">Location</span><input type="text" value="{{ njPlace }}" onChange="{{ setNjPlace }}" placeholder="London, hybrid 2" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box;width:100%"></label>
+<div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">Type</span><div style="display:flex;gap:7px;flex-wrap:wrap"><sc-for list="{{ njTypes }}" as="t" hint-placeholder-count="3"><button onClick="{{ t.pick }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ t.bg }};border:{{ t.border }};color:{{ t.ink }};font-weight:{{ t.weight }}">{{ t.label }}</button></sc-for></div></div>
+<label style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">{{ njPayLabel }}</span><input type="text" value="{{ njPay }}" onChange="{{ setNjPay }}" placeholder="{{ njPayPh }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box;width:100%"></label>
+<sc-if value="{{ hasCfError }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:13px;font-weight:600;color:#9E2D53">{{ cfError }}</p></sc-if>
+<div style="display:flex;gap:10px"><button onClick="{{ closeCreate }}" style="flex:1;height:48px;border-radius:10px;border:1px solid rgba(43,33,27,.85);background:transparent;font-family:inherit;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;cursor:pointer">Cancel</button><button onClick="{{ createJob }}" style="flex:2;height:48px;border-radius:10px;background:#9E2D53;color:#F3EEE6;border:none;font-family:inherit;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;cursor:pointer">Create job</button></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ hasCreateClient }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;inset:0;background:rgba(43,33,27,.55);z-index:30"></div>
+<div style="position:absolute;left:0;right:0;bottom:0;background:#F3EEE6;border-radius:24px 24px 0 0;padding:14px 20px 36px;display:flex;flex-direction:column;gap:12px;z-index:31;max-height:88%;overflow:auto;box-sizing:border-box">
+<span style="width:40px;height:4px;border-radius:999px;background:#D9CFC0;margin:0 auto"></span>
+<div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">New client</span><h2 style="margin:0;font-size:20px;font-weight:700;letter-spacing:-0.0075em">Name it and one route</h2></div>
+<label style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">Company name</span><input type="text" value="{{ ccName }}" onChange="{{ setCcName }}" placeholder="Halden Energy" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box;width:100%"></label>
+<label style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">Sector and location</span><input type="text" value="{{ ccSector }}" onChange="{{ setCcSector }}" placeholder="Energy trading, London" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box;width:100%"></label>
+<label style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">First contact's name</span><input type="text" value="{{ ccContact }}" onChange="{{ setCcContact }}" placeholder="Marcus Lyle" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box;width:100%"></label>
+<label style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">Their role</span><input type="text" value="{{ ccContactRole }}" onChange="{{ setCcContactRole }}" placeholder="Head of Platform" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box;width:100%"></label>
+<sc-if value="{{ hasCfError }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:13px;font-weight:600;color:#9E2D53">{{ cfError }}</p></sc-if>
+<div style="display:flex;gap:10px"><button onClick="{{ closeCreate }}" style="flex:1;height:48px;border-radius:10px;border:1px solid rgba(43,33,27,.85);background:transparent;font-family:inherit;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;cursor:pointer">Cancel</button><button onClick="{{ createClient }}" style="flex:2;height:48px;border-radius:10px;background:#9E2D53;color:#F3EEE6;border:none;font-family:inherit;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;cursor:pointer">Create prospect</button></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ hasCreateContact }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;inset:0;background:rgba(43,33,27,.55);z-index:30"></div>
+<div style="position:absolute;left:0;right:0;bottom:0;background:#F3EEE6;border-radius:24px 24px 0 0;padding:14px 20px 36px;display:flex;flex-direction:column;gap:12px;z-index:31;max-height:88%;overflow:auto;box-sizing:border-box">
+<span style="width:40px;height:4px;border-radius:999px;background:#D9CFC0;margin:0 auto"></span>
+<div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">New contact</span><h2 style="margin:0;font-size:20px;font-weight:700;letter-spacing:-0.0075em">Name, role, and the client they sit at</h2></div>
+<label style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">Full name</span><input type="text" value="{{ cnName }}" onChange="{{ setCnName }}" placeholder="Sana Iqbal" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box;width:100%"></label>
+<label style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">Job title</span><input type="text" value="{{ cnTitle }}" onChange="{{ setCnTitle }}" placeholder="Engineering Manager" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box;width:100%"></label>
+<div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">Client</span><div style="display:flex;gap:7px;flex-wrap:wrap"><sc-for list="{{ cnClients }}" as="c" hint-placeholder-count="8"><button onClick="{{ c.pick }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ c.bg }};border:{{ c.border }};color:{{ c.ink }};font-weight:{{ c.weight }}">{{ c.label }}</button></sc-for></div></div>
+<label style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">Email</span><input type="text" value="{{ cnEmail }}" onChange="{{ setCnEmail }}" placeholder="sana.iqbal@merrow.example" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box;width:100%"></label>
+<sc-if value="{{ hasCfError }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:13px;font-weight:600;color:#9E2D53">{{ cfError }}</p></sc-if>
+<div style="display:flex;gap:10px"><button onClick="{{ closeCreate }}" style="flex:1;height:48px;border-radius:10px;border:1px solid rgba(43,33,27,.85);background:transparent;font-family:inherit;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;cursor:pointer">Cancel</button><button onClick="{{ createContact }}" style="flex:2;height:48px;border-radius:10px;background:#9E2D53;color:#F3EEE6;border:none;font-family:inherit;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;cursor:pointer">Create contact</button></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ hasCreateNote }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;inset:0;background:rgba(43,33,27,.55);z-index:30"></div>
+<div style="position:absolute;left:0;right:0;bottom:0;background:#F3EEE6;border-radius:24px 24px 0 0;padding:14px 20px 36px;display:flex;flex-direction:column;gap:12px;z-index:31;max-height:88%;overflow:auto;box-sizing:border-box">
+<span style="width:40px;height:4px;border-radius:999px;background:#D9CFC0;margin:0 auto"></span>
+<div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Log</span><h2 style="margin:0;font-size:20px;font-weight:700;letter-spacing:-0.0075em">Note or call</h2></div>
+<div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">Kind</span><div style="display:flex;gap:7px;flex-wrap:wrap"><sc-for list="{{ nnKinds }}" as="k" hint-placeholder-count="5"><button onClick="{{ k.pick }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ k.bg }};border:{{ k.border }};color:{{ k.ink }};font-weight:{{ k.weight }}">{{ k.label }}</button></sc-for></div></div>
+<label style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">About</span><input type="text" value="{{ nnAbout }}" onChange="{{ setNnAbout }}" placeholder="What it's about" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box;width:100%"></label>
+<label style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">What was said</span><textarea value="{{ nnNote }}" onChange="{{ setNnNote }}" placeholder="What happened, what you agreed." rows="3" style="padding:10px 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;resize:vertical;width:100%;box-sizing:border-box"></textarea></label>
+<sc-if value="{{ hasCfError }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:13px;font-weight:600;color:#9E2D53">{{ cfError }}</p></sc-if>
+<div style="display:flex;gap:10px"><button onClick="{{ closeCreate }}" style="flex:1;height:48px;border-radius:10px;border:1px solid rgba(43,33,27,.85);background:transparent;font-family:inherit;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;cursor:pointer">Cancel</button><button onClick="{{ createNote }}" style="flex:2;height:48px;border-radius:10px;background:#9E2D53;color:#F3EEE6;border:none;font-family:inherit;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;cursor:pointer">Save to activity</button></div>
+</div>
+</sc-if>
+
 <sc-if value="{{ hasToast }}" hint-placeholder-val="{{ false }}">
 <div style="position:absolute;left:20px;right:20px;bottom:96px;z-index:40;background:#2B211B;color:#F3EEE6;border-radius:10px;padding:12px 16px;display:flex;gap:16px;align-items:center;justify-content:space-between;font-size:13px;box-shadow:0 12px 32px rgba(43,33,27,.28)"><span>{{ toastMsg }}</span><sc-if value="{{ canUndo }}" hint-placeholder-val="{{ false }}"><button onClick="{{ undo }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#E896B3;text-decoration:underline;cursor:pointer">Undo</button></sc-if></div>
 </sc-if>
@@ -222,8 +299,6 @@
 </div>
 </x-import>
 </div>
-</div>
-<p style="margin:0;max-width:402px;font-size:12px;color:rgba(43,33,27,.70)">Tap around: move a stage on Pipeline, filter on People, resolve a need on Home.</p>
 </div>
 
 </div>
@@ -240,6 +315,21 @@ const EXTRA = {
 };
 const NOTE_PH = {Screened: 'Screening call done, keen, notice one month', Sent: 'CV sent to the hiring manager with a short note', Interview: 'Dan wants to meet, first stage with the team', Offer: 'Verbal offer made by Dan, candidate thinking it over', Placed: 'Signed, references back', Applied: 'Moved back to review'};
 const CLIENT_CITY = {Brightwell: 'Leeds', Larkspur: 'Manchester', Settlepay: 'Leeds', Groveline: 'Bradford', Northbeam: 'Leeds', Fenmark: 'London'};
+const JOB_CLIENTS = ['Brightwell Payments', 'Ordell Software', 'Northbeam Data', 'Halden Energy', 'Kestrel Freight', 'Merrow Health'];
+const CONTACT_CLIENTS = ['Brightwell Payments', 'Ordell Software', 'Northbeam Data', 'Halden Energy', 'Kestrel Freight', 'Merrow Health', 'Aldgate and Percival', 'Tessellate Ventures'];
+const loadNewCandidates = () => {
+  try {
+    const list = JSON.parse(localStorage.getItem('cannie.newCandidates') || '[]');
+    return list.map(rec => ({
+      id: rec.id, name: rec.name,
+      job: (rec.title && rec.title !== 'Not asked') ? rec.title : 'Role not captured',
+      client: (rec.employer && rec.employer !== 'Not asked') ? rec.employer : '',
+      skills: (rec.skills || []).join(', '),
+      stage: null, days: null, next: null,
+      owned: true, type: rec.type === 'T&M' ? 'Contract' : 'Permanent', available: true,
+    }));
+  } catch (e) { return []; }
+};
 const SEED = [
   {id: 'p1', name: 'Priyanka Rao', job: 'Senior Backend Engineer', client: 'Brightwell', skills: 'Go, Kafka', stage: 'Applied', days: 1, next: 'Screening call', owned: false, type: 'Permanent', available: true},
   {id: 'p2', name: 'Dev Patel', job: 'Backend Engineer', client: 'Larkspur', skills: 'Go, Postgres', stage: 'Applied', days: 2, next: 'Screening call', owned: false, type: 'Permanent', available: true},
@@ -262,11 +352,12 @@ const IN_RUNNING = ['Sent', 'Interview', 'Offer'];
 class Component extends DCLogic {
   state = {
     tab: 'home', candSel: null, candFrom: 'people',
-    people: SEED,
+    people: [...loadNewCandidates(), ...SEED],
     pipeStage: 'Sent',
     move: null, logSheet: null, needSel: null, needsDismissed: [],
     candQ: '', candView: 'everyone', fSkills: true, fType: false, fWhere: false, fAvail: false, fAction: false,
-    logNote: '',
+    logNote: '', logNext: '',
+    createStep: null, cf: {},
     toast: '',
   };
   say(msg, undo) {
@@ -277,8 +368,20 @@ class Component extends DCLogic {
   }
   componentWillUnmount() { clearTimeout(this._t); }
   goTab(tab) { this.setState({tab, candSel: null, move: null, logSheet: null, needSel: null}); }
-  openCandidate(id, from) { this.setState({candSel: id, candFrom: from, logNote: ''}); }
+  openCandidate(id, from) { this.setState({candSel: id, candFrom: from, logNote: '', logNext: ''}); }
   closeCandidate() { this.setState(s => ({candSel: null, tab: s.candFrom})); }
+  openCreate() { this.setState({createStep: 'menu', cf: {}}); }
+  closeCreate() { this.setState({createStep: null, cf: {}}); }
+  pickCreate(kind) {
+    const defaults = {
+      candidate: {name: '', role: '', place: '', type: 'Perm'},
+      job: {client: null, title: '', place: '', type: 'Perm', pay: ''},
+      client: {name: '', sector: '', contact: '', contactRole: ''},
+      contact: {name: '', title: '', client: null, email: ''},
+      note: {kind: 'Note', about: '', note: ''},
+    }[kind] || {};
+    this.setState({createStep: kind, cf: {...defaults, error: ''}});
+  }
   openMove(id) {
     const p = this.state.people.find(x => x.id === id);
     const to = p && nextStage(p.stage);
@@ -410,9 +513,19 @@ class Component extends DCLogic {
 
     const csApp = cs && cs.stage ? [{job: cs.job + ', ' + cs.client, stage: cs.stage}] : [];
     const nextChips = cs ? ['Chase Dan Friday', 'Send prep pack', 'Call back Monday', 'No next step'].map(txt => {
-      const on = s.logNote === txt;
-      return {l: txt, border: on ? INK : TAUPE, bg: on ? INK : 'transparent', ink: on ? '#F3EEE6' : INK, w: on ? '600' : '400', go: () => this.setState({logNote: txt})};
+      const on = s.logNext === txt;
+      return {l: txt, border: on ? INK : TAUPE, bg: on ? INK : 'transparent', ink: on ? '#F3EEE6' : INK, w: on ? '600' : '400', go: () => this.setState({logNext: txt})};
     }) : [];
+
+    const cf = s.cf || {};
+    const cfChip = (val, cur, key) => ({label: val, pick: () => this.setState({cf: {...s.cf, [key]: val, error: ''}}), bg: cur === val ? INK : 'transparent', border: cur === val ? '1px solid ' + INK : '1px solid ' + TAUPE, ink: cur === val ? '#F3EEE6' : INK, weight: cur === val ? '600' : '400'});
+    const createMenuItems = [
+      {key: 'candidate', label: 'Candidate', sub: "Name, a route, how they came to you. CV can follow."},
+      {key: 'job', label: 'Job', sub: 'Pick the client first; the brief follows.'},
+      {key: 'client', label: 'Client', sub: 'Name and one route. Lands as a prospect.'},
+      {key: 'contact', label: 'Contact', sub: 'At a client you already have.'},
+      {key: 'note', label: 'Note or call', sub: 'Against anyone, logged to Activity.'},
+    ].map(it => ({...it, go: () => this.pickCreate(it.key)}));
 
     return {
       noCandidate: !cs,
@@ -492,7 +605,100 @@ class Component extends DCLogic {
       hasApps: csApp.length > 0, noApps: cs ? csApp.length === 0 : false, candApps: csApp,
       logNoteText: s.logNote, setLogNote2: e => this.setState({logNote: e.target.value}),
       nextChips,
-      saveCandLog: () => { const name = cs ? cs.name : ''; this.say('Logged for ' + name + '.'); this.closeCandidate(); },
+      saveCandLog: () => {
+        if (!cs) { this.closeCandidate(); return; }
+        const chosenNext = s.logNext || '';
+        const updated = people.map(p => p.id === cs.id ? {...p, next: chosenNext ? chosenNext : p.next} : p);
+        this.setState({people: updated, logNote: '', logNext: ''});
+        this.say('Logged for ' + cs.name + '.');
+        this.closeCandidate();
+      },
+
+      hasCreateMenu: s.createStep === 'menu',
+      createMenuItems,
+      openCreate: () => this.openCreate(),
+      closeCreate: () => this.closeCreate(),
+      hasCfError: !!cf.error, cfError: cf.error || '',
+
+      hasCreateCandidate: s.createStep === 'candidate',
+      ncName: cf.name || '', setNcName: e => this.setState({cf: {...cf, name: e.target.value, error: ''}}),
+      ncRole: cf.role || '', setNcRole: e => this.setState({cf: {...cf, role: e.target.value}}),
+      ncPlace: cf.place || '', setNcPlace: e => this.setState({cf: {...cf, place: e.target.value}}),
+      ncTypes: ['Perm', 'T&M', 'Either'].map(v => cfChip(v, cf.type || 'Perm', 'type')),
+      createCandidate: () => {
+        if (!(cf.name || '').trim()) { this.setState({cf: {...cf, error: 'A name is enough to start.'}}); return; }
+        const id = 'nc' + Date.now().toString(36);
+        const parts = (cf.role || '').split(',');
+        const title = (parts[0] || '').trim() || 'Not asked';
+        const employer = parts.slice(1).join(',').trim() || 'Not asked';
+        const rec = {id, name: cf.name.trim(), title, employer, place: (cf.place || '').trim() || 'Not set', skills: [], wants: 0, unit: cf.type === 'T&M' ? 'day' : 'year', type: cf.type || 'Perm', notice: 'Not asked', owner: '', source: 'Referral', added: '2026-09-22', last: 'Never', state: 'new', apps: [], read: '', href: 'Candidate Record.dc.html', mobile: '', email: ''};
+        try { const list = JSON.parse(localStorage.getItem('cannie.newCandidates') || '[]'); localStorage.setItem('cannie.newCandidates', JSON.stringify([rec, ...list])); } catch (e) {}
+        const row = {id, name: rec.name, job: title !== 'Not asked' ? title : 'Role not captured', client: employer !== 'Not asked' ? employer : '', skills: '', stage: null, days: null, next: null, owned: true, type: rec.type === 'T&M' ? 'Contract' : 'Permanent', available: true};
+        this.setState({people: [row, ...people], createStep: null, cf: {}});
+        this.say(rec.name + ' added.');
+      },
+
+      hasCreateJob: s.createStep === 'job',
+      njH1: cf.client ? 'Name it for ' + cf.client : 'Pick the client, then name it',
+      njClients: JOB_CLIENTS.map(v => cfChip(v, cf.client, 'client')),
+      njTitle: cf.title || '', setNjTitle: e => this.setState({cf: {...cf, title: e.target.value, error: ''}}),
+      njPlace: cf.place || '', setNjPlace: e => this.setState({cf: {...cf, place: e.target.value}}),
+      njTypes: ['Perm', 'T&M', 'SOW'].map(v => cfChip(v, cf.type || 'Perm', 'type')),
+      njPayLabel: cf.type === 'T&M' ? 'Day rate' : cf.type === 'SOW' ? 'Budget' : 'Salary',
+      njPayPh: cf.type === 'T&M' ? '£550 to £600 a day' : cf.type === 'SOW' ? '£240,000 budget' : '£85,000 to £95,000',
+      njPay: cf.pay || '', setNjPay: e => this.setState({cf: {...cf, pay: e.target.value}}),
+      createJob: () => {
+        if (!(cf.client || '').trim()) { this.setState({cf: {...cf, error: 'Pick a client first.'}}); return; }
+        if (!(cf.title || '').trim()) { this.setState({cf: {...cf, error: 'Name the job.'}}); return; }
+        const id = 'nj' + Date.now().toString(36);
+        const href = cf.type === 'T&M' ? 'Job Record.dc.html?type=T%26M' : cf.type === 'SOW' ? 'Job Record.dc.html?type=SOW' : 'Job Record.dc.html';
+        const closes = cf.type === 'SOW' ? '2027-06-30' : '2026-11-21';
+        const rec = {id, title: cf.title.trim(), client: cf.client.trim(), owner: 'Priya Shah', type: cf.type || 'Perm', pays: (cf.pay || '').trim() || 'Not agreed yet', hi: 0, place: (cf.place || '').trim() || 'Not set', skills: [], tags: ['New'], live: 0, sent: 0, stages: {}, furthest: 'Applied', open: 0, updated: 0, updatedWhat: 'Job opened', source: 'Added from the phone', closes, href};
+        try { const list = JSON.parse(localStorage.getItem('cannie.newJobs') || '[]'); localStorage.setItem('cannie.newJobs', JSON.stringify([rec, ...list])); } catch (e) {}
+        this.setState({createStep: null, cf: {}});
+        this.say(rec.title + ' opened for ' + rec.client + '.');
+      },
+
+      hasCreateClient: s.createStep === 'client',
+      ccName: cf.name || '', setCcName: e => this.setState({cf: {...cf, name: e.target.value, error: ''}}),
+      ccSector: cf.sector || '', setCcSector: e => this.setState({cf: {...cf, sector: e.target.value}}),
+      ccContact: cf.contact || '', setCcContact: e => this.setState({cf: {...cf, contact: e.target.value}}),
+      ccContactRole: cf.contactRole || '', setCcContactRole: e => this.setState({cf: {...cf, contactRole: e.target.value}}),
+      createClient: () => {
+        if (!(cf.name || '').trim()) { this.setState({cf: {...cf, error: 'A company name is enough to start.'}}); return; }
+        const id = 'np' + Date.now().toString(36);
+        const rec = {id, name: cf.name.trim(), sub: ((cf.sector || '').trim() ? (cf.sector.trim() + '. ') : '') + 'Prospect, referral.', status: 'Prospect', pstage: 'Identified', toFill: 0, onSite: 0, billed: 0, needs: [], jobs: [], people: (cf.contact || '').trim() ? [{name: cf.contact.trim(), role: (cf.contactRole || '').trim() || 'Role not set', last: 'Added today'}] : [], terms: 'None yet', outstanding: 0, prospect: true};
+        try { const list = JSON.parse(localStorage.getItem('cannie.newProspects') || '[]'); localStorage.setItem('cannie.newProspects', JSON.stringify([rec, ...list])); } catch (e) {}
+        this.setState({createStep: null, cf: {}});
+        this.say(rec.name + ' added as a prospect.');
+      },
+
+      hasCreateContact: s.createStep === 'contact',
+      cnName: cf.name || '', setCnName: e => this.setState({cf: {...cf, name: e.target.value, error: ''}}),
+      cnTitle: cf.title || '', setCnTitle: e => this.setState({cf: {...cf, title: e.target.value}}),
+      cnClients: CONTACT_CLIENTS.map(v => cfChip(v, cf.client, 'client')),
+      cnEmail: cf.email || '', setCnEmail: e => this.setState({cf: {...cf, email: e.target.value}}),
+      createContact: () => {
+        if (!(cf.name || '').trim()) { this.setState({cf: {...cf, error: 'A name is enough to start.'}}); return; }
+        if (!(cf.client || '').trim()) { this.setState({cf: {...cf, error: 'Pick the client they sit at.'}}); return; }
+        const id = 'ncn' + Date.now().toString(36);
+        const rec = {id, name: cf.name.trim(), title: (cf.title || '').trim() || 'Not asked', client: cf.client.trim(), clientHref: 'Client Record.dc.html', hm: false, lastN: 'Just added', quiet: false, needs: [], jobs: [], routes: (cf.email || '').trim() ? [{label: 'Email', value: cf.email.trim(), href: 'mailto:' + cf.email.trim()}] : []};
+        try { const list = JSON.parse(localStorage.getItem('cannie.newContacts') || '[]'); localStorage.setItem('cannie.newContacts', JSON.stringify([rec, ...list])); } catch (e) {}
+        this.setState({createStep: null, cf: {}});
+        this.say(rec.name + ' added at ' + rec.client + '.');
+      },
+
+      hasCreateNote: s.createStep === 'note',
+      nnKinds: ['Note', 'Call', 'Email', 'SMS', 'Meeting'].map(v => cfChip(v, cf.kind || 'Note', 'kind')),
+      nnAbout: cf.about || '', setNnAbout: e => this.setState({cf: {...cf, about: e.target.value}}),
+      nnNote: cf.note || '', setNnNote: e => this.setState({cf: {...cf, note: e.target.value, error: ''}}),
+      createNote: () => {
+        if (!(cf.note || '').trim()) { this.setState({cf: {...cf, error: 'Say what happened, one line is enough.'}}); return; }
+        const entry = {date: '2026-09-22', when: 'Just now', kind: cf.kind || 'Note', what: cf.note.trim(), who: 'Priya Shah', about: 'Unfiled', subject: (cf.about || '').trim(), follow: '', href: '#'};
+        try { const list = JSON.parse(localStorage.getItem('cannie.globalNotes') || '[]'); localStorage.setItem('cannie.globalNotes', JSON.stringify([entry, ...list])); } catch (e) {}
+        this.setState({createStep: null, cf: {}});
+        this.say('Logged.');
+      },
 
       tKpis: [{l: 'Calls', v: '108 of 120', p: '90%'}, {l: 'CVs sent', v: '38 of 45', p: '84%'}, {l: 'Interviews', v: '21 of 24', p: '88%'}, {l: 'Fee billed', v: '£61,200', p: '85%'}],
       funnel: [['Applied', 172], ['Screened', 74], ['Sent', 38], ['Interview', 21], ['Offer', 8], ['Placed', 4]].map(([l, n]) => ({l, n: String(n), w: Math.max(4, Math.round(n / 172 * 100)) + '%'})),
