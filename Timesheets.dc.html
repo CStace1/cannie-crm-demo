@@ -12,10 +12,10 @@
 <link rel="stylesheet" href="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/styles.css">
 <script src="_ds/cannie-design-system-274f8e6c-a122-4036-a007-5de642372887/_ds_bundle.js"></script>
 <style>body{margin:0;background:#F3EEE6}a{color:#9E2D53}a:hover{color:#7D2342}
-@media (max-width:720px){[data-side]{position:static !important;height:auto !important;width:auto !important;flex:0 0 auto !important;flex-direction:row !important;flex-wrap:wrap;align-items:center;gap:14px !important;padding:12px 16px !important}[data-side] nav{flex-direction:row !important;flex-wrap:wrap}}
+@media (max-width:720px){[data-shell]{flex-direction:column}[data-side]{position:static !important;height:auto !important;width:auto !important;flex:0 0 auto !important;flex-direction:row !important;flex-wrap:wrap;align-items:center;gap:14px !important;padding:12px 16px !important}[data-side] nav{flex-direction:row !important;flex-wrap:wrap}}
 </style>
 </helmet>
-<div style="display:flex;width:100%;min-height:100vh;background:#F3EEE6;color:#2B211B;font-family:'Poppins',sans-serif;font-size:15px;line-height:1.3">
+<div data-shell="1" style="display:flex;width:100%;min-height:100vh;background:#F3EEE6;color:#2B211B;font-family:'Poppins',sans-serif;font-size:15px;line-height:1.3">
 <aside data-side="1" style="position:sticky;top:0;height:100vh;box-sizing:border-box;overflow-y:auto;align-self:flex-start;width:222px;flex:0 0 222px;background:#2B211B;color:#F3EEE6;padding:24px 14px 20px;display:flex;flex-direction:column;gap:22px">
 <div style="padding:0 8px;display:flex">
 <x-import component-from-global-scope="CannieDesignSystem_274f8e.Lockup" tone="dark" height="24" hint-size="117px,24px"></x-import>
@@ -47,11 +47,11 @@
 <div style="display:flex;flex-direction:column;gap:6px;flex:1 1 380px">
 <span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Timesheets</span>
 <h1 style="margin:0;font-size:28px;font-weight:700;letter-spacing:-0.0075em">{{ periodLabel }}</h1>
-<p style="margin:0;font-size:13px;color:rgba(43,33,27,.55)">Contractors on T&M and SOW roles. Approve to release the line for invoicing.</p>
+<p style="margin:0;font-size:13px;color:rgba(43,33,27,.55)">Contractors on T&M and SOW roles. These sync from the timesheet portal. Approval happens there for now.</p>
 </div>
 <a href="Invoices.dc.html" style="height:40px;padding:0 18px;display:inline-flex;align-items:center;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-size:14px;font-weight:600;text-decoration:none">Go to invoices</a>
 </div>
-<div style="display:flex;flex-wrap:wrap;gap:22px 42px"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Approved this week</span><span style="font-size:15px;font-weight:700">{{ approvedValue }}</span></div><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Waiting on you</span><span style="font-size:15px;font-weight:700">{{ awaitingCount }}</span></div></div>
+<div style="display:flex;flex-wrap:wrap;gap:22px 42px"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Approved this week</span><span style="font-size:15px;font-weight:700">{{ approvedValue }}</span></div><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Awaiting approval</span><span style="font-size:15px;font-weight:700">{{ awaitingCount }}</span></div></div>
 <div style="display:flex;gap:8px;flex-wrap:wrap">
 <sc-for list="{{ filters }}" as="fl" hint-placeholder-count="4">
 <button onClick="{{ fl.go }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:transparent;border:{{ fl.border }};color:{{ fl.ink }};font-weight:{{ fl.weight }}">{{ fl.label }}</button>
@@ -71,7 +71,7 @@
 <span style="font-size:14px">{{ r.days }}</span>
 <span style="font-size:14px;font-weight:600">{{ r.value }}</span>
 <span style="font-size:13px;color:{{ r.statusInk }};font-weight:{{ r.statusWeight }}">{{ r.status }}</span>
-<button onClick="{{ r.act }}" style="justify-self:end;height:32px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:{{ r.actBg }};font-family:inherit;font-size:13px;font-weight:600;color:{{ r.actInk }};cursor:pointer;white-space:nowrap">{{ r.action }}</button>
+<sc-if value="{{ r.hasAction }}" hint-placeholder-val="{{ true }}"><button onClick="{{ r.act }}" style="justify-self:end;height:32px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:{{ r.actBg }};font-family:inherit;font-size:13px;font-weight:600;color:{{ r.actInk }};cursor:pointer;white-space:nowrap">{{ r.action }}</button></sc-if>
 </div>
 <sc-if value="{{ r.isOpen }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:8px;padding:0 4px 14px 4px"><sc-for list="{{ r.dayCells }}" as="dc" hint-placeholder-count="5"><div style="display:flex;flex-direction:column;gap:2px;align-items:flex-start;background:#EFE7DA;border-radius:10px;padding:8px 12px;min-width:56px"><span style="font-size:11px;color:rgba(43,33,27,.70)">{{ dc.d }}</span><span style="font-size:14px;font-weight:600">{{ dc.v }}</span></div></sc-for></div></sc-if>
 </sc-for>
@@ -118,13 +118,19 @@ class Component extends DCLogic {
       filters: statuses.map(st => ({label: st + (st === 'All' ? '' : ' ' + SHEETS.filter(r => r.status === st).length), go: () => this.setState({status: st}), border: s.status === st ? '1px solid ' + INK : '1px solid ' + TAUPE, ink: s.status === st ? INK : MID, weight: s.status === st ? '600' : '400'})),
       rows: rows.map(r => ({...r, days: r.days ? String(r.days) + 'd' : '—', value: r.days ? gbp(r.days * r.rate) : '—',
         statusInk: r.status === 'Awaiting approval' ? BERRY : r.status === 'Not submitted' ? MID : INK, statusWeight: r.status === 'Awaiting approval' ? '600' : '400',
-        actBg: r.status === 'Awaiting approval' ? '#9E2D53' : 'transparent', actInk: r.status === 'Awaiting approval' ? '#F3EEE6' : INK,
-        action: r.status === 'Awaiting approval' ? 'Approve' : r.status === 'Not submitted' ? (r.chased ? 'Chased' : 'Chase') : (s.open === r.id ? 'Hide days' : 'View days'),
+        // Approve and Chase/Chased are hidden, not removed: Cannie reads timesheets from the timesheet portal and
+        // does not drive approval in this version (Product Owner, 2026-09-23). Bring back by restoring the three
+        // commented lines below in place of hasAction/actBg/actInk/action/act, once Cannie owns that workflow.
+        // actBg: r.status === 'Awaiting approval' ? '#9E2D53' : 'transparent', actInk: r.status === 'Awaiting approval' ? '#F3EEE6' : INK,
+        // action: r.status === 'Awaiting approval' ? 'Approve' : r.status === 'Not submitted' ? (r.chased ? 'Chased' : 'Chase') : (s.open === r.id ? 'Hide days' : 'View days'),
+        hasAction: !!r.days, actBg: 'transparent', actInk: INK,
+        action: s.open === r.id ? 'Hide days' : 'View days',
         isOpen: s.open === r.id, dayCells: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'].map((d, i) => ({d, v: i < Math.floor(r.days) ? '1' : (i === Math.floor(r.days) && r.days % 1 ? '0.5' : '0')})),
         act: () => {
-          if (r.status === 'Awaiting approval') { this.persistSheets(s.sheets.map(x => x.id === r.id ? {...x, status: 'Approved'} : x)); this.say(r.name + ' approved, ' + gbp(r.days * r.rate) + ' ready to invoice.'); }
-          else if (r.status === 'Not submitted') { if (!r.chased) { this.persistSheets(s.sheets.map(x => x.id === r.id ? {...x, chased: true} : x)); this.say(r.name + ' chased by email and text.'); } }
-          else this.setState({open: s.open === r.id ? null : r.id});
+          // if (r.status === 'Awaiting approval') { this.persistSheets(s.sheets.map(x => x.id === r.id ? {...x, status: 'Approved'} : x)); this.say(r.name + ' approved, ' + gbp(r.days * r.rate) + ' ready to invoice.'); }
+          // else if (r.status === 'Not submitted') { if (!r.chased) { this.persistSheets(s.sheets.map(x => x.id === r.id ? {...x, chased: true} : x)); this.say(r.name + ' chased by email and text.'); } }
+          // else this.setState({open: s.open === r.id ? null : r.id});
+          this.setState({open: s.open === r.id ? null : r.id});
         } })),
       hasToast: !!s.toast, toast: s.toast,
       approvedValue: gbp(SHEETS.filter(x => x.status === 'Approved').reduce((n, x) => n + x.days * x.rate, 0)),

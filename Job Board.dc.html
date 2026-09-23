@@ -126,7 +126,7 @@ a:hover{color:#7D2342}
 <div style="display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap">
 <div style="display:flex;flex-direction:column;gap:6px;min-width:0;flex:1 1 380px">
 <span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Job board</span>
-<h1 style="margin:0;font-size:30px;font-weight:700;letter-spacing:-0.0075em">Everything live across the agency</h1>
+<h1 style="margin:0;font-size:30px;font-weight:700;letter-spacing:-0.0075em">{{ viewTitle }}</h1>
 <p style="margin:0;font-size:13px;color:rgba(43,33,27,.55)">{{ headLine }}</p>
 </div>
 <div data-actions="1" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;flex:0 0 auto">
@@ -257,7 +257,7 @@ class Component extends DCLogic {
       pinnedItemsUnused: [{title: 'Brightwell Payments', sub: 'Client', href: 'Client Record.dc.html'}, {title: 'Job board', sub: 'All live jobs', href: 'Job Board.dc.html'}],
     };
   }
-  state = {type: 'All', owner: 'Everyone', sort: 'Newest', sortTouched: false, q: '', cand: 'none', flash: '', put: {}};
+  state = {type: 'All', owner: 'Mine', sort: 'Newest', sortTouched: false, q: '', cand: 'none', flash: '', put: {}};
   say(m) { this.setState({flash: m}); clearTimeout(this._fl); this._fl = setTimeout(() => this.setState({flash: ''}), 3200); }
   fit(c, j) {
     if (c.id === 'none') return null;
@@ -271,7 +271,7 @@ class Component extends DCLogic {
   }
   renderVals() {
     const s = this.state; const q = s.q.trim().toLowerCase(); const c = CANDS.find(x => x.id === s.cand) || CANDS[0]; const matching = c.id !== 'none';
-    let rows = JOBS.filter(j => (s.type === 'All' || j.type === s.type) && (s.owner === 'Everyone' || (s.owner === 'Mine' ? j.owner === 'Priya Shah' : j.owner !== 'Priya Shah')));
+    let rows = JOBS.filter(j => (s.type === 'All' || j.type === s.type) && (s.owner === 'Everyone' || j.owner === 'Priya Shah'));
     if (q) rows = rows.filter(j => matchesQuery(j.title + ' ' + j.client + ' ' + j.place + ' ' + j.skills.join(' ') + ' ' + j.tags.join(' ') + ' ' + j.owner + ' ' + j.type + ' ' + j.furthest + ' ' + j.pays + ' ' + j.source, q));
     if (s.loc) rows = rows.filter(j => s.loc === 'Remote' ? /remote/i.test(j.place) : j.place.startsWith(s.loc));
     if (s.pay) rows = rows.filter(j => s.pay === 'To £80k' ? j.type === 'Perm' && j.hi <= 80000 : s.pay === '£80k to £95k' ? j.type === 'Perm' && j.hi > 80000 && j.hi <= 95000 : s.pay === '£95k+' ? j.type === 'Perm' && j.hi > 95000 : s.pay === 'To £500 a day' ? j.type === 'T&M' && j.hi <= 500 : s.pay === '£500+ a day' ? j.type === 'T&M' && j.hi > 500 : true);
@@ -292,7 +292,7 @@ class Component extends DCLogic {
     const U = xs => Array.from(new Set(xs)).filter(Boolean).sort();
     const fbJ = {
       fbOnQ: v => this.setState({q: v}),
-      fbViews: [{value: 'Everyone', label: 'Everything live', count: JOBS.length}, {value: 'Mine', label: 'Your jobs', count: mine}, {value: 'Others', label: 'Other desks', count: JOBS.length - mine}], fbView: s.owner, fbOnView: v => this.setState({owner: v}),
+      fbViews: [{value: 'Mine', label: 'My jobs', count: mine}, {value: 'Everyone', label: 'All jobs', count: JOBS.length}], fbView: s.owner, fbOnView: v => this.setState({owner: v}),
       fbFilters: [
         {key: 'type', label: 'Type', options: ['Perm', 'T&M', 'SOW'].map(o => ({value: o, label: o, count: JOBS.filter(x => x.type === o).length})), value: s.type === 'All' ? null : s.type},
         {key: 'client', label: 'Client', multi: true, options: U(JOBS.map(x => x.client)).map(o => ({value: o, label: o, count: JOBS.filter(x => x.client === o).length})), value: jf.client || []},
@@ -312,6 +312,7 @@ class Component extends DCLogic {
     const setSort = (k, d) => this.setState({sort: k, sortDir: d, sortTouched: true});
     return {...this.topbarVals(), ...fbJ,
       colHeads: this.heads([{label: 'Job', key: 'Title'}, {label: 'Type', key: 'Type'}, {label: 'Pays', key: 'Pays'}, {label: 'Sourced, sent, interview, offer', key: 'In process'}, {label: 'Days open', key: 'Newest'}, {label: matching ? 'Fit for ' + c.name.split(' ')[0] : 'Last update', key: matching ? 'Fit' : 'Quietest'}, {label: ''}], sortKey, dir, setSort),
+      viewTitle: s.owner === 'Mine' ? 'Your live jobs' : 'Everything live across the agency',
       headLine: JOBS.length + ' live jobs across 6 clients and 3 desks. ' + mine + ' are yours. Anyone can put a candidate forward to any of them; the owner stays the owner and the fee splits by the desk rule.',
       q: s.q, setQ: e => this.setState({q: e.target.value}),
       facts: [{label: 'Live jobs', value: String(JOBS.length), ink: INK}, {label: 'Yours', value: String(mine), ink: INK}, {label: 'New this week', value: String(fresh), ink: INK}, {label: 'Nothing sent yet', value: quiet + ' jobs', ink: quiet ? BERRY : INK}, {label: 'Fee at band mid, all', value: '£186,000', ink: INK}],
@@ -327,9 +328,8 @@ class Component extends DCLogic {
       saved: [{label: 'Go, London, perm', go: () => this.setState({q: 'go london', type: 'Perm', loc: null, pay: null, pattern: null, posted: null})}, {label: 'Data contractors', go: () => this.setState({q: 'spark or python', type: 'T&M', loc: null, pay: null, pattern: null, posted: null})}, {label: 'Quiet, nothing sent', go: () => this.setState({q: '', type: 'All', sort: 'Least in process', sortTouched: true, loc: null, pay: null, pattern: null, posted: null})}, {label: 'Closing inside 2 weeks', go: () => this.setState({q: '', type: 'All', sort: 'Closing soonest', sortTouched: true, loc: null, pay: null, pattern: null, posted: null})}],
       moreOpen: !!s.moreOpen, toggleMore: () => this.setState({moreOpen: !s.moreOpen}), moreLabel: s.moreOpen ? 'Fewer filters' : 'More filters' + ([s.loc, s.pay, s.pattern, s.posted].filter(Boolean).length ? ' (' + [s.loc, s.pay, s.pattern, s.posted].filter(Boolean).length + ' on)' : ''),
       searchHint: 'Every word must match. "quoted phrase", -exclude, and or: go or java -leeds. Reads title, client, skills, tags, place, stage, pay, source, owner.',
-      hasAny: !!(q || s.loc || s.pay || s.pattern || s.posted || s.type !== 'All'), clearAll: () => this.setState({jf: {}, q: '', type: 'All', owner: 'Everyone', loc: null, pay: null, pattern: null, posted: null, sortTouched: false}),
-      resultLine: wf.length + ' of ' + JOBS.length + ' live jobs' + (q ? ' for "' + s.q.trim() + '"' : ''),
-      owners: ['Everyone', 'Mine', 'Other desks'].map(o => chip(o, s.owner === o, () => this.setState({owner: o}))),
+      hasAny: !!(q || s.loc || s.pay || s.pattern || s.posted || s.type !== 'All'), clearAll: () => this.setState({jf: {}, q: '', type: 'All', loc: null, pay: null, pattern: null, posted: null, sortTouched: false}),
+      resultLine: wf.length + ' of ' + (s.owner === 'Mine' ? mine : JOBS.length) + ' live jobs' + (q ? ' for "' + s.q.trim() + '"' : ''),
       sorts: ['Newest', 'Oldest', 'Closing soonest', 'Quietest', 'Least in process', 'Client', ...(matching ? ['Fit'] : [])].map(k => ({label: k, go: () => this.setState({sort: k, sortTouched: true}), ink: sortKey === k ? INK : MID, weight: sortKey === k ? '600' : '400', deco: sortKey === k ? 'underline' : 'none'})),
       lastHead: matching ? 'Fit for ' + c.name.split(' ')[0] : 'Last update',
       rows: wf.map(({j, f}) => { const put = s.put[c.id + j.id]; const stg = Object.entries(j.stages).map(([k, n]) => n + ' ' + k.toLowerCase()).join(', '); return {title: j.title, sub: j.client + ', ' + j.owner + '. ' + j.place + '. Won: ' + j.source.toLowerCase() + '.', tagList: j.tags.map(name => ({name})), skillList: j.skills.map(name => ({name})), type: j.type, pays: j.pays, strip: ['Sourced', 'Sent', 'Interview', 'Offer'].map((k, i) => { const n = k === 'Sourced' ? ((j.stages.Applied || 0) + (j.stages.Screened || 0)) : (j.stages[k] || 0); return {n: String(n), bg: n > 0 ? (i === 3 ? BERRY : SAND) : 'transparent', ink: n > 0 ? (i === 3 ? '#F3EEE6' : INK) : 'rgba(43,33,27,.40)'}; }), openN: String(j.open), closesLabel: (() => { const d = Math.round((new Date(j.closes) - new Date('2026-09-19')) / 86400000); return (j.type === 'SOW' ? 'Ends ' : 'Fill by ') + new Date(j.closes).toLocaleDateString('en-GB', {day: 'numeric', month: 'short'}) + (d <= 14 && j.type !== 'SOW' ? ', ' + d + 'd' : ''); })(), closeInk: Math.round((new Date(j.closes) - new Date('2026-09-19')) / 86400000) <= 14 && j.type !== 'SOW' ? BERRY : MUTED, closeWeight: Math.round((new Date(j.closes) - new Date('2026-09-19')) / 86400000) <= 14 && j.type !== 'SOW' ? '600' : '400',
