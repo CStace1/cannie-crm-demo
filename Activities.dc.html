@@ -44,7 +44,7 @@
 <span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Activities</span>
 <h1 style="margin:0;font-size:28px;font-weight:700;letter-spacing:-0.0075em">Everything logged, across the desk</h1>
 </div>
-<button onClick="{{ openAdd }}" style="height:40px;padding:0 18px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap">Log an activity</button>
+<button onClick="{{ openAdd }}" style="height:40px;padding:0 18px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap">Log</button>
 </div>
 <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
 <input type="text" value="{{ q }}" onChange="{{ setQ }}" placeholder="Search what happened" style="height:38px;flex:1 1 220px;max-width:320px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;box-sizing:border-box">
@@ -90,27 +90,64 @@
 <div style="width:min(520px,100%);background:#F3EEE6;height:100%;overflow-y:auto;overflow-x:hidden;box-sizing:border-box;padding:28px 30px 44px;display:flex;flex-direction:column;gap:20px;box-shadow:-8px 0 24px rgba(43,33,27,.18)">
 <div style="display:flex;align-items:flex-start;gap:16px">
 <div style="display:flex;flex-direction:column;gap:6px;min-width:0">
-<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">Log</span>
-<h2 style="margin:0;font-size:24px;font-weight:700;letter-spacing:-0.0075em">Log an activity</h2>
-<span style="font-size:13px;color:rgba(43,33,27,.55)">One entry, added to the list below.</span>
+<span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">{{ dKicker }}</span>
+<h2 style="margin:0;font-size:24px;font-weight:700;letter-spacing:-0.0075em">{{ dTitle }}</h2>
+<span style="font-size:13px;color:rgba(43,33,27,.55)">{{ dMeta }}</span>
 </div>
 <div style="flex:1"></div>
 <button onClick="{{ dClose }}" style="height:32px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:transparent;font-family:inherit;font-size:13px;color:#2B211B;cursor:pointer">Close</button>
 </div>
-<div style="display:flex;flex-direction:column;gap:7px"><span style="font-size:13px;font-weight:600">Kind</span><div style="display:flex;gap:7px;flex-wrap:wrap"><sc-for list="{{ dKindOpts }}" as="o" hint-placeholder-count="5"><button onClick="{{ o.pick }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ o.bg }};border:{{ o.border }};color:{{ o.ink }};font-weight:{{ o.weight }}">{{ o.label }}</button></sc-for></div></div>
-<div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">With</span><input type="text" value="{{ dWith }}" onChange="{{ setDWith }}" placeholder="Dan Okafor" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:100%;box-sizing:border-box"></div>
-<div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">About</span><input type="text" value="{{ dAbout }}" onChange="{{ setDAbout }}" placeholder="Which job, client or candidate" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:100%;box-sizing:border-box"></div>
-<div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:13px;font-weight:600">What was said</span><textarea value="{{ dNote }}" onChange="{{ setDNote }}" placeholder="What happened, what you agreed." style="min-height:90px;padding:10px 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;resize:vertical;width:100%;box-sizing:border-box"></textarea></div>
-<div style="display:flex;flex-direction:column;gap:7px"><span style="font-size:13px;font-weight:600">Follow up</span><div style="display:flex;gap:7px;flex-wrap:wrap"><sc-for list="{{ dFollowOpts }}" as="o" hint-placeholder-count="6"><button onClick="{{ o.pick }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ o.bg }};border:{{ o.border }};color:{{ o.ink }};font-weight:{{ o.weight }}">{{ o.label }}</button></sc-for></div>
-<span style="font-size:12px;color:rgba(43,33,27,.55)">Time defaults to 9am.</span>
-<sc-if value="{{ dShowFollowTime }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:8px;flex-wrap:wrap">
-<sc-if value="{{ dShowFollowDate }}" hint-placeholder-val="{{ false }}"><input type="date" value="{{ dFollowDate }}" onChange="{{ setDFollowDate }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:180px;max-width:100%;box-sizing:border-box"></sc-if>
-<input type="time" value="{{ dFollowTime }}" onChange="{{ setDFollowTime }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:130px;box-sizing:border-box">
-</div></sc-if>
+<sc-if value="{{ dHasFacts }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-wrap:wrap;gap:16px 32px;background:#EFE7DA;border-radius:14px;padding:18px">
+<sc-for list="{{ dFacts }}" as="f" hint-placeholder-count="3">
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">{{ f.label }}</span><span style="font-size:15px;font-weight:700">{{ f.value }}</span></div>
+</sc-for>
 </div>
+</sc-if>
+<sc-for list="{{ dBody }}" as="p" hint-placeholder-count="1">
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:10px;font-weight:700;letter-spacing:0.364em;text-transform:uppercase;color:rgba(43,33,27,.70)">{{ p.label }}</span><p style="margin:0;font-size:14px;white-space:pre-wrap">{{ p.text }}</p></div>
+</sc-for>
+<sc-for list="{{ dFields }}" as="d" hint-placeholder-count="2">
+<div style="display:flex;flex-direction:column;gap:5px">
+<span style="font-size:13px;font-weight:600">{{ d.label }}</span>
+<sc-if value="{{ d.isText }}" hint-placeholder-val="{{ true }}"><input type="text" value="{{ d.value }}" onChange="{{ d.set }}" placeholder="{{ d.placeholder }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:100%;box-sizing:border-box"></sc-if>
+<sc-if value="{{ d.isArea }}" hint-placeholder-val="{{ false }}"><textarea value="{{ d.value }}" onChange="{{ d.set }}" placeholder="{{ d.placeholder }}" style="min-height:90px;padding:10px 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;resize:vertical;width:100%;box-sizing:border-box"></textarea></sc-if>
+<sc-if value="{{ d.isDatetime }}" hint-placeholder-val="{{ false }}"><input type="datetime-local" step="900" value="{{ d.value }}" onChange="{{ d.set }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:100%;box-sizing:border-box"></sc-if>
+<sc-if value="{{ d.isDate }}" hint-placeholder-val="{{ false }}"><input type="date" value="{{ d.value }}" onChange="{{ d.set }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:100%;box-sizing:border-box"></sc-if>
+<sc-if value="{{ d.isTime }}" hint-placeholder-val="{{ false }}"><input type="time" value="{{ d.value }}" onChange="{{ d.set }}" style="height:40px;padding:0 12px;border:1px solid rgba(43,33,27,.85);border-radius:10px;background:#F3EEE6;font-family:inherit;font-size:15px;color:#2B211B;width:100%;max-width:160px;box-sizing:border-box"></sc-if>
+<sc-if value="{{ d.isSelect }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:7px;flex-wrap:wrap">
+<sc-for list="{{ d.options }}" as="o" hint-placeholder-count="3">
+<button onClick="{{ o.pick }}" style="height:32px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:13px;cursor:pointer;background:{{ o.bg }};border:{{ o.border }};color:{{ o.ink }};font-weight:{{ o.weight }}">{{ o.label }}</button>
+</sc-for>
+</div></sc-if>
+<sc-if value="{{ d.isList }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:10px">
+<sc-for list="{{ d.items }}" as="it" hint-placeholder-count="1">
+<div style="display:flex;flex-direction:column;gap:7px;padding:10px;border:1px solid #D9CFC0;border-radius:10px">
+<div style="display:flex;gap:8px;align-items:center">
+<input type="text" value="{{ it.value }}" onChange="{{ it.set }}" placeholder="{{ it.placeholder }}" style="height:36px;padding:0 10px;border:1px solid rgba(43,33,27,.85);border-radius:8px;background:#F3EEE6;font-family:inherit;font-size:14px;color:#2B211B;flex:1;box-sizing:border-box">
+<sc-if value="{{ it.canRemove }}" hint-placeholder-val="{{ false }}"><button onClick="{{ it.remove }}" style="background:transparent;border:none;padding:4px;font-family:inherit;font-size:13px;color:rgba(43,33,27,.55);cursor:pointer">Remove</button></sc-if>
+</div>
+<div style="display:flex;gap:6px;flex-wrap:wrap">
+<sc-for list="{{ it.tagOptions }}" as="o" hint-placeholder-count="3">
+<button onClick="{{ o.pick }}" style="height:28px;padding:0 11px;border-radius:999px;font-family:inherit;font-size:12px;cursor:pointer;background:{{ o.bg }};border:{{ o.border }};color:{{ o.ink }};font-weight:{{ o.weight }}">{{ o.label }}</button>
+</sc-for>
+</div>
+</div>
+</sc-for>
+<button onClick="{{ d.addItem }}" style="align-self:flex-start;background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#9E2D53;text-decoration:underline;cursor:pointer">{{ d.addLabel }}</button>
+</div>
+</sc-if>
+<sc-if value="{{ d.hasNote }}" hint-placeholder-val="{{ false }}"><span style="font-size:12px;color:rgba(43,33,27,.55)">{{ d.note }}</span></sc-if>
+</div>
+</sc-for>
 <sc-if value="{{ dHasError }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:13px;font-weight:600;color:#9E2D53">{{ dError }}</p></sc-if>
 <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
-<button onClick="{{ dSave }}" style="height:40px;padding:0 18px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer">Save</button>
+<sc-if value="{{ dHasPrimary }}" hint-placeholder-val="{{ true }}"><button onClick="{{ dPrimary }}" style="height:40px;padding:0 18px;border:none;border-radius:10px;background:#9E2D53;color:#F3EEE6;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer">{{ dPrimaryLabel }}</button></sc-if>
+<sc-for list="{{ dLinks }}" as="l" hint-placeholder-count="1">
+<button onClick="{{ l.go }}" style="background:transparent;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:#2B211B;text-decoration:underline;cursor:pointer">{{ l.label }}</button>
+</sc-for>
+<span style="font-size:12px;color:rgba(43,33,27,.55)">{{ dFoot }}</span>
 </div>
 </div>
 </div>
@@ -138,6 +175,29 @@ class Component extends DCLogic {
   pill(on) { return {bg: on ? INK : 'transparent', border: on ? '1px solid ' + INK : '1px solid ' + TAUPE, ink: on ? '#F3EEE6' : INK, weight: on ? '600' : '400'}; }
   followDate(quick, picked) { if (quick === 'Pick a date') return picked || ''; return ({'Tomorrow': '2026-09-23', 'In 3 days': '2026-09-25', 'Next week': '2026-09-29', 'Next month': '2026-10-22'})[quick] || ''; }
   fmtFollow(iso, time) { if (!iso) return ''; const d = new Date(iso + 'T00:00:00'); return d.toLocaleDateString('en-GB', {day: 'numeric', month: 'short'}) + ', ' + (time || '09:00'); }
+  // Same field renderer as the record pages' shared drawer (Contact Record.dc.html), ported
+  // verbatim so this drawer is the same component, not an approximation of it.
+  field(defs, draft, setDraft) {
+    return defs.map(f => {
+      if (f.kind === 'list') {
+        const rows = this.parseList(draft[f.key]); const items = rows.length ? rows : [{val: '', tag: ''}];
+        const write = arr => setDraft({...draft, [f.key]: arr.map(i => i.val + (i.tag ? ' :: ' + i.tag : '')).join(' | ')});
+        return {label: f.label, isList: true, addLabel: f.addLabel || 'Add another', note: f.note || '', hasNote: !!f.note,
+          items: items.map((it, idx, arr) => ({
+            value: it.val, tag: it.tag, placeholder: f.placeholder || '',
+            set: e => { const n = arr.map(a => ({...a})); n[idx].val = e.target.value; write(n); },
+            tagOptions: (f.tagChoices || []).map(o => ({label: o, pick: () => { const n = arr.map(a => ({...a})); n[idx].tag = o; write(n); }, ...this.pill(it.tag === o)})),
+            canRemove: arr.length > 1, remove: () => write(arr.filter((_, i) => i !== idx))
+          })),
+          addItem: () => write([...items, {val: '', tag: ''}])
+        };
+      }
+      return {label: f.label, value: draft[f.key] ?? f.default ?? '', placeholder: f.placeholder || '', note: f.note || '', hasNote: !!f.note,
+      isText: !f.kind || f.kind === 'text', isArea: f.kind === 'area', isDate: f.kind === 'date', isDatetime: f.kind === 'datetime', isTime: f.kind === 'time', isSelect: f.kind === 'select', isList: false,
+      set: e => setDraft({...draft, [f.key]: e.target.value}),
+      options: (f.options || []).map(o => ({label: (f.labels && f.labels[o]) || o, pick: () => setDraft({...draft, [f.key]: o}), ...this.pill(draft[f.key] === o)}))};
+    });
+  }
   renderVals() {
     const s = this.state;
     const act = this.act();
@@ -152,6 +212,9 @@ class Component extends DCLogic {
     if (s.dateTo) rows = rows.filter(a => a.date <= s.dateTo);
     const kinds = ['All', ...Array.from(new Set(act.map(a => a.kind)))];
     const d = s.drawer, dr = s.dDraft || {};
+    const setD = nd => this.setState({dDraft: nd});
+    const F = defs => this.field(defs, dr, setD);
+    const isMsg = dr.kind === 'Email' || dr.kind === 'SMS';
     return {
       q: s.q, setQ: e => this.setState({q: e.target.value}),
       personSearch: s.personSearch, setPersonSearch: e => this.setState({personSearch: e.target.value, personListOpen: true}),
@@ -166,17 +229,20 @@ class Component extends DCLogic {
       rows: rows.map(a => ({...a, byLine: a.who + ', about ' + a.about + (a.subject ? ', ' + a.subject : '') + (a.follow ? ', follow up ' + a.follow.toLowerCase() : '')})), empty: rows.length === 0,
       openAdd: () => this.setState({drawer: {kind: 'log'}, dDraft: {kind: 'Note', with: '', about: '', note: '', follow: 'None', followDate: '', followTime: '09:00'}, dError: ''}),
       dOpen: !!d, dClose: () => this.setState({drawer: null, dDraft: null, dError: ''}),
-      dKindOpts: ['Note', 'Call', 'Email', 'SMS', 'Meeting'].map(o => ({label: o, pick: () => this.setState({dDraft: {...dr, kind: o}}), ...this.pill((dr.kind || 'Note') === o)})),
-      dWith: dr.with || '', setDWith: e => this.setState({dDraft: {...dr, with: e.target.value}}),
-      dAbout: dr.about || '', setDAbout: e => this.setState({dDraft: {...dr, about: e.target.value}}),
-      dNote: dr.note || '', setDNote: e => this.setState({dDraft: {...dr, note: e.target.value}}),
-      dFollowOpts: ['None', 'Tomorrow', 'In 3 days', 'Next week', 'Next month', 'Pick a date'].map(o => ({label: o, pick: () => this.setState({dDraft: {...dr, follow: o}}), ...this.pill((dr.follow || 'None') === o)})),
-      dShowFollowDate: dr.follow === 'Pick a date',
-      dShowFollowTime: !!(dr.follow && dr.follow !== 'None'),
-      dFollowDate: dr.followDate || '', setDFollowDate: e => this.setState({dDraft: {...dr, followDate: e.target.value}}),
-      dFollowTime: dr.followTime || '09:00', setDFollowTime: e => this.setState({dDraft: {...dr, followTime: e.target.value}}),
+      dKicker: 'Log', dTitle: 'Log', dMeta: 'One entry, added to the list below.',
+      dHasFacts: false, dFacts: [], dBody: [], dFoot: '', dLinks: [],
+      dFields: F([
+        {label: 'Kind', key: 'kind', kind: 'select', options: ['Note', 'Call', 'Email', 'SMS', 'Meeting']},
+        {label: 'With', key: 'with', kind: 'text', placeholder: 'Dan Okafor'},
+        {label: 'About', key: 'about', kind: 'text', placeholder: 'Which job, client or candidate'},
+        {label: isMsg ? 'Message' : 'What happened', key: 'note', kind: 'area', placeholder: isMsg ? 'What you wrote.' : 'What happened, what you agreed.'},
+        {label: 'Follow up', key: 'follow', kind: 'select', options: ['None', 'Tomorrow', 'In 3 days', 'Next week', 'Next month', 'Pick a date'], note: 'Time defaults to 9am.'},
+        ...(dr.follow === 'Pick a date' ? [{label: 'Follow up, on', key: 'followDate', kind: 'date'}] : []),
+        ...(dr.follow && dr.follow !== 'None' ? [{label: 'Follow up, at', key: 'followTime', kind: 'time', default: '09:00'}] : []),
+      ]),
+      dHasPrimary: true, dPrimaryLabel: isMsg ? 'Send and log' : 'Save',
       dHasError: !!s.dError, dError: s.dError,
-      dSave: () => {
+      dPrimary: () => {
         if (!(dr.note || '').trim()) { this.setState({dError: 'Say what happened.'}); return; }
         const fDate = this.followDate(dr.follow, dr.followDate);
         const followText = (dr.follow && dr.follow !== 'None' && fDate) ? this.fmtFollow(fDate, dr.followTime || '09:00') : '';
